@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Qui sommes-nous ? | Pneuclick.fr</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .bg-pneu-orange { background-color: #EA5834; }
+        .text-pneu-orange { color: #EA5834; }
+        .border-pneu-orange { border-color: #EA5834; }
+        .hover-scale { transition: transform 0.3s ease; }
+        .hover-scale:hover { transform: scale(1.02); }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-900">
+
+    <!-- Header / Navigation -->
+    <header class="bg-white border-b sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="text-3xl font-extrabold tracking-tighter">
+                PNEU<span class="text-pneu-orange">CLICK</span>
+            </div>
+            <nav class="hidden md:flex space-x-8 font-medium">
+                <a href="#" class="hover:text-pneu-orange transition">Pneus</a>
+                <a href="#" class="hover:text-pneu-orange transition border-b-2 border-pneu-orange">Qui sommes-nous ?</a>
+                <a href="#" class="hover:text-pneu-orange transition">Centres de montage</a>
+                <a href="#" class="hover:text-pneu-orange transition">Contact</a>
+            </nav>
+            <div class="flex items-center space-x-4">
+                <i data-lucide="shopping-cart" class="w-6 h-6"></i>
+                <a href="tel:0696891787" class="bg-black text-white px-5 py-2 rounded-full text-sm font-bold">06 96 89 17 87</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative bg-black py-24 overflow-hidden">
+        <div class="absolute inset-0 opacity-20 bg-[url('https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?auto=format&fit=crop&q=80')] bg-cover bg-center"></div>
+        <div class="container mx-auto px-6 relative z-10 text-center">
+            <h1 class="text-5xl md:text-7xl font-extrabold text-white mb-6">Trouvez vos pneus en <span class="text-pneu-orange tracking-tighter">1 Click</span></h1>
+            <p class="text-xl text-gray-300 max-w-2xl mx-auto leading-relaxed italic">
+                "C'est en Février 2020 que notre société voit le jour avec une mission simple : la qualité au meilleur prix."
+            </p>
+        </div>
+    </section>
+
+    <!-- Content Section: Intro & Marque -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-2 gap-16 items-center">
+                <div>
+                    <h2 class="text-3xl font-bold mb-6">Comment tout a commencé ?</h2>
+                    <p class="text-gray-600 mb-6 leading-relaxed text-lg">
+                        Une équipe jeune et dynamique vous accompagne et vous conseille du <span class="font-bold">lundi au vendredi, de 8h30 à 16h00</span>. Nous mettons à votre disposition notre expertise pour faciliter votre achat.
+                    </p>
+                    <div class="grid grid-cols-2 gap-4 mb-8">
+                        <div class="p-4 border-l-4 border-pneu-orange bg-gray-50 uppercase text-xs font-bold tracking-widest">Prestige: Michelin, Goodyear, Pirelli</div>
+                        <div class="p-4 border-l-4 border-gray-300 bg-gray-50 uppercase text-xs font-bold tracking-widest">Éco: Aplus, Hifly, Firemax</div>
+                    </div>
+                    <button class="bg-pneu-orange text-white px-8 py-4 rounded-lg font-bold shadow-lg hover:bg-orange-600 transition">Confirmer ma commande</button>
+                </div>
+                <div class="grid grid-cols-2 gap-6">
+                    <div class="bg-gray-100 p-8 rounded-2xl text-center">
+                        <div class="text-4xl font-bold text-pneu-orange mb-2">+20k</div>
+                        <p class="text-sm font-semibold uppercase tracking-wide">Pneus en stock</p>
+                    </div>
+                    <div class="bg-black text-white p-8 rounded-2xl text-center">
+                        <div class="text-4xl font-bold mb-2 text-pneu-orange">7</div>
+                        <p class="text-sm font-semibold uppercase tracking-wide text-gray-400">Centres en Martinique</p>
+                    </div>
+                    <div class="bg-gray-100 p-8 rounded-2xl text-center">
+                        <div class="text-4xl font-bold text-pneu-orange mb-2">0€</div>
+                        <p class="text-sm font-semibold uppercase tracking-wide">Frais en 3x/4x</p>
+                    </div>
+                    <div class="bg-gray-100 p-8 rounded-2xl text-center">
+                        <div class="text-4xl font-bold text-pneu-orange mb-2">48h</div>
+                        <p class="text-sm font-semibold uppercase tracking-wide">Délai moyen</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Engagements & Valeurs -->
+    <section class="py-20 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold mb-12 text-center underline decoration-pneu-orange decoration-4 underline-offset-8">Nos Engagements</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Card -->
+                <div class="bg-white p-8 rounded-xl shadow-sm hover-scale border border-gray-100">
+                    <i data-lucide="clock" class="text-pneu-orange w-10 h-10 mb-4"></i>
+                    <h3 class="font-bold text-xl mb-3">La rapidité</h3>
+                    <p class="text-gray-500 text-sm">Vos pneus, livrés et montés le jour même ou en 48H.</p>
+                </div>
+                <div class="bg-white p-8 rounded-xl shadow-sm hover-scale border border-gray-100">
+                    <i data-lucide="credit-card" class="text-pneu-orange w-10 h-10 mb-4"></i>
+                    <h3 class="font-bold text-xl mb-3">Facilité de paiement</h3>
+                    <p class="text-gray-500 text-sm">Réglez en 3x sans frais, sans montant minimum requis.</p>
+                </div>
+                <div class="bg-white p-8 rounded-xl shadow-sm hover-scale border border-gray-100">
+                    <i data-lucide="award" class="text-pneu-orange w-10 h-10 mb-4"></i>
+                    <h3 class="font-bold text-xl mb-3">La fidélité</h3>
+                    <p class="text-gray-500 text-sm">Chaque achat vous fait gagner des euros pour les prochaines commandes.</p>
+                </div>
+            </div>
+
+            <div class="mt-20 grid md:grid-cols-2 gap-12">
+                <div class="bg-black text-white p-12 rounded-3xl">
+                    <h3 class="text-2xl font-bold mb-6 text-pneu-orange italic underline decoration-white">Nos Valeurs</h3>
+                    <ul class="space-y-6">
+                        <li class="flex items-center"><span class="w-3 h-3 bg-pneu-orange rounded-full mr-4"></span> <strong>Professionnalisme :</strong> Équipe experte.</li>
+                        <li class="flex items-center"><span class="w-3 h-3 bg-pneu-orange rounded-full mr-4"></span> <strong>Esprit d'équipe :</strong> Effort collectif.</li>
+                        <li class="flex items-center"><span class="w-3 h-3 bg-pneu-orange rounded-full mr-4"></span> <strong>Réactivité :</strong> Adaptation immédiate.</li>
+                    </ul>
+                </div>
+                <div class="flex flex-col justify-center">
+                    <h3 class="text-2xl font-bold mb-6">Notre Vision</h3>
+                    <p class="text-gray-600 leading-relaxed italic text-lg border-l-4 border-pneu-orange pl-6">
+                        "Nous aspirons à être votre référence chaque fois que vous envisagez de changer de pneus, en bâtissant une relation de confiance durable."
+                    </p>
+                    <div class="mt-8 flex space-x-8 opacity-60">
+                        <span class="font-black text-2xl uppercase tracking-tighter">SPEEDY</span>
+                        <span class="font-black text-2xl uppercase tracking-tighter">PNEUDIRECT</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Adresses Section -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-2 gap-12">
+                <div class="p-10 border-2 border-black rounded-2xl hover:border-pneu-orange transition">
+                    <h3 class="text-xl font-bold mb-4 uppercase tracking-widest">Notre Siège</h3>
+                    <p class="text-gray-600">11 rue des Arts et Métiers<br>Zone Franche de Dillon<br>97200 Fort-de-France, Martinique</p>
+                </div>
+                <div class="p-10 bg-black text-white rounded-2xl">
+                    <h3 class="text-xl font-bold mb-4 text-pneu-orange uppercase tracking-widest">Accueil du Public</h3>
+                    <p>Dépôt ZAC de Rivière-Roche<br>Pneuclick (à côté de la Seigneurie)<br>97200 Fort-de-France, Martinique</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section class="py-20 bg-gray-100">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-3xl font-bold mb-4 uppercase">Le Blog</h2>
+            <p class="text-gray-500 mb-12">Derniers conseils et articles pour vos pneus</p>
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Blog Item 1 -->
+                <article class="bg-white text-left overflow-hidden rounded-xl shadow-md">
+                    <div class="h-48 bg-gray-300 bg-[url('https://images.unsplash.com/photo-1486006920555-c77dcf18193c?auto=format&fit=crop&q=80')] bg-cover"></div>
+                    <div class="p-6">
+                        <span class="text-pneu-orange text-xs font-bold uppercase">Conseil</span>
+                        <h4 class="font-bold text-lg mt-2 mb-3">Comment choisir les bons pneus ?</h4>
+                        <p class="text-gray-500 text-sm line-clamp-3 mb-4">Vos pneus sont bien plus que de simples morceaux de caoutchouc...</p>
+                        <div class="text-xs text-gray-400 font-medium">Marie Lucia - 5 Février 2025</div>
+                    </div>
+                </article>
+                <!-- Blog Item 2 -->
+                <article class="bg-white text-left overflow-hidden rounded-xl shadow-md">
+                    <div class="h-48 bg-gray-300 bg-[url('https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&q=80')] bg-cover"></div>
+                    <div class="p-6">
+                        <span class="text-pneu-orange text-xs font-bold uppercase">Entretien</span>
+                        <h4 class="font-bold text-lg mt-2 mb-3">Contrôle de la pression</h4>
+                        <p class="text-gray-500 text-sm line-clamp-3 mb-4">Imaginez-vous en pleine route des vacances, coffre chargé, musique à fond...</p>
+                        <div class="text-xs text-gray-400 font-medium">Marie Lucia - 6 Février 2025</div>
+                    </div>
+                </article>
+                <!-- Blog Item 3 -->
+                <article class="bg-white text-left overflow-hidden rounded-xl shadow-md">
+                    <div class="h-48 bg-gray-300 bg-[url('https://images.unsplash.com/photo-1578844251758-2f71da64c96f?auto=format&fit=crop&q=80')] bg-cover"></div>
+                    <div class="p-6">
+                        <span class="text-pneu-orange text-xs font-bold uppercase">Sécurité</span>
+                        <h4 class="font-bold text-lg mt-2 mb-3">Qu'est-ce qu'un pneu Runflat ?</h4>
+                        <p class="text-gray-500 text-sm line-clamp-3 mb-4">Le terme runflat signifie “roulage à plat” pour une sécurité accrue.</p>
+                        <div class="text-xs text-gray-400 font-medium">Marie Lucia - 7 Février 2025</div>
+                    </div>
+                </article>
+            </div>
+            <button class="mt-12 text-black font-bold border-b-2 border-pneu-orange pb-2">Voir tous les articles</button>
+        </div>
+    </section>
+
+    <!-- Reviews -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="bg-gray-50 p-12 rounded-3xl flex flex-col md:flex-row items-center">
+                <div class="md:w-1/3 mb-10 md:mb-0 text-center md:text-left">
+                    <h2 class="text-4xl font-black mb-2 italic">Avis Google</h2>
+                    <div class="flex items-center justify-center md:justify-start space-x-2 text-yellow-500 mb-4">
+                        <i data-lucide="star" class="fill-current"></i>
+                        <i data-lucide="star" class="fill-current"></i>
+                        <i data-lucide="star" class="fill-current"></i>
+                        <i data-lucide="star" class="fill-current"></i>
+                        <i data-lucide="star-half" class="fill-current"></i>
+                    </div>
+                    <p class="text-2xl font-bold">4.5 / 5</p>
+                    <p class="text-gray-500 text-sm">Basé sur 59 avis vérifiés</p>
+                </div>
+                <div class="md:w-2/3 grid md:grid-cols-2 gap-6">
+                    <div class="bg-white p-6 rounded-xl shadow-sm border-t-4 border-pneu-orange">
+                        <p class="italic text-gray-600 text-sm mb-4">"Rapide et efficace. 45 min chrono, mes pneus étaient montés."</p>
+                        <p class="font-bold text-xs">Carole ODONNAT</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-sm border-t-4 border-pneu-orange">
+                        <p class="italic text-gray-600 text-sm mb-4">"Excellent tarif et le sourire avec. Très bon relationnel."</p>
+                        <p class="font-bold text-xs">Christelle Miré</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reassurance Bar -->
+    <section class="py-10 bg-black text-white">
+        <div class="container mx-auto px-6 overflow-x-auto">
+            <div class="flex flex-nowrap md:justify-between space-x-8 min-w-max">
+                <div class="flex items-center space-x-3"><i data-lucide="shield-check" class="text-pneu-orange"></i> <span class="text-xs uppercase font-bold tracking-widest">Paiement Sécurisé</span></div>
+                <div class="flex items-center space-x-3"><i data-lucide="headphones" class="text-pneu-orange"></i> <span class="text-xs uppercase font-bold tracking-widest">Service Client Qualifié</span></div>
+                <div class="flex items-center space-x-3"><i data-lucide="package" class="text-pneu-orange"></i> <span class="text-xs uppercase font-bold tracking-widest">Click & Collect</span></div>
+                <div class="flex items-center space-x-3"><i data-lucide="wrench" class="text-pneu-orange"></i> <span class="text-xs uppercase font-bold tracking-widest">Montage Proximité</span></div>
+                <div class="flex items-center space-x-3"><i data-lucide="leaf" class="text-pneu-orange"></i> <span class="text-xs uppercase font-bold tracking-widest">Recyclage Pneus</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-100 pt-20 pb-10">
+        <div class="container mx-auto px-6 grid md:grid-cols-4 gap-12 text-sm">
+            <div>
+                <h4 class="font-bold mb-6 text-pneu-orange uppercase">Liens Utiles</h4>
+                <ul class="space-y-4 text-gray-500 font-medium">
+                    <li><a href="#" class="hover:text-black">Services</a></li>
+                    <li><a href="#" class="hover:text-black">Mise à disposition</a></li>
+                    <li><a href="#" class="hover:text-black">Centres partenaires</a></li>
+                    <li><a href="#" class="hover:text-black">FAQ</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold mb-6 text-pneu-orange uppercase">À Propos</h4>
+                <ul class="space-y-4 text-gray-500 font-medium">
+                    <li><a href="#" class="hover:text-black">Conditions générales</a></li>
+                    <li><a href="#" class="hover:text-black underline">Qui sommes-nous ?</a></li>
+                    <li><a href="#" class="hover:text-black">Cookies & Données</a></li>
+                    <li><a href="#" class="hover:text-black">Pneuclick Guadeloupe</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold mb-6 text-pneu-orange uppercase">Votre Compte</h4>
+                <ul class="space-y-4 text-gray-500 font-medium">
+                    <li><a href="#" class="hover:text-black">Mes Commandes</a></li>
+                    <li><a href="#" class="hover:text-black">Informations personnelles</a></li>
+                    <li><a href="#" class="hover:text-black">Bon de réduction</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold mb-6 text-pneu-orange uppercase">Newsletter</h4>
+                <p class="text-gray-500 mb-4">Recevez nos offres spéciales par email.</p>
+                <form class="flex border rounded-lg overflow-hidden">
+                    <input type="email" placeholder="Votre email..." class="p-3 w-full outline-none">
+                    <button class="bg-black text-white px-4">OK</button>
+                </form>
+                <div class="mt-8 flex space-x-4">
+                    <div class="w-10 h-10 bg-white flex items-center justify-center rounded-full shadow-sm"><i data-lucide="facebook" class="w-5 h-5"></i></div>
+                    <div class="w-10 h-10 bg-white flex items-center justify-center rounded-full shadow-sm"><i data-lucide="instagram" class="w-5 h-5"></i></div>
+                </div>
+            </div>
+        </div>
+        <div class="container mx-auto px-6 mt-16 pt-8 border-t text-center text-gray-400 text-xs">
+            © 2024 Tous droits réservés Pneuclick.fr - Site réalisé avec soin.
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
