@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Le Blog Pneuclick - Conseils & Actus Auto</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* --- VARIABLES & RESET (Mêmes que la page Services) --- */
+        :root {
+            --primary-orange: #F36625;
+            --dark-blue: #162536;
+            --text-grey: #555;
+            --light-bg: #F4F7F6;
+            --white: #ffffff;
+            --shadow: 0 5px 20px rgba(0,0,0,0.06);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Poppins', sans-serif; background-color: var(--light-bg); color: var(--dark-blue); line-height: 1.6; }
+
+        /* --- 1. HEADER DU BLOG (Nouveau) --- */
+        /* Remplace le gros bloc noir de recherche */
+        .blog-header {
+            background-color: var(--dark-blue);
+            color: var(--white);
+            padding: 60px 20px;
+            text-align: center;
+            background-image: url('https://www.transparenttextures.com/patterns/carbon-fibre.png'); /* Texture subtile */
+        }
+
+        .blog-header h1 { font-size: 2.5rem; margin-bottom: 10px; }
+        .blog-header p { font-size: 1.1rem; opacity: 0.8; max-width: 600px; margin: 0 auto; }
+
+        /* --- 2. LAYOUT PRINCIPAL (Grid) --- */
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 2fr 1fr; /* 2/3 pour les articles, 1/3 sidebar */
+            gap: 40px;
+        }
+
+        /* --- 3. SECTION ARTICLES --- */
+        
+        /* Article à la une (Hero Post) */
+        .featured-post {
+            background: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            margin-bottom: 40px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .featured-img {
+            height: 350px;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        .featured-content { padding: 30px; }
+        
+        .badge-cat {
+            background: var(--primary-orange);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+
+        .featured-content h2 { font-size: 2rem; margin-bottom: 15px; line-height: 1.3; }
+        .featured-content p { color: var(--text-grey); margin-bottom: 20px; }
+
+        /* Grille des articles standards */
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsive auto */
+            gap: 25px;
+        }
+
+        .article-card {
+            background: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .article-card:hover { transform: translateY(-5px); }
+
+        .card-img {
+            height: 200px;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        .card-body { padding: 20px; display: flex; flex-direction: column; flex-grow: 1; }
+        
+        .meta-info {
+            font-size: 0.8rem;
+            color: #999;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card-body h3 { font-size: 1.2rem; margin-bottom: 10px; line-height: 1.4; color: var(--dark-blue); }
+        .card-body p { font-size: 0.9rem; color: var(--text-grey); margin-bottom: 20px; flex-grow: 1; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+
+        .btn-link {
+            color: var(--primary-orange);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            transition: gap 0.2s;
+        }
+        .btn-link:hover { gap: 10px; }
+
+        /* --- 4. SIDEBAR (Colonne Droite) --- */
+        .sidebar-widget {
+            background: var(--white);
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            margin-bottom: 30px;
+        }
+
+        .widget-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            border-left: 4px solid var(--primary-orange);
+            padding-left: 10px;
+        }
+
+        /* Widget Recherche Article */
+        .search-box { display: flex; }
+        .search-box input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px 0 0 5px;
+            outline: none;
+        }
+        .search-box button {
+            background: var(--dark-blue);
+            color: white;
+            border: none;
+            padding: 0 15px;
+            border-radius: 0 5px 5px 0;
+            cursor: pointer;
+        }
+
+        /* Widget "Trouver mes pneus" (Version compacte du gros bloc noir) */
+        .tire-finder-mini {
+            background: var(--dark-blue);
+            color: white;
+            text-align: center;
+        }
+        .tire-finder-mini i { font-size: 3rem; margin-bottom: 10px; color: var(--primary-orange); }
+        .tire-finder-mini p { font-size: 0.9rem; margin-bottom: 15px; opacity: 0.8; }
+        .btn-orange-full {
+            display: block;
+            background: var(--primary-orange);
+            color: white;
+            text-align: center;
+            padding: 10px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+        .btn-orange-full:hover { background: #d14e12; }
+
+        /* Widget Catégories */
+        .cat-list { list-style: none; }
+        .cat-list li {
+            border-bottom: 1px solid #eee;
+            padding: 10px 0;
+        }
+        .cat-list li:last-child { border-bottom: none; }
+        .cat-list a {
+            text-decoration: none;
+            color: var(--text-grey);
+            display: flex;
+            justify-content: space-between;
+            transition: color 0.2s;
+        }
+        .cat-list a:hover { color: var(--primary-orange); }
+        .count { background: #eee; padding: 2px 8px; border-radius: 10px; font-size: 0.8rem; }
+
+        /* Widget Articles populaires (Mini liste) */
+        .pop-article {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        .pop-article img { width: 70px; height: 70px; border-radius: 5px; object-fit: cover; }
+        .pop-article div h4 { font-size: 0.9rem; margin-bottom: 5px; line-height: 1.3; }
+        .pop-article div span { font-size: 0.75rem; color: #999; }
+
+        /* --- 5. PAGINATION --- */
+        .pagination {
+            margin-top: 50px;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+        .page-link {
+            width: 40px; height: 40px;
+            display: flex; align-items: center; justify-content: center;
+            background: var(--white);
+            color: var(--dark-blue);
+            text-decoration: none;
+            border-radius: 50%;
+            font-weight: 600;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: all 0.2s;
+        }
+        .page-link.active, .page-link:hover {
+            background: var(--primary-orange);
+            color: white;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 900px) {
+            .container { grid-template-columns: 1fr; } /* Sidebar passe en bas */
+            .featured-post { flex-direction: column; }
+            .featured-img { height: 250px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 1. HEADER BLOG : Titre clair, pas de pollution visuelle -->
+    <header class="blog-header">
+        <h1>L'Actu Pneuclick</h1>
+        <p>Conseils d'experts, guides d'entretien et actualités automobiles aux Antilles.</p>
+    </header>
+
+    <div class="container">
+        
+        <!-- COLONNE GAUCHE : LE CONTENU -->
+        <main>
+            
+            <!-- Article "Hero" : Mis en avant -->
+            <article class="featured-post">
+                <img src="https://images.unsplash.com/photo-1578844251758-2f71da64522f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Roue de voiture" class="featured-img">
+                <div class="featured-content">
+                    <span class="badge-cat">Sécurité</span>
+                    <h2>Comment détecter l'usure anormale des pneus avant qu'il ne soit trop tard ?</h2>
+                    <p>Vos pneus sont le seul point de contact avec la route. Apprenez à lire les signes d'usure irrégulière pour garantir votre sécurité et économiser de l'argent.</p>
+                    <div class="meta-info">
+                        <span><i class="far fa-user"></i> Marie Lucia</span>
+                        <span><i class="far fa-calendar"></i> 06 Février 2025</span>
+                    </div>
+                    <br>
+                    <a href="#" class="btn-link">Lire l'article complet <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </article>
+
+            <!-- Grille des autres articles -->
+            <div class="articles-grid">
+
+                <!-- Article 1 -->
+                <div class="article-card">
+                    <img src="https://images.unsplash.com/photo-1486262715619-01b80258e715?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Pneu Runflat" class="card-img">
+                    <div class="card-body">
+                        <div class="meta-info">
+                            <span><i class="far fa-folder"></i> Technique</span>
+                            <span>07 Fév 2025</span>
+                        </div>
+                        <h3>Qu'est-ce qu'un pneu Runflat et en avez-vous besoin ?</h3>
+                        <p>Le terme runflat signifie "roulage à plat". Découvrez les avantages et inconvénients de cette technologie.</p>
+                        <a href="#" class="btn-link">Lire la suite <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <!-- Article 2 -->
+                <div class="article-card">
+                    <img src="https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Consommation carburant" class="card-img">
+                    <div class="card-body">
+                        <div class="meta-info">
+                            <span><i class="far fa-folder"></i> Économie</span>
+                            <span>05 Fév 2025</span>
+                        </div>
+                        <h3>L'influence des pneus sur votre consommation de carburant</h3>
+                        <p>Saviez-vous que vos pneus peuvent représenter jusqu'à 20% de votre consommation ? Nos conseils pour réduire la facture.</p>
+                        <a href="#" class="btn-link">Lire la suite <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <!-- Article 3 -->
+                <div class="article-card">
+                    <img src="https://images.unsplash.com/photo-1619682817481-e994891cd1f5?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Pression pneus" class="card-img">
+                    <div class="card-body">
+                        <div class="meta-info">
+                            <span><i class="far fa-folder"></i> Entretien</span>
+                            <span>02 Fév 2025</span>
+                        </div>
+                        <h3>Pression des pneus : à quelle fréquence la vérifier ?</h3>
+                        <p>Une pression inadaptée est dangereuse. Voici les recommandations constructeur pour rouler l'esprit tranquille.</p>
+                        <a href="#" class="btn-link">Lire la suite <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <!-- Article 4 -->
+                <div class="article-card">
+                    <img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Types de pneus" class="card-img">
+                    <div class="card-body">
+                        <div class="meta-info">
+                            <span><i class="far fa-folder"></i> Guide</span>
+                            <span>28 Jan 2025</span>
+                        </div>
+                        <h3>Peut-on mélanger différents types de pneus ?</h3>
+                        <p>Vous êtes déjà demandé s'il était possible de combiner des pneus différents ? Attention aux risques.</p>
+                        <a href="#" class="btn-link">Lire la suite <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Pagination -->
+            <div class="pagination">
+                <a href="#" class="page-link"><i class="fas fa-chevron-left"></i></a>
+                <a href="#" class="page-link active">1</a>
+                <a href="#" class="page-link">2</a>
+                <a href="#" class="page-link">3</a>
+                <a href="#" class="page-link"><i class="fas fa-chevron-right"></i></a>
+            </div>
+
+        </main>
+
+        <!-- COLONNE DROITE : SIDEBAR -->
+        <aside>
+            
+            <!-- 1. Recherche -->
+            <div class="sidebar-widget">
+                <h4 class="widget-title">Rechercher</h4>
+                <form class="search-box">
+                    <input type="text" placeholder="Mot-clé...">
+                    <button type="submit"><i class="fas fa-search"></i></button>
+                </form>
+            </div>
+
+            <!-- 2. Widget "Mini Tire Finder" (Remplacement intelligent du gros bloc noir) -->
+            <div class="sidebar-widget tire-finder-mini">
+                <i class="fas fa-car-side"></i>
+                <h4 class="widget-title" style="border:none; color:white; margin-bottom:10px;">Trouver mes pneus</h4>
+                <p>Besoin de changer ? Trouvez vos pneus en 3 clics.</p>
+                <a href="#" class="btn-orange-full">Lancer la recherche</a>
+            </div>
+
+            <!-- 3. Catégories -->
+            <div class="sidebar-widget">
+                <h4 class="widget-title">Catégories</h4>
+                <ul class="cat-list">
+                    <li><a href="#">Conseils techniques <span class="count">12</span></a></li>
+                    <li><a href="#">Entretien Auto <span class="count">8</span></a></li>
+                    <li><a href="#">Sécurité routière <span class="count">5</span></a></li>
+                    <li><a href="#">Nouveautés Pneuclick <span class="count">3</span></a></li>
+                </ul>
+            </div>
+
+            <!-- 4. Articles Populaires -->
+            <div class="sidebar-widget">
+                <h4 class="widget-title">Populaires</h4>
+                
+                <div class="pop-article">
+                    <img src="https://images.unsplash.com/photo-1580273916550-e323be2ed5d6?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80" alt="Thumb">
+                    <div>
+                        <h4>Comment choisir ses pneus hiver ?</h4>
+                        <span><i class="far fa-clock"></i> 3 min de lecture</span>
+                    </div>
+                </div>
+
+                <div class="pop-article">
+                    <img src="https://images.unsplash.com/photo-1542282088-fe8426682b8f?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80" alt="Thumb">
+                    <div>
+                        <h4>La signification du marquage "XL"</h4>
+                        <span><i class="far fa-clock"></i> 2 min de lecture</span>
+                    </div>
+                </div>
+
+                <div class="pop-article">
+                    <img src="https://images.unsplash.com/photo-1550505199-52c67c513904?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80" alt="Thumb">
+                    <div>
+                        <h4>Paiement en 3x : Comment ça marche ?</h4>
+                        <span><i class="far fa-clock"></i> 1 min de lecture</span>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- 5. Newsletter -->
+            <div class="sidebar-widget" style="background: #F36625; color: white;">
+                <h4 class="widget-title" style="border-color: white;">Newsletter</h4>
+                <p style="font-size:0.9rem; margin-bottom:15px;">Recevez nos promos exclusives et conseils chaque mois.</p>
+                <input type="email" placeholder="Votre email" style="width:100%; padding:10px; border-radius:5px; border:none; margin-bottom:10px;">
+                <button style="width:100%; padding:10px; background:#162536; color:white; border:none; border-radius:5px; font-weight:600; cursor:pointer;">M'inscrire</button>
+            </div>
+
+        </aside>
+
+    </div>
+
+</body>
+</html>
