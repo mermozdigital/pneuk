@@ -3,31 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Institut Mecasem</title>
-    <!-- Polices : Playfair Display et Inter -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+    <title>Institut Mecasem - Expertise Matériaux</title>
+    
+    <!-- Police : MULISH (Remplacement de Inter et Playfair) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Icones : Phosphor Icons -->
     <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web">
 
 <style>
+/* =========================================
+   VARIABLES & RESET
+   ========================================= */
 :root {
+    /* --- COULEURS PRINCIPALES --- */
     --primary-red: #D80C16;
-    --dark-text: #1a1a1a;
+    --primary-black: #111111;
+    --text-body: #1a1a1a;
+    
+    /* --- COULEURS SECONDAIRES (Accents) --- */
+    --accent-cyan: #00A9C6;    /* Ingénierie */
+    --accent-orange: #F08D1B;  /* Soudage */
+    --accent-green: #8BBC22;   /* Usinage */
+    
+    /* --- NEUTRES --- */
     --light-bg: #F9F9F9;
     --white: #ffffff;
-    --font-serif: 'Playfair Display', serif;
-    --font-sans: 'Inter', sans-serif;
+    --grey-border: #e0e0e0;
+    
+    /* --- FONTS --- */
+    --font-main: 'Mulish', sans-serif; /* Police unique uniformisée */
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
-    font-family: var(--font-sans);
+    font-family: var(--font-main);
     background-color: var(--light-bg);
-    color: var(--dark-text);
+    color: var(--text-body);
+    line-height: 1.6;
     overflow-x: hidden;
 }
 
 a { text-decoration: none; color: inherit; transition: 0.3s; }
+ul { list-style: none; }
 
 .container {
     max-width: 1240px;
@@ -35,59 +56,118 @@ a { text-decoration: none; color: inherit; transition: 0.3s; }
     padding: 0 20px;
 }
 
-/* --- TOP BAR --- */
+/* Typographie Générale */
+h1, h2, h3, h4 { color: var(--primary-black); font-weight: 800; line-height: 1.2; }
+p { color: #555; }
+
+/* =========================================
+   COMPOSANTS UI
+   ========================================= */
+/* Boutons */
+.btn-primary {
+    background: var(--primary-red);
+    color: white;
+    padding: 16px 32px;
+    font-weight: 700;
+    border-radius: 4px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+}
+.btn-primary:hover { background: #b00a12; transform: translateY(-2px); }
+
+.btn-secondary {
+    background: transparent;
+    color: var(--primary-black);
+    padding: 16px 32px;
+    font-weight: 700;
+    border-radius: 4px;
+    border: 2px solid #ccc;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+}
+.btn-secondary:hover { border-color: var(--primary-black); background: white; }
+
+/* Badge */
+.tag-badge {
+    background-color: #FCE8E9;
+    color: var(--primary-red);
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    padding: 8px 12px;
+    text-transform: uppercase;
+    display: inline-block;
+    margin-bottom: 20px;
+    border-radius: 4px;
+}
+
+/* =========================================
+   HEADER & NAV
+   ========================================= */
 .top-bar {
     background-color: #eee;
-    font-size: 0.8rem;
-    padding: 8px 0;
+    font-size: 0.85rem;
+    padding: 10px 0;
     color: #555;
-    border-bottom: 1px solid #e0e0e0;
+    border-bottom: 1px solid var(--grey-border);
+    font-weight: 600;
 }
 .top-bar-content { display: flex; justify-content: space-between; }
-.top-bar i { color: var(--primary-red); margin-right: 5px; }
+.top-bar i { color: var(--primary-red); margin-right: 6px; font-size: 1rem; vertical-align: middle; }
 
-/* --- HEADER --- */
 .navbar {
     background: var(--white);
     padding: 20px 0;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
 .nav-content { display: flex; justify-content: space-between; align-items: center; }
-.logo { font-weight: 800; font-size: 1.5rem; letter-spacing: -0.5px; }
+.logo { font-weight: 900; font-size: 1.6rem; letter-spacing: -0.5px; text-transform: uppercase; }
 .text-red { color: var(--primary-red); }
 
 .menu { display: flex; gap: 30px; }
-.menu a { font-weight: 500; font-size: 0.95rem; color: #333; }
+.menu a { font-weight: 700; font-size: 0.95rem; color: var(--primary-black); }
 .menu a:hover, .menu a.active { color: var(--primary-red); }
 
 .btn-header {
     background: var(--primary-red);
     color: white;
     padding: 12px 24px;
-    font-weight: 600;
+    font-weight: 700;
     font-size: 0.9rem;
-    border-radius: 2px;
+    border-radius: 4px;
 }
 .btn-header:hover { background: #b00a12; }
 
-/* --- HERO SECTION --- */
+/* =========================================
+   HERO SECTION
+   ========================================= */
 .hero-section {
     position: relative;
     padding: 80px 0;
-    min-height: 80vh;
+    min-height: 85vh;
     display: flex;
     align-items: center;
+    overflow: hidden;
 }
 
 .bg-watermark {
     position: absolute;
-    bottom: -50px;
+    bottom: -80px;
     left: -50px;
     font-size: 25rem;
     font-weight: 900;
     color: rgba(0,0,0,0.03);
-    font-family: var(--font-serif);
     z-index: 0;
     pointer-events: none;
+    user-select: none;
 }
 
 .hero-grid {
@@ -99,84 +179,49 @@ a { text-decoration: none; color: inherit; transition: 0.3s; }
     z-index: 1;
 }
 
-.tag-badge {
-    background-color: #FCE8E9;
-    color: var(--primary-red);
-    font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 1.5px;
-    padding: 8px 12px;
-    text-transform: uppercase;
-    display: inline-block;
-    margin-bottom: 25px;
-}
-
 .hero-text h1 {
-    font-family: var(--font-serif);
-    font-size: 3.8rem;
-    line-height: 1.1;
-    color: #0B1C38;
+    font-size: 3.5rem;
     margin-bottom: 25px;
+    letter-spacing: -1px;
 }
 
-.hero-text .italic-serif {
+.hero-text .italic-accent {
     font-style: italic;
     color: var(--primary-red);
+    font-weight: 900;
 }
 
 .hero-description {
-    font-size: 1.1rem;
-    line-height: 1.6;
-    color: #555;
+    font-size: 1.15rem;
     margin-bottom: 40px;
     max-width: 90%;
 }
 
-.hero-actions { display: flex; gap: 20px; margin-bottom: 60px; }
+.hero-actions { display: flex; gap: 15px; margin-bottom: 60px; }
 
-.btn-primary {
-    background: #990000;
-    color: white;
-    padding: 16px 32px;
-    font-weight: 600;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-.btn-primary:hover { background: var(--primary-red); }
-
-.btn-secondary {
-    background: transparent;
-    color: var(--dark-text);
-    padding: 16px 32px;
-    font-weight: 600;
-    border: 1px solid #ccc;
-}
-.btn-secondary:hover { border-color: var(--dark-text); background: white; }
-
+/* Stats Hero */
 .hero-stats {
     display: flex;
     gap: 50px;
-    border-top: 1px solid #e5e5e5;
+    border-top: 1px solid var(--grey-border);
     padding-top: 30px;
 }
-
-.stat-item { display: flex; flex-direction: column; }
 .stat-number {
-    font-family: var(--font-serif);
-    font-size: 2rem;
-    font-weight: 700;
+    font-size: 2.2rem;
+    font-weight: 900;
     color: var(--primary-red);
+    line-height: 1;
 }
 .stat-label {
     font-size: 0.75rem;
     text-transform: uppercase;
     color: #888;
     letter-spacing: 1px;
+    font-weight: 700;
     margin-top: 5px;
 }
 
-/* --- COLONNE VISUELLE (SLIDER) --- */
+/* Slider Visuel */
 .hero-visual {
     position: relative;
     height: 600px;
@@ -190,15 +235,10 @@ a { text-decoration: none; color: inherit; transition: 0.3s; }
     width: 100%;
     height: 100%;
     opacity: 0; 
-    transition: opacity 1.2s ease-in-out; /* Fondu plus fluide */
+    transition: opacity 1.2s ease-in-out;
     pointer-events: none;
 }
-
-.slide.active {
-    opacity: 1;
-    pointer-events: all;
-    z-index: 2;
-}
+.slide.active { opacity: 1; pointer-events: all; z-index: 2; }
 
 .image-wrapper {
     width: 90%;
@@ -206,73 +246,540 @@ a { text-decoration: none; color: inherit; transition: 0.3s; }
     overflow: hidden;
     position: relative;
     margin-left: auto;
+    border-radius: 4px;
 }
+.image-wrapper img { width: 100%; height: 100%; object-fit: cover; }
 
-.image-wrapper img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
+/* Carte Flottante Hero */
 .floating-card {
     position: absolute;
     bottom: 50px;
     left: 0;
     background: var(--white);
-    padding: 30px;
-    width: 320px;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    padding: 35px;
+    width: 340px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
     z-index: 10;
-    border-left: 4px solid var(--primary-red);
+    border-left: 6px solid var(--primary-red);
+    border-radius: 0 4px 4px 0;
     transform: translateY(30px);
     opacity: 0;
-    transition: all 0.8s ease-out 0.4s; /* Arrive après le fondu de l'image */
+    transition: all 0.8s ease-out 0.4s;
 }
+.slide.active .floating-card { transform: translateY(0); opacity: 1; }
 
-.slide.active .floating-card {
-    transform: translateY(0);
-    opacity: 1;
-}
-
-.card-icon {
-    font-size: 2rem;
-    color: var(--primary-red);
-    margin-bottom: 15px;
-}
-
-.floating-card h3 {
-    font-family: var(--font-serif);
-    font-size: 1.2rem;
-    margin-bottom: 10px;
-    color: #0B1C38;
-}
-
-.floating-card p {
-    font-size: 0.9rem;
-    color: #666;
-    line-height: 1.5;
-    margin-bottom: 15px;
-}
-
+.card-icon { font-size: 2.2rem; color: var(--primary-red); margin-bottom: 15px; }
+.floating-card h3 { font-size: 1.3rem; margin-bottom: 10px; }
+.floating-card p { font-size: 0.95rem; margin-bottom: 20px; }
 .card-link {
-    font-size: 0.8rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    color: var(--dark-text);
-    border-bottom: 1px solid #ddd;
-    padding-bottom: 2px;
+    font-size: 0.8rem; font-weight: 800; text-transform: uppercase;
+    color: var(--primary-black); border-bottom: 2px solid #ddd; padding-bottom: 2px;
+}
+.card-link:hover { color: var(--primary-red); border-color: var(--primary-red); }
+
+/* =========================================
+   TRUST BAR (Barre de confiance)
+   ========================================= */
+.trust-bar-section {
+    background-color: var(--primary-black);
+    color: white;
+    padding: 40px 0;
+    margin-top: -5px;
+}
+.trust-grid {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+.trust-item {
+    display: flex;
+    flex-direction: column;
+    padding-left: 20px;
+    border-left: 3px solid var(--primary-red);
+}
+.trust-label {
+    font-size: 0.7rem; text-transform: uppercase;
+    color: #999; letter-spacing: 1px; font-weight: 700;
+}
+.trust-value { font-weight: 800; font-size: 1.1rem; color: white; }
+.trust-link { font-size: 0.8rem; color: #ccc; text-decoration: underline; margin-top: 2px; }
+
+/* =========================================
+   SERVICES SECTION
+   ========================================= */
+.services-section { padding: 100px 0; background-color: white; }
+
+.section-header { text-align: center; max-width: 700px; margin: 0 auto 60px; }
+.section-subtitle {
+    color: var(--primary-red); font-weight: 800; font-size: 0.85rem;
+    letter-spacing: 2px; text-transform: uppercase; display: block; margin-bottom: 10px;
+}
+.section-header h2 { font-size: 2.5rem; margin-bottom: 15px; }
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
 }
 
-@media (max-width: 992px) {
-    .hero-grid { grid-template-columns: 1fr; gap: 40px; }
-    .hero-visual { height: 450px; }
-    .bg-watermark { display: none; }
+.service-card {
+    background: #F9F9F9;
+    padding: 40px 30px;
+    border-radius: 6px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    border: 1px solid #eee;
+    border-top: 5px solid transparent;
 }
+.service-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+    background: white;
+}
+
+.service-icon { font-size: 2.5rem; margin-bottom: 20px; }
+.service-card h3 { font-size: 1.4rem; margin-bottom: 15px; }
+.service-link {
+    font-weight: 800; font-size: 0.9rem; display: inline-flex; align-items: center; gap: 5px;
+    text-transform: uppercase;
+}
+.service-link:hover { gap: 10px; }
+
+/* Variantes Couleurs Services */
+/* 1. Labo (Rouge) */
+.service-card.labo .service-icon { color: var(--primary-red); }
+.service-card.labo:hover { border-top-color: var(--primary-red); }
+.service-card.labo .service-link { color: var(--primary-black); }
+.service-card.labo .service-link:hover { color: var(--primary-red); }
+
+/* 2. SOU-D (Orange) */
+.service-card.soud .service-icon { color: var(--accent-orange); }
+.service-card.soud:hover { border-top-color: var(--accent-orange); }
+.service-card.soud .service-link { color: var(--primary-black); }
+.service-card.soud .service-link:hover { color: var(--accent-orange); }
+
+/* 3. Ingénierie (Cyan) */
+.service-card.ing .service-icon { color: var(--accent-cyan); }
+.service-card.ing:hover { border-top-color: var(--accent-cyan); }
+.service-card.ing .service-link { color: var(--primary-black); }
+.service-card.ing .service-link:hover { color: var(--accent-cyan); }
+
+/* 4. Usinage (Vert) */
+.service-card.usinage .service-icon { color: var(--accent-green); }
+.service-card.usinage:hover { border-top-color: var(--accent-green); }
+.service-card.usinage .service-link { color: var(--primary-black); }
+.service-card.usinage .service-link:hover { color: var(--accent-green); }
+
+
+/* =========================================
+   A PROPOS SECTION
+   ========================================= */
+.about-section { padding: 100px 0; background-color: var(--light-bg); }
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 70px; align-items: center; }
+
+.about-image { position: relative; }
+.about-image img { width: 100%; border-radius: 6px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+
+.experience-badge {
+    position: absolute; bottom: -30px; right: -30px;
+    background: var(--primary-red); color: white;
+    padding: 30px; text-align: center; border-radius: 6px;
+    box-shadow: 0 10px 25px rgba(216, 12, 22, 0.4);
+}
+.experience-badge .years {
+    display: block; font-size: 3.5rem; font-weight: 900; line-height: 1;
+}
+
+.about-content h2 { font-size: 2.5rem; margin-bottom: 25px; }
+.about-content p { margin-bottom: 20px; font-size: 1.05rem; }
+
+
+/* =========================================
+   FOOTER
+   ========================================= */
+.main-footer {
+    background-color: var(--primary-black);
+    color: #ccc;
+    padding: 80px 0 20px;
+}
+.footer-grid {
+    display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px;
+    margin-bottom: 50px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 40px;
+}
+.footer-logo { font-size: 1.8rem; font-weight: 900; color: white; margin-bottom: 20px; text-transform: uppercase; }
+.footer-logo span { color: var(--primary-red); }
+
+.footer-col h4 { color: white; font-size: 1.2rem; margin-bottom: 20px; }
+.footer-col ul li { margin-bottom: 12px; }
+.footer-col ul li a:hover { color: var(--primary-red); padding-left: 5px; }
+
+.footer-contact a { color: white; font-weight: 700; display: block; margin-bottom: 5px; }
+.footer-bottom { text-align: center; font-size: 0.85rem; color: #777; }
+
+
+/* =========================================
+   RESPONSIVE
+   ========================================= */
+@media (max-width: 992px) {
+    .top-bar { display: none; } /* On cache la barre info sur tablette */
+    .hero-grid { grid-template-columns: 1fr; gap: 50px; text-align: center; }
+    .hero-text h1 { font-size: 2.8rem; }
+    .hero-actions { justify-content: center; }
+    .hero-stats { justify-content: center; }
+    
+    .hero-visual { height: 450px; margin-top: 20px; }
+    .image-wrapper { width: 100%; margin: 0; }
+    .floating-card { bottom: -20px; left: 50%; transform: translateX(-50%); width: 90%; }
+    .slide.active .floating-card { transform: translate(-50%, -20px); }
+    
+    .about-grid { grid-template-columns: 1fr; }
+    .experience-badge { right: 20px; bottom: -20px; padding: 20px; }
+    .footer-grid { grid-template-columns: 1fr; gap: 40px; }
+}
+
+/* =========================================
+   HERO SECTION (Modifié : Sans stats)
+   ========================================= */
+.hero-section {
+    position: relative;
+    padding: 100px 0; /* Un peu plus d'espace vertical */
+    min-height: 75vh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* On garde le reste du Hero identique, on a juste supprimé .hero-stats dans le HTML */
+
+/* =========================================
+   TRUST BAR (Style "Logos")
+   ========================================= */
+.trust-bar-section {
+    background-color: var(--white); /* Fond blanc pour faire ressortir les logos */
+    border-bottom: 1px solid #eee;
+    padding: 40px 0;
+}
+
+.trust-grid {
+    display: flex;
+    justify-content: space-around; /* Espacement égal */
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 40px;
+    opacity: 0.7; /* Légère transparence pour ne pas voler la vedette */
+    transition: opacity 0.3s;
+}
+.trust-grid:hover { opacity: 1; }
+
+/* Simulation de logos (En attendant vos images) */
+.fake-logo {
+    font-weight: 900;
+    font-size: 1.2rem;
+    color: #555;
+    text-transform: uppercase;
+    border: 3px solid #555;
+    padding: 10px 20px;
+    letter-spacing: 2px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.fake-logo.cofrac { color: #003399; border-color: #003399; }
+.fake-logo.cofrend { color: var(--primary-red); border-color: var(--primary-red); border-radius: 50px; }
+.fake-logo.iso { border: none; background: #333; color: white; border-radius: 4px; }
+
+
+/* =========================================
+   SERVICES : STYLE "ECOSYSTEM" (Nouveau !)
+   ========================================= */
+.services-section { 
+    padding: 100px 0; 
+    background-color: var(--white); 
+}
+
+.ecosystem-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 60px;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.ecosystem-header h2 {
+    font-size: 3rem;
+    max-width: 600px;
+}
+.ecosystem-header span { color: var(--primary-red); font-style: italic; }
+
+.download-link {
+    color: var(--primary-red);
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    border-bottom: 2px solid var(--primary-red);
+    padding-bottom: 5px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+.download-link:hover { gap: 12px; color: #b00a12; }
+
+/* La Grille */
+.eco-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    border-top: 1px solid #eee;
+    border-left: 1px solid #eee;
+}
+
+.eco-card {
+    background: white;
+    padding: 50px 40px;
+    border-right: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    transition: background 0.3s;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    height: 100%;
+}
+
+.eco-card:hover {
+    background: #fafafa;
+}
+
+/* Le carré de l'icône */
+.icon-box {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 30px;
+    font-size: 1.8rem;
+    color: white;
+    border-radius: 2px;
+}
+
+/* Couleurs des boites */
+.bg-red { background-color: var(--primary-red); }
+.bg-cyan { background-color: var(--accent-cyan); }
+.bg-orange { background-color: var(--accent-orange); }
+.bg-green { background-color: var(--accent-green); }
+.bg-dark { background-color: var(--primary-black); }
+
+.eco-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    font-weight: 800; /* Mulish bien gras */
+}
+
+.eco-card p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #666;
+    margin-bottom: 0;
+}
+
+/* Carte Spéciale (Formation/Training) comme sur l'image */
+.eco-card.special {
+    background-color: #F4F6F8; /* Gris/Bleu très léger */
+    position: relative;
+}
+.eco-card.special::after {
+    content: '';
+    position: absolute;
+    bottom: 40px;
+    left: 40px;
+    width: 100px;
+    height: 3px;
+    background-color: var(--primary-red);
+}
+
+/* RESPONSIVE */
+@media (max-width: 992px) {
+    .ecosystem-header h2 { font-size: 2.2rem; }
+    .eco-grid { grid-template-columns: 1fr; }
+}
+
+
+/* =========================================
+   SERVICES : STYLE "ECOSYSTEM"
+   ========================================= */
+.services-section { 
+    padding: 100px 0; 
+    background-color: var(--white); 
+}
+
+.ecosystem-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 60px;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.ecosystem-header h2 {
+    font-size: 2.8rem;
+    max-width: 600px;
+    margin-bottom: 0;
+}
+.ecosystem-header span { color: var(--primary-red); font-style: italic; }
+
+.download-link {
+    color: var(--primary-red);
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    border-bottom: 2px solid var(--primary-red);
+    padding-bottom: 5px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+.download-link:hover { gap: 12px; color: #b00a12; }
+
+/* La Grille */
+.eco-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    border-top: 1px solid #eee;
+    border-left: 1px solid #eee;
+}
+
+.eco-card {
+    background: white;
+    padding: 50px 40px;
+    border-right: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    transition: background 0.3s;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    height: 100%;
+}
+
+.eco-card:hover {
+    background: #fafafa;
+}
+
+/* Le carré de l'icône */
+.icon-box {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 30px;
+    font-size: 1.8rem;
+    color: white;
+    border-radius: 2px;
+}
+
+/* Couleurs des boites (Respect de la charte) */
+.bg-red { background-color: var(--primary-red); }
+.bg-cyan { background-color: var(--accent-cyan); }
+.bg-orange { background-color: var(--accent-orange); }
+.bg-green { background-color: var(--accent-green); }
+.bg-dark { background-color: var(--primary-black); }
+
+.eco-card h3 {
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+    font-weight: 800;
+    color: var(--primary-black);
+}
+
+.eco-card p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #666;
+    margin-bottom: 0;
+}
+
+/* Carte Spéciale (Formation) */
+.eco-card.special {
+    background-color: #F8F9FA;
+    position: relative;
+}
+.eco-card.special::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background-color: var(--primary-red);
+}
+
+/* RESPONSIVE */
+@media (max-width: 992px) {
+    .ecosystem-header h2 { font-size: 2.2rem; }
+    .eco-grid { grid-template-columns: 1fr; }
+    .eco-card { padding: 40px 30px; }
+}
+
+
+/* =========================================
+   TRUST BAR (Barre de confiance Noir)
+   ========================================= */
+.trust-bar-section {
+    background-color: var(--primary-black); /* Le fond noir */
+    color: white;
+    padding: 40px 0;
+    margin-top: -5px; /* Colle au slider */
+    border-bottom: none; /* On enlève la bordure grise des logos */
+}
+
+.trust-grid {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 30px;
+    opacity: 1; /* On enlève la transparence */
+}
+
+.trust-item {
+    display: flex;
+    flex-direction: column;
+    padding-left: 20px;
+    border-left: 3px solid var(--primary-red); /* Le trait rouge */
+}
+
+.trust-label {
+    font-size: 0.7rem; 
+    text-transform: uppercase;
+    color: #999; /* Gris clair */
+    letter-spacing: 1px; 
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+
+.trust-value {
+    font-weight: 800;
+    font-size: 1.1rem;
+    color: white; /* Texte bien blanc */
+}
+
+.trust-link {
+    font-size: 0.75rem;
+    color: #ccc;
+    text-decoration: underline;
+    margin-top: 2px;
+    transition: 0.3s;
+}
+
+.trust-li
 </style>
 </head>
 
 <body>
 
+    <!-- TOP BAR -->
     <div class="top-bar">
         <div class="container top-bar-content">
             <span class="address"><i class="ph-fill ph-map-pin"></i> 90 rue de Lingolsheim, 67540 OSTWALD</span>
@@ -280,6 +787,7 @@ a { text-decoration: none; color: inherit; transition: 0.3s; }
         </div>
     </div>
 
+    <!-- HEADER -->
     <header class="navbar">
         <div class="container nav-content">
             <div class="logo">INSTITUT <span class="text-red">MECASEM</span></div>
@@ -295,27 +803,31 @@ a { text-decoration: none; color: inherit; transition: 0.3s; }
         </div>
     </header>
 
+   <!-- HERO SECTION (Nettoyé) -->
     <section class="hero-section">
         <div class="bg-watermark">MEC</div>
         <div class="container hero-grid">
+            
+            <!-- Texte Hero -->
             <div class="hero-text">
                 <span class="tag-badge">EXCELLENCE INDUSTRIELLE</span>
-                <h1>L'Expertise Matériaux & <span class="italic-serif">Soudage</span> de Haute Précision</h1>
+                <h1>L'Expertise Matériaux & <span class="italic-accent">Soudage</span> de Haute Précision</h1>
                 <p class="hero-description">
-                    Grâce à des essais rigoureux, une ingénierie innovante et des inspections certifiées, 
-                    nous garantissons la fiabilité de vos produits.
+                    Nous opérons à l'intersection de l'ingénierie de précision et de la science des matériaux, fournissant un spectre complet de services pour les industries à haut risque.
                 </p>
+                
                 <div class="hero-actions">
-                    <a href="#" class="btn-primary">Explorer nos services <i class="ph ph-arrow-right"></i></a>
-                    <a href="#" class="btn-secondary">Notre processus</a>
+                    <a href="#devis" class="btn-primary">
+                        Demander un devis <i class="ph ph-file-text"></i>
+                    </a>
+                    <a href="#services" class="btn-secondary">
+                        Explorer nos services
+                    </a>
                 </div>
-                <div class="hero-stats">
-                    <div class="stat-item"><span class="stat-number">40+</span><span class="stat-label">Années d'Expérience</span></div>
-                    <div class="stat-item"><span class="stat-number">1200+</span><span class="stat-label">Clients Partenaires</span></div>
-                    <div class="stat-item"><span class="stat-number">3</span><span class="stat-label">Sites & Laboratoires</span></div>
-                </div>
+                <!-- Suppression du bloc Stats ici -->
             </div>
 
+            <!-- Slider Hero (Identique à avant) -->
             <div class="hero-visual">
                 <div class="slide active">
                     <div class="image-wrapper">
@@ -324,11 +836,11 @@ a { text-decoration: none; color: inherit; transition: 0.3s; }
                     <div class="floating-card">
                         <div class="card-icon"><i class="ph ph-microscope"></i></div>
                         <h3>Laboratoire d'Essais</h3>
-                        <p>Analyses métallographiques et caractérisation mécanique des matériaux (Traction, résilience).</p>
-                        <a href="#" class="card-link">Voir l'accréditation COFRAC</a>
+                        <p>Analyses métallographiques et caractérisation mécanique.</p>
+                        <a href="#" class="card-link">Accréditation COFRAC 1-7322</a>
                     </div>
                 </div>
-
+                <!-- Slide 2 et 3 à conserver comme avant... -->
                 <div class="slide">
                     <div class="image-wrapper">
                         <img src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?q=80&w=2070&auto=format&fit=crop" alt="Soudage">
@@ -336,45 +848,183 @@ a { text-decoration: none; color: inherit; transition: 0.3s; }
                     <div class="floating-card">
                         <div class="card-icon"><i class="ph ph-sparkle"></i></div>
                         <h3>Inspection Soudage</h3>
-                        <p>Contrôles non destructifs (CND) et coordination en soudage sur site ou en atelier.</p>
+                        <p>CND et coordination soudage sur site.</p>
                         <a href="#" class="card-link">Découvrir le pôle SOU-D</a>
-                    </div>
-                </div>
-
-                 <div class="slide">
-                    <div class="image-wrapper">
-                        <img src="https://images.unsplash.com/photo-1580674285054-bed31e145f59?q=80&w=2073&auto=format&fit=crop" alt="Aéro">
-                    </div>
-                    <div class="floating-card">
-                        <div class="card-icon"><i class="ph ph-airplane-tilt"></i></div>
-                        <h3>Secteurs de Pointe</h3>
-                        <p>Partenaire privilégié de l'aéronautique, du nucléaire et de la défense depuis 1980.</p>
-                        <a href="#" class="card-link">Voir nos références</a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
+   <!-- TRUST BAR (Version Texte Noir) -->
+    <div class="trust-bar-section">
+        <div class="container trust-grid">
+            
+            <div class="trust-item">
+                <span class="trust-label">Accréditation</span>
+                <span class="trust-value">COFRAC Essais n°1-7322</span>
+                <a href="#" class="trust-link">Voir portée sur cofrac.fr</a>
+            </div>
+
+            <div class="trust-item">
+                <span class="trust-label">Certification</span>
+                <span class="trust-value">ISO 9001 / EN 9100</span>
+            </div>
+
+            <div class="trust-item">
+                <span class="trust-label">Personnel Certifié</span>
+                <span class="trust-value">COFREND / CIFM</span>
+            </div>
+
+            <div class="trust-item">
+                <span class="trust-label">Membre du réseau</span>
+                <span class="trust-value">Aéro'Alsace / Nuclear Valley</span>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- SERVICES SECTION (Données réelles + Design "Ecosystem") -->
+    <section class="services-section" id="services">
+        <div class="container">
+            
+            <!-- En-tête -->
+            <div class="ecosystem-header">
+                <div>
+                    <h2>Nos Domaines <span>d'Intervention</span></h2>
+                    <p style="margin-top: 15px; max-width: 600px;">
+                        Une gamme complète d'essais et de contrôles pour valider vos matériaux, du laboratoire jusqu'au site industriel.
+                    </p>
+                </div>
+                <!-- Lien vers brochure ou contact -->
+                <a href="#contact" class="download-link">
+                    Parlons de votre projet <i class="ph-bold ph-arrow-right"></i>
+                </a>
+            </div>
+
+            <!-- Grille Design -->
+            <div class="eco-grid">
+                
+                <!-- 1. Essais Mécaniques (Rouge - Labo) -->
+                <!-- Source : "Fatigue, essais de traction/compression..." -->
+                <div class="eco-card">
+                    <div class="icon-box bg-red"><i class="ph ph-engine"></i></div>
+                    <h3>Essais Mécaniques</h3>
+                    <p>Fatigue, traction, compression, pliage et résilience. Nous testons les limites physiques de vos matériaux pour garantir leur fiabilité.</p>
+                </div>
+
+                <!-- 2. Métallographie et Chimie (Rouge Foncé - Labo) -->
+                <!-- Source : "Nous sommes équipés afin de réaliser vos analyses..." -->
+                <div class="eco-card">
+                    <div class="icon-box bg-dark"><i class="ph ph-flask"></i></div> <!-- bg-dark pour varier du rouge mécanique -->
+                    <h3>Métallographie & Chimie</h3>
+                    <p>Laboratoire équipé pour réaliser vos analyses microstructurelles et chimiques complètes sur tous types d'alliages.</p>
+                </div>
+
+                <!-- 3. Endurance (Cyan - Ingénierie) -->
+                <!-- Source : "Endurance des matériaux ou d'ensemble..." -->
+                <div class="eco-card">
+                    <div class="icon-box bg-cyan"><i class="ph ph-timer"></i></div>
+                    <h3>Endurance & Environnement</h3>
+                    <p>Tests sur matériaux ou sous-ensembles complets. Nous recréons l'environnement et les cycles de contrainte dont vous avez besoin.</p>
+                </div>
+
+                <!-- 4. Contrôle Non Destructif (Orange - SOU-D) -->
+                <!-- Source : "Nous contrôlons et vérifions la conformité..." -->
+                <div class="eco-card">
+                    <div class="icon-box bg-orange"><i class="ph ph-scan"></i></div>
+                    <h3>Contrôle Non Destructif</h3>
+                    <p>Vérification de la conformité de vos soudures et pièces par radio, ultrasons ou ressuage, sans altérer l'intégrité du produit.</p>
+                </div>
+
+                <!-- 5. Usinage (Vert - Préparation) -->
+                <!-- Source : "Nous préparons vos pièces de test" -->
+                <div class="eco-card">
+                    <div class="icon-box bg-green"><i class="ph ph-wrench"></i></div>
+                    <h3>Usinage</h3>
+                    <p>Atelier intégré dédié à la préparation rapide et précise de vos pièces de tests et éprouvettes d'essais.</p>
+                </div>
+
+                <!-- 6. Formation (Gris - Complément pour équilibrer la grille) -->
+                <div class="eco-card special">
+                    <div class="icon-box bg-dark"><i class="ph ph-student"></i></div>
+                    <h3>Formation Technique</h3>
+                    <p>Accompagnement et montée en compétence de vos équipes sur les contrôles et la qualité soudage.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <!-- A PROPOS SECTION -->
+    <section class="about-section">
+        <div class="container about-grid">
+            <div class="about-image">
+                <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop" alt="Équipe Mecasem">
+                <div class="experience-badge">
+                    <span class="years">40</span>
+                    <span>Ans d'expertise</span>
+                </div>
+            </div>
+            <div class="about-content">
+                <span class="section-subtitle">QUI SOMMES-NOUS ?</span>
+                <h2>Institut Mecasem : L'Héritage de l'Excellence</h2>
+                <p>
+                    Fondée en 1980 en Alsace, Mecasem s'est imposée comme une référence industrielle. 
+                    <strong>En 2023, une nouvelle page s'écrit :</strong> la scission des activités donne naissance à l'Institut Mecasem.
+                </p>
+                <p>
+                    Désormais 100% dédiés aux essais et contrôles, nous conservons notre ADN familial tout en gagnant en agilité. 
+                    Notre site d'Ostwald (4000m²) regroupe nos laboratoires et nos équipes techniques certifiées.
+                </p>
+                <a href="#" class="btn-primary">Découvrir notre histoire</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="main-footer">
+        <div class="container footer-grid">
+            <div class="footer-col">
+                <div class="footer-logo">INSTITUT <span>MECASEM</span></div>
+                <p>Laboratoire d'essais industriels et inspection soudage. Accrédité COFRAC.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Liens Rapides</h4>
+                <ul>
+                    <li><a href="#">Nos Expertises</a></li>
+                    <li><a href="#">Carrières & Alternance</a></li>
+                    <li><a href="#">Certificats PDF</a></li>
+                    <li><a href="#">Mentions Légales</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <p>90 rue de Lingolsheim<br>67540 OSTWALD</p>
+                <div style="margin-top:15px;">
+                    <p class="footer-contact"><a href="tel:0388666676">03 88 66 66 76</a></p>
+                    <p class="footer-contact"><a href="mailto:info@mecasem.com">info@mecasem.com</a></p>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Institut Mecasem. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <!-- SCRIPT SLIDER -->
     <script>
     document.addEventListener('DOMContentLoaded', function() {
         const slides = document.querySelectorAll('.slide');
         let currentSlide = 0;
-        const slideInterval = 5000;
 
         function nextSlide() {
-            // Retirer active de l'actuelle
             slides[currentSlide].classList.remove('active');
-            
-            // Calculer la suivante
             currentSlide = (currentSlide + 1) % slides.length;
-            
-            // Ajouter active à la nouvelle
             slides[currentSlide].classList.add('active');
         }
-
-        setInterval(nextSlide, slideInterval);
+        setInterval(nextSlide, 5000);
     });
     </script>
+
 </body>
 </html>
