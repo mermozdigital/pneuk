@@ -773,7 +773,15 @@ p { color: #555; }
     transition: 0.3s;
 }
 
-.trust-li
+/* --- GLOBAL : SHARP DESIGN (Coins carrés) --- */
+* {
+    border-radius: 0 !important; /* Force les coins carrés partout */
+}
+
+/* On garde juste les cercles pour les icônes rondes si besoin, sinon on les passe en carré aussi */
+.icon-box, .exp-icon {
+    border-radius: 0 !important;
+}
 </style>
 </head>
 
@@ -980,6 +988,1037 @@ p { color: #555; }
             </div>
         </div>
     </section>
+    
+    <!-- === SECTION : SECTEURS D'ACTIVITÉ (Style Galerie) === -->
+<section class="sectors-gallery">
+    <div class="container">
+        <div class="section-header">
+            <span class="tag-badge">NOTRE ADN</span>
+            <h2>Une expertise multi-sectorielle.</h2>
+            <p>Nous appliquons rigoureusement vos spécifications, normes et codes de construction propres à chaque domaine.</p>
+        </div>
+
+        <div class="gallery-grid">
+            <!-- 1. Aéronautique -->
+            <div class="sector-card">
+                <img src="https://images.unsplash.com/photo-1559297434-a873d690fa9a?q=80&w=2070&auto=format&fit=crop" alt="Aéro">
+                <div class="card-overlay"></div>
+                <h3>Transports aéronautiques<br>et spatiaux</h3>
+            </div>
+
+            <!-- 2. Énergie -->
+            <div class="sector-card">
+                <img src="https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?q=80&w=2070&auto=format&fit=crop" alt="Énergie">
+                <div class="card-overlay"></div>
+                <h3>Énergie &<br>Pétrochimie</h3>
+            </div>
+
+            <!-- 3. BTP -->
+            <div class="sector-card">
+                <img src="https://images.unsplash.com/photo-1541888946425-d81bb19480c5?q=80&w=2070&auto=format&fit=crop" alt="BTP">
+                <div class="card-overlay"></div>
+                <h3>BTP, Infrastructure<br>& Habitat</h3>
+            </div>
+
+            <!-- 4. Défense -->
+            <div class="sector-card">
+                <img src="https://images.unsplash.com/photo-1590401560309-873b23cc69f5?q=80&w=2070&auto=format&fit=crop" alt="Défense">
+                <div class="card-overlay"></div>
+                <h3>Défense</h3>
+            </div>
+
+            <!-- 5. Transports Terrestres -->
+            <div class="sector-card">
+                <img src="https://images.unsplash.com/photo-1515162816999-a0c47dc192f7?q=80&w=2070&auto=format&fit=crop" alt="Train">
+                <div class="card-overlay"></div>
+                <h3>Transports Terrestres</h3>
+            </div>
+
+            <!-- 6. Chimie / Médical -->
+            <div class="sector-card">
+                <img src="https://images.unsplash.com/photo-1579154273155-83e954546416?q=80&w=1974&auto=format&fit=crop" alt="Chimie">
+                <div class="card-overlay"></div>
+                <h3>Chimie, pharma et<br>médical</h3>
+            </div>
+
+            <!-- 7. Fournitures -->
+            <div class="sector-card">
+                <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?q=80&w=2070&auto=format&fit=crop" alt="Fournitures">
+                <div class="card-overlay"></div>
+                <h3>Fournitures industrielles<br>et services</h3>
+            </div>
+
+            <!-- 8. Agroalimentaire -->
+            <div class="sector-card">
+                <img src="https://images.unsplash.com/photo-1550989460-0adf9ea622e2?q=80&w=1974&auto=format&fit=crop" alt="Agro">
+                <div class="card-overlay"></div>
+                <h3>Agroalimentaire</h3>
+            </div>
+        </div>
+    </div>
+    <style>
+    /* --- SECTION GALERIE SECTEURS --- */
+.sectors-gallery {
+    padding: 100px 0;
+    background-color: var(--white);
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 colonnes */
+    gap: 15px; /* Petit espace entre les cartes */
+    margin-top: 50px;
+}
+
+.sector-card {
+    position: relative;
+    height: 320px; /* Hauteur fixe comme sur l'image */
+    overflow: hidden;
+    cursor: pointer;
+    background-color: var(--primary-black);
+}
+
+.sector-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+    opacity: 0.8; /* Légèrement assombri par défaut */
+}
+
+/* Dégradé sombre pour la lisibilité du texte */
+.card-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.2) 50%, transparent 100%);
+    z-index: 1;
+}
+
+.sector-card h3 {
+    position: absolute;
+    bottom: 25px;
+    left: 25px;
+    right: 25px;
+    color: var(--white);
+    font-size: 1.1rem;
+    font-weight: 700;
+    z-index: 2;
+    margin: 0;
+    line-height: 1.3;
+}
+
+/* Effets au survol */
+.sector-card:hover img {
+    transform: scale(1.1); /* Zoom léger */
+    opacity: 1;
+}
+
+.sector-card:hover .card-overlay {
+    background: linear-gradient(to top, rgba(216, 12, 22, 0.7) 0%, rgba(0, 0, 0, 0.3) 100%); /* Teinte rouge au survol */
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 1024px) {
+    .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 600px) {
+    .gallery-grid { grid-template-columns: 1fr; }
+    .sector-card { height: 250px; }
+}
+    </style>
+</section>
+
+<!-- === SECTION : IDENTITÉ & RESTRUCTURATION === -->
+<section class="identity-section">
+    <div class="container">
+        <div class="identity-grid">
+            <div class="identity-content">
+                <span class="tag-badge">RESTRUCTURATION 2023</span>
+                <h2>Une nouvelle ère pour l'Institut Mecasem.</h2>
+                <p class="lead-paragraph">
+                    Née de la scission de la société MECASEM SAS, l'Institut se consacre désormais exclusivement aux <strong>essais sur matériaux</strong> et à l'<strong>assistance technique</strong>.
+                </p>
+                <div class="split-explanation">
+                    <div class="split-box">
+                        <i class="ph ph-intersect"></i>
+                        <div>
+                            <h4>Institut Mecasem</h4>
+                            <p>Expertise Essais & Matériaux</p>
+                        </div>
+                    </div>
+                    <div class="split-arrow"><i class="ph ph-arrows-left-right"></i></div>
+                    <div class="split-box gray">
+                        <i class="ph ph-ruler"></i>
+                        <div>
+                            <h4>MI Métrologie</h4>
+                            <p>Prestations de Métrologie</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="identity-quote">
+                <p>"Notre mission est d’accompagner nos clients dans leurs défis technologiques en leur offrant des solutions fiables, soutenues par une expertise technique solide et nos accréditations COFRAC."</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- === SECTION : LEADERSHIP & ÉQUIPE === -->
+<section class="team-section">
+    <div class="container">
+        <div class="team-layout">
+            <div class="team-text">
+                <span class="section-subtitle">LEADERSHIP</span>
+                <h2>Une direction orientée <span class="italic-accent">Terrain</span>.</h2>
+                <p>À la tête de l’Institut, <strong>Mickaël YOLLU</strong> insuffle une vision dynamique. Fort de son expérience chez SOU-D, il renforce notre position de référent dans les essais.</p>
+                
+                <div class="experience-box">
+                    <div class="exp-icon"><i class="ph ph-users-four"></i></div>
+                    <p>L’entreprise s’appuie sur une équipe d’ingénieurs et techniciens présents pour la plupart depuis <strong>plus de deux décennies</strong>.</p>
+                </div>
+            </div>
+            
+            <div class="team-contacts-grid">
+                <!-- Commercial -->
+                <div class="contact-card">
+                    <div class="contact-role">Partie Commerciale</div>
+                    <h4>Alain RUSCH & Philippe CULOT</h4>
+                    <a href="mailto:info@mecasem.com" class="contact-mail"><i class="ph ph-envelope"></i> info@mecasem.com</a>
+                </div>
+                <!-- Admin -->
+                <div class="contact-card">
+                    <div class="contact-role">Administratif & Social</div>
+                    <h4>Jean-Philippe WETLEY</h4>
+                    <p>Direction Administrative</p>
+                </div>
+                <!-- Alternants -->
+                <div class="contact-card highlight">
+                    <div class="contact-role">Avenir</div>
+                    <h4>8 Nouveaux Alternants</h4>
+                    <p>Pour la rentrée 2024, nous investissons dans les talents de demain issus d'institutions prestigieuses.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- === SECTION : LE MOT DU PRÉSIDENT === -->
+<section class="ceo-section">
+    <div class="container">
+        <div class="ceo-grid">
+            
+            <!-- Colonne Image -->
+            <div class="ceo-image-wrapper">
+                <!-- Remplacer par la vraie photo de Mickaël YOLLU -->
+                <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=1974&auto=format&fit=crop" alt="Mickaël YOLLU, PDG" class="ceo-photo">
+                <div class="ceo-decoration"></div>
+            </div>
+
+            <!-- Colonne Texte -->
+            <div class="ceo-content">
+                <span class="tag-badge">LEADERSHIP</span>
+                <h2>Une dynamique orientée <span class="text-red">Terrain</span>.</h2>
+                
+                <h4 class="ceo-subtitle">
+                    "Notre mission : accompagner vos défis technologiques avec la rigueur d'un institut et l'agilité d'un partenaire de proximité."
+                </h4>
+
+                <p>
+                    À la tête de l’Institut Mecasem, j'apporte une vision forgée par l'expérience. Ingénieur soudeur IWE et chaudronnier de formation, je connais les réalités de vos ateliers et l'exigence de vos chantiers.
+                </p>
+                <p>
+                    En associant l'expertise historique de Mecasem à la réactivité de SOU-D, nous renforçons notre position de référent global : du laboratoire d'essais jusqu'au cœur de vos installations industrielles.
+                </p>
+
+                <div class="ceo-signature-block">
+                    <div class="ceo-info">
+                        <span class="name">Mickaël YOLLU</span>
+                        <span class="role">Président Directeur Général</span>
+                        <span class="credentials">Ingénieur Soudeur IWE</span>
+                    </div>
+                    <!-- Simulation de signature (Police script) -->
+                    <div class="signature">Mickaël Yollu</div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <style>
+    /* Import police signature (Optionnel, sinon une police serif suffit) */
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
+
+/* --- SECTION CEO --- */
+.ceo-section {
+    padding: 120px 0;
+    background-color: var(--white);
+    overflow: hidden; /* Pour les éléments décoratifs */
+}
+
+.ceo-grid {
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr; /* Image un peu moins large que le texte */
+    gap: 80px;
+    align-items: center;
+}
+
+/* IMAGE AVEC CADRE DÉCALÉ */
+.ceo-image-wrapper {
+    position: relative;
+    z-index: 1;
+}
+
+.ceo-photo {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+    position: relative;
+    z-index: 2;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+
+.ceo-decoration {
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    width: 100%;
+    height: 100%;
+    border: 5px solid var(--primary-red);
+    z-index: 1;
+    border-radius: 4px;
+}
+
+/* TEXTE */
+.ceo-content h2 {
+    font-size: 3rem;
+    margin-bottom: 25px;
+    line-height: 1.1;
+}
+
+.text-red {
+    color: var(--primary-red);
+    font-style: italic; /* Style Mulish Italic */
+}
+
+.ceo-subtitle {
+    font-size: 1.25rem;
+    color: var(--primary-black);
+    font-weight: 700;
+    line-height: 1.5;
+    margin-bottom: 30px;
+    border-left: 4px solid var(--primary-red);
+    padding-left: 20px;
+}
+
+.ceo-content p {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 20px;
+    text-align: justify;
+}
+
+/* SIGNATURE BLOCK */
+.ceo-signature-block {
+    margin-top: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    border-top: 1px solid #eee;
+    padding-top: 30px;
+}
+
+.ceo-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.ceo-info .name {
+    font-size: 1.2rem;
+    font-weight: 900;
+    color: var(--primary-black);
+    text-transform: uppercase;
+}
+
+.ceo-info .role {
+    font-size: 0.9rem;
+    color: var(--primary-red);
+    font-weight: 700;
+    margin-top: 2px;
+}
+
+.ceo-info .credentials {
+    font-size: 0.8rem;
+    color: #999;
+    font-style: italic;
+    margin-top: 2px;
+}
+
+.signature {
+    font-family: 'Dancing Script', cursive; /* Police signature */
+    font-size: 2.5rem;
+    color: #333;
+    transform: rotate(-5deg);
+    opacity: 0.8;
+}
+
+/* RESPONSIVE */
+@media (max-width: 992px) {
+    .ceo-grid {
+        grid-template-columns: 1fr;
+        gap: 50px;
+    }
+    .ceo-image-wrapper {
+        max-width: 500px;
+        margin: 0 auto;
+    }
+    .ceo-signature-block {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+    }
+}
+    </style>
+</section>
+<style>
+/* --- CSS IDENTITÉ (SCISSION) --- */
+.identity-section {
+    padding: 100px 0;
+    background-color: var(--white);
+    border-bottom: 1px solid #eee;
+}
+
+.identity-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 80px;
+    align-items: center;
+}
+
+.lead-paragraph {
+    font-size: 1.2rem;
+    color: var(--primary-black);
+    margin-bottom: 30px;
+}
+
+.split-explanation {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-top: 40px;
+}
+
+.split-box {
+    background: #fff5f5;
+    padding: 20px;
+    border-radius: 4px;
+    border-left: 4px solid var(--primary-red);
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex: 1;
+}
+
+.split-box.gray {
+    background: #f4f4f4;
+    border-left-color: #999;
+}
+
+.split-box i { font-size: 2rem; color: var(--primary-red); }
+.split-box.gray i { color: #666; }
+.split-box h4 { font-size: 1rem; margin-bottom: 2px; }
+.split-box p { font-size: 0.8rem; margin: 0; }
+
+.split-arrow { color: #ccc; font-size: 1.5rem; }
+
+.identity-quote {
+    background-color: var(--primary-black);
+    color: white;
+    padding: 50px;
+    border-radius: 4px;
+    font-style: italic;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    position: relative;
+}
+
+.identity-quote::before {
+    content: '"';
+    position: absolute;
+    top: 10px;
+    left: 20px;
+    font-size: 5rem;
+    color: var(--primary-red);
+    opacity: 0.3;
+    font-family: serif;
+}
+
+/* --- CSS TEAM & CONTACTS --- */
+.team-section {
+    padding: 100px 0;
+    background-color: var(--light-bg);
+}
+
+.team-layout {
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+    gap: 80px;
+}
+
+.experience-box {
+    margin-top: 40px;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    background: white;
+    padding: 25px;
+    border-radius: 4px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+.exp-icon {
+    width: 50px;
+    height: 50px;
+    background: var(--primary-red);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    flex-shrink: 0;
+    font-size: 1.5rem;
+}
+
+.team-contacts-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.contact-card {
+    background: white;
+    padding: 30px;
+    border-radius: 4px;
+    border: 1px solid #eee;
+}
+
+.contact-card.highlight {
+    grid-column: span 2;
+    background: var(--primary-black);
+    color: white;
+}
+
+.contact-card.highlight h4 { color: white; }
+.contact-card.highlight p { color: #aaa; }
+
+.contact-role {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    color: var(--primary-red);
+    font-weight: 800;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+}
+
+.contact-card h4 { margin-bottom: 10px; font-size: 1.1rem; }
+
+.contact-mail {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--primary-red);
+    font-weight: 700;
+    font-size: 0.9rem;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    .identity-grid, .team-layout { grid-template-columns: 1fr; gap: 40px; }
+    .split-explanation { flex-direction: column; }
+    .team-contacts-grid { grid-template-columns: 1fr; }
+    .contact-card.highlight { grid-column: span 1; }
+}
+</style>
+
+
+<!-- === SECTION : CONTACT RAPIDE === -->
+<section class="home-contact-section" id="contact">
+    <div class="container contact-grid">
+        
+        <!-- Colonne Info : Les Hommes (Fond Noir) -->
+        <div class="contact-info-box">
+            <span class="tag-badge red">DÉMARREZ VOTRE PROJET</span>
+            <h2>Une question technique ?<br>Une demande de devis ?</h2>
+            <p class="intro-text">
+                Notre équipe commerciale et technique s'engage à vous répondre sous 24h.
+            </p>
+
+            <div class="key-contacts">
+                <div class="contact-person">
+                    <span class="role">Vos interlocuteurs commerciaux</span>
+                    <h4>Alain RUSCH & Philippe CULOT</h4>
+                </div>
+                
+                <div class="contact-details">
+                    <a href="mailto:info@mecasem.com" class="detail-row">
+                        <i class="ph-fill ph-envelope-open"></i> info@mecasem.com
+                    </a>
+                    <a href="tel:0388666676" class="detail-row">
+                        <i class="ph-fill ph-phone"></i> 03 88 66 66 76
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Colonne Formulaire : Style Boxed & Rouge -->
+        <div class="contact-form-box">
+            <div class="form-header">
+                <h3>Contactez-nous</h3>
+                <p>Nos prestations sont réservées aux professionnels.</p>
+            </div>
+
+            <form action="#" method="POST">
+                
+                <!-- Civilité -->
+                <div class="form-group mb-20">
+                    <label class="label-title">Civilité</label>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="civilite" value="Mme"> Mme
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="civilite" value="M"> M
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Ligne 1 : Nom / Prénom -->
+                <div class="form-row">
+                    <div class="input-wrapper">
+                        <label>Nom <span class="required">*</span></label>
+                        <input type="text" placeholder="Votre nom" required>
+                    </div>
+                    <div class="input-wrapper">
+                        <label>Prénom <span class="required">*</span></label>
+                        <input type="text" placeholder="Votre prénom" required>
+                    </div>
+                </div>
+
+                <!-- Ligne 2 : Société / Téléphone -->
+                <div class="form-row">
+                    <div class="input-wrapper">
+                        <label>Société <span class="required">*</span> <i class="ph-fill ph-info" title="Raison sociale"></i></label>
+                        <input type="text" placeholder="Le nom de votre société" required>
+                    </div>
+                    <div class="input-wrapper">
+                        <label>Téléphone <span class="required">*</span></label>
+                        <input type="tel" placeholder="+33 0(6) 00 00 00 00" required>
+                    </div>
+                </div>
+
+                <!-- Ligne 3 : Ville / Email -->
+                <div class="form-row">
+                    <div class="input-wrapper">
+                        <label>Ville & Code postal <span class="required">*</span></label>
+                        <input type="text" placeholder="Ex: 75000 Paris" required>
+                    </div>
+                    <div class="input-wrapper">
+                        <label>E-mail professionnel <span class="required">*</span></label>
+                        <input type="email" placeholder="E-mail professionnel" required>
+                    </div>
+                </div>
+
+                <!-- Projet -->
+                <div class="input-wrapper mb-20">
+                    <label>Je décris brièvement mon projet <span class="required">*</span></label>
+                    <textarea rows="4" placeholder="Je décris brièvement mon projet" required></textarea>
+                </div>
+
+                <!-- Upload Fichier -->
+                <div class="file-upload-wrapper mb-20">
+                    <input type="file" id="file-upload" hidden>
+                    <label for="file-upload" class="file-label">
+                        <i class="ph ph-paperclip"></i> Sélectionner un fichier (PDF, PNG, JPG : 2Mo max)
+                    </label>
+                </div>
+
+                <!-- Checkbox RGPD -->
+                <div class="checkbox-wrapper mb-30">
+                    <input type="checkbox" id="rgpd" required>
+                    <label for="rgpd">
+                        En cochant cette case, j'accepte que mes données personnelles soient utilisées par Institut Mecasem pour répondre à ma demande. <span class="required">*</span>
+                    </label>
+                </div>
+
+                <!-- Bouton ROUGE -->
+                <button type="submit" class="btn-submit-red">
+                    Envoyer
+                </button>
+            </form>
+        </div>
+
+    </div>
+    
+    
+    <style>
+    /* --- SECTION CONTACT (LAYOUT) --- */
+.home-contact-section {
+    background-color: var(--white);
+    padding: 100px 0;
+    border-top: 1px solid #eee;
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.1);
+    /* Pas de border-radius */
+}
+
+/* --- COLONNE GAUCHE (INFO NOIRE) --- */
+.contact-info-box {
+    background-color: var(--primary-black);
+    color: white;
+    padding: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.contact-info-box h2 {
+    color: white;
+    font-size: 2.2rem;
+    margin-bottom: 20px;
+}
+
+.intro-text {
+    color: #ccc;
+    margin-bottom: 40px;
+    font-size: 1.05rem;
+}
+
+.tag-badge.red {
+    background-color: var(--primary-red);
+    color: white;
+    margin-bottom: 25px;
+}
+
+.key-contacts {
+    border-top: 1px solid rgba(255,255,255,0.2);
+    padding-top: 30px;
+}
+
+.contact-person { margin-bottom: 30px; }
+.contact-person .role {
+    display: block;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    color: var(--primary-red);
+    font-weight: 800;
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+}
+.contact-person h4 { color: white; font-size: 1.2rem; margin: 0; }
+
+.detail-row {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    color: white;
+    font-weight: 700;
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+    transition: 0.3s;
+}
+.detail-row:hover { color: var(--primary-red); padding-left: 10px; }
+.detail-row i { font-size: 1.3rem; color: var(--primary-red); }
+
+
+/* --- COLONNE DROITE (FORMULAIRE BOXED) --- */
+.contact-form-box {
+    background-color: white;
+    padding: 50px;
+    border: 1px solid #eee;
+    border-left: none;
+}
+
+.form-header h3 {
+    font-size: 2rem;
+    color: var(--primary-black);
+    margin-bottom: 5px;
+}
+.form-header p {
+    color: #888;
+    font-size: 0.9rem;
+    margin-bottom: 30px;
+}
+
+/* Espacements */
+.mb-20 { margin-bottom: 20px; }
+.mb-30 { margin-bottom: 30px; }
+
+/* Grille champs */
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+/* Labels */
+.input-wrapper label, .label-title {
+    display: block;
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: var(--primary-black);
+    margin-bottom: 8px;
+}
+
+.required { color: var(--primary-red); }
+.ph-info { color: var(--primary-black); cursor: help; margin-left: 5px; }
+
+/* Inputs style "Boxed" (Encadré) */
+.contact-form-box input[type="text"],
+.contact-form-box input[type="email"],
+.contact-form-box input[type="tel"],
+.contact-form-box textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ccc; /* Bordure grise propre */
+    background: #fff;
+    font-family: var(--font-main);
+    font-size: 1rem;
+    color: #333;
+    border-radius: 0 !important; /* Coins carrés forcés */
+    transition: border-color 0.3s;
+}
+
+/* Focus en ROUGE */
+.contact-form-box input:focus,
+.contact-form-box textarea:focus {
+    border-color: var(--primary-red); /* C'est ici que ça devient rouge ! */
+    outline: none;
+}
+
+/* Radio Buttons */
+.radio-group { display: flex; gap: 20px; }
+.radio-label { display: flex; align-items: center; gap: 8px; cursor: pointer; }
+.radio-label input { accent-color: var(--primary-red); margin: 0; }
+
+/* File Upload */
+.file-label {
+    display: block;
+    background-color: #f4f4f4;
+    padding: 15px;
+    text-align: center;
+    color: var(--primary-black);
+    font-weight: 600;
+    cursor: pointer;
+    border: 1px dashed #ccc;
+    transition: background 0.3s;
+}
+.file-label:hover { background-color: #e9e9e9; }
+.file-label i { font-size: 1.2rem; margin-right: 8px; vertical-align: middle; }
+
+/* Checkbox */
+.checkbox-wrapper {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 0.75rem;
+    color: #666;
+    line-height: 1.4;
+}
+.checkbox-wrapper input { margin-top: 3px; accent-color: var(--primary-red); }
+
+/* BOUTON ROUGE */
+.btn-submit-red {
+    width: 100%;
+    background-color: var(--primary-red); /* Le vrai rouge D80C16 */
+    color: white;
+    border: none;
+    padding: 15px;
+    font-family: var(--font-main);
+    font-weight: 700;
+    font-size: 1.1rem;
+    cursor: pointer;
+    border-radius: 0 !important; /* Carré */
+    transition: background 0.3s;
+}
+
+.btn-submit-red:hover {
+    background-color: #b00a12; /* Rouge plus foncé au survol */
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .contact-grid { grid-template-columns: 1fr; }
+    .contact-info-box { padding: 40px; }
+    .contact-form-box { padding: 30px 20px; border-left: 1px solid #eee; }
+    .form-row { grid-template-columns: 1fr; gap: 0; }
+}
+    
+    </style>
+</section>
+
+
+
+<!-- === SECTION : ACTUALITÉS === -->
+<section class="news-section">
+    <div class="container">
+        <div class="ecosystem-header">
+            <div>
+                <span class="tag-badge">BLOG & ÉVÉNEMENTS</span>
+                <h2>Suivez notre <span>expertise</span> au quotidien.</h2>
+            </div>
+            <a href="#" class="download-link">Voir toutes les actualités <i class="ph-bold ph-arrow-right"></i></a>
+        </div>
+
+        <div class="news-grid">
+            <!-- Article 1 : Salon -->
+            <article class="news-card">
+                <div class="news-image">
+                    <img src="https://www.mecasem.com/wp-content/uploads/2025/11/salon-World-Nuclear-Exhibition.jpg" alt="WNE">
+                    <span class="news-category">Événement</span>
+                </div>
+                <div class="news-content">
+                    <span class="news-date">07 Novembre 2025</span>
+                    <h4>Salon World Nuclear Exhibition</h4>
+                    <p>Institut Mecasem présent au rendez-vous mondial du nucléaire pour présenter ses solutions d'essais critiques...</p>
+                    <a href="#" class="news-link">Lire la suite</a>
+                </div>
+            </article>
+
+            <!-- Article 2 : Certification -->
+            <article class="news-card">
+                <div class="news-image">
+                    <img src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?q=80&w=2070&auto=format&fit=crop" alt="Certification">
+                    <span class="news-category">Expertise</span>
+                </div>
+                <div class="news-content">
+                    <span class="news-date">05 Septembre 2025</span>
+                    <h4>Nouvelle Certification COFREND</h4>
+                    <p>Félicitations à notre inspecteur pour l'obtention de sa certification, renforçant notre pôle de contrôle non destructif.</p>
+                    <a href="#" class="news-link">Lire la suite</a>
+                </div>
+            </article>
+
+            <!-- Article 3 : Alternance -->
+            <article class="news-card">
+                <div class="news-image">
+                    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2070&auto=format&fit=crop" alt="Équipe">
+                    <span class="news-category">Vie d'entreprise</span>
+                </div>
+                <div class="news-content">
+                    <span class="news-date">29 Novembre 2024</span>
+                    <h4>Accueil de 8 nouveaux alternants</h4>
+                    <p>L'Institut Mecasem investit dans l'avenir en accueillant une nouvelle promotion de talents sur son site d'Ostwald.</p>
+                    <a href="#" class="news-link">Lire la suite</a>
+                </div>
+            </article>
+        </div>
+    </div>
+</section>
+
+<style>
+/* CSS ACTUALITÉS */
+.news-section {
+    padding: 100px 0;
+    background-color: var(--light-bg);
+}
+
+.news-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin-top: 50px;
+}
+
+.news-card {
+    background: var(--white);
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+}
+
+.news-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+}
+
+.news-image {
+    position: relative;
+    height: 220px;
+}
+
+.news-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.news-category {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: var(--primary-red);
+    color: white;
+    padding: 5px 12px;
+    font-size: 0.75rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    border-radius: 2px;
+}
+
+.news-content {
+    padding: 30px;
+}
+
+.news-date {
+    font-size: 0.85rem;
+    color: #999;
+    font-weight: 600;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.news-content h4 {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    line-height: 1.4;
+}
+
+.news-content p {
+    font-size: 0.95rem;
+    color: #666;
+    margin-bottom: 20px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* Coupe le texte à 3 lignes */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.news-link {
+    font-weight: 800;
+    color: var(--primary-black);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 3px;
+}
+
+.news-link:hover {
+    color: var(--primary-red);
+    border-color: var(--primary-red);
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    .news-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 600px) {
+    .news-grid { grid-template-columns: 1fr; }
+}
+</style>
 
     <!-- FOOTER -->
     <footer class="main-footer">
