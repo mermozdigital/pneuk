@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notre Histoire - Institut Mecasem</title>
+    
+    <!-- Police Mulish & Icones -->
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web">
+
+<style>
+/* =========================================
+   RESET & VARIABLES (Charte Graphique)
+   ========================================= */
+:root {
+    --primary-red: #D80C16;
+    --primary-black: #111111;
+    --text-body: #444;
+    --light-bg: #F9F9F9;
+    --white: #ffffff;
+    --font-main: 'Mulish', sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; border-radius: 0 !important; }
+
+body {
+    font-family: var(--font-main);
+    background-color: var(--white);
+    color: var(--text-body);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+a { text-decoration: none; color: inherit; transition: 0.3s; }
+ul { list-style: none; }
+h1, h2, h3, h4 { color: var(--primary-black); font-weight: 800; line-height: 1.2; }
+
+.container { max-width: 1240px; margin: 0 auto; padding: 0 20px; }
+
+/* =========================================
+   HEADER SIMPLIFIÉ (Pour la démo)
+   ========================================= */
+.navbar { background: var(--white); padding: 20px 0; border-bottom: 1px solid #eee; }
+.nav-content { display: flex; justify-content: space-between; align-items: center; }
+.logo { font-weight: 900; font-size: 1.6rem; letter-spacing: -0.5px; text-transform: uppercase; color: var(--primary-black); }
+.logo span { color: var(--primary-red); }
+.menu { display: flex; gap: 30px; font-weight: 700; font-size: 0.9rem; }
+.btn-header { background: var(--primary-red); color: white; padding: 12px 24px; font-weight: 700; font-size: 0.9rem; }
+
+/* =========================================
+   HERO HISTOIRE
+   ========================================= */
+.page-hero {
+    background-color: var(--primary-black);
+    padding: 100px 0;
+    color: white;
+    text-align: center;
+    background-image: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center;
+}
+
+.page-hero h1 { color: white; font-size: 3.5rem; margin-bottom: 20px; }
+.page-hero p { font-size: 1.2rem; color: #ccc; max-width: 700px; margin: 0 auto; }
+.hero-divider { width: 80px; height: 4px; background: var(--primary-red); margin: 30px auto 0; }
+
+/* =========================================
+   TIMELINE VERTICALE
+   ========================================= */
+.timeline-section {
+    padding: 100px 0;
+    background-color: var(--light-bg);
+    position: relative;
+}
+
+/* La ligne centrale */
+.timeline {
+    position: relative;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.timeline::after {
+    content: '';
+    position: absolute;
+    width: 4px;
+    background-color: #ddd;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    margin-left: -2px;
+}
+
+/* Les conteneurs (Gauche / Droite) */
+.tl-container {
+    padding: 10px 50px;
+    position: relative;
+    background-color: inherit;
+    width: 50%;
+}
+
+.tl-container.left { left: 0; text-align: right; }
+.tl-container.right { left: 50%; text-align: left; }
+
+/* Les cercles sur la ligne */
+.tl-container::after {
+    content: '';
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    right: -12px;
+    background-color: var(--white);
+    border: 4px solid var(--primary-red);
+    top: 25px;
+    z-index: 1;
+}
+.tl-container.right::after { left: -12px; }
+
+/* Le contenu de la carte */
+.tl-content {
+    padding: 30px;
+    background-color: white;
+    position: relative;
+    border: 1px solid #eee;
+    transition: transform 0.3s;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+.tl-content:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
+
+/* Le triangle qui pointe vers la ligne */
+.tl-container.left .tl-content::before {
+    content: " ";
+    height: 0;
+    position: absolute;
+    top: 28px;
+    width: 0;
+    z-index: 1;
+    right: -10px;
+    border: medium solid white;
+    border-width: 10px 0 10px 10px;
+    border-color: transparent transparent transparent white;
+}
+.tl-container.right .tl-content::before {
+    content: " ";
+    height: 0;
+    position: absolute;
+    top: 28px;
+    width: 0;
+    z-index: 1;
+    left: -10px;
+    border: medium solid white;
+    border-width: 10px 10px 10px 0;
+    border-color: transparent white transparent transparent;
+}
+
+/* Typographie Timeline */
+.tl-date {
+    display: inline-block;
+    background-color: var(--primary-red);
+    color: white;
+    padding: 5px 15px;
+    font-weight: 800;
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+}
+
+.tl-content h3 { font-size: 1.4rem; margin-bottom: 10px; color: var(--primary-black); }
+.tl-content p { color: #666; font-size: 0.95rem; }
+
+.tl-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    margin-bottom: 20px;
+    border-bottom: 4px solid var(--primary-red);
+}
+
+/* Cas spécial : La Scission 2023 (Highlight) */
+.tl-container.highlight .tl-content {
+    background-color: var(--primary-black);
+    color: white;
+    border: none;
+}
+.tl-container.highlight h3 { color: white; }
+.tl-container.highlight p { color: #ccc; }
+.tl-container.highlight .tl-date { background-color: white; color: var(--primary-black); }
+
+/* Flèche du highlight change de couleur */
+.tl-container.highlight.left .tl-content::before { border-color: transparent transparent transparent var(--primary-black); }
+.tl-container.highlight.right .tl-content::before { border-color: transparent var(--primary-black) transparent transparent; }
+
+
+/* =========================================
+   FOOTER
+   ========================================= */
+.main-footer { background-color: var(--primary-black); color: #ccc; padding: 60px 0; text-align: center; }
+
+/* =========================================
+   RESPONSIVE MOBILE
+   ========================================= */
+@media screen and (max-width: 768px) {
+    /* La ligne bouge à gauche */
+    .timeline::after { left: 31px; }
+    
+    /* Les conteneurs prennent toute la largeur */
+    .tl-container { width: 100%; padding-left: 70px; padding-right: 25px; }
+    
+    /* Alignement toujours à gauche */
+    .tl-container.left, .tl-container.right { left: 0; text-align: left; }
+    
+    /* Les cercles bougent à gauche */
+    .tl-container::after, .tl-container.right::after { left: 19px; }
+    
+    /* Les triangles pointent tous vers la gauche */
+    .tl-container.left .tl-content::before, .tl-container.right .tl-content::before {
+        left: -10px;
+        border-width: 10px 10px 10px 0;
+        border-color: transparent white transparent transparent;
+    }
+    .tl-container.highlight.left .tl-content::before {
+        border-color: transparent var(--primary-black) transparent transparent;
+    }
+}
+
+
+/* --- TIMELINE IMAGES --- */
+.tl-image {
+    width: 100%;
+    height: 220px; /* Hauteur fixe pour uniformiser */
+    object-fit: cover;
+    margin-bottom: 20px;
+    border-bottom: 4px solid var(--primary-red);
+    display: block; /* S'assure que l'image est là */
+}
+
+/* --- SPECIAL 2023 : LA SCISSION --- */
+.tl-container.special-2023 .tl-content {
+    background-color: var(--primary-black);
+    color: white;
+    border: 2px solid var(--primary-red); /* Bordure rouge pour marquer l'importance */
+}
+
+.tl-container.special-2023 h3, 
+.tl-container.special-2023 p {
+    color: white;
+}
+
+/* Le diagramme CSS pour imiter ton image */
+.split-diagram {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px 0;
+    padding: 20px;
+    background: rgba(255,255,255,0.05); /* Fond très léger */
+    border: 1px dashed #555;
+}
+
+.split-top {
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    color: #ccc;
+}
+
+.split-arrow-icon {
+    font-size: 1.5rem;
+    color: var(--primary-red);
+    margin-bottom: 10px;
+}
+
+.split-branches {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    gap: 15px;
+}
+
+.branch {
+    flex: 1;
+    background: white;
+    padding: 15px 10px;
+    text-align: center;
+    color: var(--primary-black);
+}
+
+.branch i {
+    font-size: 2rem;
+    margin-bottom: 5px;
+    display: block;
+}
+
+/* Couleur spécifique pour différencier (comme sur ton image) */
+.branch.metro i { color: #00A9C6; } /* Bleu pour Métrologie */
+.branch.institut i { color: var(--primary-red); } /* Rouge pour Institut */
+
+.branch span {
+    font-size: 0.75rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    display: block;
+    line-height: 1.2;
+}
+
+/* Adaptation de la flèche de timeline pour le fond noir */
+.tl-container.special-2023.right .tl-content::before {
+    border-color: transparent var(--primary-black) transparent transparent;
+}
+.tl-container.special-2023.left .tl-content::before {
+    border-color: transparent transparent transparent var(--primary-black);
+}
+</style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header class="navbar">
+        <div class="container nav-content">
+            <div class="logo">INSTITUT <span>MECASEM</span></div>
+            <nav class="menu">
+                <a href="index.html">Accueil</a>
+                <a href="#">Notre Histoire</a>
+                <a href="#">Contact</a>
+            </nav>
+            <a href="#" class="btn-header">Devis</a>
+        </div>
+    </header>
+
+    <!-- HERO PAGE -->
+    <section class="page-hero">
+        <div class="container">
+            <h1>45 Ans d'Excellence Industrielle</h1>
+            <p>De l'atelier familial à l'Institut de référence. Revivez les étapes clés qui ont forgé notre expertise.</p>
+            <div class="hero-divider"></div>
+        </div>
+    </section>
+
+  <!-- TIMELINE SECTION -->
+    <section class="timeline-section">
+        <div class="timeline">
+
+            <!-- 1980 -->
+            <div class="tl-container left">
+                <div class="tl-content">
+                    <!-- Image : Garage / Atelier -->
+                    <img src="https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?q=80&w=2070&auto=format&fit=crop" alt="Création 1980" class="tl-image">
+                    <span class="tl-date">1980</span>
+                    <h3>Les Origines</h3>
+                    <p>Fondation de MECASEM par <strong>Marc Meyer</strong> à Ostwald. L'aventure débute dans un modeste garage, porté par une vision d'excellence.</p>
+                </div>
+            </div>
+
+            <!-- 1992-1999 -->
+            <div class="tl-container right">
+                <div class="tl-content">
+                    <!-- Image : Carte / Expansion -->
+                    <img src="https://images.unsplash.com/photo-1524661135-423995f22d0b?q=80&w=2074&auto=format&fit=crop" alt="Expansion" class="tl-image">
+                    <span class="tl-date">1992 - 1999</span>
+                    <h3>L'Expansion Nationale</h3>
+                    <p>Ouverture des sites de Lyon et Paris (reprise du laboratoire SGS). L'entreprise franchit les frontières avec une présence en Allemagne.</p>
+                </div>
+            </div>
+
+            <!-- 2011 -->
+            <div class="tl-container left">
+                <div class="tl-content">
+                    <!-- Image : Bâtiment moderne -->
+                    <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop" alt="Pôle Essais" class="tl-image">
+                    <span class="tl-date">2011</span>
+                    <h3>Inauguration du Pôle Essais</h3>
+                    <p>Construction d'un bâtiment moderne de <strong>4000 m²</strong> à Ostwald. Intégration d'un parc machines de pointe pour les essais de traction.</p>
+                </div>
+            </div>
+
+            <!-- 2017 -->
+            <div class="tl-container right">
+                <div class="tl-content">
+                    <!-- Image : Technologie / Digital -->
+                    <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2070&auto=format&fit=crop" alt="Innovation" class="tl-image">
+                    <span class="tl-date">2017</span>
+                    <h3>Innovation & Digital</h3>
+                    <p>Création du pôle R&D. Transition managériale vers la nouvelle génération et digitalisation des processus (Mecasem Cloud).</p>
+                </div>
+            </div>
+
+            <!-- 2023 : LA CÉLÈBRE CARTE SPÉCIALE (SCISSION) -->
+            <div class="tl-container left special-2023">
+                <div class="tl-content">
+                    <!-- Ici on recrée le schéma visuel de ton image -->
+                    <div class="split-diagram">
+                        <span class="split-top">MECASEM SAS</span>
+                        <i class="ph-bold ph-arrows-split split-arrow-icon"></i>
+                        <div class="split-branches">
+                            <!-- Branche 1 -->
+                            <div class="branch metro">
+                                <i class="ph-fill ph-ruler"></i>
+                                <span>MI<br>Metrologie</span>
+                            </div>
+                            <!-- Branche 2 -->
+                            <div class="branch institut">
+                                <i class="ph-fill ph-flask"></i>
+                                <span>Institut<br>Mecasem</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <span class="tl-date">2023 : Le Tournant</span>
+                    <h3>Une Nouvelle Ère</h3>
+                    <p>Restructuration stratégique : scission des activités pour une expertise dédiée.</p>
+                    <p style="font-size:0.85rem; margin-top:10px; color:#ccc;">
+                        L'Institut Mecasem se concentre désormais exclusivement sur les <strong>Essais Matériaux</strong> et le <strong>Soudage</strong>.
+                    </p>
+                </div>
+            </div>
+
+            <!-- 2024 -->
+            <div class="tl-container right">
+                <div class="tl-content">
+                    <!-- Image : Équipe / Leadership -->
+                    <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=2032&auto=format&fit=crop" alt="Avenir" class="tl-image">
+                    <span class="tl-date">Depuis 2024</span>
+                    <h3>Fusion des Expertises</h3>
+                    <p>Sous la direction de <strong>Mickaël YOLLU</strong>, intégration complète du savoir-faire SOU-D. Une offre unique du laboratoire au chantier.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="main-footer">
+        <div class="container">
+            <div style="font-weight:900; font-size:1.5rem; margin-bottom:10px;">INSTITUT <span style="color:var(--primary-red)">MECASEM</span></div>
+            <p>Laboratoire Industriel & Services Intégrés</p>
+            <p style="margin-top:20px; font-size:0.8rem;">&copy; 2026 Institut Mecasem. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
