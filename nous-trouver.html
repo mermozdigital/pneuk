@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Localisation - Institut Mecasem</title>
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web">
+ <script src="https://unpkg.com/@phosphor-icons/web"></script>
+<style>
+/* --- VARIABLES & RESET (Même base que l'accueil) --- */
+:root {
+    --primary-red: #D80C16;
+    --primary-black: #111111;
+    --text-body: #444;
+    --light-bg: #F9F9F9;
+    --white: #ffffff;
+    --font-main: 'Mulish', sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; border-radius: 0 !important; }
+
+body {
+    font-family: var(--font-main);
+    background-color: var(--white);
+    color: var(--text-body);
+    line-height: 1.6;
+}
+
+h1, h2, h3 { color: var(--primary-black); font-weight: 800; line-height: 1.2; }
+.container { max-width: 1240px; margin: 0 auto; padding: 0 20px; }
+
+/* --- SECTION 1 : COORDONNÉES & CARTE --- */
+.location-hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 550px;
+    border-bottom: 1px solid #eee;
+}
+
+/* Colonne Info (Gauche) */
+.location-info {
+    padding: 80px 60px;
+    background-color: var(--white);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.sub-title {
+    color: var(--primary-red);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+    display: block;
+}
+
+.location-info h1 {
+    font-size: 3rem;
+    margin-bottom: 40px;
+}
+
+.address-box {
+    margin-bottom: 40px;
+    padding-left: 20px;
+    border-left: 4px solid var(--primary-red);
+}
+
+.address-box h4 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+.address-box p {
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 5px;
+}
+
+.contact-actions {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.btn-direction {
+    background-color: var(--primary-black);
+    color: white;
+    padding: 15px 30px;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: background 0.3s;
+}
+.btn-direction:hover { background-color: var(--primary-red); }
+
+.btn-outline {
+    border: 2px solid var(--primary-black);
+    color: var(--primary-black);
+    padding: 15px 30px;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: 0.3s;
+}
+.btn-outline:hover { background-color: var(--primary-black); color: white; }
+
+
+/* Colonne Carte (Droite) */
+.location-map {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    min-height: 400px; /* Pour mobile */
+}
+
+.location-map iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    filter: grayscale(100%); /* Carte en noir et blanc pour le style */
+    transition: filter 0.3s;
+}
+.location-map:hover iframe { filter: grayscale(0%); } /* Couleur au survol */
+
+
+/* --- SECTION 2 : COMMENT VENIR (Transport) --- */
+.access-section {
+    padding: 100px 0;
+    background-color: var(--light-bg);
+}
+
+.access-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.access-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.access-card {
+    background: white;
+    padding: 40px;
+    border: 1px solid #e0e0e0;
+    transition: transform 0.3s;
+    position: relative;
+    overflow: hidden;
+}
+
+.access-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--primary-red);
+}
+
+.access-icon {
+    font-size: 3rem;
+    color: var(--primary-red);
+    margin-bottom: 20px;
+}
+
+.access-card h3 {
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+}
+
+.access-card p {
+    font-size: 0.95rem;
+    color: #666;
+}
+
+/* Mise en gras des mots clés du texte d'origine */
+.access-card strong { color: var(--primary-black); }
+
+
+/* --- SECTION 3 : LOGISTIQUE & NAVETTE --- */
+.logistics-banner {
+    background-color: var(--primary-black);
+    color: white;
+    padding: 60px 0;
+    margin-top: 50px;
+}
+
+.logistics-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+}
+
+.logistics-text h3 { color: white; font-size: 1.8rem; margin-bottom: 10px; }
+.logistics-text p { font-size: 1.1rem; color: #ccc; max-width: 800px; }
+
+.logistics-icon {
+    font-size: 4rem;
+    color: var(--primary-red);
+    opacity: 0.8;
+}
+
+/* RESPONSIVE */
+@media (max-width: 992px) {
+    .location-hero { grid-template-columns: 1fr; }
+    .location-info { padding: 60px 20px; }
+    .location-map { height: 400px; }
+    .access-grid { grid-template-columns: 1fr; }
+    .logistics-content { flex-direction: column; text-align: center; }
+}
+
+.access-icon {
+    font-size: 3rem;
+    color: var(--primary-red); /* C'est ici que ça devient ROUGE (#D80C16) */
+    margin-bottom: 20px;
+}
+
+/* Petit style en plus pour le texte gris du bas */
+.access-note {
+    margin-top: 15px;
+    color: #999;
+    font-size: 0.85rem;
+    font-style: italic;
+    border-top: 1px solid #eee;
+    padding-top: 10px;
+}
+</style>
+</head>
+<body>
+
+    <!-- SECTION 1 : HERO & MAP -->
+    <section class="location-hero">
+        
+        <!-- Info Gauche -->
+        <div class="location-info">
+            <span class="sub-title">Localisation</span>
+            <h1>Nous Trouver.</h1>
+            
+            <div class="address-box">
+                <h4>Siège & Laboratoire</h4>
+                <p>90 rue de Lingolsheim</p>
+                <p>67540 OSTWALD, FRANCE</p>
+            </div>
+
+            <div class="contact-actions">
+                <!-- Lien Google Maps réel vers l'adresse -->
+                <a href="https://www.google.com/maps/search/?api=1&query=90+rue+de+lingolsheim+67540+OSTWALD" target="_blank" class="btn-direction">
+                    <i class="ph-fill ph-map-pin"></i> Itinéraire
+                </a>
+                <a href="tel:0388666676" class="btn-outline">
+                    <i class="ph-fill ph-phone"></i> 03 88 66 66 76
+                </a>
+            </div>
+        </div>
+
+        <!-- Carte Droite (Embed Google Maps) -->
+        <div class="location-map">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2641.673232186782!2d7.708688376865384!3d48.53935297129064!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4796c9c6f2f2f2f3%3A0x4a4a4a4a4a4a4a4a!2s90%20Rue%20de%20Lingolsheim%2C%2067540%20Ostwald!5e0!3m2!1sfr!2sfr!4v1700000000000!5m2!1sfr!2sfr" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+    </section>
+
+    <!-- SECTION 2 : COMMENT VENIR -->
+    <section class="access-section">
+        <div class="container">
+            <div class="access-header">
+                <h2>Comment se rendre chez Mecasem ?</h2>
+                <p>Nous sommes facilement accessibles via les transports en commun de Strasbourg.</p>
+            </div>
+
+            <div class="access-grid">
+                
+                <!-- Carte 1 : TRAIN / TRAM -->
+                <div class="access-card">
+                    <!-- Icone Train Rouge -->
+                    <div class="access-icon"><i class="ph-fill ph-train"></i></div>
+                    <h3>Depuis la Gare</h3>
+                    <p>
+                        Depuis la gare de Strasbourg : prendre le <strong>Tram B</strong> et sortir à l’arrêt <strong>Alouette</strong>.
+                    </p>
+                    <p class="access-note">Vous arrivez juste à côté du site.</p>
+                </div>
+
+                <!-- Carte 2 : BUS -->
+                <div class="access-card">
+                    <!-- Icone Bus Rouge -->
+                    <div class="access-icon"><i class="ph-fill ph-bus"></i></div>
+                    <h3>En Bus</h3>
+                    <p>
+                        Ligne <strong>C1</strong> : sortir à l’arrêt <strong>Alouette</strong>.
+                    </p>
+                    <p class="access-note">Arrêt situé à quelques minutes à pied.</p>
+                </div>
+
+                <!-- Carte 3 : AVION -->
+                <div class="access-card">
+                    <!-- Icone Avion Rouge -->
+                    <div class="access-icon"><i class="ph-fill ph-airplane-tilt"></i></div>
+                    <h3>Depuis l'Aéroport</h3>
+                    <p>
+                        Depuis Entzheim Gare : Prendre le <strong>bus 42</strong> jusqu’à <strong>Aéroparc</strong>, puis le <strong>12</strong> jusqu’à <strong>Alouette</strong>.
+                    </p>
+                    <p class="access-note">Vous arrivez à côté.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 3 : LOGISTIQUE (Le petit texte mis en valeur) -->
+    <section class="logistics-banner">
+        <div class="container">
+            <div class="logistics-content">
+                <div class="logistics-text">
+                    <h3>Service de Navette & Coupons</h3>
+                    <p>
+                        Pour faciliter vos tests, notez que nous pouvons organiser via navette la <strong>gestion logistique de vos coupons</strong> et éprouvettes.
+                    </p>
+                </div>
+                <div class="logistics-icon">
+                    <i class="ph-duotone ph-truck"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>
