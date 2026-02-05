@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Qualité & RH - Institut Mecasem</title>
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web">
+
+<style>
+/* --- VARIABLES & RESET --- */
+:root {
+    --primary-red: #D80C16;
+    --primary-black: #111111;
+    --text-body: #444;
+    --light-bg: #F9F9F9;
+    --white: #ffffff;
+    --font-main: 'Mulish', sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; border-radius: 0 !important; }
+
+body {
+    font-family: var(--font-main);
+    background-color: var(--white);
+    color: var(--text-body);
+    line-height: 1.6;
+}
+
+h1, h2, h3 { color: var(--primary-black); font-weight: 800; line-height: 1.2; }
+.container { max-width: 1240px; margin: 0 auto; padding: 0 20px; }
+
+/* --- HERO PAGE --- */
+.page-hero {
+    background-color: var(--primary-black);
+    padding: 80px 0;
+    color: white;
+    text-align: center;
+    border-bottom: 4px solid var(--primary-red);
+}
+.page-hero h1 { color: white; font-size: 3rem; text-transform: uppercase; letter-spacing: 1px; }
+
+/* --- SECTION 1 : CERTIFICATIONS --- */
+.certif-section {
+    padding: 100px 0;
+    background-color: var(--white);
+}
+
+.section-intro {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 60px;
+}
+.section-intro h2 { font-size: 2.5rem; margin-bottom: 15px; }
+.section-intro p { font-size: 1.1rem; color: #666; }
+
+.certif-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    align-items: start;
+}
+
+.certif-card {
+    border: 1px solid #eee;
+    padding: 40px 30px;
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.certif-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.05);
+    border-color: var(--primary-red);
+}
+
+.certif-logo {
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+.certif-logo img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.certif-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: var(--primary-black);
+}
+
+.certif-details {
+    margin-top: 20px;
+    font-size: 0.95rem;
+    color: #666;
+}
+
+.cofrac-number {
+    display: inline-block;
+    background: var(--primary-black);
+    color: white;
+    padding: 5px 15px;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.download-btn {
+    display: block;
+    margin-top: 10px;
+    padding: 12px;
+    background-color: var(--primary-red);
+    color: white;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 0.8rem;
+    text-decoration: none;
+    transition: background 0.3s;
+}
+.download-btn:hover { background-color: #b00a12; }
+.download-btn.secondary { background-color: #333; }
+.download-btn.secondary:hover { background-color: black; }
+
+
+/* --- SECTION 2 : POLITIQUE RH --- */
+.rh-section {
+    padding: 100px 0;
+    background-color: var(--light-bg);
+}
+
+.rh-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 60px;
+}
+
+.rh-text h2 { font-size: 2.5rem; margin-bottom: 20px; }
+.rh-tag {
+    display: inline-block;
+    color: var(--primary-red);
+    font-weight: 800;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.rh-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.rh-item {
+    background: white;
+    padding: 20px;
+    border-left: 4px solid var(--primary-red);
+    display: flex;
+    gap: 15px;
+    align-items: flex-start;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.03);
+}
+
+.rh-item i {
+    color: var(--primary-red);
+    font-size: 1.5rem;
+    flex-shrink: 0;
+    margin-top: 3px;
+}
+
+.rh-item p { margin: 0; font-size: 0.95rem; font-weight: 600; color: #333; }
+
+
+/* --- SECTION 3 : FORMATION --- */
+.formation-section {
+    padding: 100px 0;
+    background-color: var(--white);
+    border-top: 1px solid #eee;
+}
+
+.formation-layout {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 60px;
+    align-items: center;
+}
+
+.formation-content h2 { font-size: 2.5rem; margin-bottom: 30px; }
+.formation-content h4 { font-size: 1.2rem; margin: 30px 0 15px; color: var(--primary-red); }
+.formation-content p { margin-bottom: 15px; text-align: justify; }
+
+.formation-stat-card {
+    background-color: var(--primary-black);
+    color: white;
+    padding: 50px;
+    text-align: center;
+    position: relative;
+}
+
+.formation-stat-card::after {
+    content: '';
+    position: absolute;
+    top: 20px; right: 20px; bottom: 20px; left: 20px;
+    border: 1px solid rgba(255,255,255,0.2);
+}
+
+.stat-big {
+    font-size: 5rem;
+    font-weight: 900;
+    color: var(--primary-red);
+    line-height: 1;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.stat-desc {
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+.schools-list {
+    margin-top: 40px;
+    padding-top: 30px;
+    border-top: 1px solid rgba(255,255,255,0.2);
+}
+.schools-list span {
+    display: block;
+    font-size: 0.9rem;
+    color: #ccc;
+    margin-bottom: 5px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 992px) {
+    .certif-grid { grid-template-columns: 1fr; }
+    .rh-grid { grid-template-columns: 1fr; }
+    .formation-layout { grid-template-columns: 1fr; }
+    .formation-layout { display: flex; flex-direction: column-reverse; }
+}
+</style>
+</head>
+<body>
+
+    <!-- HERO -->
+    <section class="page-hero">
+        <div class="container">
+            <h1>Politique Qualité & RH</h1>
+        </div>
+    </section>
+
+    <!-- 1. CERTIFICATIONS -->
+    <section class="certif-section">
+        <div class="container">
+            <div class="section-intro">
+                <h2>Nos Accréditations</h2>
+                <p>L’Institut Mecasem s’engage à fournir des services de haute qualité, soutenus par des certifications reconnues.</p>
+            </div>
+
+            <div class="certif-grid">
+                <!-- COFRAC (Mis en avant) -->
+                <div class="certif-card">
+                    <div class="certif-logo">
+                        <!-- Placeholder pour logo COFRAC -->
+                        <img src="https://www.mecasem.com/wp-content/uploads/2024/10/Essais_RVB.png" alt="COFRAC">
+                    </div>
+                    <div>
+                        <span class="cofrac-number">N° 1-7322</span>
+                        <h3>Section Laboratoires</h3>
+                        <div class="certif-details">
+                            Portée disponible sur <a href="https://www.cofrac.fr" style="color:var(--primary-red); font-weight:700;">www.cofrac.fr</a>
+                        </div>
+                        <div style="margin-top:20px;">
+                            <a href="#" class="download-btn">Voir l'accréditation <i class="ph-bold ph-download-simple"></i></a>
+                            <a href="#" class="download-btn secondary">Attestation d'accréditation <i class="ph-bold ph-file-pdf"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- COFREND -->
+                <div class="certif-card">
+                    <div class="certif-logo">
+                        <img src="https://www.mecasem.com/wp-content/uploads/2024/11/COFREND-002-300x55.png" alt="COFREND">
+                    </div>
+                    <div>
+                        <h3>Certification COFREND</h3>
+                        <p class="certif-details">
+                            Nous consulter pour en savoir plus sur nos certifications en vigueur.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- AFS -->
+                <div class="certif-card">
+                    <div class="certif-logo">
+                        <img src="https://www.mecasem.com/wp-content/uploads/2024/11/AFS.jpg" alt="AFS">
+                    </div>
+                    <div>
+                        <h3>Association Française du Soudage</h3>
+                        <p class="certif-details">
+                            Nous consulter pour en savoir plus sur nos certifications en vigueur.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. POLITIQUE RH -->
+    <section class="rh-section">
+        <div class="container rh-grid">
+            <div class="rh-text">
+                <span class="rh-tag">#ACTEURS DE NOTRE MECASEM</span>
+                <h2>Politique RH</h2>
+                <p>Les hommes constituent la première valeur de notre entreprise. C’est pourquoi notre charte managériale est fondée sur des principes forts :</p>
+            </div>
+            
+            <div class="rh-list">
+                <div class="rh-item">
+                    <i class="ph-fill ph-plant"></i>
+                    <p>Favoriser l’épanouissement professionnel (entretiens, formations, évolutions).</p>
+                </div>
+                <div class="rh-item">
+                    <i class="ph-fill ph-heart"></i>
+                    <p>Travailler dans un environnement bienveillant et serein.</p>
+                </div>
+                <div class="rh-item">
+                    <i class="ph-fill ph-chats-circle"></i>
+                    <p>Favoriser les échanges, l’écoute et la communication adaptée.</p>
+                </div>
+                <div class="rh-item">
+                    <i class="ph-fill ph-shield-check"></i>
+                    <p>Faire de la sécurité et du bien-être une priorité absolue.</p>
+                </div>
+                <div class="rh-item">
+                    <i class="ph-fill ph-handshake"></i>
+                    <p>Connaître ses responsabilités et contribuer à l’atteinte des objectifs.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. FORMATION -->
+    <section class="formation-section">
+        <div class="container formation-layout">
+            
+            <!-- Texte -->
+            <div class="formation-content">
+                <span style="color:var(--primary-red); font-weight:800; text-transform:uppercase; letter-spacing:1px;">L'AVENIR</span>
+                <h2>Politique de Formation</h2>
+                
+                <p>En cette rentrée 2024, l’Institut Mecasem est fier d’annoncer l’accueil de nouveaux alternants. Cette initiative s’inscrit dans notre engagement constant à former les talents de demain et à renforcer les liens avec les institutions éducatives locales.</p>
+                
+                <h4>Un Enrichissement Mutuel</h4>
+                <p>Accueillir ces jeunes talents nous permet non seulement de contribuer à leur formation, mais aussi d’enrichir notre propre équipe avec des perspectives nouvelles et dynamiques. Les alternants auront l’occasion de participer activement à des projets variés.</p>
+                
+                <h4>Un Avenir Prometteur</h4>
+                <p>Nous sommes convaincus que cette collaboration renforcera notre capacité à innover et à exceller dans nos domaines d’expertise.</p>
+            </div>
+
+            <!-- Stat Card -->
+            <div class="formation-stat-card">
+                <span class="stat-big">8</span>
+                <span class="stat-desc">Nouveaux Alternants<br>Rentrée 2024</span>
+                
+                <div class="schools-list">
+                    <p style="font-weight:700; margin-bottom:10px;">PARTENAIRES :</p>
+                    <span>IUT de Mulhouse</span>
+                    <span>Lycée Jean Rostand Strasbourg</span>
+                    <span>CCI Alsace</span>
+                    <span>KEDGE Business School</span>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+</body>
+</html>
