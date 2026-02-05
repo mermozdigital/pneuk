@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notre Histoire - Institut Mecasem</title>
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web">
+
+<style>
+/* =========================================
+   RESET & VARIABLES
+   ========================================= */
+:root {
+    --primary-red: #D80C16;
+    --primary-black: #111111;
+    --text-body: #444;
+    --light-bg: #F9F9F9;
+    --white: #ffffff;
+    --font-main: 'Mulish', sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; border-radius: 0 !important; }
+
+body {
+    font-family: var(--font-main);
+    background-color: var(--white);
+    color: var(--text-body);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+h1, h2, h3 { color: var(--primary-black); font-weight: 800; line-height: 1.2; }
+.container { max-width: 1240px; margin: 0 auto; padding: 0 20px; }
+
+/* =========================================
+   SECTION 1 : MANIFESTE / PRÉSENTATION
+   ========================================= */
+.intro-history {
+    padding: 100px 0;
+    background-color: var(--white);
+}
+
+.intro-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+}
+
+.intro-content .subtitle {
+    color: var(--primary-red);
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+    display: block;
+}
+
+.intro-content h2 {
+    font-size: 3rem;
+    margin-bottom: 30px;
+}
+
+.intro-content p {
+    font-size: 1.1rem;
+    color: #555;
+    margin-bottom: 20px;
+    text-align: justify;
+}
+
+.quote-box {
+    border-left: 4px solid var(--primary-red);
+    padding-left: 20px;
+    margin-top: 30px;
+    font-style: italic;
+    color: var(--primary-black);
+    font-weight: 700;
+    font-size: 1.2rem;
+}
+
+.intro-image {
+    position: relative;
+}
+
+.intro-image img {
+    width: 100%;
+    height: auto;
+    box-shadow: 20px 20px 0px var(--light-bg); /* Effet graphique simple */
+    border: 1px solid #eee;
+}
+
+/* =========================================
+   SECTION 2 : TIMELINE "SIDE-BY-SIDE"
+   ========================================= */
+.timeline-section {
+    padding: 100px 0;
+    background-color: var(--light-bg);
+    position: relative;
+    overflow: hidden;
+}
+
+.timeline {
+    position: relative;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+/* Ligne centrale */
+.timeline::after {
+    content: '';
+    position: absolute;
+    width: 2px;
+    background-color: #ccc;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    margin-left: -1px;
+}
+
+/* Conteneurs */
+.tl-container {
+    padding: 20px 50px;
+    position: relative;
+    width: 50%;
+    box-sizing: border-box;
+}
+.tl-container.left { left: 0; }
+.tl-container.right { left: 50%; }
+
+/* Point central */
+.tl-container::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    right: -10px;
+    background-color: var(--primary-red);
+    top: 50%; /* Centré verticalement par rapport à la carte */
+    margin-top: -10px;
+    z-index: 2;
+    border: 4px solid var(--light-bg); /* Effet de coupe */
+}
+.tl-container.right::after { left: -10px; }
+
+/* LA CARTE (Flexbox pour image à côté) */
+.tl-card {
+    display: flex; /* C'est ici que la magie opère */
+    background-color: white;
+    border: 1px solid #e0e0e0;
+    min-height: 250px; /* Hauteur mini pour l'esthétique */
+    transition: transform 0.3s ease;
+}
+
+.tl-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+}
+
+/* Image de coté */
+.tl-img-box {
+    width: 40%;
+    position: relative;
+    overflow: hidden;
+}
+.tl-img-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s;
+}
+.tl-card:hover .tl-img-box img { transform: scale(1.1); }
+
+/* Texte de coté */
+.tl-text-box {
+    width: 60%;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* VARIATION GAUCHE / DROITE */
+/* Gauche : Image à Gauche, Texte à Droite */
+.tl-container.left .tl-card { flex-direction: row; }
+
+/* Droite : Texte à Gauche, Image à Droite (Effet miroir) */
+.tl-container.right .tl-card { flex-direction: row-reverse; text-align: left; }
+
+/* Typo */
+.tl-year {
+    font-size: 3rem;
+    font-weight: 900;
+    color: rgba(0,0,0,0.05); /* Très subtil en fond */
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    line-height: 1;
+}
+.tl-container.right .tl-year { right: auto; left: 20px; }
+
+.tl-date-label {
+    color: var(--primary-red);
+    font-weight: 800;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+    display: block;
+}
+
+.tl-text-box h3 { margin-bottom: 15px; font-size: 1.3rem; }
+.tl-text-box p { font-size: 0.95rem; margin: 0; }
+
+/* SPÉCIAL 2023 (Diagramme) */
+.tl-card.special {
+    background-color: var(--primary-black);
+    border: 1px solid var(--primary-red);
+}
+.tl-card.special h3, .tl-card.special p { color: white; }
+.tl-card.special .tl-year { color: rgba(255,255,255,0.1); }
+
+/* Diagramme CSS pour 2023 */
+.split-diagram {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    background: #1a1a1a;
+    padding: 20px;
+    color: white;
+}
+.split-top { font-weight: 800; margin-bottom: 10px; font-size: 0.9rem; }
+.split-branches { display: flex; gap: 10px; width: 100%; }
+.branch {
+    flex: 1; text-align: center; padding: 10px 5px; background: #333;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+}
+.branch i { font-size: 1.5rem; margin-bottom: 5px; }
+.branch span { font-size: 0.6rem; font-weight: 700; text-transform: uppercase; }
+
+/* RESPONSIVE MOBILE */
+@media (max-width: 768px) {
+    .intro-grid { grid-template-columns: 1fr; gap: 40px; }
+    
+    .timeline::after { left: 20px; }
+    .tl-container { width: 100%; padding-left: 50px; padding-right: 0; margin-bottom: 30px; }
+    .tl-container.left, .tl-container.right { left: 0; }
+    .tl-container::after { left: 10px; top: 30px; } /* Point en haut */
+    
+    /* Sur mobile, on empile Image sur Texte pour lisibilité */
+    .tl-card { flex-direction: column !important; }
+    .tl-img-box, .tl-text-box { width: 100%; }
+    .tl-img-box { height: 200px; }
+}
+
+
+
+/* --- MODIFICATION LARGEUR TIMELINE --- */
+
+/* 1. On autorise la timeline à prendre toute la largeur du container */
+.timeline {
+    position: relative;
+    max-width: 100%; /* Était à 1100px avant */
+    margin: 0 auto;
+}
+
+/* 2. On réduit l'écart entre la ligne centrale et la carte */
+.tl-container {
+    padding: 20px 30px; /* Était à 50px. On gagne 20px de chaque côté */
+    position: relative;
+    width: 50%;
+    box-sizing: border-box;
+}
+
+/* 3. On ajuste la carte pour qu'elle remplisse bien l'espace */
+.tl-card {
+    display: flex;
+    background-color: white;
+    border: 1px solid #e0e0e0;
+    min-height: 280px; /* Un peu plus haut pour l'élégance */
+    width: 100%;       /* Prend toute la largeur disponible */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+/* 4. Ajustement des proportions Image / Texte */
+.tl-img-box {
+    width: 35%; /* L'image prend moins de place... */
+    position: relative;
+    overflow: hidden;
+    min-width: 200px; /* ...mais garde une taille mini */
+}
+
+.tl-text-box {
+    width: 65%; /* ...pour laisser plus de place au texte */
+    padding: 40px; /* Plus d'espace intérieur pour respirer */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* RESPONSIVE (Rien ne change ici, ça passe en colonne sur mobile) */
+@media (max-width: 992px) {
+    .tl-container { width: 100%; padding-left: 60px; padding-right: 0; }
+    .tl-card { flex-direction: column !important; }
+    .tl-img-box { width: 100%; height: 250px; }
+    .tl-text-box { width: 100%; padding: 30px; }
+}
+</style>
+</head>
+<body>
+
+    <!-- SECTION 1 : MANIFESTE / ORIGINES -->
+    <section class="intro-history">
+        <div class="container intro-grid">
+            <div class="intro-content">
+                <span class="subtitle">Notre Héritage</span>
+                <h2>Du garage familial à l'Institut de référence.</h2>
+                <p>
+                    L'histoire de Mecasem n'est pas celle d'une simple croissance, c'est celle d'une obsession pour la qualité. 
+                    Tout a commencé en 1980, quand Marc Meyer a décidé de transformer son garage à Ostwald en un laboratoire de fortune.
+                </p>
+                <p>
+                    Sans grands moyens mais avec une rigueur technique absolue, il a posé les bases de ce qui est aujourd'hui une référence nationale.
+                    Cette culture du "terrain" et de la "solution concrète" ne nous a jamais quittés.
+                </p>
+                <div class="quote-box">
+                    "45 ans plus tard, nous avons changé d'échelle, mais pas d'esprit."
+                </div>
+            </div>
+            <div class="intro-image">
+                <!-- Photo historique ou symbolique -->
+                <img src="https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?q=80&w=2070&auto=format&fit=crop" alt="Atelier Historique">
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 2 : TIMELINE LATÉRALE -->
+    <section class="timeline-section">
+        <div class="timeline">
+
+            <!-- 1980 (Gauche) -->
+            <div class="tl-container left">
+                <div class="tl-card">
+                    <div class="tl-img-box">
+                        <img src="https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?q=80&w=2070&auto=format&fit=crop" alt="1980">
+                    </div>
+                    <div class="tl-text-box">
+                        <span class="tl-year">80</span>
+                        <span class="tl-date-label">1980</span>
+                        <h3>La Fondation</h3>
+                        <p>Création à Ostwald. Marc Meyer lance Mecasem avec une vision : apporter une réponse ultra-réactive aux industriels alsaciens.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 1999 (Droite - Image inversée par CSS) -->
+            <div class="tl-container right">
+                <div class="tl-card">
+                    <div class="tl-img-box">
+                        <img src="https://images.unsplash.com/photo-1524661135-423995f22d0b?q=80&w=2074&auto=format&fit=crop" alt="Paris">
+                    </div>
+                    <div class="tl-text-box">
+                        <span class="tl-year">99</span>
+                        <span class="tl-date-label">1999 - 2010</span>
+                        <h3>Le Maillage National</h3>
+                        <p>L'expertise s'exporte. Ouverture de sites stratégiques (Paris, Lyon) et rachat du laboratoire SGS pour renforcer le pôle métallurgie.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2011 (Gauche) -->
+            <div class="tl-container left">
+                <div class="tl-card">
+                    <div class="tl-img-box">
+                        <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop" alt="Batiment">
+                    </div>
+                    <div class="tl-text-box">
+                        <span class="tl-year">11</span>
+                        <span class="tl-date-label">2011</span>
+                        <h3>Le Pôle Essais (4000m²)</h3>
+                        <p>Changement de dimension avec la construction du siège actuel à Ostwald. Un outil industriel capable d'accueillir des bancs d'essais XXL.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2023 (Droite - SPÉCIAL SCISSION) -->
+            <div class="tl-container right">
+                <div class="tl-card special">
+                    <!-- Au lieu d'une image, le diagramme -->
+                    <div class="tl-img-box">
+                        <div class="split-diagram">
+                            <span class="split-top">MECASEM SAS</span>
+                            <i class="ph-bold ph-arrows-split" style="color:var(--primary-red); font-size:1.5rem; margin:5px 0;"></i>
+                            <div class="split-branches">
+                                <div class="branch"><i class="ph-fill ph-ruler" style="color:#00A9C6;"></i><span>Métro</span></div>
+                                <div class="branch"><i class="ph-fill ph-flask" style="color:var(--primary-red);"></i><span>Institut</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tl-text-box">
+                        <span class="tl-year">23</span>
+                        <span class="tl-date-label" style="color:white;">2023 : Le Tournant</span>
+                        <h3>Naissance de l'Institut</h3>
+                        <p>Scission stratégique pour une clarté totale. L'Institut Mecasem devient une entité autonome 100% dédiée aux matériaux et au soudage.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2024 (Gauche) -->
+            <div class="tl-container left">
+                <div class="tl-card">
+                    <div class="tl-img-box">
+                        <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=2032&auto=format&fit=crop" alt="Equipe">
+                    </div>
+                    <div class="tl-text-box">
+                        <span class="tl-year">24</span>
+                        <span class="tl-date-label">Aujourd'hui</span>
+                        <h3>L'Offre Globale</h3>
+                        <p>Intégration de l'expertise SOU-D. Sous la direction de Mickaël YOLLU, nous couvrons désormais toute la chaîne : du labo au chantier.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+</body>
+</html>
