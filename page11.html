@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Usinage - Institut Mecasem</title>
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web">
+
+<style>
+/* --- VARIABLES & RESET (Base commune) --- */
+:root {
+    --primary-red: #D80C16;
+    --primary-black: #111111;
+    --text-body: #444;
+    --light-bg: #F9F9F9;
+    --white: #ffffff;
+    --font-main: 'Mulish', sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; border-radius: 0 !important; }
+
+body {
+    font-family: var(--font-main);
+    background-color: var(--white);
+    color: var(--text-body);
+    line-height: 1.6;
+}
+
+h1, h2, h3 { color: var(--primary-black); font-weight: 800; line-height: 1.2; }
+.container { max-width: 1240px; margin: 0 auto; padding: 0 20px; }
+
+/* --- HERO PAGE USINAGE --- */
+.activity-hero {
+    background-color: var(--primary-black);
+    padding: 100px 0;
+    color: white;
+    text-align: center;
+    /* Image d'atelier d'usinage sombre */
+    background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1613082536488-299292d3056a?q=80&w=2070&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center;
+    border-bottom: 4px solid var(--primary-red);
+}
+
+.activity-hero h1 { color: white; font-size: 3.5rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 15px; }
+.activity-hero p { font-size: 1.2rem; color: #ccc; max-width: 700px; margin: 0 auto; }
+
+
+/* --- SECTION SPLIT (Texte + Image alternés) --- */
+.split-section {
+    padding: 100px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.split-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+}
+
+/* Inversion pour le 2ème bloc */
+.split-grid.reverse .split-content { order: 1; }
+.split-grid.reverse .split-image { order: 2; }
+
+/* IMAGE AVEC CADRE */
+.split-image {
+    position: relative;
+    height: 400px;
+}
+.split-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    z-index: 2;
+    position: relative;
+}
+/* Le cadre rouge décoratif */
+.split-image::before {
+    content: '';
+    position: absolute;
+    top: -20px; left: -20px;
+    width: 100%; height: 100%;
+    border: 4px solid var(--primary-red);
+    z-index: 1;
+}
+/* Cadre inversé pour le bloc reverse */
+.split-grid.reverse .split-image::before { left: auto; right: -20px; }
+
+
+/* CONTENU TEXTE */
+.split-content h2 {
+    font-size: 2.2rem;
+    margin-bottom: 20px;
+    position: relative;
+    padding-bottom: 20px;
+}
+.split-content h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 60px; height: 4px;
+    background: var(--primary-red);
+}
+
+.split-content p {
+    font-size: 1.05rem;
+    margin-bottom: 20px;
+    color: #555;
+}
+
+/* LISTE À PUCES PERSONNALISÉE */
+.custom-list {
+    margin-top: 25px;
+    background-color: var(--light-bg);
+    padding: 30px;
+    border-left: 4px solid var(--primary-black);
+}
+
+.custom-list li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+    font-weight: 700;
+    color: var(--primary-black);
+}
+.custom-list li:last-child { margin-bottom: 0; }
+
+.custom-list i {
+    color: var(--primary-red);
+    font-size: 1.2rem;
+}
+
+/* TAGS MATÉRIAUX */
+.materials-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+.mat-tag {
+    background: #333;
+    color: white;
+    padding: 5px 12px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+
+/* --- BANDEAU CAO (Capability) --- */
+.cao-banner {
+    background-color: var(--primary-black);
+    color: white;
+    padding: 50px 0;
+    text-align: center;
+}
+.cao-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+.cao-content i { font-size: 3rem; color: var(--primary-red); }
+.cao-text h3 { color: white; margin-bottom: 5px; font-size: 1.5rem; }
+.cao-text p { color: #ccc; margin: 0; }
+
+
+/* RESPONSIVE */
+@media (max-width: 992px) {
+    .split-grid { grid-template-columns: 1fr; gap: 40px; }
+    .split-image { height: 300px; order: 1 !important; margin-bottom: 20px; }
+    .split-content { order: 2 !important; }
+    .split-image::before { display: none; } /* On cache le cadre décoratif sur mobile */
+}
+</style>
+</head>
+<body>
+
+    <!-- HERO -->
+    <section class="activity-hero">
+        <div class="container">
+            <h1>Usinage & Préparation</h1>
+            <p>Atelier intégré pour la réalisation de vos éprouvettes et pièces de tests.</p>
+        </div>
+    </section>
+
+    <!-- SECTION 1 : PRÉPARATION ÉPROUVETTES -->
+    <section class="split-section">
+        <div class="container split-grid">
+            
+            <!-- Image Gauche -->
+            <div class="split-image">
+                <!-- Image usinage précision (Tournage) -->
+                <img src="https://images.unsplash.com/photo-1565439398533-33a763c3de9c?q=80&w=2070&auto=format&fit=crop" alt="Usinage éprouvette">
+            </div>
+
+            <!-- Texte Droite -->
+            <div class="split-content">
+                <h2>Préparation d'éprouvettes</h2>
+                <p>
+                    Nous réalisons l'usinage de vos éprouvettes pour essais mécaniques, métallurgiques et corrosions avec une précision absolue.
+                </p>
+                
+                <!-- Tags des matériaux (Visualisation du texte d'origine) -->
+                <div class="materials-tags">
+                    <span class="mat-tag">Acier</span>
+                    <span class="mat-tag">Aluminium</span>
+                    <span class="mat-tag">Titane</span>
+                    <span class="mat-tag">Inconel</span>
+                    <span class="mat-tag">Composite</span>
+                </div>
+
+                <p>
+                    <strong>Types d'éprouvettes :</strong> cylindriques, prismatiques, résiliences, pliages. Éprouvettes spécifiques de fatigue, CTOD, K1C.
+                </p>
+
+                <ul class="custom-list">
+                    <li><i class="ph-bold ph-check"></i> Usinage à façon</li>
+                    <li><i class="ph-bold ph-check"></i> Montages mécaniques spécifiques</li>
+                    <li><i class="ph-bold ph-check"></i> Études et CAO SolidWorks</li>
+                </ul>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- BANDEAU TRANSITION : CAO -->
+    <section class="cao-banner">
+        <div class="container cao-content">
+            <i class="ph-duotone ph-desktop-tower"></i>
+            <div class="cao-text">
+                <h3>Bureau d'Études Intégré</h3>
+                <p>Conception assistée par ordinateur (CAO) sous <strong>SolidWorks</strong> pour vos outillages complexes.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 2 : DÉBIT À FAÇON -->
+    <section class="split-section">
+        <div class="container split-grid reverse">
+            
+            <!-- Texte Gauche (Grâce au reverse order) -->
+            <div class="split-content">
+                <h2>Débit à façon</h2>
+                <p>
+                    Notre parc machines de scies horizontales et verticales grande capacité nous permet de répondre à tous vos besoins de découpe.
+                </p>
+                <p>
+                    Nous assurons le prélèvement d’échantillons pour contrôles destructifs ainsi que le découpage en atelier et le sciage des métaux de toute nature.
+                </p>
+
+                <ul class="custom-list">
+                    <li><i class="ph-bold ph-lightning"></i> Électro-érosion par fil (Découpe haute précision)</li>
+                    <li><i class="ph-bold ph-ruler-square"></i> Études et CAO SolidWorks</li>
+                    <li><i class="ph-bold ph-scissors"></i> Sciage Grande Capacité</li>
+                </ul>
+            </div>
+
+            <!-- Image Droite -->
+            <div class="split-image">
+                <!-- Image Sciage / Découpe -->
+                <img src="https://images.unsplash.com/photo-1532186773960-85649e5cb70b?q=80&w=2070&auto=format&fit=crop" alt="Découpe métal">
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FOOTER SIMPLE (Rappel Contact) -->
+    <div style="text-align:center; padding: 60px 0; background-color:white; border-top:1px solid #eee;">
+        <h3 style="margin-bottom:20px;">Besoin d'un usinage spécifique ?</h3>
+        <a href="#contact" style="background:var(--primary-red); color:white; padding:15px 30px; font-weight:700; text-transform:uppercase;">Contactez l'atelier</a>
+    </div>
+
+</body>
+</html>

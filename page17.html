@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mécaniques & Fatigue - Institut Mecasem</title>
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web">
+
+<style>
+/* --- VARIABLES & RESET --- */
+:root {
+    --primary-red: #D80C16;
+    --primary-black: #111111;
+    --text-body: #444;
+    --light-bg: #F9F9F9;
+    --white: #ffffff;
+    --font-main: 'Mulish', sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; border-radius: 0 !important; }
+
+body {
+    font-family: var(--font-main);
+    background-color: var(--white);
+    color: var(--text-body);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+h1, h2, h3 { color: var(--primary-black); font-weight: 800; line-height: 1.1; }
+.container { max-width: 1240px; margin: 0 auto; padding: 0 20px; }
+
+/* --- STYLE "RED FRAME" (LA SIGNATURE VISUELLE) --- */
+.frame-wrapper {
+    position: relative;
+    z-index: 1;
+    margin: 20px; /* Espace pour le cadre */
+}
+
+.frame-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: relative;
+    z-index: 2;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+    display: block;
+}
+
+/* Le cadre rouge décalé */
+.frame-wrapper::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: 5px solid var(--primary-red);
+    z-index: 1;
+    transition: transform 0.4s ease;
+}
+
+/* Variante 1 : Cadre décalé haut-gauche */
+.frame-left::before { top: -20px; left: -20px; }
+
+/* Variante 2 : Cadre décalé bas-droite */
+.frame-right::before { bottom: -20px; right: -20px; }
+
+/* Animation au survol */
+.frame-wrapper:hover::before {
+    transform: translate(5px, 5px); /* Le cadre bouge un peu */
+}
+
+
+/* --- HERO PAGE --- */
+.hero-mechanic {
+    position: relative;
+    height: 70vh;
+    min-height: 500px;
+    background-image: url('https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?q=80&w=2070&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* Effet Parallaxe */
+    display: flex;
+    align-items: center;
+}
+
+.hero-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(90deg, rgba(17,17,17,0.95) 0%, rgba(17,17,17,0.6) 100%);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    color: white;
+    max-width: 800px;
+}
+
+.hero-label {
+    display: inline-block;
+    background: var(--primary-red);
+    color: white;
+    padding: 5px 15px;
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+}
+
+.hero-content h1 {
+    color: white;
+    font-size: 4.5rem;
+    margin-bottom: 20px;
+}
+
+/* --- BANDEAU CHIFFRES (TECHNIQUE) --- */
+.tech-bar {
+    background-color: var(--primary-black);
+    color: white;
+    padding: 50px 0;
+    border-bottom: 1px solid #333;
+}
+.tech-grid {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 30px;
+    text-align: center;
+}
+.tech-item i { font-size: 2.5rem; color: var(--primary-red); margin-bottom: 15px; display: block; }
+.tech-value { font-size: 2rem; font-weight: 900; display: block; }
+.tech-label { font-size: 0.8rem; text-transform: uppercase; color: #999; letter-spacing: 1px; }
+
+
+/* --- SECTION 1 : FATIGUE (DARK MODE) --- */
+.section-fatigue {
+    background-color: #1a1a1a; /* Gris très foncé */
+    color: white;
+    padding: 120px 0;
+    overflow: hidden;
+}
+
+.grid-fatigue {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+}
+
+.fatigue-text h2 { color: white; font-size: 3rem; margin-bottom: 30px; }
+.fatigue-text p { color: #ccc; font-size: 1.1rem; margin-bottom: 40px; }
+
+.fatigue-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+.fatigue-point {
+    border-left: 3px solid var(--primary-red);
+    padding-left: 20px;
+}
+.fatigue-point h4 { color: white; font-size: 1.2rem; margin-bottom: 5px; }
+.fatigue-point span { color: #888; font-size: 0.9rem; }
+
+
+/* --- SECTION 2 : TRACTION (LIGHT MODE) --- */
+.section-traction {
+    background-color: var(--white);
+    padding: 120px 0;
+}
+
+.grid-traction {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+}
+
+/* Inversion de l'ordre pour alterner */
+.grid-traction .text-col { order: 1; }
+.grid-traction .img-col { order: 2; }
+
+.traction-text h2 { font-size: 3rem; margin-bottom: 20px; }
+.norm-tag {
+    display: inline-block;
+    border: 2px solid var(--primary-black);
+    padding: 10px 20px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    margin-bottom: 30px;
+}
+
+.feature-list li {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+    font-weight: 600;
+    color: var(--primary-black);
+}
+.feature-list li i { color: var(--primary-red); font-size: 1.3rem; }
+
+
+/* --- SECTION 3 : AUTRES ESSAIS (GRID) --- */
+.section-others {
+    background-color: var(--light-bg);
+    padding: 100px 0;
+}
+.others-header { text-align: center; max-width: 800px; margin: 0 auto 60px; }
+.others-header h2 { font-size: 2.5rem; }
+
+.others-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+}
+
+.other-card {
+    background: white;
+    padding: 0;
+    border: 1px solid #eee;
+    position: relative;
+    /* Petit effet de cadre rouge au survol */
+    transition: all 0.3s;
+}
+.other-card:hover { border-color: var(--primary-red); transform: translateY(-5px); }
+
+.card-img-top {
+    height: 250px;
+    width: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.card-body { padding: 40px; }
+.card-icon { font-size: 2.5rem; color: var(--primary-red); margin-bottom: 20px; }
+.card-body h3 { font-size: 1.8rem; margin-bottom: 15px; }
+.card-body p { color: #666; margin-bottom: 0; }
+
+
+/* RESPONSIVE */
+@media (max-width: 992px) {
+    .hero-content h1 { font-size: 3rem; }
+    .grid-fatigue, .grid-traction { grid-template-columns: 1fr; gap: 50px; }
+    .grid-traction .img-col { order: 1; } /* Image en premier sur mobile */
+    .grid-traction .text-col { order: 2; }
+    .others-grid { grid-template-columns: 1fr; }
+    
+    /* Ajustement des cadres sur mobile */
+    .frame-left::before { top: -10px; left: -10px; }
+    .frame-right::before { bottom: -10px; right: -10px; }
+    .frame-wrapper { margin: 10px; }
+}
+</style>
+</head>
+<body>
+
+    <!-- HERO IMMERSIF -->
+    <section class="hero-mechanic">
+        <div class="hero-overlay"></div>
+        <div class="container hero-content">
+            <span class="hero-label">LABORATOIRE ACCRÉDITÉ</span>
+            <h1>La Matière à l'Épreuve<br>de la Force.</h1>
+            <p>Caractérisation mécanique complète : de l'éprouvette standardisée aux structures complexes.</p>
+        </div>
+    </section>
+
+    <!-- BANDEAU TECHNIQUE (Données PDF) -->
+    <div class="tech-bar">
+        <div class="container tech-grid">
+            <div class="tech-item">
+                <i class="ph-bold ph-arrows-left-right"></i>
+                <span class="tech-value">800 kN</span>
+                <span class="tech-label">Traction Max</span>
+            </div>
+            <div class="tech-item">
+                <i class="ph-bold ph-thermometer-hot"></i>
+                <span class="tech-value">+1000°C</span>
+                <span class="tech-label">Essais à chaud</span>
+            </div>
+            <div class="tech-item">
+                <i class="ph-bold ph-snowflake"></i>
+                <span class="tech-value">-269°C</span>
+                <span class="tech-label">Cryogénie</span>
+            </div>
+            <div class="tech-item">
+                <i class="ph-bold ph-certificate"></i>
+                <span class="tech-value">ISO 17025</span>
+                <span class="tech-label">Accréditation COFRAC</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 1. SECTION FATIGUE (Dark Mode + Cadre Rouge) -->
+    <section class="section-fatigue">
+        <div class="container grid-fatigue">
+            
+            <!-- Image avec Cadre Rouge (Style CEO) -->
+            <div class="img-col">
+                <div class="frame-wrapper frame-left">
+                    <img src="https://images.unsplash.com/photo-1581092335397-9583eb92d232?q=80&w=2070&auto=format&fit=crop" alt="Machine Fatigue">
+                </div>
+            </div>
+
+            <!-- Texte -->
+            <div class="text-col fatigue-text">
+                <h2>Essais de Fatigue</h2>
+                <p>
+                    Comprendre l'endommagement de vos matériaux sous sollicitations cycliques. Nous déterminons la durée de vie et les limites d'endurance de vos pièces critiques.
+                </p>
+                
+                <div class="fatigue-list">
+                    <div class="fatigue-point">
+                        <h4>Limite d'endurance</h4>
+                        <span>Flexion, rotation, traction-compression</span>
+                    </div>
+                    <div class="fatigue-point">
+                        <h4>Fissuration (da/dN)</h4>
+                        <span>Mécanique de la rupture</span>
+                    </div>
+                    <div class="fatigue-point">
+                        <h4>Oligocyclique (LCF)</h4>
+                        <span>Faible nombre de cycles</span>
+                    </div>
+                    <div class="fatigue-point">
+                        <h4>Critère d'amorçage</h4>
+                        <span>Détection précoce</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 2. SECTION TRACTION (Light Mode + Cadre Rouge Inversé) -->
+    <section class="section-traction">
+        <div class="container grid-traction">
+            
+            <!-- Texte -->
+            <div class="text-col traction-text">
+                <h2>Traction & Compression</h2>
+                <span class="norm-tag">NORME ISO 6892-1 (Méthodes A et B)</span>
+                
+                <ul class="feature-list">
+                    <li><i class="ph-fill ph-check-square"></i> Essais sur éprouvettes standardisées</li>
+                    <li><i class="ph-fill ph-check-square"></i> Essais sur pièces de grandes dimensions</li>
+                    <li><i class="ph-fill ph-check-square"></i> Montages spécifiques (boulonnerie, vis)</li>
+                    <li><i class="ph-fill ph-check-square"></i> Essais sur feuillards et fils fins</li>
+                </ul>
+            </div>
+
+            <!-- Image avec Cadre Rouge (Inversé bas-droite) -->
+            <div class="img-col">
+                <div class="frame-wrapper frame-right">
+                    <!-- Image technique traction -->
+                    <img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?q=80&w=2069&auto=format&fit=crop" alt="Essai Traction">
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 3. AUTRES ESSAIS (Cartes avec Photo) -->
+    <section class="section-others">
+        <div class="container">
+            <div class="others-header">
+                <h2>Essais Complémentaires</h2>
+                <p>Une caractérisation mécanique complète pour valider la conformité matière.</p>
+            </div>
+
+            <div class="others-grid">
+                
+                <!-- Carte Pliage -->
+                <div class="other-card">
+                    <img src="https://images.unsplash.com/photo-1565034946487-077786996e27?q=80&w=2070&auto=format&fit=crop" class="card-img-top" alt="Pliage">
+                    <div class="card-body">
+                        <i class="ph-duotone ph-corners-out card-icon"></i>
+                        <h3>Essais de Pliage</h3>
+                        <p>Vérification de la ductilité et détection de défauts de surface. Adaptation à toutes normes ASTM ou ISO.</p>
+                    </div>
+                </div>
+
+                <!-- Carte Résilience -->
+                <div class="other-card">
+                    <img src="https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?q=80&w=2070&auto=format&fit=crop" class="card-img-top" alt="Résilience">
+                    <div class="card-body">
+                        <i class="ph-duotone ph-lightning card-icon"></i>
+                        <h3>Essais de Résilience</h3>
+                        <p>Essais de flexion par choc sur éprouvette entaillée (Mouton Charpy) pour mesurer l'énergie de rupture.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER SIMPLE -->
+    <div style="background:#111; color:white; text-align:center; padding:60px 0;">
+        <h3 style="margin-bottom:20px;">Un projet d'essai spécifique ?</h3>
+        <a href="#contact" style="background:var(--primary-red); color:white; padding:15px 40px; font-weight:700; text-transform:uppercase;">Contactez le laboratoire</a>
+    </div>
+
+</body>
+</html>

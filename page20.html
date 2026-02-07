@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Métallographie & Chimie - Institut Mecasem</title>
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web">
+
+<style>
+/* --- VARIABLES & RESET --- */
+:root {
+    --primary-red: #D80C16;
+    --primary-black: #111111;
+    --text-body: #444;
+    --light-bg: #F9F9F9;
+    --white: #ffffff;
+    --font-main: 'Mulish', sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; border-radius: 0 !important; }
+
+body {
+    font-family: var(--font-main);
+    background-color: var(--white);
+    color: var(--text-body);
+    line-height: 1.6;
+}
+
+h1, h2, h3 { color: var(--primary-black); font-weight: 800; line-height: 1.2; }
+.container { max-width: 1240px; margin: 0 auto; padding: 0 20px; }
+
+/* --- HERO PAGE --- */
+.activity-hero {
+    background-color: var(--primary-black);
+    padding: 100px 0;
+    color: white;
+    text-align: center;
+    /* Image Microscope / Structure métal */
+    background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=80&w=2070&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center;
+    border-bottom: 4px solid var(--primary-red);
+}
+
+.activity-hero h1 { color: white; font-size: 3.5rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 15px; }
+.activity-hero p { font-size: 1.2rem; color: #ccc; max-width: 800px; margin: 0 auto; }
+
+
+/* --- SECTION 1 : MÉTALLOGRAPHIE (Intro) --- */
+.meta-intro-section {
+    padding: 100px 0;
+    background-color: var(--white);
+}
+
+.split-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+}
+
+/* Style Red Frame (Image encadrée) */
+.frame-wrapper {
+    position: relative; z-index: 1; margin: 20px;
+}
+.frame-wrapper img {
+    width: 100%; height: 100%; object-fit: cover; position: relative; z-index: 2;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1); display: block;
+}
+.frame-wrapper::before {
+    content: ''; position: absolute; width: 100%; height: 100%;
+    border: 4px solid var(--primary-red); z-index: 1;
+}
+.frame-left::before { top: -20px; left: -20px; }
+
+.meta-content h2 { font-size: 2.5rem; margin-bottom: 25px; }
+.meta-content p { font-size: 1.05rem; margin-bottom: 20px; color: #555; text-align: justify; }
+
+.applications-box {
+    background-color: var(--light-bg);
+    padding: 30px;
+    border-left: 4px solid var(--primary-black);
+    margin-top: 30px;
+}
+.app-title { font-weight: 800; text-transform: uppercase; color: var(--primary-red); font-size: 0.85rem; display: block; margin-bottom: 15px; }
+.app-list li { margin-bottom: 8px; font-weight: 700; font-size: 0.95rem; }
+.app-list li i { color: var(--primary-black); margin-right: 10px; }
+
+
+/* --- SECTION 2 : LE PROCESSUS (Steps) --- */
+.process-section {
+    padding: 80px 0;
+    background-color: var(--light-bg);
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+}
+.process-header { text-align: center; margin-bottom: 60px; }
+.process-header h3 { font-size: 2rem; }
+
+.process-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+}
+
+.process-step {
+    background: white;
+    padding: 30px;
+    border: 1px solid #eee;
+    position: relative;
+    transition: transform 0.3s;
+}
+.process-step:hover { transform: translateY(-5px); border-color: var(--primary-red); }
+
+.step-number {
+    font-size: 3rem;
+    font-weight: 900;
+    color: rgba(0,0,0,0.05);
+    position: absolute;
+    top: 10px; right: 20px;
+    line-height: 1;
+}
+
+.step-icon { font-size: 2rem; color: var(--primary-red); margin-bottom: 20px; }
+.process-step h4 { font-size: 1.2rem; margin-bottom: 10px; }
+.process-step p { font-size: 0.9rem; color: #666; margin: 0; }
+
+
+/* --- SECTION 3 : MICROSCOPIE AVANCÉE (MEB - Dark Mode) --- */
+.microscopy-section {
+    background-color: #1a1a1a;
+    color: white;
+    padding: 100px 0;
+}
+
+.meb-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 60px;
+    align-items: center;
+}
+
+.meb-content h2 { color: white; font-size: 2.8rem; margin-bottom: 20px; }
+.highlight-text { color: var(--primary-red); font-weight: 800; }
+
+.tech-specs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-top: 40px;
+}
+.spec-box { border: 1px solid #444; padding: 20px; }
+.spec-box span { display: block; font-size: 2rem; font-weight: 800; color: white; }
+.spec-box label { font-size: 0.8rem; text-transform: uppercase; color: #888; letter-spacing: 1px; }
+
+/* Image MEB */
+.meb-image img {
+    width: 100%;
+    border: 4px solid var(--primary-red); /* Cadre simple et strict */
+    filter: contrast(1.1);
+}
+
+
+/* --- SECTION 4 : CHIMIE & DURETÉ (Grid) --- */
+.analysis-section {
+    padding: 100px 0;
+    background-color: var(--white);
+}
+
+.analysis-header { margin-bottom: 50px; border-bottom: 2px solid #eee; padding-bottom: 20px; }
+.analysis-header h2 { font-size: 2.5rem; display: flex; align-items: center; gap: 15px; }
+.analysis-header i { color: var(--primary-red); }
+
+.chemistry-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 80px;
+}
+.chem-item { display: flex; gap: 20px; }
+.chem-icon { 
+    width: 50px; height: 50px; background: var(--primary-black); color: white;
+    display: flex; align-items: center; justify-content: center; font-size: 1.5rem; flex-shrink: 0;
+}
+.chem-text h4 { font-size: 1.2rem; margin-bottom: 5px; }
+.chem-text p { font-size: 0.95rem; color: #666; }
+
+/* DURETÉ */
+.hardness-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+.hardness-card {
+    background: var(--light-bg);
+    padding: 30px 20px;
+    text-align: center;
+    border: 1px solid #ddd;
+    transition: 0.3s;
+}
+.hardness-card:hover { background: var(--primary-red); color: white; border-color: var(--primary-red); }
+.hardness-card:hover h4, .hardness-card:hover p { color: white; }
+
+.hard-icon { font-size: 2.5rem; margin-bottom: 15px; color: var(--primary-black); }
+.hardness-card:hover .hard-icon { color: white; }
+
+.hardness-card h4 { font-size: 1.2rem; margin-bottom: 5px; }
+.hardness-card p { font-size: 0.85rem; color: #666; text-transform: uppercase; font-weight: 700; letter-spacing: 1px; }
+
+
+/* RESPONSIVE */
+@media (max-width: 992px) {
+    .split-grid, .meb-grid { grid-template-columns: 1fr; gap: 50px; }
+    .process-grid { grid-template-columns: 1fr 1fr; }
+    .chemistry-list { grid-template-columns: 1fr; }
+    .hardness-grid { grid-template-columns: 1fr 1fr; }
+    .frame-wrapper { margin: 10px; }
+    .frame-left::before { top: -10px; left: -10px; }
+}
+</style>
+</head>
+<body>
+
+    <!-- HERO -->
+    <section class="activity-hero">
+        <div class="container">
+            <h1>Métallographie & Chimie</h1>
+            <p>Plongée au cœur de la matière : de l'analyse microstructurelle à la composition chimique précise.</p>
+        </div>
+    </section>
+
+    <!-- 1. MÉTALLOGRAPHIE (Intro & Definition) -->
+    <section class="meta-intro-section">
+        <div class="container split-grid">
+            
+            <!-- Image avec Cadre Rouge -->
+            <div class="frame-wrapper frame-left">
+                <!-- Image Microstructure (Grains) -->
+                <img src="https://images.unsplash.com/photo-1576086213369-97a306d36557?q=80&w=2080&auto=format&fit=crop" alt="Microstructure Métal">
+            </div>
+
+            <!-- Contenu -->
+            <div class="meta-content">
+                <h2>L'expertise Métallographique</h2>
+                <p>
+                    Les analyses métallographiques sont essentielles pour comprendre la microstructure des métaux. Elles révèlent les caractéristiques internes invisibles à l'œil nu : taille de grains, phases, inclusions et défauts.
+                </p>
+                <p>
+                    Ces données sont cruciales pour déterminer les propriétés mécaniques, valider un processus de fabrication ou comprendre une rupture.
+                </p>
+
+                <div class="applications-box">
+                    <span class="app-title">APPLICATIONS & OBJECTIFS</span>
+                    <ul class="app-list">
+                        <li><i class="ph-bold ph-check"></i> Contrôle Qualité (Inclusions, défauts de fabrication)</li>
+                        <li><i class="ph-bold ph-check"></i> Recherche de Causes de Rupture (Analyse de défaillance)</li>
+                        <li><i class="ph-bold ph-check"></i> Caractérisation des Matériaux</li>
+                        <li><i class="ph-bold ph-check"></i> Qualification de Modes Opératoires (Soudage)</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 2. PROCESSUS D'ANALYSE (Timeline horizontale) -->
+    <section class="process-section">
+        <div class="container">
+            <div class="process-header">
+                <h3>Les Étapes d'Analyse</h3>
+                <p>Un protocole rigoureux pour garantir l'intégrité de l'échantillon.</p>
+            </div>
+
+            <div class="process-grid">
+                <!-- Etape 1 -->
+                <div class="process-step">
+                    <span class="step-number">01</span>
+                    <i class="ph-duotone ph-scissors step-icon"></i>
+                    <h4>Découpe</h4>
+                    <p>Prélèvement précis de l'échantillon sans échauffement pour ne pas altérer la structure.</p>
+                </div>
+                <!-- Etape 2 -->
+                <div class="process-step">
+                    <span class="step-number">02</span>
+                    <i class="ph-duotone ph-cube step-icon"></i>
+                    <h4>Enrobage</h4>
+                    <p>Encapsulation dans une résine (à chaud ou à froid) pour faciliter la manipulation et le polissage.</p>
+                </div>
+                <!-- Etape 3 -->
+                <div class="process-step">
+                    <span class="step-number">03</span>
+                    <i class="ph-duotone ph-drop step-icon"></i>
+                    <h4>Polissage & Attaque</h4>
+                    <p>Obtention d'une surface miroir puis révélation de la structure par attaque chimique adaptée.</p>
+                </div>
+                <!-- Etape 4 -->
+                <div class="process-step">
+                    <span class="step-number">04</span>
+                    <i class="ph-duotone ph-eye step-icon"></i>
+                    <h4>Observation</h4>
+                    <p>Analyse par microscopie optique ou électronique (MEB) et interprétation des résultats.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. MICROSCOPIE MEB (High Tech / Dark Mode) -->
+    <section class="microscopy-section">
+        <div class="container meb-grid">
+            
+            <div class="meb-content">
+                <h2>Microscopie Électronique <br>à Balayage <span class="highlight-text">(MEB)</span></h2>
+                <p>
+                    Pour des analyses ultra-précises, notre laboratoire est équipé de microscopes électroniques de dernière génération.
+                    Le MEB permet d'atteindre des grossissements extrêmes et d'analyser la composition chimique ponctuelle (Sonde EDS).
+                </p>
+                
+                <div class="tech-specs">
+                    <div class="spec-box">
+                        <span>x 5000</span>
+                        <label>Grossissement Max</label>
+                    </div>
+                    <div class="spec-box">
+                        <span>EDS</span>
+                        <label>Sonde Chimique</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="meb-image">
+                <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?q=80&w=2070&auto=format&fit=crop" alt="Microscope MEB">
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 4. CHIMIE & DURETÉ -->
+    <section class="analysis-section">
+        <div class="container">
+            
+            <!-- PARTIE CHIMIE -->
+            <div class="analysis-header">
+                <h2><i class="ph-fill ph-flask"></i> Analyses Chimiques</h2>
+            </div>
+            
+            <div class="chemistry-list">
+                <div class="chem-item">
+                    <div class="chem-icon"><i class="ph-bold ph-lightning"></i></div>
+                    <div class="chem-text">
+                        <h4>Spectrométrie d'Émission (Etincelle)</h4>
+                        <p>Analyse élémentaire précise sur l'ensemble des alliages métalliques (Laboratoire & Sur Site).</p>
+                    </div>
+                </div>
+                <div class="chem-item">
+                    <div class="chem-icon"><i class="ph-bold ph-fire"></i></div>
+                    <div class="chem-text">
+                        <h4>Analyse C&S (Combustion)</h4>
+                        <p>Détermination précise du Carbone et du Soufre par combustion et détection infrarouge.</p>
+                    </div>
+                </div>
+                <div class="chem-item">
+                    <div class="chem-icon"><i class="ph-bold ph-scan"></i></div>
+                    <div class="chem-text">
+                        <h4>PMI (Sur Site)</h4>
+                        <p>Identification positive des matériaux directement sur vos installations par spectrométrie portable.</p>
+                    </div>
+                </div>
+                <div class="chem-item">
+                    <div class="chem-icon"><i class="ph-bold ph-drop-half-bottom"></i></div>
+                    <div class="chem-text">
+                        <h4>Corrosion Aqueuse</h4>
+                        <p>Tests de résistance à la corrosion en milieu liquide spécifique.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PARTIE DURETÉ -->
+            <div class="analysis-header">
+                <h2><i class="ph-fill ph-diamond"></i> Essais de Dureté</h2>
+            </div>
+
+            <div class="hardness-grid">
+                <div class="hardness-card">
+                    <i class="ph-duotone ph-diamond hard-icon"></i>
+                    <h4>Vickers</h4>
+                    <p>HV</p>
+                </div>
+                <div class="hardness-card">
+                    <i class="ph-duotone ph-circle hard-icon"></i>
+                    <h4>Brinell</h4>
+                    <p>HB</p>
+                </div>
+                <div class="hardness-card">
+                    <i class="ph-duotone ph-triangle hard-icon"></i>
+                    <h4>Rockwell</h4>
+                    <p>HRC / HRB</p>
+                </div>
+                <div class="hardness-card">
+                    <i class="ph-duotone ph-crosshair hard-icon"></i>
+                    <h4>Microdureté</h4>
+                    <p>Filiations</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FOOTER CTA -->
+    <div style="background:#111; color:white; text-align:center; padding:60px 0; border-top:1px solid #333;">
+        <h3 style="margin-bottom:20px;">Besoin d'une analyse matière ?</h3>
+        <a href="#contact" style="background:var(--primary-red); color:white; padding:15px 40px; font-weight:700; text-transform:uppercase; text-decoration:none;">Contactez le laboratoire</a>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mécaniques & Fatigue - Institut Mecasem</title>
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web">
+
+<style>
+/* --- VARIABLES & RESET --- */
+:root {
+    --primary-red: #D80C16;
+    --primary-black: #111111;
+    --text-body: #444;
+    --light-bg: #F9F9F9;
+    --white: #ffffff;
+    --font-main: 'Mulish', sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; border-radius: 0 !important; }
+
+body {
+    font-family: var(--font-main);
+    background-color: var(--white);
+    color: var(--text-body);
+    line-height: 1.6;
+}
+
+h1, h2, h3 { color: var(--primary-black); font-weight: 800; line-height: 1.2; }
+.container { max-width: 1240px; margin: 0 auto; padding: 0 20px; }
+
+/* --- HERO --- */
+.mech-hero {
+    background-color: var(--primary-black);
+    padding: 100px 0;
+    color: white;
+    text-align: center;
+    /* Image de machine de traction */
+    background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1581093588401-fbb62a02f120?q=80&w=2070&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center;
+    border-bottom: 4px solid var(--primary-red);
+}
+
+.mech-hero h1 { color: white; font-size: 3.5rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 15px; }
+.mech-hero p { font-size: 1.2rem; color: #ccc; max-width: 700px; margin: 0 auto; }
+
+
+/* --- SECTION SPLIT (Fatigue & Traction) --- */
+.split-section {
+    padding: 100px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.split-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 70px;
+    align-items: center;
+}
+
+.split-content h2 {
+    font-size: 2.2rem;
+    margin-bottom: 20px;
+    position: relative;
+    padding-bottom: 20px;
+}
+.split-content h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 60px; height: 4px;
+    background: var(--primary-red);
+}
+
+.split-content p { font-size: 1.05rem; margin-bottom: 20px; color: #555; }
+
+/* Liste technique */
+.tech-list { margin-top: 25px; }
+.tech-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 15px;
+    font-weight: 700;
+    color: var(--primary-black);
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+.tech-list i { color: var(--primary-red); font-size: 1.2rem; margin-top: 3px; }
+
+/* Image avec effet technique */
+.tech-image-box {
+    position: relative;
+    height: 450px;
+    background-color: #000;
+}
+.tech-image-box img {
+    width: 100%; height: 100%; object-fit: cover; opacity: 0.9;
+}
+.tech-overlay {
+    position: absolute;
+    bottom: 0; right: 0;
+    background: var(--primary-red);
+    color: white;
+    padding: 15px 25px;
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+}
+
+/* Inversion pour le layout en Z */
+.split-grid.reverse .split-content { order: 1; }
+.split-grid.reverse .tech-image-box { order: 2; }
+
+
+/* --- BADGES NORMES --- */
+.norm-badge {
+    display: inline-block;
+    background: var(--primary-black);
+    color: white;
+    padding: 4px 10px;
+    font-size: 0.75rem;
+    font-weight: 800;
+    margin-left: 10px;
+}
+
+
+/* --- GRID SECTION (Pliage & Résilience) --- */
+.dual-section {
+    padding: 100px 0;
+    background-color: var(--light-bg);
+}
+
+.dual-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+}
+
+.dual-card {
+    background: white;
+    padding: 50px;
+    border: 1px solid #ddd;
+    border-top: 5px solid var(--primary-black);
+    transition: transform 0.3s;
+}
+.dual-card:hover { transform: translateY(-5px); border-top-color: var(--primary-red); }
+
+.card-icon {
+    font-size: 3rem;
+    color: var(--primary-red);
+    margin-bottom: 25px;
+}
+
+.dual-card h3 { font-size: 1.8rem; margin-bottom: 20px; }
+.dual-card p { font-size: 1rem; color: #666; margin-bottom: 0; }
+
+
+/* RESPONSIVE */
+@media (max-width: 992px) {
+    .split-grid { grid-template-columns: 1fr; gap: 40px; }
+    .tech-image-box { height: 300px; order: 1 !important; }
+    .split-content { order: 2 !important; }
+    .dual-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+    <!-- HERO -->
+    <section class="mech-hero">
+        <div class="container">
+            <h1>Mécaniques & Fatigue</h1>
+            <p>Caractérisation complète des matériaux : de la traction statique aux sollicitations cycliques complexes.</p>
+        </div>
+    </section>
+
+    <!-- SECTION 1 : TRACTION (Gros morceau) -->
+    <section class="split-section">
+        <div class="container split-grid">
+            
+            <!-- Image -->
+            <div class="tech-image-box">
+                <img src="https://images.unsplash.com/photo-1581092335397-9583eb92d232?q=80&w=2070&auto=format&fit=crop" alt="Machine de traction">
+                <div class="tech-overlay">Capacité jusqu'à 800 kN</div>
+            </div>
+
+            <!-- Texte -->
+            <div class="split-content">
+                <h2>Essais de Traction & Compression</h2>
+                <p>
+                    Nous réalisons vos essais de caractérisation mécanique pour déterminer la résistance, l'élasticité et la ductilité de vos matériaux.
+                </p>
+                
+                <ul class="tech-list">
+                    <li>
+                        <i class="ph-bold ph-check-circle"></i> 
+                        Essais de traction selon norme <span class="norm-badge">ISO 6892-1</span> (Méthodes A et B)
+                    </li>
+                    <li>
+                        <i class="ph-bold ph-arrows-out-line-vertical"></i> 
+                        Essais sur éprouvettes ou sur pièces de grandes dimensions
+                    </li>
+                    <li>
+                        <i class="ph-bold ph-wrench"></i> 
+                        Montages spécifiques étudiés et fabriqués pour tous types d’applications
+                    </li>
+                    <li>
+                        <i class="ph-bold ph-nut"></i> 
+                        Essais sur composants : vis, écrous, feuillards, fils
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SECTION 2 : FATIGUE (Layout inversé) -->
+    <section class="split-section">
+        <div class="container split-grid reverse">
+            
+            <!-- Texte -->
+            <div class="split-content">
+                <h2>Essais de Fatigue</h2>
+                <p>
+                    Analyse du comportement des matériaux sous sollicitations répétées pour prévenir les ruptures en service.
+                </p>
+
+                <ul class="tech-list">
+                    <li>
+                        <i class="ph-bold ph-pulse"></i> 
+                        Limite d’endurance (flexion, rotation, traction/compression)
+                    </li>
+                    <li>
+                        <i class="ph-bold ph-trend-up"></i> 
+                        Essais oligocycliques (Fatigue à faible nombre de cycles)
+                    </li>
+                    <li>
+                        <i class="ph-bold ph-magnifying-glass"></i> 
+                        Vitesse de fissuration da/dN
+                    </li>
+                    <li>
+                        <i class="ph-bold ph-warning-octagon"></i> 
+                        Détermination du critère d’amorçage
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Image -->
+            <div class="tech-image-box">
+                <img src="https://images.unsplash.com/photo-1621905252507-b35492cc74b4?q=80&w=2069&auto=format&fit=crop" alt="Essai fatigue">
+                <div class="tech-overlay">Sollicitations Cycliques</div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SECTION 3 : PLIAGE & RÉSILIENCE (Grille) -->
+    <section class="dual-section">
+        <div class="container dual-grid">
+            
+            <!-- Carte Pliage -->
+            <div class="dual-card">
+                <div class="card-icon"><i class="ph-duotone ph-bezier-curve"></i></div>
+                <h3>Essais de Pliage</h3>
+                <p style="margin-bottom:15px;">
+                    Vérification de la ductilité du métal et de l'absence de défauts de surface ou internes sous contrainte.
+                </p>
+                <p><strong>Adaptation aux normes :</strong> <span class="norm-badge">ASTM</span> <span class="norm-badge">ISO</span></p>
+            </div>
+
+            <!-- Carte Résilience -->
+            <div class="dual-card">
+                <div class="card-icon"><i class="ph-duotone ph-hammer"></i></div>
+                <h3>Essais de Résilience</h3>
+                <p style="margin-bottom:15px;">
+                    Mesure de l'énergie absorbée lors de la rupture (Mouton Charpy) pour évaluer la ténacité du matériau.
+                </p>
+                <p><strong>Suivant normes :</strong> <span class="norm-badge">EN</span> <span class="norm-badge">ASTM</span></p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FOOTER SIMPLE -->
+    <div style="text-align:center; padding: 60px 0; background-color:var(--primary-black); color:white;">
+        <h3 style="margin-bottom:20px;">Besoin d'un rapport d'essai accrédité ?</h3>
+        <a href="#contact" style="background:var(--primary-red); color:white; padding:15px 30px; font-weight:700; text-transform:uppercase; text-decoration:none;">Contacter le laboratoire</a>
+    </div>
+
+</body>
+</html>

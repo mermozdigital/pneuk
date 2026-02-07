@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formation Technique - Institut Mecasem</title>
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web">
+
+<style>
+/* --- VARIABLES & RESET --- */
+:root {
+    --primary-red: #D80C16;
+    --primary-black: #111111;
+    --text-body: #444;
+    --light-bg: #F9F9F9;
+    --white: #ffffff;
+    --font-main: 'Mulish', sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; border-radius: 0 !important; }
+
+body {
+    font-family: var(--font-main);
+    background-color: var(--white);
+    color: var(--text-body);
+    line-height: 1.6;
+}
+
+h1, h2, h3, h4 { color: var(--primary-black); font-weight: 800; line-height: 1.1; }
+.container { max-width: 1240px; margin: 0 auto; padding: 0 20px; }
+
+/* --- HERO PAGE --- */
+.formation-hero {
+    background-color: var(--primary-black);
+    padding: 100px 0;
+    color: white;
+    text-align: center;
+    background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=2070&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center;
+    border-bottom: 4px solid var(--primary-red);
+}
+
+.formation-hero h1 { color: white; font-size: 3.5rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 15px; }
+.formation-hero p { font-size: 1.2rem; color: #ccc; max-width: 800px; margin: 0 auto; }
+
+
+/* --- SECTION 1 : ACCOMPAGNEMENT (Split) --- */
+.edu-intro {
+    padding: 100px 0;
+    background-color: var(--white);
+}
+
+.split-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+}
+
+.edu-content h2 { font-size: 2.8rem; margin-bottom: 30px; }
+.edu-content p { font-size: 1.1rem; color: #555; margin-bottom: 30px; }
+
+.target-audience {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 30px;
+}
+.target-tag {
+    background: var(--primary-black);
+    color: white;
+    padding: 8px 15px;
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 0.5px;
+}
+
+/* Red Frame Style */
+.frame-wrapper { position: relative; z-index: 1; margin: 20px; }
+.frame-wrapper img { width: 100%; height: 100%; object-fit: cover; position: relative; z-index: 2; box-shadow: 0 20px 40px rgba(0,0,0,0.1); display: block; }
+.frame-wrapper::before { content: ''; position: absolute; width: 100%; height: 100%; border: 4px solid var(--primary-red); z-index: 1; }
+.frame-left::before { top: -20px; left: -20px; }
+
+
+/* --- SECTION 2 : CATALOGUE (Grid) --- */
+.catalog-section {
+    padding: 100px 0;
+    background-color: var(--light-bg);
+}
+
+.section-header { text-align: center; max-width: 800px; margin: 0 auto 60px; }
+.section-header h2 { font-size: 2.5rem; }
+
+.catalog-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px; /* Grille style "Sharp" */
+    background-color: #ddd;
+    border: 2px solid #ddd;
+}
+
+.course-card {
+    background: white;
+    padding: 45px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    transition: background 0.3s;
+}
+.course-card:hover { background-color: #fff9f9; }
+
+.course-icon { font-size: 2.5rem; color: var(--primary-red); margin-bottom: 25px; }
+.course-card h3 { font-size: 1.3rem; margin-bottom: 15px; min-height: 3em; }
+.course-card p { font-size: 0.95rem; color: #777; margin-bottom: 0; }
+
+/* Bloc Partenariat Spécial */
+.course-card.partnership {
+    grid-column: span 3;
+    background-color: var(--primary-black);
+    color: white;
+    flex-direction: row;
+    align-items: center;
+    gap: 40px;
+}
+.course-card.partnership h3, .course-card.partnership p { color: white; margin: 0; }
+.course-card.partnership .course-icon { margin: 0; font-size: 4rem; }
+
+
+/* --- SECTION 3 : DÉCLARATION LÉGALE --- */
+.legal-training-section {
+    padding: 80px 0;
+    background-color: var(--white);
+    text-align: center;
+}
+.legal-box {
+    border: 4px solid var(--primary-black);
+    display: inline-block;
+    padding: 40px 60px;
+    max-width: 900px;
+}
+.legal-box i { font-size: 3rem; color: var(--primary-red); margin-bottom: 20px; }
+.legal-box h4 { font-size: 1.5rem; margin-bottom: 15px; }
+.legal-box p { font-size: 1.1rem; color: var(--primary-black); font-weight: 700; margin-bottom: 0; }
+
+
+/* FOOTER CTA */
+.footer-cta {
+    background: var(--primary-black);
+    color: white;
+    padding: 60px 0;
+    text-align: center;
+}
+.btn-cta {
+    background: var(--primary-red); color: white;
+    padding: 15px 40px; font-weight: 800; text-transform: uppercase;
+    text-decoration: none; display: inline-block; margin-top: 20px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 992px) {
+    .split-grid { grid-template-columns: 1fr; gap: 50px; }
+    .catalog-grid { grid-template-columns: 1fr; }
+    .course-card.partnership { grid-column: span 1; flex-direction: column; text-align: center; }
+    .formation-hero h1 { font-size: 2.5rem; }
+    .frame-wrapper { margin: 10px; }
+    .frame-left::before { top: -10px; left: -10px; }
+}
+</style>
+</head>
+<body>
+
+    <!-- HERO -->
+    <section class="formation-hero">
+        <div class="container">
+            <h1>Formation & Transmission</h1>
+            <p>Développer les compétences de vos équipes pour une excellence opérationnelle durable.</p>
+        </div>
+    </section>
+
+    <!-- 1. ACCOMPAGNEMENT -->
+    <section class="edu-intro">
+        <div class="container split-grid">
+            
+            <div class="edu-content">
+                <span style="color:var(--primary-red); font-weight:800; text-transform:uppercase; letter-spacing:1px;">Ingénierie Pédagogique</span>
+                <h2>Former les experts de demain.</h2>
+                <p>
+                    L'Institut Mecasem ne se limite pas au contrôle ; nous sommes un partenaire de croissance. Nous formons et accompagnons vos collaborateurs pour maîtriser les normes et les gestes techniques les plus pointus de l'industrie.
+                </p>
+                <p><strong>Nos programmes s'adressent spécifiquement à :</strong></p>
+                
+                <div class="target-audience">
+                    <span class="target-tag">Techniciens</span>
+                    <span class="target-tag">Inspecteurs</span>
+                    <span class="target-tag">Soudeurs</span>
+                    <span class="target-tag">Opérateurs</span>
+                </div>
+            </div>
+
+            <!-- Image avec Cadre Rouge (Style CEO) -->
+            <div class="frame-wrapper frame-left">
+                <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=2070&auto=format&fit=crop" alt="Session de formation technique">
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 2. CATALOGUE DES MODULES -->
+    <section class="catalog-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Modules de Formation</h2>
+                <p>Des cursus théoriques et pratiques adaptés à vos besoins métiers.</p>
+            </div>
+
+            <div class="catalog-grid">
+                
+                <!-- Module 1 -->
+                <div class="course-card">
+                    <i class="ph-duotone ph-eye course-icon"></i>
+                    <h3>Contrôle visuel des soudures</h3>
+                    <p>Apprendre à identifier et classifier les défauts de surface selon les normes internationales.</p>
+                </div>
+
+                <!-- Module 2 -->
+                <div class="course-card">
+                    <i class="ph-duotone ph-blueprint course-icon"></i>
+                    <h3>Lecture de plan</h3>
+                    <p>Maîtriser le langage technique universel et l'interprétation des cotations industrielles.</p>
+                </div>
+
+                <!-- Module 3 -->
+                <div class="course-card">
+                    <i class="ph-duotone ph-pencil-circle course-icon"></i>
+                    <h3>Symbolisation en soudage</h3>
+                    <p>Comprendre et appliquer les symboles de soudure sur les dossiers de fabrication.</p>
+                </div>
+
+                <!-- Module 4 -->
+                <div class="course-card">
+                    <i class="ph-duotone ph-book-open course-icon"></i>
+                    <h3>Cahier de soudage</h3>
+                    <p>Lecture et rédaction rigoureuse des documents de suivi et de traçabilité.</p>
+                </div>
+
+                <!-- Module 5 -->
+                <div class="course-card">
+                    <i class="ph-duotone ph-file-text course-icon"></i>
+                    <h3>Rédaction de DMOS</h3>
+                    <p>Élaboration des Descriptifs de Modes Opératoires de Soudage conformes aux exigences.</p>
+                </div>
+
+                <!-- Module 6 -->
+                <div class="course-card">
+                    <i class="ph-duotone ph-atom course-icon"></i>
+                    <h3>Procédés à l'arc</h3>
+                    <p>Théorie fondamentale sur les énergies, les gaz et le comportement de l'arc électrique.</p>
+                </div>
+
+                <!-- BLOC PARTENARIAT (Large) -->
+                <div class="course-card partnership">
+                    <i class="ph-duotone ph-handshake course-icon"></i>
+                    <div class="partnership-text">
+                        <h3>Partenariat Stratégique IMSCR</h3>
+                        <p>
+                            Nous délivrons la formation <strong>IMSCR</strong> en partenariat exclusif avec <strong>VOSSLOH Service France</strong>, alliant notre expertise essais à leur savoir-faire industriel.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. AGRÉMENT OFFICIEL -->
+    <section class="legal-training-section">
+        <div class="container">
+            <div class="legal-box">
+                <i class="ph-fill ph-seal-check"></i>
+                <h4>Organisme de Formation Agréé</h4>
+                <p>« déclaration d’activité enregistrée sous le numéro 44670657167 auprès du préfet de région GRAND EST »</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER CTA -->
+    <div class="footer-cta">
+        <div class="container">
+            <h3>Planifier une session de formation ?</h3>
+            <a href="#contact" class="btn-cta">Demander le catalogue complet</a>
+        </div>
+    </div>
+
+</body>
+</html>

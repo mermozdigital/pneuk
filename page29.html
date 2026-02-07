@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Institut Mecasem - Refonte Intégrale</title>
+
+    <!-- POLICE : MULISH -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet">
+    
+    <!-- ICONES : PHOSPHOR ICONS -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <style>
+        /* =========================================
+           1. RESET & VARIABLES GLOBALES
+           ========================================= */
+        :root {
+            --primary-red: #D80C16;
+            --primary-black: #111111;
+            --text-body: #444444;
+            --light-bg: #F9F9F9;
+            --white: #ffffff;
+            --grey-border: #e5e5e5;
+            --font-main: 'Mulish', sans-serif;
+            
+            /* Accents secondaires */
+            --accent-cyan: #00A9C6;
+            --accent-orange: #F08D1B;
+            --accent-green: #8BBC22;
+        }
+
+        /* SHARP DESIGN : Coins carrés forcés partout */
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+            border-radius: 0 !important; 
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--white);
+            color: var(--text-body);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container { max-width: 1240px; margin: 0 auto; padding: 0 20px; }
+        h1, h2, h3, h4 { color: var(--primary-black); font-weight: 900; line-height: 1.1; }
+        a { text-decoration: none; transition: 0.3s; }
+        ul { list-style: none; }
+
+        /* =========================================
+           2. COMPOSANTS RÉUTILISABLES
+           ========================================= */
+        .btn-primary {
+            background: var(--primary-red);
+            color: white;
+            padding: 16px 32px;
+            font-weight: 800;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+        .btn-primary:hover { background: #b00a12; transform: translateY(-2px); }
+
+        .tag-badge {
+            background-color: #FCE8E9;
+            color: var(--primary-red);
+            font-size: 0.75rem;
+            font-weight: 800;
+            padding: 8px 12px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        /* Signature Visuelle : RED FRAME (Cadre Rouge Décalé) */
+        .frame-wrapper { position: relative; z-index: 1; margin: 20px; }
+        .frame-wrapper img { 
+            width: 100%; height: 100%; object-fit: cover; 
+            position: relative; z-index: 2; display: block;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        .frame-wrapper::before {
+            content: ''; position: absolute; width: 100%; height: 100%;
+            border: 5px solid var(--primary-red); z-index: 1;
+        }
+        .frame-left::before { top: -20px; left: -20px; }
+        .frame-right::before { bottom: -20px; right: -20px; }
+
+        /* =========================================
+           3. HEADER & BARRE DE NAVIGATION
+           ========================================= */
+        .top-bar {
+            background-color: #eee;
+            font-size: 0.8rem;
+            padding: 10px 0;
+            color: #555;
+            font-weight: 700;
+        }
+        .top-bar-content { display: flex; justify-content: space-between; }
+        .top-bar i { color: var(--primary-red); margin-right: 5px; }
+
+        .navbar {
+            background: var(--white);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        .nav-content { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-weight: 900; font-size: 1.6rem; text-transform: uppercase; }
+        .logo span { color: var(--primary-red); }
+
+        .menu { display: flex; gap: 30px; }
+        .menu a { font-weight: 800; font-size: 0.95rem; color: var(--primary-black); }
+        .menu a:hover { color: var(--primary-red); }
+
+        .btn-header {
+            background: var(--primary-red); color: white;
+            padding: 12px 24px; font-weight: 800; font-size: 0.9rem;
+        }
+
+        /* =========================================
+           4. BREADCRUMB (Option 2 : Ribbon)
+           ========================================= */
+        .breadcrumb-ribbon {
+            background-color: var(--light-bg);
+            padding: 15px 0;
+            border-bottom: 1px solid #e5e5e5;
+        }
+        .flex-bread { display: flex; justify-content: space-between; align-items: center; }
+        .bread-path { display: flex; align-items: center; gap: 10px; font-size: 0.85rem; font-weight: 700; }
+        .bread-path a { color: #888; }
+        .bread-path i { font-size: 0.8rem; color: var(--primary-red); }
+        .bread-path .current { color: var(--primary-black); }
+        .bread-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px; color: #bbb; font-weight: 900; }
+
+        /* =========================================
+           5. SECTION HERO (Slider Ready)
+           ========================================= */
+        .hero-section {
+            padding: 80px 0;
+            background-color: var(--light-bg);
+            position: relative;
+            overflow: hidden;
+        }
+        .bg-watermark {
+            position: absolute; bottom: -80px; left: -50px; font-size: 25rem;
+            font-weight: 900; color: rgba(0,0,0,0.03); z-index: 0; pointer-events: none;
+        }
+        .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; position: relative; z-index: 1; }
+        .hero-text h1 { font-size: 3.5rem; margin-bottom: 25px; }
+        .hero-text .italic { font-style: italic; color: var(--primary-red); }
+        
+        .hero-visual { position: relative; height: 550px; width: 100%; }
+        .slide { position: absolute; inset: 0; opacity: 0; transition: opacity 1s ease; }
+        .slide.active { opacity: 1; z-index: 2; }
+        .image-wrapper { width: 90%; height: 100%; margin-left: auto; }
+        .image-wrapper img { width: 100%; height: 100%; object-fit: cover; }
+        
+        .floating-card {
+            position: absolute; bottom: 40px; left: 0; background: var(--white);
+            padding: 35px; width: 340px; z-index: 10;
+            border-left: 6px solid var(--primary-red);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        /* =========================================
+           6. TRUST BAR (Noir & Texte)
+           ========================================= */
+        .trust-bar {
+            background-color: var(--primary-black);
+            color: white; padding: 40px 0;
+        }
+        .trust-grid { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 30px; }
+        .trust-item { border-left: 3px solid var(--primary-red); padding-left: 20px; }
+        .trust-item span { display: block; font-size: 0.7rem; text-transform: uppercase; color: #888; font-weight: 800; }
+        .trust-item strong { font-size: 1.1rem; font-weight: 900; }
+
+        /* =========================================
+           7. ECOSYSTEM (Services)
+           ========================================= */
+        .services-section { padding: 100px 0; background: var(--white); }
+        .eco-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 60px; }
+        .eco-grid { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid #eee; border-left: 1px solid #eee; }
+        .eco-card { padding: 50px 40px; border-right: 1px solid #eee; border-bottom: 1px solid #eee; }
+        .icon-box { width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; margin-bottom: 25px; color: white; font-size: 1.8rem; }
+        .bg-red { background: var(--primary-red); }
+        .bg-cyan { background: var(--accent-cyan); }
+        .bg-orange { background: var(--accent-orange); }
+        .bg-green { background: var(--accent-green); }
+
+        /* =========================================
+           8. LEADERSHIP (CEO Section)
+           ========================================= */
+        .ceo-section { padding: 120px 0; background: var(--white); }
+        .ceo-grid { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 80px; align-items: center; }
+        .ceo-content h2 { font-size: 3rem; margin-bottom: 20px; }
+        .ceo-quote { font-size: 1.3rem; font-weight: 700; border-left: 4px solid var(--primary-red); padding-left: 25px; margin-bottom: 30px; }
+
+        /* =========================================
+           9. CONTACT SECTION (Boxed Style)
+           ========================================= */
+        .contact-section { padding: 100px 0; background: var(--light-bg); }
+        .contact-grid { display: grid; grid-template-columns: 0.8fr 1.2fr; box-shadow: 0 30px 60px rgba(0,0,0,0.1); }
+        .info-col { background: var(--primary-black); color: white; padding: 60px; }
+        .form-col { background: white; padding: 60px; }
+        
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px; }
+        .input-group label { display: block; font-weight: 800; font-size: 0.85rem; margin-bottom: 8px; text-transform: uppercase; }
+        input, textarea { width: 100%; padding: 12px; border: 1px solid #ccc; font-family: inherit; }
+        input:focus, textarea:focus { border-color: var(--primary-red); outline: none; }
+        .btn-submit { width: 100%; background: var(--primary-red); color: white; border: none; padding: 18px; font-weight: 800; text-transform: uppercase; cursor: pointer; }
+
+        /* =========================================
+           10. FOOTER
+           ========================================= */
+        .main-footer { background: var(--primary-black); color: #888; padding: 80px 0 30px; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 60px; margin-bottom: 50px; }
+        .footer-logo { color: white; font-weight: 900; font-size: 1.5rem; margin-bottom: 20px; }
+        .footer-logo span { color: var(--primary-red); }
+        .footer-col h4 { color: white; margin-bottom: 20px; font-size: 1.1rem; }
+        .footer-col ul li { margin-bottom: 10px; font-weight: 700; }
+        .footer-col ul li a:hover { color: var(--primary-red); }
+
+        /* RESPONSIVE */
+        @media (max-width: 992px) {
+            .hero-grid, .ceo-grid, .eco-grid, .contact-grid, .footer-grid, .form-row { grid-template-columns: 1fr; gap: 40px; }
+            .hero-text h1, .ceo-content h2 { font-size: 2.5rem; }
+            .floating-card { width: 90%; left: 5%; bottom: -20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 1. TOP BAR -->
+    <div class="top-bar">
+        <div class="container top-bar-content">
+            <span><i class="ph-fill ph-map-pin"></i> 90 RUE DE LINGOLSHEIM, 67540 OSTWALD</span>
+            <a href="tel:0388666676" style="color:inherit;"><i class="ph-fill ph-phone"></i> 03 88 66 66 76</a>
+        </div>
+    </div>
+
+    <!-- 2. NAVIGATION -->
+    <header class="navbar">
+        <div class="container nav-content">
+            <div class="logo">INSTITUT <span>MECASEM</span></div>
+            <nav class="menu">
+                <a href="#">Accueil</a>
+                <div class="dropdown-parent">
+                    <a>Nos Activités <i class="ph-bold ph-caret-down"></i></a>
+                    <div class="dropdown-content">
+                        <a href="#">Essais Mécaniques</a>
+                        <a href="#">Métallographie & Chimie</a>
+                        <a href="#">Contrôle Non Destructif</a>
+                        <a href="#">Usinage</a>
+                    </div>
+                </div>
+                <a href="#">Secteurs</a>
+                <a href="#">Entreprise</a>
+                <a href="#">Contact</a>
+            </nav>
+            <a href="#contact" class="btn-header">Demander un devis</a>
+        </div>
+    </header>
+
+    <!-- 3. BREADCRUMB -->
+    <nav class="breadcrumb-ribbon">
+        <div class="container flex-bread">
+            <div class="bread-path">
+                <a href="#">Accueil</a> <i class="ph-bold ph-caret-right"></i> <span class="current">Nos Expertises</span>
+            </div>
+            <div class="bread-label">QUALITÉ INDUSTRIELLE</div>
+        </div>
+    </nav>
+
+    <!-- 4. HERO SECTION -->
+    <section class="hero-section">
+        <div class="bg-watermark">MEC</div>
+        <div class="container hero-grid">
+            <div class="hero-text">
+                <span class="tag-badge">Laboratoire Industriel</span>
+                <h1>Expertise Matériaux & <span class="italic">Soudage</span>.</h1>
+                <p class="hero-description">Depuis 1980, nous garantissons la fiabilité de vos structures critiques grâce à une ingénierie de précision et des essais certifiés.</p>
+                <div class="hero-actions">
+                    <a href="#contact" class="btn-primary">Demander un devis</a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="slide active">
+                    <div class="image-wrapper">
+                        <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?q=80&w=2070&auto=format&fit=crop" alt="Labo">
+                    </div>
+                    <div class="floating-card">
+                        <i class="ph ph-microscope card-icon"></i>
+                        <h3>Analyse Métallographique</h3>
+                        <p>Étude microstructurelle de haute précision pour vos métaux et alliages.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. TRUST BAR -->
+    <div class="trust-bar">
+        <div class="container trust-grid">
+            <div class="trust-item"><span>Accréditation</span><strong>COFRAC Essais n°1-7322</strong></div>
+            <div class="trust-item"><span>Certification</span><strong>ISO 9001 / EN 9100</strong></div>
+            <div class="trust-item"><span>Expertise</span><strong>COFREND Niveau 2 & 3</strong></div>
+            <div class="trust-item"><span>Engagement</span><strong>RSE & Développement Durable</strong></div>
+        </div>
+    </div>
+
+    <!-- 6. ECOSYSTEM (Services Grid) -->
+    <section class="services-section">
+        <div class="container">
+            <div class="eco-header">
+                <h2>Notre Écosystème <span>Technique</span></h2>
+                <a href="#" class="btn-primary" style="padding: 10px 20px; font-size: 0.7rem;">Voir tout</a>
+            </div>
+            <div class="eco-grid">
+                <div class="eco-card">
+                    <div class="icon-box bg-red"><i class="ph ph-engine"></i></div>
+                    <h3>Essais Mécaniques</h3>
+                    <p>Fatigue, traction et compression pour valider la résistance de vos composants.</p>
+                </div>
+                <div class="eco-card">
+                    <div class="icon-box bg-cyan"><i class="ph ph-flask"></i></div>
+                    <h3>Métallographie</h3>
+                    <p>Caractérisation de la structure interne des matériaux et analyse de défaillance.</p>
+                </div>
+                <div class="eco-card">
+                    <div class="icon-box bg-orange"><i class="ph ph-scan"></i></div>
+                    <h3>Contrôle (CND)</h3>
+                    <p>Inspection par radio, ultrasons et ressuage sur site ou en laboratoire.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. CEO SECTION -->
+    <section class="ceo-section">
+        <div class="container ceo-grid">
+            <div class="ceo-image">
+                <div class="frame-wrapper frame-left">
+                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=1974&auto=format&fit=crop" alt="Mickaël YOLLU">
+                </div>
+            </div>
+            <div class="ceo-content">
+                <span class="tag-badge">Mot du Président</span>
+                <h2>Une Vision Orientée <span style="color:var(--primary-red); font-style:italic;">Terrain</span>.</h2>
+                <p class="ceo-quote">"Notre mission est de sécuriser vos innovations par la rigueur scientifique."</p>
+                <p>À la tête de l’Institut Mecasem, j'apporte une expertise forgée dans les ateliers. Ingénieur soudeur IWE, je m'engage à ce que nos équipes soient vos partenaires de proximité les plus réactifs.</p>
+                <div style="margin-top:40px;">
+                    <p style="font-weight:900; color:black; text-transform:uppercase;">Mickaël YOLLU</p>
+                    <p style="color:var(--primary-red); font-weight:700;">Président Directeur Général</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 8. CONTACT SECTION -->
+    <section class="contact-section" id="contact">
+        <div class="container contact-grid">
+            <div class="info-col">
+                <span class="tag-badge" style="background:white; color:black;">Contact</span>
+                <h2>Démarrer une étude.</h2>
+                <p style="color:#aaa; margin: 20px 0 40px;">Nos experts commerciaux Alain RUSCH et Philippe CULOT vous répondent sous 24h.</p>
+                <p style="font-weight:800; font-size:1.2rem;"><i class="ph-fill ph-phone" style="color:var(--primary-red);"></i> 03 88 66 66 76</p>
+                <p style="font-weight:800; font-size:1.2rem; margin-top:10px;"><i class="ph-fill ph-envelope" style="color:var(--primary-red);"></i> info@mecasem.com</p>
+            </div>
+            <div class="form-col">
+                <form>
+                    <div class="form-row">
+                        <div class="input-group"><label>Nom</label><input type="text" placeholder="Votre nom"></div>
+                        <div class="input-group"><label>Société</label><input type="text" placeholder="Votre société"></div>
+                    </div>
+                    <div class="input-group"><label>Email Professionnel</label><input type="email" placeholder="email@entreprise.com"></div>
+                    <div class="input-group" style="margin-top:20px;"><label>Projet</label><textarea rows="4" placeholder="Décrivez votre besoin..."></textarea></div>
+                    <button type="submit" class="btn-submit" style="margin-top:20px;">Envoyer la demande</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- 9. FOOTER -->
+    <footer class="main-footer">
+        <div class="container footer-grid">
+            <div class="footer-info">
+                <div class="footer-logo">INSTITUT <span>MECASEM</span></div>
+                <p>Laboratoire industriel accrédité COFRAC dédié à l'excellence des matériaux.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Activités</h4>
+                <ul>
+                    <li><a href="#">Essais Mécaniques</a></li>
+                    <li><a href="#">Métallographie</a></li>
+                    <li><a href="#">Soudage SOU-D</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Le Groupe</h4>
+                <ul>
+                    <li><a href="#">Notre Histoire</a></li>
+                    <li><a href="#">Certifications</a></li>
+                    <li><a href="#">Carrières</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="container" style="text-align:center; border-top:1px solid #222; padding-top:30px; font-size:0.8rem;">
+            &copy; 2026 INSTITUT MECASEM. TOUS DROITS RÉSERVÉS.
+        </div>
+    </footer>
+
+</body>
+</html>

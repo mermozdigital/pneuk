@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inspection Seconde & Tierce Partie - Institut Mecasem</title>
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web">
+
+<style>
+/* --- VARIABLES & RESET --- */
+:root {
+    --primary-red: #D80C16;
+    --primary-black: #111111;
+    --text-body: #444;
+    --light-bg: #F9F9F9;
+    --white: #ffffff;
+    --font-main: 'Mulish', sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; border-radius: 0 !important; }
+
+body {
+    font-family: var(--font-main);
+    background-color: var(--white);
+    color: var(--text-body);
+    line-height: 1.6;
+}
+
+h1, h2, h3, h4 { color: var(--primary-black); font-weight: 800; line-height: 1.1; }
+.container { max-width: 1240px; margin: 0 auto; padding: 0 20px; }
+
+/* --- HERO PAGE --- */
+.inspection-hero {
+    background-color: var(--primary-black);
+    padding: 100px 0;
+    color: white;
+    text-align: center;
+    background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center;
+    border-bottom: 4px solid var(--primary-red);
+}
+
+.inspection-hero h1 { color: white; font-size: 3.5rem; text-transform: uppercase; margin-bottom: 15px; }
+.inspection-hero p { font-size: 1.2rem; color: #ccc; max-width: 800px; margin: 0 auto; }
+
+
+/* --- SECTION 1 : INDÉPENDANCE (ISO 17020) --- */
+.iso-section {
+    padding: 100px 0;
+    background-color: var(--white);
+}
+
+.split-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 80px;
+    align-items: center;
+}
+
+.iso-content h2 { font-size: 2.8rem; margin-bottom: 30px; }
+.iso-content p { font-size: 1.1rem; color: #555; margin-bottom: 30px; text-align: justify; }
+
+.values-box {
+    display: flex;
+    gap: 20px;
+    margin-top: 40px;
+}
+.value-item {
+    background: var(--light-bg);
+    padding: 20px;
+    flex: 1;
+    border-top: 4px solid var(--primary-red);
+    text-align: center;
+}
+.value-item i { font-size: 2rem; color: var(--primary-red); margin-bottom: 10px; }
+.value-item span { display: block; font-weight: 800; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px; }
+
+/* Image avec Cadre Rouge */
+.frame-wrapper { position: relative; z-index: 1; margin: 20px; }
+.frame-wrapper img { width: 100%; height: 100%; object-fit: cover; position: relative; z-index: 2; box-shadow: 0 20px 40px rgba(0,0,0,0.1); display: block; }
+.frame-wrapper::before { content: ''; position: absolute; width: 100%; height: 100%; border: 4px solid var(--primary-red); z-index: 1; }
+.frame-right::before { bottom: -20px; right: -20px; }
+
+
+/* --- SECTION 2 : MISSIONS D'INSPECTION (Grille) --- */
+.missions-section {
+    padding: 100px 0;
+    background-color: var(--light-bg);
+}
+
+.section-header { text-align: center; max-width: 800px; margin: 0 auto 60px; }
+.section-header h2 { font-size: 2.5rem; }
+
+.missions-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+}
+
+.mission-card {
+    background: var(--white);
+    padding: 40px;
+    border: 1px solid #eee;
+    transition: 0.3s;
+}
+.mission-card:hover { border-color: var(--primary-red); transform: translateY(-5px); }
+
+.mission-icon { font-size: 3rem; color: var(--primary-red); margin-bottom: 20px; }
+.mission-card h3 { font-size: 1.5rem; margin-bottom: 15px; border-bottom: 2px solid #f4f4f4; padding-bottom: 15px; }
+.mission-card p { color: #666; font-size: 0.95rem; }
+
+.tech-tag {
+    display: inline-block;
+    background: var(--primary-black);
+    color: white;
+    padding: 4px 10px;
+    font-weight: 800;
+    font-size: 0.75rem;
+    margin-top: 15px;
+}
+
+
+/* --- SECTION 3 : ANALYSE GLOBALE (Bandeau final) --- */
+.analysis-banner {
+    padding: 80px 0;
+    background-color: var(--white);
+    text-align: center;
+}
+.analysis-box {
+    border: 2px dashed #ccc;
+    padding: 50px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+.analysis-box h3 { margin-bottom: 20px; }
+.analysis-box p { font-size: 1.1rem; margin-bottom: 0; }
+
+
+/* FOOTER CTA */
+.footer-cta {
+    background: var(--primary-black);
+    color: white;
+    padding: 60px 0;
+    text-align: center;
+}
+.btn-cta {
+    background: var(--primary-red); color: white;
+    padding: 15px 40px; font-weight: 800; text-transform: uppercase;
+    text-decoration: none; display: inline-block; margin-top: 20px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 992px) {
+    .split-grid { grid-template-columns: 1fr; gap: 50px; }
+    .missions-grid { grid-template-columns: 1fr; }
+    .inspection-hero h1 { font-size: 2.5rem; }
+    .frame-wrapper { margin: 10px; }
+    .frame-right::before { bottom: -10px; right: -10px; }
+}
+</style>
+</head>
+<body>
+
+    <!-- HERO -->
+    <section class="inspection-hero">
+        <div class="container">
+            <h1>Inspection Seconde & Tierce Partie</h1>
+            <p>Surveillance et supervision de vos opérations de fabrication et de réparation d'équipements soudés.</p>
+        </div>
+    </section>
+
+    <!-- 1. INDÉPENDANCE & ISO 17020 -->
+    <section class="iso-section">
+        <div class="container split-grid">
+            
+            <div class="iso-content">
+                <span style="color:var(--primary-red); font-weight:800; text-transform:uppercase; letter-spacing:1px;">Indépendance & Rigueur</span>
+                <h2>Conformité ISO 17020</h2>
+                <p>
+                    Nos inspecteurs sont régulièrement mandatés par nos clients pour le suivi de la fabrication ou la réparation d’équipements soudés suivant les prescriptions de l'<strong>ISO 17020</strong>.
+                </p>
+                <p>
+                    Notre engagement repose sur trois piliers fondamentaux garantissant la valeur de nos rapports d'inspection :
+                </p>
+
+                <div class="values-box">
+                    <div class="value-item">
+                        <i class="ph-bold ph-balance"></i>
+                        <span>Impartialité</span>
+                    </div>
+                    <div class="value-item">
+                        <i class="ph-bold ph-shield-check"></i>
+                        <span>Indépendance</span>
+                    </div>
+                    <div class="value-item">
+                        <i class="ph-bold ph-lock-key"></i>
+                        <span>Confidentialité</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Image avec Cadre Rouge (Style PDG) -->
+            <div class="frame-wrapper frame-right">
+                <img src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?q=80&w=2070&auto=format&fit=crop" alt="Inspection de soudure sur site">
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 2. MISSIONS DE SUPERVISION -->
+    <section class="missions-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Supervision de vos opérations</h2>
+                <p>Nous supervisons vos opérations de soudage suivant les référentiels en vigueur.</p>
+            </div>
+
+            <div class="missions-grid">
+                
+                <!-- Mission 1 -->
+                <div class="mission-card">
+                    <i class="ph-duotone ph-factory mission-icon"></i>
+                    <h3>Suivi de Fabrication</h3>
+                    <p>Contrôle de l'avancement et de la conformité des étapes de production en atelier ou sur chantier.</p>
+                </div>
+
+                <!-- Mission 2 -->
+                <div class="mission-card">
+                    <i class="ph-duotone ph-users-four mission-icon"></i>
+                    <h3>Suivi des Soudeurs</h3>
+                    <p>Surveillance du personnel en action pour garantir le respect des gestes techniques et des normes de sécurité.</p>
+                </div>
+
+                <!-- Mission 3 -->
+                <div class="mission-card">
+                    <i class="ph-duotone ph-clipboard-text mission-icon"></i>
+                    <h3>Vérification des Procédés</h3>
+                    <p>Vérification de l’application de la méthode d’assemblage et des procédés de soudage selon vos descriptifs.</p>
+                    <div class="tech-tag">DMOS</div>
+                </div>
+
+                <!-- Mission 4 -->
+                <div class="mission-card">
+                    <i class="ph-duotone ph-certificate mission-icon"></i>
+                    <h3>Validation des QMOS</h3>
+                    <p>Vérification de vos Qualifications de Modes Opératoires de Soudage suivant les référentiels en vigueur.</p>
+                    <div class="tech-tag">QMOS</div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. ANALYSE FINALE -->
+    <section class="analysis-banner">
+        <div class="container">
+            <div class="analysis-box">
+                <h3>Expertise Complète</h3>
+                <p>
+                    Nous assurons l'<strong>analyse rigoureuse des contrôles non destructifs (CND)</strong> et des examens destructifs pour conclure sur la conformité finale de vos projets.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER CTA -->
+    <div class="footer-cta">
+        <div class="container">
+            <h3>Mandater un inspecteur</h3>
+            <a href="#contact" class="btn-cta">Démarrer l'assistance technique</a>
+        </div>
+    </div>
+
+</body>
+</html>

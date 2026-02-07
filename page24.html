@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CND & Inspection - Institut Mecasem</title>
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web">
+
+<style>
+/* --- VARIABLES & RESET --- */
+:root {
+    --primary-red: #D80C16;
+    --primary-black: #111111;
+    --text-body: #444;
+    --light-bg: #F5F5F5; /* Gris très léger pour le fond général */
+    --white: #ffffff;
+    --border-color: #ddd;
+    --font-main: 'Mulish', sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; border-radius: 0 !important; }
+
+body {
+    font-family: var(--font-main);
+    background-color: var(--white);
+    color: var(--text-body);
+    line-height: 1.6;
+}
+
+h1, h2, h3, h4 { color: var(--primary-black); font-weight: 800; line-height: 1.1; }
+.container { max-width: 1240px; margin: 0 auto; padding: 0 20px; }
+
+/* --- HERO TECHNIQUE (Split) --- */
+.tech-hero {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    min-height: 500px;
+    border-bottom: 4px solid var(--primary-red);
+}
+
+.hero-text-box {
+    padding: 100px 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: var(--white);
+}
+
+.hero-label {
+    display: inline-block;
+    color: var(--primary-red);
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.hero-label::before { content:''; width: 30px; height: 2px; background: var(--primary-red); }
+
+.hero-text-box h1 { font-size: 3.5rem; margin-bottom: 20px; text-transform: uppercase; }
+.hero-text-box p { font-size: 1.1rem; color: #666; max-width: 600px; }
+
+.hero-img-box {
+    background-image: url('https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?q=80&w=2070&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+/* Overlay technique sur l'image */
+.hero-img-box::after {
+    content: ''; position: absolute; inset: 0;
+    background: rgba(0,0,0,0.2);
+    background-image: radial-gradient(circle, transparent 20%, var(--primary-black) 130%);
+}
+
+
+/* --- BARRE DE CERTIFICATION (Minimaliste) --- */
+.certif-bar {
+    background: var(--light-bg);
+    padding: 30px 0;
+    border-bottom: 1px solid var(--border-color);
+}
+.certif-flex {
+    display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px;
+}
+.certif-item {
+    display: flex; align-items: center; gap: 12px;
+    font-weight: 700; color: var(--primary-black); font-size: 0.9rem; text-transform: uppercase;
+}
+.certif-item i { font-size: 1.5rem; color: var(--primary-red); }
+
+
+/* --- GRILLE MÉTHODES (Style "Tableau Périodique") --- */
+.methods-section {
+    padding: 100px 0;
+    background-color: var(--white);
+}
+
+.category-title {
+    font-size: 2rem;
+    margin-bottom: 40px;
+    display: flex; align-items: center; gap: 15px;
+    border-left: 10px solid var(--primary-black);
+    padding-left: 20px;
+}
+.category-title span { color: var(--primary-red); font-weight: 400; }
+
+.tech-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 80px;
+}
+
+.tech-card {
+    border: 1px solid var(--border-color);
+    padding: 40px;
+    position: relative;
+    transition: all 0.3s ease;
+    background: white;
+}
+
+/* Effet Hover : Bordure Rouge + Ombre */
+.tech-card:hover {
+    border-color: var(--primary-red);
+    box-shadow: 0 10px 30px rgba(216, 12, 22, 0.05);
+    transform: translateY(-5px);
+}
+
+/* Le Code Technique en haut à droite (ex: [RT]) */
+.tech-code {
+    position: absolute;
+    top: 0; right: 0;
+    background: var(--primary-black);
+    color: white;
+    padding: 10px 20px;
+    font-weight: 800;
+    font-size: 1.2rem;
+    font-family: monospace; /* Police style code */
+}
+.tech-card:hover .tech-code { background: var(--primary-red); }
+
+.card-icon {
+    font-size: 3rem;
+    color: var(--primary-black);
+    margin-bottom: 25px;
+}
+.tech-card:hover .card-icon { color: var(--primary-red); }
+
+.tech-card h3 { font-size: 1.8rem; margin-bottom: 15px; }
+.tech-card p { margin-bottom: 25px; color: #666; font-size: 1rem; }
+
+/* Liste technique "Data" */
+.data-list {
+    border-top: 1px solid #eee;
+    padding-top: 20px;
+}
+.data-row {
+    display: flex; justify-content: space-between;
+    margin-bottom: 10px;
+    font-size: 0.9rem;
+}
+.data-label { font-weight: 700; color: var(--primary-black); text-transform: uppercase; }
+.data-val { color: #555; text-align: right; }
+
+
+/* --- SECTION CONTEXTE (Bas de page) --- */
+.context-section {
+    background-color: var(--light-bg);
+    padding: 80px 0;
+    text-align: center;
+}
+.context-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 2px; /* Gap fin pour effet grille */
+    max-width: 1000px; margin: 40px auto 0;
+    background: #ccc; /* Couleur des lignes de séparation */
+    border: 2px solid #ccc;
+}
+
+.context-box {
+    background: white;
+    padding: 40px;
+}
+.context-box h4 { margin-bottom: 10px; font-size: 1.3rem; }
+.context-box p { font-size: 0.9rem; color: #666; margin-bottom: 0; }
+.context-icon { font-size: 2.5rem; color: var(--primary-red); margin-bottom: 15px; }
+
+
+/* FOOTER CTA */
+.footer-cta {
+    background: var(--primary-black);
+    color: white;
+    padding: 60px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.cta-text h3 { color: white; margin-bottom: 5px; }
+.btn-cta {
+    background: var(--primary-red); color: white;
+    padding: 15px 40px; font-weight: 800; text-transform: uppercase;
+    text-decoration: none;
+    transition: 0.3s;
+}
+.btn-cta:hover { background: white; color: var(--primary-red); }
+
+/* RESPONSIVE */
+@media (max-width: 992px) {
+    .tech-hero { grid-template-columns: 1fr; }
+    .hero-img-box { height: 300px; order: 1; }
+    .hero-text-box { order: 2; padding: 50px 20px; }
+    
+    .tech-grid { grid-template-columns: 1fr; }
+    .certif-flex { justify-content: center; }
+    
+    .context-grid { grid-template-columns: 1fr; }
+    .footer-cta .container { flex-direction: column; text-align: center; gap: 20px; }
+}
+</style>
+</head>
+<body>
+
+    <!-- HERO SPLIT -->
+    <section class="tech-hero">
+        <div class="hero-text-box">
+            <span class="hero-label">DÉPARTEMENT SOU-D</span>
+            <h1>Contrôles Non Destructifs</h1>
+            <p>Inspection de la santé matière et des assemblages soudés selon la norme <strong>NF EN ISO 9712</strong>.</p>
+        </div>
+        <div class="hero-img-box"></div>
+    </section>
+
+    <!-- BARRE CERTIFS -->
+    <div class="certif-bar">
+        <div class="container certif-flex">
+            <div class="certif-item"><i class="ph-bold ph-certificate"></i> Certification COFREND</div>
+            <div class="certif-item"><i class="ph-bold ph-check-square"></i> Niveau 2 (Tous procédés)</div>
+            <div class="certif-item"><i class="ph-bold ph-users"></i> Inspecteurs IWE / IWT</div>
+        </div>
+    </div>
+
+    <!-- METHODES -->
+    <section class="methods-section">
+        <div class="container">
+            
+            <!-- GROUPE 1 : VOLUMIQUE -->
+            <div class="category-title">
+                Contrôles Volumiques <span>(Interne)</span>
+            </div>
+
+            <div class="tech-grid">
+                
+                <!-- CARD 1 : RADIO -->
+                <div class="tech-card">
+                    <span class="tech-code">[RT]</span>
+                    <i class="ph-duotone ph-radioactive card-icon"></i>
+                    <h3>Radiographie</h3>
+                    <p>Imagerie par rayons X ou Gamma pour visualiser les défauts internes (inclusions, porosités).</p>
+                    
+                    <div class="data-list">
+                        <div class="data-row">
+                            <span class="data-label">Puissance</span>
+                            <span class="data-val">200kV & 300kV</span>
+                        </div>
+                        <div class="data-row">
+                            <span class="data-label">Cible</span>
+                            <span class="data-val">Soudure & Fonderie</span>
+                        </div>
+                        <div class="data-row">
+                            <span class="data-label">Matériaux</span>
+                            <span class="data-val">Acier (40mm max), Alu</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CARD 2 : ULTRASONS -->
+                <div class="tech-card">
+                    <span class="tech-code">[UT]</span>
+                    <i class="ph-duotone ph-waves card-icon"></i>
+                    <h3>Ultrasons</h3>
+                    <p>Détection par ondes sonores des discontinuités dans la masse et mesure d'épaisseur.</p>
+                    
+                    <div class="data-list">
+                        <div class="data-row">
+                            <span class="data-label">Capacité</span>
+                            <span class="data-val">Illimitée (Epaisseur)</span>
+                        </div>
+                        <div class="data-row">
+                            <span class="data-label">Cible</span>
+                            <span class="data-val">Pleine pénétration</span>
+                        </div>
+                        <div class="data-row">
+                            <span class="data-label">Spécialité</span>
+                            <span class="data-val">Composites & Forgés</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- GROUPE 2 : SURFACIQUE -->
+            <div class="category-title">
+                Contrôles Surfaciques <span>(Externe)</span>
+            </div>
+
+            <div class="tech-grid">
+                
+                <!-- CARD 3 : RESSUAGE -->
+                <div class="tech-card">
+                    <span class="tech-code">[PT]</span>
+                    <i class="ph-duotone ph-drop-half card-icon"></i>
+                    <h3>Ressuage</h3>
+                    <p>Révélation des défauts débouchants par action capillaire (Pénétrant coloré ou fluorescent).</p>
+                    
+                    <div class="data-list">
+                        <div class="data-row">
+                            <span class="data-label">Matériaux</span>
+                            <span class="data-val">Tous (non poreux)</span>
+                        </div>
+                        <div class="data-row">
+                            <span class="data-label">Type</span>
+                            <span class="data-val">Coloré & Fluorescent</span>
+                        </div>
+                        <div class="data-row">
+                            <span class="data-label">Application</span>
+                            <span class="data-val">Usinage, Soudure</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CARD 4 : MAGNETOSCOPIE -->
+                <div class="tech-card">
+                    <span class="tech-code">[MT]</span>
+                    <i class="ph-duotone ph-magnet card-icon"></i>
+                    <h3>Magnétoscopie</h3>
+                    <p>Mise en évidence de défauts par flux magnétique. Méthode rapide et très sensible.</p>
+                    
+                    <div class="data-list">
+                        <div class="data-row">
+                            <span class="data-label">Contrainte</span>
+                            <span class="data-val">Ferromagnétique Uniquement</span>
+                        </div>
+                        <div class="data-row">
+                            <span class="data-label">Secteurs</span>
+                            <span class="data-val">Auto & Aéro</span>
+                        </div>
+                        <div class="data-row">
+                            <span class="data-label">Type</span>
+                            <span class="data-val">Banc fixe ou Yoke</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTEXTE INTERVENTION -->
+    <section class="context-section">
+        <div class="container">
+            <h2>Moyens d'Intervention</h2>
+            <div class="context-grid">
+                <div class="context-box">
+                    <i class="ph-fill ph-factory context-icon"></i>
+                    <h4>En Laboratoire</h4>
+                    <p>Bunker radio sécurisé, Bancs magnétiques fixes, Ligne de ressuage.</p>
+                </div>
+                <div class="context-box">
+                    <i class="ph-fill ph-truck context-icon"></i>
+                    <h4>Sur Site Client</h4>
+                    <p>Équipes mobiles pour chaudronnerie, tuyauterie et maintenance.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER CTA -->
+    <div class="footer-cta">
+        <div class="container">
+            <div class="cta-text">
+                <h3>Besoin d'un contrôleur certifié ?</h3>
+                <p style="margin:0; color:#ccc;">Intervention rapide en Alsace et partout en France.</p>
+            </div>
+            <a href="#contact" class="btn-cta">Demander un devis</a>
+        </div>
+    </div>
+
+</body>
+</html>

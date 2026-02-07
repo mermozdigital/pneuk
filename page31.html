@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Structure Page Intérieure - Institut Mecasem</title>
+
+    <!-- POLICE : MULISH -->
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@400;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- ICONES : PHOSPHOR -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <style>
+        :root {
+            --primary-red: #D80C16;
+            --primary-black: #111111;
+            --text-grey: #666666;
+            --light-bg: #F9F9F9;
+            --white: #ffffff;
+            --font-main: 'Mulish', sans-serif;
+        }
+
+        /* RESET SHARP DESIGN */
+        * { margin: 0; padding: 0; box-sizing: border-box; border-radius: 0 !important; }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--white);
+            color: var(--primary-black);
+            line-height: 1.6;
+        }
+
+        .container { max-width: 1240px; margin: 0 auto; padding: 0 20px; }
+        a { text-decoration: none; transition: 0.3s; }
+        ul { list-style: none; display: flex; align-items: center; }
+
+        /* ESPACEMENT POUR LA DÉMO */
+        .demo-section { padding: 50px 0; border-bottom: 1px dashed #ccc; }
+        .demo-label { 
+            font-size: 0.7rem; 
+            font-weight: 900; 
+            text-transform: uppercase; 
+            color: var(--primary-red); 
+            margin-bottom: 20px; 
+            display: block;
+            letter-spacing: 2px;
+        }
+
+        /* =========================================
+           OPTION 1 : LE MINIMALISTE TECHNIQUE
+           (Discret, sur fond blanc)
+           ========================================= */
+        .br-minimal {
+            padding: 20px 0;
+            background: var(--white);
+            border-bottom: 1px solid #eee;
+        }
+        .br-minimal ul li {
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .br-minimal a { color: #aaa; }
+        .br-minimal a:hover { color: var(--primary-red); }
+        .br-minimal .sep { margin: 0 15px; color: #eee; font-weight: 300; }
+        .br-minimal .current { color: var(--primary-black); }
+
+
+        /* =========================================
+           OPTION 2 : LE BANDEAU DE STRUCTURE (Conseillé)
+           (Propre, gris clair, sépare bien le header)
+           ========================================= */
+        .br-ribbon {
+            background-color: var(--light-bg);
+            padding: 18px 0;
+            border-bottom: 1px solid #e5e5e5;
+        }
+        .flex-bread { display: flex; justify-content: space-between; align-items: center; }
+        
+        .path { display: flex; align-items: center; gap: 12px; }
+        .path li { font-size: 0.85rem; font-weight: 700; }
+        .path a { color: var(--text-grey); display: flex; align-items: center; }
+        .path a i { font-size: 1.1rem; }
+        .path a:hover { color: var(--primary-red); }
+        
+        .path .caret { font-size: 0.8rem; color: var(--primary-red); font-weight: 800; }
+        .path .current { color: var(--primary-black); font-weight: 900; }
+        
+        .side-label { 
+            font-size: 0.7rem; 
+            font-weight: 900; 
+            text-transform: uppercase; 
+            letter-spacing: 2px; 
+            color: #bbb; 
+        }
+
+
+        /* =========================================
+           OPTION 3 : L'ACCENT ROUGE
+           (Moderne, souligne le parcours)
+           ========================================= */
+        .br-accent {
+            padding: 25px 0;
+            background: var(--white);
+        }
+        .br-accent ul { gap: 0; }
+        .br-accent li { position: relative; }
+        .br-accent li a, .br-accent li span {
+            padding: 10px 20px;
+            font-size: 0.85rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            display: block;
+        }
+        .br-accent li a { 
+            color: #888; 
+            border-bottom: 2px solid #eee; 
+        }
+        .br-accent li a:hover { color: var(--primary-red); border-bottom-color: #ddd; }
+        
+        .br-accent li.current span {
+            color: var(--primary-black);
+            border-bottom: 2px solid var(--primary-red); /* La ligne rouge */
+        }
+        .br-accent li:not(:last-child) a::after {
+            content: ''; /* Pas de séparateur, le design joue sur les lignes du bas */
+        }
+
+        /* TITRE DE PAGE TYPE */
+        .page-title-area { padding: 60px 0; background: var(--white); }
+        .page-title-area h1 { font-size: 3rem; text-transform: uppercase; }
+
+    </style>
+</head>
+<body>
+
+    <!-- DÉMO OPTION 1 -->
+    <section class="demo-section">
+        <div class="container">
+            <span class="demo-label">Option 1 : Minimaliste Technique</span>
+        </div>
+        <nav class="br-minimal">
+            <div class="container">
+                <ul>
+                    <li><a href="#">Accueil</a></li>
+                    <li class="sep">/</li>
+                    <li><a href="#">Nos Activités</a></li>
+                    <li class="sep">/</li>
+                    <li class="current">Usinage de précision</li>
+                </ul>
+            </div>
+        </nav>
+    </section>
+
+
+    <!-- DÉMO OPTION 2 -->
+    <section class="demo-section">
+        <div class="container">
+            <span class="demo-label">Option 2 : Bandeau de Structure (Le plus Pro)</span>
+        </div>
+        <nav class="br-ribbon">
+            <div class="container flex-bread">
+                <ul class="path">
+                    <li><a href="#"><i class="ph-fill ph-house-line"></i></a></li>
+                    <li class="caret"><i class="ph-bold ph-caret-right"></i></li>
+                    <li><a href="#">Expertises</a></li>
+                    <li class="caret"><i class="ph-bold ph-caret-right"></i></li>
+                    <li class="current">Contrôle Non Destructif</li>
+                </ul>
+                <div class="side-label">Institut Mecasem</div>
+            </div>
+        </nav>
+        
+        <!-- Exemple de titre de page juste après -->
+        <div class="page-title-area">
+            <div class="container">
+                <h1>Contrôle Non Destructif</h1>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- DÉMO OPTION 3 -->
+    <section class="demo-section">
+        <div class="container">
+            <span class="demo-label">Option 3 : L'Accent Rouge (Dynamique)</span>
+        </div>
+        <nav class="br-accent">
+            <div class="container">
+                <ul>
+                    <li><a href="#">Accueil</a></li>
+                    <li><a href="#">Le Groupe</a></li>
+                    <li class="current"><span>Notre Histoire</span></li>
+                </ul>
+            </div>
+        </nav>
+    </section>
+
+</body>
+</html>

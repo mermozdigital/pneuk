@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pression & Étanchéité - Institut Mecasem</title>
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web">
+
+<style>
+/* --- VARIABLES & RESET --- */
+:root {
+    --primary-red: #D80C16;
+    --primary-black: #111111;
+    --text-body: #444;
+    --light-bg: #F9F9F9;
+    --white: #ffffff;
+    --font-main: 'Mulish', sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; border-radius: 0 !important; }
+
+body {
+    font-family: var(--font-main);
+    background-color: var(--white);
+    color: var(--text-body);
+    line-height: 1.6;
+}
+
+h1, h2, h3 { color: var(--primary-black); font-weight: 800; line-height: 1.1; }
+.container { max-width: 1240px; margin: 0 auto; padding: 0 20px; }
+
+/* --- HERO PAGE --- */
+.pressure-hero {
+    background-color: var(--primary-black);
+    padding: 100px 0;
+    color: white;
+    text-align: center;
+    /* Image Vanne / Tuyauterie industrielle */
+    background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1535068484672-9cb5f3b79338?q=80&w=2000&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center;
+    border-bottom: 4px solid var(--primary-red);
+}
+
+.pressure-hero h1 { color: white; font-size: 3.5rem; text-transform: uppercase; margin-bottom: 15px; }
+.pressure-hero p { font-size: 1.2rem; color: #ccc; max-width: 700px; margin: 0 auto; }
+
+
+/* --- SECTION 1 : PRESSION (Split avec Carte) --- */
+.pressure-section {
+    padding: 100px 0;
+    background-color: var(--white);
+}
+
+.split-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+}
+
+/* Texte */
+.pressure-content h2 { font-size: 2.5rem; margin-bottom: 25px; }
+.pressure-content p { font-size: 1.05rem; color: #555; margin-bottom: 30px; }
+
+/* Grille des valeurs de pression */
+.pressure-values {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.val-card {
+    background: var(--light-bg);
+    padding: 30px;
+    border: 1px solid #ddd;
+    text-align: center;
+    transition: 0.3s;
+}
+.val-card:hover { border-color: var(--primary-red); transform: translateY(-5px); }
+
+.val-icon { font-size: 2.5rem; color: var(--primary-red); margin-bottom: 15px; }
+.val-number { display: block; font-size: 2.5rem; font-weight: 900; color: var(--primary-black); line-height: 1; }
+.val-unit { font-size: 1rem; font-weight: 700; color: #666; text-transform: uppercase; }
+.val-label { display: block; margin-top: 10px; font-size: 0.85rem; color: #888; }
+
+/* Image avec Cadre Rouge */
+.frame-wrapper { position: relative; z-index: 1; margin: 20px; }
+.frame-wrapper img { width: 100%; height: 100%; object-fit: cover; position: relative; z-index: 2; box-shadow: 0 20px 40px rgba(0,0,0,0.1); display: block; }
+.frame-wrapper::before { content: ''; position: absolute; width: 100%; height: 100%; border: 4px solid var(--primary-red); z-index: 1; }
+.frame-left::before { top: -20px; left: -20px; }
+
+
+/* --- SECTION 2 : DÉTECTION FUITE (Dark Mode & Scientifique) --- */
+.leak-section {
+    background-color: #1a1a1a;
+    color: white;
+    padding: 100px 0;
+}
+
+.leak-header { text-align: center; max-width: 800px; margin: 0 auto 60px; }
+.leak-header h2 { color: white; font-size: 2.5rem; margin-bottom: 10px; }
+.leak-header p { color: #ccc; font-size: 1.1rem; }
+
+.leak-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+}
+
+.leak-card {
+    background: #111;
+    border: 1px solid #333;
+    padding: 40px;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    transition: 0.3s;
+}
+.leak-card:hover { border-color: var(--primary-red); background: #000; }
+
+.leak-symbol {
+    width: 80px; height: 80px;
+    background: var(--primary-red);
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 900;
+    display: flex; align-items: center; justify-content: center;
+    border: 2px solid white; /* Style tableau périodique */
+}
+
+.leak-data h3 { color: white; font-size: 1.5rem; margin-bottom: 5px; }
+.leak-precision {
+    display: block;
+    font-family: monospace; /* Police technique */
+    font-size: 1.8rem;
+    color: var(--primary-red);
+    font-weight: 700;
+    margin: 10px 0;
+}
+.leak-unit { font-size: 0.9rem; color: #888; text-transform: uppercase; }
+
+
+/* --- SECTION 3 : NORMES & SÉCURITÉ --- */
+.safety-banner {
+    background: var(--white);
+    padding: 60px 0;
+    border-top: 1px solid #eee;
+    text-align: center;
+}
+.safety-content {
+    display: flex; justify-content: center; gap: 60px; flex-wrap: wrap;
+}
+.safety-item { display: flex; align-items: center; gap: 15px; font-weight: 700; font-size: 1.1rem; color: var(--primary-black); }
+.safety-item i { font-size: 2rem; color: var(--primary-red); }
+
+
+/* FOOTER CTA */
+.footer-cta {
+    background: var(--primary-black);
+    color: white;
+    padding: 60px 0;
+    text-align: center;
+}
+.btn-cta {
+    background: var(--primary-red); color: white;
+    padding: 15px 40px; font-weight: 800; text-transform: uppercase;
+    text-decoration: none; display: inline-block; margin-top: 20px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 992px) {
+    .split-grid { grid-template-columns: 1fr; gap: 50px; }
+    .pressure-values { grid-template-columns: 1fr; }
+    .leak-grid { grid-template-columns: 1fr; }
+    .leak-card { flex-direction: column; text-align: center; }
+    .frame-wrapper { margin: 10px; }
+    .frame-left::before { top: -10px; left: -10px; }
+}
+</style>
+</head>
+<body>
+
+    <!-- HERO -->
+    <section class="pressure-hero">
+        <div class="container">
+            <h1>Pression & Étanchéité</h1>
+            <p>Tests d'éclatement et recherche de fuites pour garantir l'intégrité de vos équipements sous contrainte.</p>
+        </div>
+    </section>
+
+    <!-- 1. TESTS DE PRESSION (La Force) -->
+    <section class="pressure-section">
+        <div class="container split-grid">
+            
+            <!-- Texte & Valeurs -->
+            <div class="pressure-content">
+                <h2>Tests d'Éclatement</h2>
+                <p>
+                    Nous éprouvons vos pièces (vannes, réservoirs, tuyauterie) pour valider leur résistance mécanique et leur étanchéité globale.
+                </p>
+                
+                <div class="pressure-values">
+                    <!-- Carte Hydraulique -->
+                    <div class="val-card">
+                        <i class="ph-bold ph-drop val-icon"></i>
+                        <span class="val-number">100</span>
+                        <span class="val-unit">Bars</span>
+                        <span class="val-label">Hydraulique</span>
+                    </div>
+                    <!-- Carte Pneumatique -->
+                    <div class="val-card">
+                        <i class="ph-bold ph-wind val-icon"></i>
+                        <span class="val-number">33</span>
+                        <span class="val-unit">Bars</span>
+                        <span class="val-label">Pneumatique</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Image avec Cadre Rouge -->
+            <div class="frame-wrapper frame-left">
+                <!-- Image Manomètre / Test -->
+                <img src="https://images.unsplash.com/photo-1581092162384-8987c1d64726?q=80&w=2070&auto=format&fit=crop" alt="Test Pression Manomètre">
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 2. DÉTECTION DE FUITE (La Précision) -->
+    <section class="leak-section">
+        <div class="container">
+            <div class="leak-header">
+                <h2>Détection de Fuites Gaz Traces</h2>
+                <p>Mesure de l'étanchéité fine pour les secteurs critiques (Nucléaire, Spatial, Médical).</p>
+            </div>
+
+            <div class="leak-grid">
+                
+                <!-- Hélium -->
+                <div class="leak-card">
+                    <div class="leak-symbol">He</div>
+                    <div class="leak-data">
+                        <h3>Test à l'Hélium</h3>
+                        <span class="leak-precision">1.10<sup>-8</sup></span>
+                        <span class="leak-unit">mbars.l/s</span>
+                    </div>
+                </div>
+
+                <!-- Hydrogène -->
+                <div class="leak-card">
+                    <div class="leak-symbol">H<small>2</small></div>
+                    <div class="leak-data">
+                        <h3>Test à l'Hydrogène</h3>
+                        <span class="leak-precision">1.10<sup>-6</sup></span>
+                        <span class="leak-unit">mbars.l/s</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. RASSURANCE (Sécurité) -->
+    <section class="safety-banner">
+        <div class="container safety-content">
+            <div class="safety-item"><i class="ph-fill ph-shield-check"></i> Sécurité Garantie</div>
+            <div class="safety-item"><i class="ph-fill ph-file-text"></i> Rapport d'Essai Complet</div>
+            <div class="safety-item"><i class="ph-fill ph-check-circle"></i> Équipement Calibré</div>
+        </div>
+    </section>
+
+    <!-- FOOTER CTA -->
+    <div class="footer-cta">
+        <div class="container">
+            <h3>Besoin de valider une enceinte ?</h3>
+            <a href="#contact" class="btn-cta">Demander un test</a>
+        </div>
+    </div>
+
+</body>
+</html>

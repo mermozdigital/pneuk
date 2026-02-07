@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Climatique & Vieillissement - Institut Mecasem</title>
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web">
+
+<style>
+/* --- VARIABLES & RESET --- */
+:root {
+    --primary-red: #D80C16;
+    --primary-black: #111111;
+    --text-body: #444;
+    --light-bg: #F9F9F9;
+    --white: #ffffff;
+    --font-main: 'Mulish', sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; border-radius: 0 !important; }
+
+body {
+    font-family: var(--font-main);
+    background-color: var(--white);
+    color: var(--text-body);
+    line-height: 1.6;
+}
+
+h1, h2, h3 { color: var(--primary-black); font-weight: 800; line-height: 1.2; }
+.container { max-width: 1240px; margin: 0 auto; padding: 0 20px; }
+
+/* --- HERO PAGE --- */
+.activity-hero {
+    background-color: var(--primary-black);
+    padding: 100px 0;
+    color: white;
+    text-align: center;
+    /* Image évocatrice (Glace/Feu ou Chambre climatique) */
+    background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1469022563428-aa67f3424b3c?q=80&w=2070&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center;
+    border-bottom: 4px solid var(--primary-red);
+}
+
+.activity-hero h1 { color: white; font-size: 3.5rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 15px; }
+.activity-hero p { font-size: 1.2rem; color: #ccc; max-width: 700px; margin: 0 auto; }
+
+
+/* --- BANDEAU CAPACITÉS (Data) --- */
+.specs-banner {
+    background-color: var(--primary-black);
+    color: white;
+    padding: 40px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+.specs-grid {
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+    flex-wrap: wrap;
+    text-align: center;
+}
+.spec-item i { font-size: 2rem; color: var(--primary-red); margin-bottom: 10px; display: block; }
+.spec-value { font-size: 1.5rem; font-weight: 800; display: block; }
+.spec-label { font-size: 0.8rem; text-transform: uppercase; color: #999; letter-spacing: 1px; }
+
+
+/* --- SECTION 1 : CLIMATIQUE & THERMIQUE (Split) --- */
+.climatic-section {
+    padding: 100px 0;
+    background-color: var(--white);
+}
+
+.split-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+}
+
+/* Red Frame Style */
+.frame-wrapper {
+    position: relative; z-index: 1; margin: 20px;
+}
+.frame-wrapper img {
+    width: 100%; height: 100%; object-fit: cover; position: relative; z-index: 2;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1); display: block;
+}
+.frame-wrapper::before {
+    content: ''; position: absolute; width: 100%; height: 100%;
+    border: 4px solid var(--primary-red); z-index: 1;
+}
+.frame-left::before { top: -20px; left: -20px; }
+
+.climatic-content h2 { font-size: 2.5rem; margin-bottom: 25px; }
+.climatic-content p { font-size: 1.05rem; margin-bottom: 20px; color: #555; }
+
+.tech-list { margin-top: 25px; }
+.tech-list li {
+    display: flex; align-items: center; gap: 12px;
+    margin-bottom: 12px; font-weight: 700; color: var(--primary-black);
+}
+.tech-list i { color: var(--primary-red); font-size: 1.2rem; }
+
+.dimensions-box {
+    background: var(--light-bg);
+    padding: 20px;
+    border-left: 4px solid var(--primary-black);
+    margin-top: 30px;
+}
+.dim-title { font-weight: 800; text-transform: uppercase; font-size: 0.8rem; color: #999; display: block; margin-bottom: 5px; }
+.dim-value { font-weight: 700; color: var(--primary-black); }
+
+
+/* --- SECTION 2 : ENCEINTE GEANTE 9M3 (Dark Mode) --- */
+.giant-chamber-section {
+    background-color: #1a1a1a;
+    color: white;
+    padding: 100px 0;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Fond graphique subtil */
+.giant-chamber-section::before {
+    content: '9m³';
+    position: absolute;
+    right: -50px; bottom: -50px;
+    font-size: 20rem;
+    font-weight: 900;
+    color: rgba(255,255,255,0.03);
+    line-height: 1;
+    pointer-events: none;
+}
+
+.giant-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 60px;
+    align-items: center;
+    position: relative; z-index: 2;
+}
+
+.giant-text h2 { color: white; font-size: 3rem; margin-bottom: 20px; }
+.giant-text p { color: #ccc; font-size: 1.2rem; margin-bottom: 30px; }
+
+.giant-specs {
+    display: flex;
+    gap: 40px;
+}
+.g-spec { border: 1px solid #444; padding: 20px; min-width: 150px; }
+.g-spec span { display: block; font-size: 1.8rem; font-weight: 800; color: white; }
+.g-spec label { font-size: 0.8rem; text-transform: uppercase; color: var(--primary-red); letter-spacing: 1px; }
+
+.giant-icon {
+    font-size: 10rem;
+    color: var(--primary-red);
+    opacity: 0.8;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+}
+
+
+/* --- SECTION 3 : CORROSION (Cards) --- */
+.corrosion-section {
+    padding: 100px 0;
+    background-color: var(--white);
+}
+.corrosion-header { text-align: center; max-width: 800px; margin: 0 auto 60px; }
+.corrosion-header h2 { font-size: 2.5rem; margin-bottom: 15px; }
+
+.corrosion-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.corrosion-card {
+    background: var(--light-bg);
+    padding: 40px 30px;
+    border: 1px solid #eee;
+    transition: transform 0.3s;
+    position: relative;
+}
+.corrosion-card:hover { transform: translateY(-10px); border-color: var(--primary-red); background: white; }
+
+.corr-icon { font-size: 3rem; color: var(--primary-red); margin-bottom: 20px; }
+.corrosion-card h3 { font-size: 1.4rem; margin-bottom: 15px; }
+.corrosion-card p { font-size: 0.95rem; color: #666; margin-bottom: 0; }
+
+
+/* RESPONSIVE */
+@media (max-width: 992px) {
+    .split-grid, .giant-grid { grid-template-columns: 1fr; gap: 50px; }
+    .corrosion-grid { grid-template-columns: 1fr; }
+    .giant-specs { flex-direction: column; gap: 20px; }
+    .giant-chamber-section::before { font-size: 10rem; }
+    .frame-wrapper { margin: 10px; }
+    .frame-left::before { top: -10px; left: -10px; }
+}
+</style>
+</head>
+<body>
+
+    <!-- HERO -->
+    <section class="activity-hero">
+        <div class="container">
+            <h1>Climatique & Vieillissement</h1>
+            <p>Valider la résistance de vos produits face aux environnements extrêmes.</p>
+        </div>
+    </section>
+
+    <!-- BANDEAU TECHNIQUE -->
+    <div class="specs-banner">
+        <div class="container specs-grid">
+            <div class="spec-item">
+                <i class="ph-bold ph-thermometer-cold"></i>
+                <span class="spec-value">-80°C à +220°C</span>
+                <span class="spec-label">Plage Température</span>
+            </div>
+            <div class="spec-item">
+                <i class="ph-bold ph-drop-half"></i>
+                <span class="spec-value">10% à 98%</span>
+                <span class="spec-label">Hygrométrie (HR)</span>
+            </div>
+            <div class="spec-item">
+                <i class="ph-bold ph-cube"></i>
+                <span class="spec-value">9 m³</span>
+                <span class="spec-label">Volume Max</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 1. CLIMATIQUE & THERMIQUE -->
+    <section class="climatic-section">
+        <div class="container split-grid">
+            
+            <!-- Texte -->
+            <div class="climatic-content">
+                <h2>Cycles Thermiques & Climatiques</h2>
+                <p>
+                    Nous reproduisons des conditions environnementales contrôlées pour tester le vieillissement accéléré de vos matériaux et ensembles électroniques.
+                </p>
+                
+                <ul class="tech-list">
+                    <li><i class="ph-bold ph-thermometer"></i> Températures constantes (chaud / froid)</li>
+                    <li><i class="ph-bold ph-drop"></i> Essais en chaleur humide</li>
+                    <li><i class="ph-bold ph-chart-line-down"></i> Variations rapides de température (VRT)</li>
+                    <li><i class="ph-bold ph-lightning"></i> Chocs thermiques</li>
+                </ul>
+
+                <div class="dimensions-box">
+                    <span class="dim-title">DIMENSIONS STANDARDS DES ENCEINTES</span>
+                    <span class="dim-value">De 450x330x330mm à 1100x1100x1100mm</span>
+                </div>
+            </div>
+
+            <!-- Image avec Cadre Rouge -->
+            <div class="frame-wrapper frame-left">
+                <!-- Image Enceinte Climatique -->
+                <img src="https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?q=80&w=2070&auto=format&fit=crop" alt="Enceinte Climatique">
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 2. ENCEINTE GEANTE (Dark Mode) -->
+    <section class="giant-chamber-section">
+        <div class="container giant-grid">
+            
+            <div class="giant-text">
+                <h2>Grande Capacité : 9m³</h2>
+                <p>
+                    Pour tester des sous-ensembles de grandes dimensions (automobiles, aéronautique), nous disposons d'une enceinte climatique hors-norme.
+                </p>
+                
+                <div class="giant-specs">
+                    <div class="g-spec">
+                        <span>L 1800</span>
+                        <label>Largeur (mm)</label>
+                    </div>
+                    <div class="g-spec">
+                        <span>P 2400</span>
+                        <label>Profondeur (mm)</label>
+                    </div>
+                    <div class="g-spec">
+                        <span>H 2000</span>
+                        <label>Hauteur (mm)</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="giant-icon">
+                <i class="ph-duotone ph-cube-transparent"></i>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 3. CORROSION & AGRESSIONS -->
+    <section class="corrosion-section">
+        <div class="container">
+            <div class="corrosion-header">
+                <h2>Corrosion & Atmosphères</h2>
+                <p>Tests de résistance aux milieux agressifs et corrosifs.</p>
+            </div>
+
+            <div class="corrosion-grid">
+                
+                <!-- Carte 1 -->
+                <div class="corrosion-card">
+                    <i class="ph-duotone ph-cloud-rain corr-icon"></i>
+                    <h3>Brouillard Salin</h3>
+                    <p>Essais en atmosphère saline pour valider la tenue à la corrosion des revêtements et matériaux.</p>
+                </div>
+
+                <!-- Carte 2 -->
+                <div class="corrosion-card">
+                    <i class="ph-duotone ph-wind corr-icon"></i>
+                    <h3>Atmosphères Gaz</h3>
+                    <p>Essais en atmosphère gazeuse H2S, SO2 ou combinés pour simuler la pollution industrielle.</p>
+                </div>
+
+                <!-- Carte 3 -->
+                <div class="corrosion-card">
+                    <i class="ph-duotone ph-flask corr-icon"></i>
+                    <h3>Milieux Acides & Soufre</h3>
+                    <p>Atmosphère dissoute de soufre et essais de corrosion en milieu acide spécifique.</p>
+                </div>
+
+                <!-- Carte 4 (Ajout pour équilibrer ou centrer, sinon CSS grid gère) -->
+                <!-- Ici je laisse 3 cartes pour une ligne équilibrée, mais voici la 4eme du texte -->
+                <!-- Pour 4 éléments, changer grid-template-columns en repeat(2, 1fr) ou repeat(4, 1fr) -->
+                
+                <div class="corrosion-card" style="grid-column: span 3; text-align:center; background:white; border-style:dashed;">
+                    <h4 style="margin-bottom:10px;">Également disponible</h4>
+                    <p><strong>Corrosion sous contrainte :</strong> Test combiné mécanique + environnemental.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER SIMPLE -->
+    <div style="background:#111; color:white; text-align:center; padding:60px 0;">
+        <h3 style="margin-bottom:20px;">Un programme d'essai complexe ?</h3>
+        <a href="#contact" style="background:var(--primary-red); color:white; padding:15px 40px; font-weight:700; text-transform:uppercase; text-decoration:none;">Consulter nos experts</a>
+    </div>
+
+</body>
+</html>
