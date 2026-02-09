@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Métallographie & Chimie - Institut Mecasem</title>
+    
+    <!-- POLICE MULISH -->
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet">
+    
+    <!-- ICONES PHOSPHOR -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+<style>
+/* =========================================
+   VARIABLES & RESET
+   ========================================= */
+:root {
+    --primary-red: #D80C16;
+    --primary-black: #111111;
+    --text-body: #444444;
+    --light-bg: #F9F9F9;
+    --white: #ffffff;
+    --border-color: #e5e5e5;
+    --font-main: 'Mulish', sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; border-radius: 0 !important; }
+
+body {
+    font-family: var(--font-main);
+    background-color: var(--white);
+    color: var(--text-body);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+h1, h2, h3, h4 { color: var(--primary-black); font-weight: 900; line-height: 1.2; }
+.container { max-width: 1240px; margin: 0 auto; padding: 0 20px; }
+a { text-decoration: none; transition: 0.3s; }
+ul { list-style: none; }
+
+/* =========================================
+   BREADCRUMB & HERO
+   ========================================= */
+.breadcrumb-ribbon {
+    background-color: #EBEBEB;
+    padding: 20px 0;
+    border-bottom: 1px solid #ddd;
+}
+.flex-bread { display: flex; justify-content: space-between; align-items: center; }
+.bread-path { display: flex; align-items: center; gap: 10px; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; }
+.bread-path a { color: #666; }
+.bread-path .current { color: var(--primary-black); font-weight: 800; }
+
+.activity-hero {
+    background-color: var(--primary-black);
+    padding: 100px 0;
+    color: white;
+    text-align: center;
+    /* Image Microscope / Structure métal */
+    background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=80&w=2070&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center;
+    border-bottom: 4px solid var(--primary-red);
+}
+.activity-hero h1 { font-size: 3.5rem; text-transform: uppercase; margin-bottom: 15px; color: white; }
+.activity-hero p { font-size: 1.2rem; color: #ccc; max-width: 800px; margin: 0 auto; }
+
+
+/* =========================================
+   SECTION 1 : MÉTALLOGRAPHIE (Split)
+   ========================================= */
+.meta-intro {
+    padding: 100px 0;
+    background-color: var(--white);
+}
+
+.split-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+}
+
+/* Texte */
+.meta-content h2 { font-size: 2.5rem; margin-bottom: 25px; }
+.meta-content p { font-size: 1.05rem; margin-bottom: 20px; text-align: justify; }
+.highlight-box {
+    background: var(--light-bg);
+    padding: 25px;
+    border-left: 4px solid var(--primary-black);
+    font-weight: 600;
+    margin: 30px 0;
+}
+
+/* Image Red Frame */
+.frame-wrapper { position: relative; z-index: 1; margin: 20px; }
+.frame-wrapper img { 
+    width: 100%; height: 100%; object-fit: cover; 
+    position: relative; z-index: 2; display: block;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+}
+.frame-wrapper::before {
+    content: ''; position: absolute; width: 100%; height: 100%;
+    border: 5px solid var(--primary-red); z-index: 1;
+}
+.frame-left::before { top: -20px; left: -20px; }
+
+
+/* =========================================
+   SECTION 2 : LE PROCESSUS (Timeline Steps)
+   ========================================= */
+.process-section {
+    padding: 100px 0;
+    background-color: var(--light-bg);
+}
+.section-header { text-align: center; max-width: 800px; margin: 0 auto 60px; }
+.section-header h2 { font-size: 2.5rem; margin-bottom: 10px; }
+
+.process-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.process-card {
+    background: white;
+    padding: 40px;
+    border: 1px solid #ddd;
+    position: relative;
+    transition: 0.3s;
+}
+.process-card:hover { transform: translateY(-5px); border-color: var(--primary-red); }
+
+.step-num {
+    font-size: 4rem;
+    font-weight: 900;
+    color: rgba(0,0,0,0.05);
+    position: absolute;
+    top: 10px; right: 20px;
+    line-height: 1;
+}
+
+.process-icon { font-size: 2.5rem; color: var(--primary-red); margin-bottom: 20px; }
+.process-card h3 { font-size: 1.3rem; margin-bottom: 15px; }
+.process-card ul { margin-top: 15px; }
+.process-card li { font-size: 0.9rem; margin-bottom: 8px; list-style: square; margin-left: 15px; color: #666; }
+
+
+/* =========================================
+   SECTION 3 : APPLICATIONS & COFRAC (Dark Mode)
+   ========================================= */
+.app-section {
+    background-color: var(--primary-black);
+    color: white;
+    padding: 80px 0;
+}
+.app-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+}
+.app-content h3 { color: white; font-size: 1.8rem; margin-bottom: 20px; }
+.check-list li {
+    margin-bottom: 10px;
+    display: flex; align-items: center; gap: 10px;
+}
+.check-list i { color: var(--primary-red); }
+
+.cofrac-box {
+    border: 2px solid var(--primary-red);
+    padding: 40px;
+    text-align: center;
+}
+.cofrac-box h4 { color: white; font-size: 1.5rem; margin-bottom: 10px; }
+.cofrac-box p { color: #ccc; margin-bottom: 20px; }
+.btn-cofrac {
+    background: var(--primary-red); color: white; padding: 10px 20px;
+    font-weight: 700; text-transform: uppercase; font-size: 0.8rem;
+}
+
+
+/* =========================================
+   SECTION 4 : CHIMIE (Grid)
+   ========================================= */
+.chemistry-section {
+    padding: 100px 0;
+    background-color: var(--white);
+}
+.chem-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+}
+.chem-card {
+    background: var(--light-bg);
+    padding: 30px;
+    display: flex;
+    gap: 20px;
+    border-left: 4px solid var(--primary-black);
+    transition: 0.3s;
+}
+.chem-card:hover { border-left-color: var(--primary-red); background: white; box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
+.chem-icon { font-size: 2.5rem; color: var(--primary-black); }
+.chem-info h4 { font-size: 1.2rem; margin-bottom: 5px; }
+.chem-info p { font-size: 0.95rem; color: #666; margin: 0; }
+
+
+/* =========================================
+   SECTION 5 : DURETÉ (4 colonnes)
+   ========================================= */
+.hardness-section {
+    padding: 100px 0;
+    background-color: var(--light-bg);
+    text-align: center;
+}
+.hardness-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin-top: 40px;
+}
+.hard-card {
+    background: white;
+    padding: 30px 10px;
+    border: 1px solid #ddd;
+    transition: 0.3s;
+}
+.hard-card:hover { background: var(--primary-red); color: white; border-color: var(--primary-red); }
+.hard-card:hover h4 { color: white; }
+.hard-card:hover i { color: white; }
+
+.hard-card i { font-size: 2.5rem; color: var(--primary-black); margin-bottom: 15px; }
+.hard-card h4 { font-size: 1.1rem; color: var(--primary-black); }
+
+
+/* RESPONSIVE */
+@media (max-width: 992px) {
+    .split-grid { grid-template-columns: 1fr; gap: 40px; }
+    .process-grid { grid-template-columns: 1fr; }
+    .app-grid { grid-template-columns: 1fr; }
+    .chem-grid { grid-template-columns: 1fr; }
+    .hardness-grid { grid-template-columns: 1fr 1fr; }
+}
+</style>
+</head>
+<body>
+
+    <!-- BREADCRUMB -->
+    <nav class="breadcrumb-ribbon">
+        <div class="container flex-bread">
+            <div class="bread-path">
+                <a href="#">ACCUEIL</a> <i class="ph-bold ph-caret-right"></i> 
+                <a href="#">ACTIVITÉS</a> <i class="ph-bold ph-caret-right"></i> 
+                <span class="current">MÉTALLOGRAPHIE</span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="activity-hero">
+        <div class="container">
+            <h1>Métallographie & Chimie</h1>
+            <p>Une plongée au cœur de la matière : de la microstructure à l'analyse élémentaire.</p>
+        </div>
+    </section>
+
+    <!-- 1. MÉTALLOGRAPHIE (Introduction) -->
+    <section class="meta-intro">
+        <div class="container split-grid">
+            
+            <div class="meta-content">
+                <h2>Comprendre la structure interne.</h2>
+                <p>
+                    Les analyses métallographiques sont des techniques essentielles pour comprendre la microstructure des métaux. Elles permettent de révéler les caractéristiques internes invisibles à l'œil nu : grains, phases, inclusions et défauts.
+                </p>
+                <div class="highlight-box">
+                    Objectif : Révéler les caractéristiques internes des métaux (grains, phases, inclusions) pour garantir fiabilité et performance.
+                </div>
+                <p>
+                    Ces données sont cruciales pour déterminer les propriétés mécaniques, valider un processus de fabrication ou comprendre une rupture (analyse de défaillance).
+                </p>
+            </div>
+
+            <!-- Image avec Cadre Rouge (Style Sharp) -->
+            <div class="frame-wrapper frame-left">
+                <img src="https://images.unsplash.com/photo-1576086213369-97a306d36557?q=80&w=2080&auto=format&fit=crop" alt="Microscope de laboratoire">
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 2. PROCESSUS D'ANALYSE (Timeline) -->
+    <section class="process-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Étapes d'une Analyse</h2>
+                <p>Un protocole rigoureux pour préparer la matière avant observation.</p>
+            </div>
+
+            <div class="process-grid">
+                
+                <!-- Etape 1 -->
+                <div class="process-card">
+                    <span class="step-num">01</span>
+                    <i class="ph-duotone ph-scissors process-icon"></i>
+                    <h3>Préparation</h3>
+                    <ul>
+                        <li><strong>Découpe :</strong> Prélèvement précis sans échauffement.</li>
+                        <li><strong>Enrobage :</strong> Encapsulation dans une résine.</li>
+                        <li><strong>Polissage :</strong> Obtention d'une surface miroir.</li>
+                    </ul>
+                </div>
+
+                <!-- Etape 2 -->
+                <div class="process-card">
+                    <span class="step-num">02</span>
+                    <i class="ph-duotone ph-flask process-icon"></i>
+                    <h3>Attaque Chimique</h3>
+                    <p>Application d'une solution chimique spécifique sur la surface polie pour révéler la microstructure et les différentes phases du métal.</p>
+                </div>
+
+                <!-- Etape 3 -->
+                <div class="process-card">
+                    <span class="step-num">03</span>
+                    <i class="ph-duotone ph-eye process-icon"></i>
+                    <h3>Observation</h3>
+                    <ul>
+                        <li><strong>Microscopie Optique :</strong> Analyse de la structure à faible et moyenne résolution.</li>
+                        <li><strong>MEB (Électronique) :</strong> Haute résolution et analyse chimique ponctuelle.</li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. APPLICATIONS & COFRAC (Dark Mode) -->
+    <section class="app-section">
+        <div class="container app-grid">
+            
+            <div class="app-content">
+                <h3>Applications Industrielles</h3>
+                <ul class="check-list">
+                    <li><i class="ph-bold ph-check"></i> <strong>Contrôle qualité :</strong> Identification des défauts de fabrication et des inclusions.</li>
+                    <li><i class="ph-bold ph-check"></i> <strong>Recherche & Développement :</strong> Étude des nouveaux alliages.</li>
+                    <li><i class="ph-bold ph-check"></i> <strong>Analyse de défaillance :</strong> Investigation des causes de rupture.</li>
+                    <li><i class="ph-bold ph-check"></i> <strong>Caractérisation :</strong> Détermination des propriétés mécaniques.</li>
+                </ul>
+            </div>
+
+            <div class="cofrac-box">
+                <h4>Réglementaire & COFRAC</h4>
+                <p>Qualification de Modes Opératoire de Soudage ou d’opérateurs via nos accréditations COFRAC Essais n°1-7322.</p>
+                <a href="https://www.cofrac.fr" target="_blank" class="btn-cofrac">Voir la portée sur Cofrac.fr</a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 4. CHIMIE (Grille Technique) -->
+    <section class="chemistry-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Analyses Chimiques</h2>
+                <p>En laboratoire ou sur site pour tous les métaux et alliages.</p>
+            </div>
+
+            <div class="chem-grid">
+                
+                <div class="chem-card">
+                    <i class="ph-bold ph-lightning chem-icon"></i>
+                    <div class="chem-info">
+                        <h4>Spectrométrie d'Émission</h4>
+                        <p>Analyse élémentaire par plasma ou étincelle sur l'ensemble des alliages métalliques.</p>
+                    </div>
+                </div>
+
+                <div class="chem-card">
+                    <i class="ph-bold ph-fire chem-icon"></i>
+                    <div class="chem-info">
+                        <h4>Analyse C&S (Combustion)</h4>
+                        <p>Analyseur spécifique Carbone & Soufre par combustion et détection infrarouge.</p>
+                    </div>
+                </div>
+
+                <div class="chem-card">
+                    <i class="ph-bold ph-scan chem-icon"></i>
+                    <div class="chem-info">
+                        <h4>Analyse PMI (Sur Site)</h4>
+                        <p>Identification positive des matériaux par spectrométrie étincelle portable.</p>
+                    </div>
+                </div>
+
+                <div class="chem-card">
+                    <i class="ph-bold ph-drop chem-icon"></i>
+                    <div class="chem-info">
+                        <h4>Corrosion Aqueuse</h4>
+                        <p>Essais de résistance à la corrosion en milieu liquide spécifique.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. DURETÉ (Bandeau Icones) -->
+    <section class="hardness-section">
+        <div class="container">
+            <h2>Essais de Dureté</h2>
+            <div class="hardness-grid">
+                <div class="hard-card">
+                    <i class="ph-duotone ph-diamond"></i>
+                    <h4>Vickers (HV)</h4>
+                </div>
+                <div class="hard-card">
+                    <i class="ph-duotone ph-circle"></i>
+                    <h4>Brinell (HB)</h4>
+                </div>
+                <div class="hard-card">
+                    <i class="ph-duotone ph-triangle"></i>
+                    <h4>Rockwell (HRC)</h4>
+                </div>
+                <div class="hard-card">
+                    <i class="ph-duotone ph-crosshair"></i>
+                    <h4>Microdureté</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER SIMPLE -->
+    <div style="background:#111; color:white; text-align:center; padding:60px 0; border-top:1px solid #222;">
+        <h3 style="margin-bottom:20px;">Besoin d'une expertise matière ?</h3>
+        <a href="#contact" style="background:var(--primary-red); color:white; padding:15px 40px; font-weight:700; text-transform:uppercase; text-decoration:none;">Contactez le laboratoire</a>
+    </div>
+
+</body>
+</html>
