@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Endurance - Institut Mecasem</title>
+    
+    <!-- POLICE MULISH -->
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet">
+    
+    <!-- ICONES PHOSPHOR -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+<style>
+/* =========================================
+   VARIABLES & SHARP RESET
+   ========================================= */
+:root {
+    --primary-red: #D80C16;
+    --primary-black: #111111;
+    --text-body: #444444;
+    --light-bg: #F4F4F4;
+    --white: #ffffff;
+    --border-color: #e5e5e5;
+    --font-main: 'Mulish', sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; border-radius: 0 !important; }
+
+body {
+    font-family: var(--font-main);
+    background-color: var(--white);
+    color: var(--text-body);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+h1, h2, h3, h4 { color: var(--primary-black); font-weight: 900; line-height: 1.2; }
+.container { max-width: 1240px; margin: 0 auto; padding: 0 20px; }
+a { text-decoration: none; transition: 0.3s; }
+ul { list-style: none; }
+
+/* RED FRAME (Image Cadre Rouge) */
+.frame-wrapper { position: relative; z-index: 1; margin: 20px 20px 20px 0; }
+.frame-wrapper img { 
+    width: 100%; height: 100%; object-fit: cover; 
+    position: relative; z-index: 2; display: block;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+}
+.frame-wrapper::before {
+    content: ''; position: absolute; width: 100%; height: 100%;
+    border: 5px solid var(--primary-red); z-index: 1;
+}
+.frame-right::before { bottom: -20px; right: -20px; }
+.frame-left::before { top: -20px; left: -20px; }
+
+/* =========================================
+   BREADCRUMB (Bandeau Gris)
+   ========================================= */
+.breadcrumb-ribbon {
+    background-color: #EBEBEB; /* Le gris de ton image */
+    padding: 20px 0;
+    border-bottom: 1px solid #ddd;
+}
+.flex-bread { display: flex; justify-content: space-between; align-items: center; }
+.bread-path { display: flex; align-items: center; gap: 10px; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; }
+.bread-path a { color: #666; }
+.bread-path i { font-size: 0.9rem; color: var(--primary-black); }
+.bread-path .current { color: var(--primary-black); font-weight: 800; }
+.bread-label { font-size: 1.2rem; text-transform: uppercase; letter-spacing: 1px; color: var(--primary-black); font-weight: 900; }
+
+
+/* =========================================
+   SECTION 1 : TRANSPORT (Split)
+   ========================================= */
+.transport-section {
+    padding: 100px 0;
+    background-color: var(--white);
+}
+
+.split-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+}
+
+.section-title {
+    font-size: 3rem;
+    margin-bottom: 30px;
+    position: relative;
+    padding-bottom: 20px;
+}
+.section-title::after {
+    content: ''; position: absolute; bottom: 0; left: 0;
+    width: 60px; height: 5px; background: var(--primary-red);
+}
+
+.tech-list { margin-top: 30px; }
+.tech-list li {
+    display: flex; align-items: flex-start; gap: 15px;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #eee;
+}
+.tech-list li:last-child { border-bottom: none; }
+.tech-list i { color: var(--primary-red); font-size: 1.8rem; margin-top: 2px; }
+.tech-list p { margin: 0; font-size: 1.05rem; font-weight: 600; color: var(--primary-black); }
+
+
+/* =========================================
+   SECTION 2 : BÂTIS SPÉCIFIQUES (Dark Mode)
+   ========================================= */
+.custom-benches-section {
+    background-color: var(--primary-black);
+    color: white;
+    padding: 100px 0;
+}
+
+.custom-header { text-align: center; max-width: 800px; margin: 0 auto 60px; }
+.custom-header h2 { color: white; font-size: 2.5rem; margin-bottom: 20px; }
+.custom-header p { color: #aaa; font-size: 1.1rem; }
+
+.custom-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+}
+
+.custom-card {
+    background: #1a1a1a;
+    border: 1px solid #333;
+    padding: 40px;
+    transition: 0.3s;
+}
+.custom-card:hover { border-color: var(--primary-red); transform: translateY(-5px); }
+.custom-card i { font-size: 2.5rem; color: var(--primary-red); margin-bottom: 20px; display: block; }
+.custom-card h3 { color: white; font-size: 1.5rem; margin-bottom: 20px; }
+.custom-card p { color: #ccc; margin-bottom: 15px; display: flex; align-items: flex-start; gap: 10px; }
+.custom-card p i { font-size: 1.2rem; color: var(--primary-red); margin: 0; margin-top: 4px; }
+
+
+/* =========================================
+   SECTION 3 : VIBRATIONS (Grille Claire)
+   ========================================= */
+.vibrations-section {
+    padding: 100px 0;
+    background-color: var(--light-bg);
+}
+
+.vibration-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin-top: 50px;
+}
+
+.vibro-card {
+    background: white;
+    padding: 50px 40px;
+    border: 1px solid var(--border-color);
+    position: relative;
+    transition: 0.3s;
+}
+.vibro-card:hover { border-color: var(--primary-red); box-shadow: 0 15px 30px rgba(0,0,0,0.05); }
+.vibro-card::before {
+    content: ''; position: absolute; top: 0; left: 0; width: 0%; height: 4px;
+    background: var(--primary-red); transition: 0.3s;
+}
+.vibro-card:hover::before { width: 100%; }
+
+.vibro-card h3 { font-size: 1.3rem; margin-bottom: 15px; }
+.vibro-card p { color: #666; margin: 0; font-weight: 600; }
+.v-icon { font-size: 3rem; color: var(--primary-black); margin-bottom: 20px; }
+.vibro-card:hover .v-icon { color: var(--primary-red); }
+
+
+/* RESPONSIVE */
+@media (max-width: 992px) {
+    .split-grid { grid-template-columns: 1fr; gap: 40px; }
+    .split-grid .frame-wrapper { order: 1; }
+    .split-grid .text-col { order: 2; }
+    .custom-grid { grid-template-columns: 1fr; }
+    .vibration-grid { grid-template-columns: 1fr; }
+    .flex-bread { flex-direction: column; align-items: flex-start; gap: 10px; }
+}
+</style>
+</head>
+<body>
+
+    <!-- 1. BREADCRUMB (Fil d'ariane) -->
+    <nav class="breadcrumb-ribbon">
+        <div class="container flex-bread">
+            <div class="bread-path">
+                <a href="#">ACCUEIL</a> 
+                <i class="ph-bold ph-caret-right"></i> 
+                <a href="#">ACTIVITÉS</a> 
+                <i class="ph-bold ph-caret-right"></i> 
+                <span class="current">ENDURANCE</span>
+            </div>
+            <div class="bread-label">ENDURANCE</div>
+        </div>
+    </nav>
+
+    <!-- 2. TRANSPORT & ROBOTIQUE (Hero Content) -->
+    <section class="transport-section">
+        <div class="container split-grid">
+            
+            <div class="text-col">
+                <h2 class="section-title">Transport</h2>
+                
+                <ul class="tech-list">
+                    <li>
+                        <i class="ph-fill ph-robot"></i>
+                        <p>Simulation d'entrée / sortie du véhicule à l'aide d'un robot KUKA</p>
+                    </li>
+                    <li>
+                        <i class="ph-fill ph-armchair"></i>
+                        <p>Tests sur sièges (Endurances sur bancs de type 2 axes ou 3 axes)</p>
+                    </li>
+                    <li>
+                        <i class="ph-fill ph-waves"></i>
+                        <p>Reproduction de mouvements mesurés à l'aide d'une nappe de pression</p>
+                    </li>
+                    <li>
+                        <i class="ph-fill ph-arrows-out-line-horizontal"></i>
+                        <p>Essais d'endurance accéléré de dossier</p>
+                    </li>
+                    <li>
+                        <i class="ph-fill ph-couch"></i>
+                        <p>Essai d'endurance de matelassure de coussin garni</p>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Image Robot KUKA avec le cadre rouge "Sharp" -->
+            <div class="frame-wrapper frame-right">
+                <img src="https://www.mecasem.com/wp-content/uploads/elementor/thumbs/Endurance-qxxoo5m88fii1zt49i3wgcdeezpllrujcb8d6jni1c.png" alt="Robot KUKA Test Siège">
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 3. SOUS-ENSEMBLES & BÂTIS (Dark Mode) -->
+    <section class="custom-benches-section">
+        <div class="container">
+            <div class="custom-header">
+                <h2>Essais sur Sous-ensembles & Bâtis Spécifiques</h2>
+                <p>Création d'environnements de test sur-mesure suivant les spécifications de nos clients.</p>
+            </div>
+
+            <div class="custom-grid">
+                
+                <!-- Bloc 1 : Sous-ensembles -->
+                <div class="custom-card">
+                    <i class="ph-duotone ph-engine"></i>
+                    <h3>Sous-ensembles</h3>
+                    <p><i class="ph-bold ph-check"></i> Tous types d'essais mécaniques avec asservissement en effort ou déplacement.</p>
+                    <p><i class="ph-bold ph-check"></i> Reproduction de mouvement en endurance en différentes conditions climatiques.</p>
+                </div>
+
+                <!-- Bloc 2 : Bâtis spécifiques -->
+                <div class="custom-card">
+                    <i class="ph-duotone ph-wrench"></i>
+                    <h3>Création de Bâtis</h3>
+                    <p><i class="ph-bold ph-check"></i> Endurance en basculement de banquette arrière avec mesures associées.</p>
+                    <p><i class="ph-bold ph-check"></i> Endurance déroulement / enroulement de ceintures de sécurité.</p>
+                    <p><i class="ph-bold ph-check"></i> Cyclage de switchs avec mesures (résistance de contact ou courant de fuite).</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. TESTS VIBRATOIRES (Grille Blanche) -->
+    <section class="vibrations-section">
+        <div class="container">
+            <h2 class="section-title" style="text-align: center; margin: 0 auto 60px; padding-bottom: 20px; width: max-content;">
+                Tests Vibratoires
+            </h2>
+
+            <div class="vibration-grid">
+                
+                <!-- Carte 1 -->
+                <div class="vibro-card">
+                    <i class="ph-duotone ph-wave-sine v-icon"></i>
+                    <h3>Profils Sinus</h3>
+                    <p>Tous profils sinus jusqu'à 250Hz.</p>
+                </div>
+
+                <!-- Carte 2 -->
+                <div class="vibro-card">
+                    <i class="ph-duotone ph-chart-bar v-icon"></i>
+                    <h3>Profils Aléatoires</h3>
+                    <p>Simulation d'environnements vibratoires complexes.</p>
+                </div>
+
+                <!-- Carte 3 -->
+                <div class="vibro-card">
+                    <i class="ph-duotone ph-car-profile v-icon"></i>
+                    <h3>Profils Routiers</h3>
+                    <p>Reproduction de profils routiers à partir d'enregistrements.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>
