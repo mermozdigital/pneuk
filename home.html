@@ -2019,36 +2019,218 @@ p { color: #555; }
     .news-grid { grid-template-columns: 1fr; }
 }
 </style>
+<!-- =========================================
+     MASTER FOOTER
+     ========================================= -->
+<footer class="main-footer">
+    <div class="container footer-grid">
+        
+        <!-- COLONNE 1 : IDENTITÉ -->
+        <div class="footer-col">
+            <div class="footer-logo">
+                INSTITUT <span>MECASEM</span>
+            </div>
+            <p class="footer-desc">
+                Laboratoire industriel et centre d'examen dédié à l'excellence des matériaux et du soudage.
+            </p>
+            <div class="footer-socials">
+                <a href="#"><i class="ph-fill ph-linkedin-logo"></i></a>
+                <a href="#"><i class="ph-fill ph-facebook-logo"></i></a>
+                <a href="#"><i class="ph-fill ph-youtube-logo"></i></a>
+            </div>
+        </div>
 
-    <!-- FOOTER -->
-    <footer class="main-footer">
-        <div class="container footer-grid">
-            <div class="footer-col">
-                <div class="footer-logo">INSTITUT <span>MECASEM</span></div>
-                <p>Laboratoire d'essais industriels et inspection soudage. Accrédité COFRAC.</p>
-            </div>
-            <div class="footer-col">
-                <h4>Liens Rapides</h4>
-                <ul>
-                    <li><a href="#">Nos Expertises</a></li>
-                    <li><a href="#">Carrières & Alternance</a></li>
-                    <li><a href="#">Certificats PDF</a></li>
-                    <li><a href="#">Mentions Légales</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>Contact</h4>
-                <p>90 rue de Lingolsheim<br>67540 OSTWALD</p>
-                <div style="margin-top:15px;">
-                    <p class="footer-contact"><a href="tel:0388666676">03 88 66 66 76</a></p>
-                    <p class="footer-contact"><a href="mailto:info@mecasem.com">info@mecasem.com</a></p>
-                </div>
-            </div>
+        <!-- COLONNE 2 : LE GROUPE -->
+        <div class="footer-col">
+            <h4>Le Groupe</h4>
+            <ul class="footer-links">
+                <li><a href="https://pneuk.vercel.app/home.html">Accueil</a></li>
+                <li><a href="https://pneuk.vercel.app/histoire2.html">Notre Histoire</a></li>
+                <li><a href="https://pneuk.vercel.app/politique-qualite-rh.html">Politique Qualité & RH</a></li>
+                <li><a href="https://pneuk.vercel.app/blog.html">Actualités & Blog</a></li>
+            </ul>
         </div>
-        <div class="footer-bottom">
+
+        <!-- COLONNE 3 : NOS EXPERTISES -->
+        <div class="footer-col">
+            <h4>Nos Activités</h4>
+            <ul class="footer-links">
+                <li><a href="https://pneuk.vercel.app/metallographie.html">Métallographie & Chimie</a></li>
+                <li><a href="https://pneuk.vercel.app/climatique.html">Climatique & Vieillissement</a></li>
+                <li><a href="https://pneuk.vercel.app/page_endurence.html">Endurance & Vibrations</a></li>
+                <li><a href="https://pneuk.vercel.app/secteurs.html">Secteurs d'Activité</a></li>
+            </ul>
+        </div>
+
+        <!-- COLONNE 4 : CONTACT & ACCÈS -->
+        <div class="footer-col">
+            <h4>Nous Trouver</h4>
+            <ul class="footer-contact-list">
+                <li>
+                    <i class="ph-fill ph-map-pin"></i>
+                    <a href="https://pneuk.vercel.app/nous-trouver.html">Plan d'accès & Localisation</a>
+                </li>
+                <li>
+                    <i class="ph-fill ph-phone"></i>
+                    <a href="tel:0388666676">03 88 66 66 76</a>
+                </li>
+                <li>
+                    <i class="ph-fill ph-envelope"></i>
+                    <a href="mailto:info@mecasem.com">info@mecasem.com</a>
+                </li>
+            </ul>
+            <a href="https://pneuk.vercel.app/localisation.html" class="btn-footer-cta">
+                Contacter le siège
+            </a>
+        </div>
+
+    </div>
+
+    <!-- SUB FOOTER (COPYRIGHT) -->
+    <div class="sub-footer">
+        <div class="container">
             <p>&copy; 2026 Institut Mecasem. Tous droits réservés.</p>
+            <div class="legal-links">
+                <a href="#">Mentions Légales</a>
+                <span>|</span>
+                <a href="#">CGV</a>
+                <span>|</span>
+                <a href="#">Plan du site</a>
+            </div>
         </div>
-    </footer>
+    </div>
+    <style>
+        /* =========================================
+   FOOTER STYLES (SHARP DESIGN)
+   ========================================= */
+.main-footer {
+    background-color: #111111; /* Noir Profond */
+    color: #999;
+    padding: 80px 0 0 0;
+    font-family: 'Mulish', sans-serif;
+    border-top: 4px solid #D80C16; /* Liseré Rouge */
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1.2fr;
+    gap: 40px;
+    padding-bottom: 60px;
+}
+
+/* Colonne Identité */
+.footer-logo {
+    color: #ffffff;
+    font-size: 1.8rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    letter-spacing: -1px;
+}
+.footer-logo span { color: #D80C16; }
+
+.footer-desc {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 25px;
+    max-width: 300px;
+}
+
+.footer-socials {
+    display: flex;
+    gap: 15px;
+}
+.footer-socials a {
+    background: #222;
+    color: #fff;
+    width: 40px; height: 40px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.2rem;
+    transition: 0.3s;
+    /* Pas de border-radius = Carré */
+}
+.footer-socials a:hover {
+    background: #D80C16;
+}
+
+/* Titres Colonnes */
+.footer-col h4 {
+    color: #ffffff;
+    font-size: 1.1rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    margin-bottom: 25px;
+    letter-spacing: 1px;
+}
+
+/* Liens */
+.footer-links { list-style: none; padding: 0; }
+.footer-links li { margin-bottom: 12px; }
+.footer-links a {
+    color: #999;
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 600;
+    transition: 0.3s;
+    display: inline-block;
+}
+.footer-links a:hover {
+    color: #D80C16;
+    transform: translateX(5px); /* Petit mouvement au survol */
+}
+
+/* Liste Contact */
+.footer-contact-list { list-style: none; padding: 0; margin-bottom: 25px; }
+.footer-contact-list li {
+    display: flex; align-items: center; gap: 12px;
+    margin-bottom: 15px;
+    color: #fff;
+}
+.footer-contact-list i { color: #D80C16; font-size: 1.2rem; }
+.footer-contact-list a { color: #fff; font-weight: 700; }
+
+/* Bouton CTA Footer */
+.btn-footer-cta {
+    display: inline-block;
+    background: #D80C16;
+    color: #fff;
+    padding: 12px 25px;
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    text-decoration: none;
+    transition: 0.3s;
+}
+.btn-footer-cta:hover { background: #fff; color: #D80C16; }
+
+/* Sub Footer */
+.sub-footer {
+    background-color: #000000;
+    padding: 25px 0;
+    border-top: 1px solid #222;
+    font-size: 0.8rem;
+}
+.sub-footer .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.legal-links a { color: #666; margin: 0 10px; }
+.legal-links a:hover { color: #fff; }
+.legal-links span { color: #333; }
+
+/* Responsive */
+@media (max-width: 992px) {
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 576px) {
+    .footer-grid { grid-template-columns: 1fr; text-align: center; }
+    .footer-socials { justify-content: center; }
+    .footer-contact-list li { justify-content: center; }
+    .sub-footer .container { flex-direction: column; gap: 10px; }
+}
+    </style>
+</footer>
 
     <!-- SCRIPT SLIDER -->
     <script>
