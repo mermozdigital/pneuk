@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coordination en Soudage - Institut Mecasem</title>
+    
+    <!-- POLICE MULISH -->
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet">
+    
+    <!-- ICONES PHOSPHOR -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+<style>
+/* =========================================
+   VARIABLES & RESET
+   ========================================= */
+:root {
+    --primary-red: #D80C16;
+    --primary-black: #111111;
+    --text-body: #444444;
+    --light-bg: #F9F9F9;
+    --white: #ffffff;
+    --border-color: #e5e5e5;
+    --font-main: 'Mulish', sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; border-radius: 0 !important; }
+
+body {
+    font-family: var(--font-main);
+    background-color: var(--white);
+    color: var(--text-body);
+    line-height: 1.6;
+}
+
+h1, h2, h3, h4 { color: var(--primary-black); font-weight: 800; line-height: 1.2; }
+.container { max-width: 1240px; margin: 0 auto; padding: 0 20px; }
+a { text-decoration: none; transition: 0.3s; }
+ul { list-style: none; }
+
+/* =========================================
+   HERO PAGE
+   ========================================= */
+.weld-hero {
+    background-color: var(--primary-black);
+    padding: 100px 0;
+    color: white;
+    text-align: center;
+    /* Image Soudure / Étincelles */
+    background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?q=80&w=2070&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center;
+    border-bottom: 4px solid var(--primary-red);
+}
+
+.weld-hero h1 { color: white; font-size: 3.5rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 15px; }
+.weld-hero p { font-size: 1.2rem; color: #ccc; max-width: 800px; margin: 0 auto; }
+
+/* =========================================
+   BREADCRUMB
+   ========================================= */
+.breadcrumb-ribbon {
+    background-color: #EBEBEB;
+    padding: 20px 0;
+    border-bottom: 1px solid #ddd;
+}
+.flex-bread { display: flex; justify-content: space-between; align-items: center; }
+.bread-path { display: flex; align-items: center; gap: 10px; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; }
+.bread-path a { color: #666; }
+.bread-path i { font-size: 0.9rem; color: var(--primary-black); }
+.bread-path .current { color: var(--primary-black); font-weight: 800; }
+
+
+/* =========================================
+   SECTION 1 : INTRO & ISO 14731 (Split)
+   ========================================= */
+.intro-section {
+    padding: 100px 0;
+    background-color: var(--white);
+}
+
+.split-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+}
+
+.intro-text h2 { font-size: 2.5rem; margin-bottom: 25px; }
+.intro-text p { font-size: 1.05rem; margin-bottom: 20px; color: #555; text-align: justify; }
+
+.norm-box {
+    margin-top: 30px;
+    padding: 25px;
+    background: var(--light-bg);
+    border-left: 5px solid var(--primary-red);
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+.norm-box .iso-code { font-size: 2.5rem; font-weight: 900; color: var(--primary-black); line-height: 1; }
+.norm-box span { font-size: 0.9rem; color: #666; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
+
+/* Image Cadre Rouge */
+.frame-wrapper { position: relative; z-index: 1; margin: 20px; }
+.frame-wrapper img { 
+    width: 100%; height: 100%; object-fit: cover; 
+    position: relative; z-index: 2; display: block;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+}
+.frame-wrapper::before {
+    content: ''; position: absolute; width: 100%; height: 100%;
+    border: 5px solid var(--primary-red); z-index: 1;
+}
+.frame-right::before { bottom: -20px; right: -20px; }
+
+
+/* =========================================
+   SECTION 2 : MISSIONS (Grille 4)
+   ========================================= */
+.missions-section {
+    padding: 100px 0;
+    background-color: var(--light-bg);
+}
+.section-header { text-align: center; max-width: 800px; margin: 0 auto 60px; }
+.section-header h2 { font-size: 2.5rem; margin-bottom: 10px; }
+
+.missions-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+}
+
+.mission-card {
+    background: white;
+    padding: 45px;
+    border: 1px solid #ddd;
+    transition: 0.3s;
+    position: relative;
+}
+.mission-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--primary-red);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.05);
+}
+
+.mission-icon { font-size: 3rem; color: var(--primary-red); margin-bottom: 25px; }
+.mission-card h3 { font-size: 1.5rem; margin-bottom: 20px; padding-bottom: 15px; border-bottom: 2px solid #f4f4f4; }
+
+.mission-list li {
+    margin-bottom: 12px;
+    display: flex;
+    align-items: start;
+    gap: 12px;
+    font-size: 0.95rem;
+    color: #555;
+    font-weight: 600;
+}
+.mission-list li i { color: var(--primary-black); margin-top: 4px; font-size: 1.1rem; }
+
+/* Tags de certification */
+.certif-tags { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 20px; }
+.c-tag { background: var(--primary-black); color: white; padding: 6px 12px; font-weight: 700; font-size: 0.8rem; }
+
+
+/* =========================================
+   FOOTER CTA
+   ========================================= */
+.footer-cta {
+    background: var(--primary-black);
+    color: white;
+    padding: 80px 0;
+    text-align: center;
+}
+.btn-cta {
+    background: var(--primary-red); color: white;
+    padding: 18px 45px; font-weight: 800; text-transform: uppercase;
+    text-decoration: none; display: inline-block; margin-top: 30px;
+}
+.btn-cta:hover { background: white; color: var(--primary-red); }
+
+/* RESPONSIVE */
+@media (max-width: 992px) {
+    .split-grid { grid-template-columns: 1fr; gap: 50px; }
+    .missions-grid { grid-template-columns: 1fr; }
+    .flex-bread { flex-direction: column; align-items: flex-start; gap: 10px; }
+}
+</style>
+</head>
+<body>
+
+    <!-- BREADCRUMB -->
+    <nav class="breadcrumb-ribbon">
+        <div class="container flex-bread">
+            <div class="bread-path">
+                <a href="#">ACCUEIL</a> 
+                <i class="ph-bold ph-caret-right"></i> 
+                <a href="#">ACTIVITÉS</a> 
+                <i class="ph-bold ph-caret-right"></i> 
+                <span class="current">COORDINATION SOUDAGE</span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="weld-hero">
+        <div class="container">
+            <h1>Coordination en Soudage</h1>
+            <p>Maîtriser le "Procédé Spécial" : Support IWE/IWT, Audits et Certification.</p>
+        </div>
+    </section>
+
+    <!-- 1. INTRO & ISO 14731 -->
+    <section class="intro-section">
+        <div class="container split-grid">
+            
+            <div class="intro-text">
+                <h2>Le Soudage : Un Procédé Spécial</h2>
+                <p>
+                    Le soudage exige une <strong>coordination rigoureuse</strong> de toutes les opérations (avant, pendant, après) pour garantir la fiabilité du produit final. La confiance ne se décrète pas, elle se prouve.
+                </p>
+                <p>
+                    Il est essentiel que les tâches et responsabilités du personnel (planification, exécution, contrôle) soient clairement définies selon les standards internationaux.
+                </p>
+
+                <!-- Bloc Norme Mise en Avant -->
+                <div class="norm-box">
+                    <div class="iso-code">ISO 14731</div>
+                    <span>Référentiel de Coordination en Soudage</span>
+                </div>
+            </div>
+
+            <!-- Image avec Cadre Rouge (Style Sharp) -->
+            <div class="frame-wrapper frame-right">
+                <img src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?q=80&w=2070&auto=format&fit=crop" alt="Experts en soudage">
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 2. MISSIONS & DOMAINES D'INTERVENTION -->
+    <section class="missions-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Nos Domaines d'Intervention</h2>
+                <p>Un accompagnement complet, de l'audit à la certification de votre entreprise.</p>
+            </div>
+
+            <div class="missions-grid">
+                
+                <!-- Mission 1 : EXTERNALISATION -->
+                <div class="mission-card">
+                    <i class="ph-duotone ph-user-gear mission-icon"></i>
+                    <h3>Support Externe</h3>
+                    <ul class="mission-list">
+                        <li><i class="ph-bold ph-check"></i> Mise à disposition d'un coordinateur expert</li>
+                        <li><i class="ph-bold ph-check"></i> Personnel certifié <strong>IWE</strong> (Ingénieur)</li>
+                        <li><i class="ph-bold ph-check"></i> Personnel certifié <strong>IWT</strong> (Technologue)</li>
+                        <li><i class="ph-bold ph-check"></i> Support aux coordinateurs internes (IWS)</li>
+                    </ul>
+                </div>
+
+                <!-- Mission 2 : CERTIFICATION -->
+                <div class="mission-card">
+                    <i class="ph-duotone ph-certificate mission-icon"></i>
+                    <h3>Accompagnement Certification</h3>
+                    <p style="color:#666; font-size:0.95rem;">Préparation, audit blanc et mise en conformité pour obtenir vos certifications entreprises :</p>
+                    <div class="certif-tags">
+                        <span class="c-tag">ISO 3834</span>
+                        <span class="c-tag">EN 15085</span>
+                        <span class="c-tag">EN 1090</span>
+                    </div>
+                </div>
+
+                <!-- Mission 3 : AUDIT -->
+                <div class="mission-card">
+                    <i class="ph-duotone ph-clipboard-text mission-icon"></i>
+                    <h3>Audit & Surveillance</h3>
+                    <ul class="mission-list">
+                        <li><i class="ph-bold ph-check"></i> <strong>Audit Fournisseurs</strong> : Qualifiez vos sous-traitants.</li>
+                        <li><i class="ph-bold ph-check"></i> <strong>Audit Flash</strong> : Sensibilisation terrain des opérateurs.</li>
+                        <li><i class="ph-bold ph-check"></i> Détection des points bloquants et axes d'amélioration.</li>
+                    </ul>
+                </div>
+
+                <!-- Mission 4 : DOCUMENTATION -->
+                <div class="mission-card">
+                    <i class="ph-duotone ph-files mission-icon"></i>
+                    <h3>Ingénierie Documentaire</h3>
+                    <p style="color:#666; font-size:0.95rem; margin-bottom:15px;">Vérification et rédaction rigoureuse de vos dossiers techniques :</p>
+                    <ul class="mission-list">
+                        <li><i class="ph-bold ph-file-text"></i> Cahiers de Soudage & Dossiers Constructeur</li>
+                        <li><i class="ph-bold ph-file-text"></i> DMOS (Descriptifs Modes Opératoires)</li>
+                        <li><i class="ph-bold ph-file-text"></i> Dossiers de réparation</li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER CTA -->
+    <div class="footer-cta">
+        <div class="container">
+            <h3 style="margin-bottom:10px; font-size:2rem;">Besoin d'un coordinateur IWE ?</h3>
+            <p style="color:#ccc;">Nos experts vous accompagnent pour garantir la conformité de vos projets.</p>
+            <a href="#contact" class="btn-cta">Contacter SOU-D</a>
+        </div>
+    </div>
+
+</body>
+</html>
