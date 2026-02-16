@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Institut Mecasem</title>
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web">
+
+<style>
+/* --- VARIABLES & RESET --- */
+:root {
+    --primary-red: #D80C16;
+    --primary-black: #111111;
+    --text-body: #444;
+    --light-bg: #F9F9F9;
+    --white: #ffffff;
+    --font-main: 'Mulish', sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; border-radius: 0 !important; }
+
+body {
+    font-family: var(--font-main);
+    background-color: var(--white);
+    color: var(--text-body);
+    line-height: 1.6;
+}
+
+h1, h2, h3 { color: var(--primary-black); font-weight: 800; line-height: 1.2; }
+.container { max-width: 1240px; margin: 0 auto; padding: 0 20px; }
+
+/* --- HERO PAGE --- */
+.page-hero {
+    background-color: var(--primary-black);
+    padding: 80px 0;
+    color: white;
+    text-align: center;
+    border-bottom: 4px solid var(--primary-red);
+}
+.page-hero h1 { color: white; font-size: 3rem; text-transform: uppercase; letter-spacing: 1px; }
+
+
+/* --- SECTION CONTACT PRINCIPALE --- */
+.contact-page-section {
+    padding: 100px 0;
+    background-color: var(--light-bg);
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr; /* Colonne Formulaire plus large */
+    gap: 60px;
+    align-items: start;
+}
+
+/* --- COLONNE GAUCHE : INFOS & MAP --- */
+.contact-sidebar h2 { font-size: 2rem; margin-bottom: 30px; }
+.contact-sidebar p { color: #666; margin-bottom: 40px; }
+
+.info-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-bottom: 50px;
+}
+
+.info-card {
+    background: white;
+    padding: 30px;
+    border: 1px solid #ddd;
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    transition: 0.3s;
+}
+.info-card:hover {
+    border-color: var(--primary-red);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+    transform: translateX(5px);
+}
+
+.ic-icon {
+    font-size: 2rem;
+    color: var(--primary-red);
+    flex-shrink: 0;
+}
+
+.ic-content h4 { font-size: 1.1rem; margin-bottom: 5px; }
+.ic-content p, .ic-content a { font-size: 0.95rem; color: #555; margin: 0; display: block; }
+.ic-content a:hover { color: var(--primary-red); }
+.sub-info { font-size: 0.85rem; color: #999; margin-top: 5px; display: block; }
+
+/* MAP avec Cadre Rouge */
+.map-wrapper {
+    position: relative;
+    height: 300px;
+    margin-top: 40px;
+}
+.map-frame {
+    width: 100%; height: 100%;
+    position: relative; z-index: 2;
+    border: 1px solid #ddd;
+}
+.map-frame iframe { width: 100%; height: 100%; border: none; filter: grayscale(100%); }
+.map-bg {
+    position: absolute; top: 20px; left: -20px;
+    width: 100%; height: 100%;
+    border: 4px solid var(--primary-red);
+    z-index: 1;
+}
+
+
+/* --- COLONNE DROITE : FORMULAIRE --- */
+.form-wrapper {
+    background: white;
+    padding: 60px;
+    border: 1px solid #eee;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.05);
+}
+
+.form-header { margin-bottom: 40px; border-bottom: 2px solid #f4f4f4; padding-bottom: 20px; }
+.form-header h3 { font-size: 2rem; margin-bottom: 10px; }
+
+/* Styles Champs */
+.form-row {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-bottom: 25px;
+}
+.input-group { margin-bottom: 25px; }
+
+.input-group label {
+    display: block; font-weight: 800; font-size: 0.8rem;
+    text-transform: uppercase; color: var(--primary-black); margin-bottom: 8px;
+}
+.required { color: var(--primary-red); }
+
+input, textarea {
+    width: 100%; padding: 15px;
+    border: 1px solid #ccc;
+    background: #fff;
+    font-family: var(--font-main); font-size: 1rem; color: #333;
+    transition: border-color 0.3s;
+}
+input:focus, textarea:focus { border-color: var(--primary-red); outline: none; }
+
+/* Checkbox */
+.checkbox-group { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 30px; }
+.checkbox-group input { width: auto; margin-top: 5px; accent-color: var(--primary-red); }
+.checkbox-group label { font-size: 0.85rem; color: #666; line-height: 1.4; }
+
+/* Bouton */
+.btn-submit {
+    width: 100%;
+    background: var(--primary-red);
+    color: white; border: none; padding: 20px;
+    font-family: var(--font-main); font-weight: 800; font-size: 1rem; text-transform: uppercase;
+    cursor: pointer; transition: background 0.3s;
+}
+.btn-submit:hover { background: #b00a12; }
+
+
+/* RESPONSIVE */
+@media (max-width: 992px) {
+    .contact-grid { grid-template-columns: 1fr; gap: 50px; }
+    .form-wrapper { padding: 30px; }
+    .form-row { grid-template-columns: 1fr; gap: 0; }
+}
+</style>
+</head>
+<body>
+
+    <!-- HERO -->
+    <section class="page-hero">
+        <div class="container">
+            <h1>Contact</h1>
+        </div>
+    </section>
+
+    <!-- SECTION PRINCIPALE -->
+    <section class="contact-page-section">
+        <div class="container contact-grid">
+            
+            <!-- GAUCHE : COORDONNÉES -->
+            <div class="contact-sidebar">
+                <h2>Nous Contacter</h2>
+                <p>Nos équipes sont à votre disposition pour étudier vos projets d'essais et de contrôle.</p>
+
+                <div class="info-cards">
+                    <!-- Téléphone -->
+                    <div class="info-card">
+                        <i class="ph-duotone ph-phone-call ic-icon"></i>
+                        <div class="ic-content">
+                            <h4>Par Téléphone</h4>
+                            <a href="tel:0388666676">03 88 66 66 76</a>
+                            <span class="sub-info">Lundi au vendredi : 9h00 - 18h00</span>
+                        </div>
+                    </div>
+
+                    <!-- Email -->
+                    <div class="info-card">
+                        <i class="ph-duotone ph-envelope-open ic-icon"></i>
+                        <div class="ic-content">
+                            <h4>Par Email</h4>
+                            <a href="mailto:info@mecasem.com">info@mecasem.com</a>
+                            <span class="sub-info">Pour tous les sujets</span>
+                        </div>
+                    </div>
+
+                    <!-- Adresse -->
+                    <div class="info-card">
+                        <i class="ph-duotone ph-map-pin ic-icon"></i>
+                        <div class="ic-content">
+                            <h4>Siège Social</h4>
+                            <p>90 rue de Lingolsheim<br>67540 OSTWALD, FRANCE</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Google Map avec Cadre Rouge -->
+                <div class="map-wrapper">
+                    <div class="map-frame">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2641.673232186782!2d7.708688376865384!3d48.53935297129064!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4796c9c6f2f2f2f3%3A0x4a4a4a4a4a4a4a4a!2s90%20Rue%20de%20Lingolsheim%2C%2067540%20Ostwald!5e0!3m2!1sfr!2sfr!4v1700000000000!5m2!1sfr!2sfr" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+                    <div class="map-bg"></div>
+                </div>
+            </div>
+
+            <!-- DROITE : FORMULAIRE -->
+            <div class="form-wrapper">
+                <div class="form-header">
+                    <h3>Envoyez-nous un message</h3>
+                    <p style="margin:0; font-size:0.9rem; color:#888;">Les champs marqués d'un <span class="required">*</span> sont obligatoires.</p>
+                </div>
+
+                <form>
+                    <!-- Ligne 1 -->
+                    <div class="form-row">
+                        <div class="input-group">
+                            <label>Nom <span class="required">*</span></label>
+                            <input type="text" placeholder="Votre nom" required>
+                        </div>
+                        <div class="input-group">
+                            <label>Email <span class="required">*</span></label>
+                            <input type="email" placeholder="votre@email.com" required>
+                        </div>
+                    </div>
+
+                    <!-- Ligne 2 -->
+                    <div class="form-row">
+                        <div class="input-group">
+                            <label>Numéro de téléphone</label>
+                            <input type="tel" placeholder="+33 ...">
+                        </div>
+                        <div class="input-group">
+                            <label>Entreprise</label>
+                            <input type="text" placeholder="Nom de votre société">
+                        </div>
+                    </div>
+
+                    <!-- Message -->
+                    <div class="input-group">
+                        <label>Message <span class="required">*</span></label>
+                        <textarea rows="6" placeholder="Détaillez votre demande..." required></textarea>
+                    </div>
+
+                    <!-- Checkbox -->
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="rgpd" required>
+                        <label for="rgpd">J'autorise l'utilisation de mes données personnelles pour le traitement de ma demande.</label>
+                    </div>
+
+                    <!-- Bouton -->
+                    <button type="submit" class="btn-submit">Envoyer</button>
+                </form>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FOOTER SIMPLE -->
+    <div style="background:#111; color:white; text-align:center; padding:60px 0;">
+        <p style="font-size:0.9rem; color:#666;">&copy; 2026 Institut Mecasem</p>
+    </div>
+
+</body>
+</html>
