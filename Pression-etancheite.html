@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pression & Étanchéité - Institut Mecasem</title>
+    
+    <!-- POLICE MULISH -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,300;0,400;0,600;0,800;0,900;1,400&display=swap" rel="stylesheet">
+    
+    <!-- ICONES -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+<style>
+/* =========================================
+   VARIABLES & RESET "SHARP"
+   ========================================= */
+:root {
+    --primary-red: #D80C16;
+    --primary-black: #0F0F0F; /* Noir un peu plus profond */
+    --text-grey: #555555;
+    --light-bg: #F8F8F8;
+    --white: #ffffff;
+    --border-color: #E0E0E0;
+    --font-main: 'Mulish', sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; border-radius: 0 !important; }
+
+body {
+    font-family: var(--font-main);
+    background-color: var(--white);
+    color: var(--primary-black);
+    line-height: 1.7;
+    overflow-x: hidden;
+}
+
+h1, h2, h3 { font-weight: 900; line-height: 1.1; letter-spacing: -0.5px; }
+.container { max-width: 1240px; margin: 0 auto; padding: 0 30px; }
+a { text-decoration: none; transition: 0.3s; }
+
+/* =========================================
+   ELEMENTS GRAPHIQUES
+   ========================================= */
+/* Ligne technique rouge */
+.tech-line {
+    width: 60px; height: 4px; background: var(--primary-red);
+    margin-bottom: 25px; display: block;
+}
+
+/* Grille de fond subtile pour effet "Plan Technique" */
+.bg-grid {
+    background-image: 
+        linear-gradient(var(--border-color) 1px, transparent 1px),
+        linear-gradient(90deg, var(--border-color) 1px, transparent 1px);
+    background-size: 40px 40px;
+    background-position: center center;
+}
+
+/* =========================================
+   BREADCRUMB (Épuré)
+   ========================================= */
+.breadcrumb {
+    padding: 20px 0;
+    border-bottom: 1px solid var(--border-color);
+}
+.breadcrumb ul { display: flex; gap: 10px; list-style: none; align-items: center; }
+.breadcrumb a { color: #999; font-weight: 700; font-size: 0.8rem; text-transform: uppercase; }
+.breadcrumb .current { color: var(--primary-red); font-weight: 800; font-size: 0.8rem; text-transform: uppercase; }
+.breadcrumb i { font-size: 0.8rem; color: #ccc; }
+
+
+/* =========================================
+   HERO SECTION (Architectural)
+   ========================================= */
+.hero-pression {
+    padding: 100px 0;
+    position: relative;
+    background-color: var(--white);
+}
+
+.hero-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 60px;
+    align-items: center;
+}
+
+.hero-content h1 {
+    font-size: 4rem;
+    margin-bottom: 20px;
+    color: var(--primary-black);
+}
+
+.hero-content p {
+    font-size: 1.25rem;
+    color: var(--text-grey);
+    font-weight: 300;
+    max-width: 600px;
+}
+
+/* Image Hero Style "Red Frame Outline" */
+.hero-image-box {
+    position: relative;
+    height: 450px;
+}
+.hero-image-box img {
+    width: 100%; height: 100%; object-fit: cover;
+    position: relative; z-index: 2;
+    filter: contrast(1.1);
+}
+.hero-image-box::after {
+    content: ''; position: absolute;
+    top: 30px; left: 30px; right: -30px; bottom: -30px;
+    border: 2px solid var(--primary-red);
+    z-index: 1;
+}
+
+
+/* =========================================
+   SECTION 1 : PRESSION (Clean Data)
+   ========================================= */
+.pressure-section {
+    padding: 120px 0;
+    background-color: var(--light-bg);
+}
+
+.pressure-header { margin-bottom: 60px; }
+.pressure-header h2 { font-size: 2.5rem; margin-bottom: 15px; }
+
+.pressure-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px; /* Grille ultra fine */
+    background: #ddd; /* Couleur des lignes de séparation */
+    border: 2px solid #ddd;
+}
+
+.pressure-card {
+    background: white;
+    padding: 50px;
+    transition: 0.3s;
+    position: relative;
+    overflow: hidden;
+}
+
+.pressure-card:hover { background: #fff; }
+/* Effet de barre rouge au survol qui monte */
+.pressure-card::before {
+    content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 0;
+    background: var(--primary-red); transition: 0.4s ease; opacity: 0.05;
+}
+.pressure-card:hover::before { height: 100%; }
+
+.p-icon { font-size: 2.5rem; color: var(--primary-black); margin-bottom: 20px; }
+.pressure-card:hover .p-icon { color: var(--primary-red); }
+
+.p-value {
+    font-size: 4rem;
+    font-weight: 900;
+    color: var(--primary-black);
+    line-height: 1;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.p-unit { font-size: 1rem; font-weight: 800; color: var(--primary-red); text-transform: uppercase; }
+.p-label { display: block; margin-top: 15px; font-size: 0.95rem; font-weight: 600; color: #666; }
+
+
+/* =========================================
+   SECTION 2 : FUITE (Dark & Tech)
+   ========================================= */
+.leak-section {
+    background-color: var(--primary-black);
+    color: white;
+    padding: 120px 0;
+    position: relative;
+}
+
+/* Arrière plan technique */
+.leak-bg-text {
+    position: absolute; top: 50%; left: 0; transform: translateY(-50%);
+    font-size: 15rem; font-weight: 900; color: rgba(255,255,255,0.02);
+    width: 100%; text-align: center; pointer-events: none;
+    line-height: 0.8;
+}
+
+.leak-content {
+    position: relative; z-index: 2;
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 80px;
+    align-items: center;
+}
+
+.leak-text h2 { font-size: 2.5rem; margin-bottom: 20px; color: white; }
+.leak-text p { color: #888; margin-bottom: 30px; font-size: 1.1rem; }
+
+.leak-cards-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+.leak-card {
+    border: 1px solid #333;
+    background: rgba(255,255,255,0.03);
+    padding: 30px;
+    transition: 0.3s;
+}
+.leak-card:hover { border-color: var(--primary-red); background: rgba(255,255,255,0.05); }
+
+.element-symbol {
+    font-family: 'Mulish', sans-serif;
+    font-size: 3rem;
+    font-weight: 900;
+    color: var(--white);
+    display: block;
+    margin-bottom: 5px;
+}
+.element-symbol span { font-size: 1.5rem; color: var(--primary-red); vertical-align: sub; }
+
+.leak-val {
+    font-family: monospace;
+    color: var(--primary-red);
+    font-size: 1.2rem;
+    display: block;
+    margin-bottom: 5px;
+}
+.leak-desc { font-size: 0.8rem; text-transform: uppercase; color: #666; letter-spacing: 1px; }
+
+
+/* =========================================
+   FOOTER CTA
+   ========================================= */
+.footer-cta {
+    padding: 80px 0;
+    text-align: center;
+    background: var(--white);
+    border-top: 1px solid var(--border-color);
+}
+.btn-cta {
+    display: inline-block;
+    background: var(--primary-black);
+    color: white;
+    padding: 18px 50px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 30px;
+}
+.btn-cta:hover { background: var(--primary-red); }
+
+/* RESPONSIVE */
+@media (max-width: 992px) {
+    .hero-grid, .pressure-grid, .leak-content, .leak-cards-container { grid-template-columns: 1fr; gap: 40px; }
+    .hero-content h1 { font-size: 3rem; }
+    .hero-image-box::after { display: none; }
+}
+</style>
+</head>
+<body>
+
+    <!-- BREADCRUMB -->
+    <div class="breadcrumb">
+        <div class="container">
+            <ul>
+                <li><a href="#">Accueil</a></li>
+                <li><i class="ph-bold ph-caret-right"></i></li>
+                <li><a href="#">Activités</a></li>
+                <li><i class="ph-bold ph-caret-right"></i></li>
+                <li class="current">Pression</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- HERO SECTION -->
+    <section class="hero-pression bg-grid">
+        <div class="container hero-grid">
+            <div class="hero-content">
+                <span class="tech-line"></span>
+                <h1>Pression &<br>Étanchéité.</h1>
+                <p>
+                    Essais sur vos pièces en pression et température. Validation de la résistance mécanique et de l'intégrité de vos équipements.
+                </p>
+            </div>
+            <div class="hero-image-box">
+                <img src="https://images.unsplash.com/photo-1535068484672-9cb5f3b79338?q=80&w=2000&auto=format&fit=crop" alt="Manomètre Industriel">
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 1 : PRESSION (Le Choc des Chiffres) -->
+    <section class="pressure-section">
+        <div class="container">
+            <div class="pressure-header">
+                <h2>Tests d'Éclatement</h2>
+                <p style="color:#666; font-size:1.1rem; max-width:700px;">
+                    Nous réalisons des mises en pression statiques pour valider la tenue de vos composants jusqu'à la rupture ou à la pression de service.
+                </p>
+            </div>
+
+            <div class="pressure-grid">
+                
+                <!-- Carte 1 : 100 Bars -->
+                <div class="pressure-card">
+                    <i class="ph-duotone ph-drop p-icon"></i>
+                    <div>
+                        <span class="p-value">100</span>
+                        <span class="p-unit">Bars</span>
+                    </div>
+                    <span class="p-label">Test Pression Hydraulique</span>
+                </div>
+
+                <!-- Carte 2 : 33 Bars -->
+                <div class="pressure-card">
+                    <i class="ph-duotone ph-wind p-icon"></i>
+                    <div>
+                        <span class="p-value">33</span>
+                        <span class="p-unit">Bars</span>
+                    </div>
+                    <span class="p-label">Test Pression Pneumatique</span>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 2 : DÉTECTION FUITE (L'Infiniment Petit) -->
+    <section class="leak-section">
+        <!-- Texte de fond décoratif -->
+        <div class="leak-bg-text">LEAK TEST</div>
+
+        <div class="container leak-content">
+            
+            <div class="leak-text">
+                <span class="tech-line"></span>
+                <h2>Détection de Fuites</h2>
+                <p>
+                    Analyse fine par gaz traceurs pour les applications critiques (Nucléaire, Aérospatial). Nous mesurons l'étanchéité bien au-delà des bulles d'air.
+                </p>
+                <p style="color:white; font-weight:700; margin-top:20px;">
+                    <i class="ph-fill ph-check-circle" style="color:var(--primary-red)"></i> Méthode globale ou locale
+                </p>
+            </div>
+
+            <div class="leak-cards-container">
+                
+                <!-- Carte Hélium -->
+                <div class="leak-card">
+                    <div class="element-symbol">He</div>
+                    <span class="leak-val">1.10<sup>-8</sup></span>
+                    <span class="leak-desc">mbars.l/s (Hélium)</span>
+                </div>
+
+                <!-- Carte Hydrogène -->
+                <div class="leak-card">
+                    <div class="element-symbol">H<span>2</span></div>
+                    <span class="leak-val">1.10<sup>-6</sup></span>
+                    <span class="leak-desc">mbars.l/s (Hydrogène)</span>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FOOTER CTA -->
+    <div class="footer-cta">
+        <div class="container">
+            <h3 style="font-size:2rem; margin-bottom:10px;">Votre équipement est-il étanche ?</h3>
+            <p style="color:#666;">Obtenez un rapport d'essai certifié.</p>
+            <a href="#contact" class="btn-cta">Demander un test</a>
+        </div>
+    </div>
+
+</body>
+</html>
