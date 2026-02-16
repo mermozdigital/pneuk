@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nos Activités - Institut Mecasem</title>
+    
+    <!-- POLICE MULISH -->
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet">
+    
+    <!-- ICONES PHOSPHOR -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+<style>
+/* =========================================
+   VARIABLES & RESET
+   ========================================= */
+:root {
+    --primary-red: #D80C16;
+    --primary-black: #111111;
+    --text-body: #444444;
+    --light-bg: #F9F9F9;
+    --white: #ffffff;
+    --border-color: #e5e5e5;
+    --font-main: 'Mulish', sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; border-radius: 0 !important; }
+
+body {
+    font-family: var(--font-main);
+    background-color: var(--white);
+    color: var(--text-body);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+h1, h2, h3, h4 { color: var(--primary-black); font-weight: 800; line-height: 1.2; }
+.container { max-width: 1240px; margin: 0 auto; padding: 0 20px; }
+a { text-decoration: none; transition: 0.3s; }
+
+/* =========================================
+   BREADCRUMB
+   ========================================= */
+.breadcrumb-ribbon {
+    background-color: var(--light-bg);
+    padding: 20px 0;
+    border-bottom: 1px solid #ddd;
+}
+.flex-bread { display: flex; justify-content: space-between; align-items: center; }
+.bread-path { display: flex; align-items: center; gap: 10px; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; }
+.bread-path a { color: #666; }
+.bread-path i { font-size: 0.9rem; color: var(--primary-black); }
+.bread-path .current { color: var(--primary-black); font-weight: 800; }
+
+
+/* =========================================
+   HERO PAGE
+   ========================================= */
+.activities-hero {
+    background-color: var(--primary-black);
+    padding: 100px 0;
+    color: white;
+    text-align: center;
+    /* Image abstraite industrielle */
+    background-image: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center;
+    border-bottom: 4px solid var(--primary-red);
+}
+
+.activities-hero h1 { color: white; font-size: 3.5rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 15px; }
+.activities-hero p { font-size: 1.2rem; color: #ccc; max-width: 800px; margin: 0 auto; }
+
+
+/* =========================================
+   GRID DES ACTIVITÉS
+   ========================================= */
+.activities-section {
+    padding: 100px 0;
+    background-color: var(--white);
+}
+
+.activities-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 Colonnes strictes */
+    gap: 40px;
+}
+
+/* CARTE ACTIVITÉ */
+.activity-card {
+    background: var(--white);
+    border: 1px solid #eee;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s ease;
+    height: 100%; /* Uniformise la hauteur */
+    position: relative;
+    overflow: hidden;
+}
+
+.activity-card:hover {
+    border-color: var(--primary-red);
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.05);
+}
+
+/* Image de la carte */
+.card-image {
+    height: 250px;
+    overflow: hidden;
+    position: relative;
+}
+.card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+.activity-card:hover .card-image img {
+    transform: scale(1.1); /* Zoom au survol */
+}
+
+/* Contenu de la carte */
+.card-content {
+    padding: 35px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; /* Pousse le bas vers le bas */
+}
+
+.card-content h3 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+}
+
+.card-content p {
+    font-size: 0.95rem;
+    color: #666;
+    margin-bottom: 25px;
+    line-height: 1.6;
+}
+
+/* Lien "En savoir plus" */
+.card-link {
+    margin-top: auto; /* Colle le lien en bas */
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    color: var(--primary-black);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+.activity-card:hover .card-link {
+    color: var(--primary-red);
+    gap: 12px; /* Petite animation de flèche */
+}
+
+
+/* FOOTER CTA */
+.footer-cta {
+    background: var(--primary-black);
+    color: white;
+    padding: 80px 0;
+    text-align: center;
+    margin-top: 80px;
+}
+.btn-cta {
+    background: var(--primary-red); color: white;
+    padding: 18px 45px; font-weight: 800; text-transform: uppercase;
+    text-decoration: none; display: inline-block; margin-top: 30px;
+}
+.btn-cta:hover { background: white; color: var(--primary-red); }
+
+/* RESPONSIVE */
+@media (max-width: 992px) {
+    .activities-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 600px) {
+    .activities-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+    <!-- BREADCRUMB -->
+    <nav class="breadcrumb-ribbon">
+        <div class="container flex-bread">
+            <div class="bread-path">
+                <a href="#">ACCUEIL</a> 
+                <i class="ph-bold ph-caret-right"></i> 
+                <span class="current">NOS ACTIVITÉS</span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="activities-hero">
+        <div class="container">
+            <h1>Nos Activités</h1>
+            <p>Un savoir-faire multidisciplinaire pour accompagner vos projets industriels.</p>
+        </div>
+    </section>
+
+    <!-- GRILLE DES ACTIVITÉS -->
+    <section class="activities-section">
+        <div class="container">
+            <div class="activities-grid">
+                
+                <!-- 1. USINAGE -->
+                <article class="activity-card">
+                    <div class="card-image">
+                        <img src="https://images.unsplash.com/photo-1565439398533-33a763c3de9c?q=80&w=2070&auto=format&fit=crop" alt="Usinage">
+                    </div>
+                    <div class="card-content">
+                        <h3>Usinage</h3>
+                        <p>Préparation d'éprouvettes et usinage de précision (Acier, Alu, Titane). Atelier intégré pour une réactivité optimale.</p>
+                        <a href="#" class="card-link">Découvrir <i class="ph-bold ph-arrow-right"></i></a>
+                    </div>
+                </article>
+
+                <!-- 2. MÉCANIQUE -->
+                <article class="activity-card">
+                    <div class="card-image">
+                        <img src="https://images.unsplash.com/photo-1581092335397-9583eb92d232?q=80&w=2070&auto=format&fit=crop" alt="Traction">
+                    </div>
+                    <div class="card-content">
+                        <h3>Mécaniques & Fatigue</h3>
+                        <p>Essais de traction, compression, pliage, résilience et fatigue des matériaux. Capacité jusqu'à 800 kN.</p>
+                        <a href="#" class="card-link">Découvrir <i class="ph-bold ph-arrow-right"></i></a>
+                    </div>
+                </article>
+
+                <!-- 3. ENDURANCE -->
+                <article class="activity-card">
+                    <div class="card-image">
+                        <img src="https://images.unsplash.com/photo-1616401784845-180882ba9ba8?q=80&w=2070&auto=format&fit=crop" alt="Endurance">
+                    </div>
+                    <div class="card-content">
+                        <h3>Endurance</h3>
+                        <p>Tests sur sous-ensembles, création de bâtis spécifiques et essais vibratoires pour le secteur automobile et transport.</p>
+                        <a href="#" class="card-link">Découvrir <i class="ph-bold ph-arrow-right"></i></a>
+                    </div>
+                </article>
+
+                <!-- 4. MÉTALLOGRAPHIE -->
+                <article class="activity-card">
+                    <div class="card-image">
+                        <img src="https://images.unsplash.com/photo-1576086213369-97a306d36557?q=80&w=2080&auto=format&fit=crop" alt="Microscope">
+                    </div>
+                    <div class="card-content">
+                        <h3>Métallographie & Chimie</h3>
+                        <p>Analyse de structure, recherche de défauts (MEB) et analyse chimique en laboratoire ou sur site (PMI).</p>
+                        <a href="#" class="card-link">Découvrir <i class="ph-bold ph-arrow-right"></i></a>
+                    </div>
+                </article>
+
+                <!-- 5. CLIMATIQUE -->
+                <article class="activity-card">
+                    <div class="card-image">
+                        <img src="https://images.unsplash.com/photo-1469022563428-aa67f3424b3c?q=80&w=2070&auto=format&fit=crop" alt="Climatique">
+                    </div>
+                    <div class="card-content">
+                        <h3>Climatique & Thermique</h3>
+                        <p>Vieillissement accéléré, corrosion (brouillard salin) et cycles thermiques (-80°C / +220°C). Enceinte géante de 9m³.</p>
+                        <a href="#" class="card-link">Découvrir <i class="ph-bold ph-arrow-right"></i></a>
+                    </div>
+                </article>
+
+                <!-- 6. CONTRÔLE NON DESTRUCTIF -->
+                <article class="activity-card">
+                    <div class="card-image">
+                        <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?q=80&w=2070&auto=format&fit=crop" alt="CND">
+                    </div>
+                    <div class="card-content">
+                        <h3>Contrôles non destructifs</h3>
+                        <p>Radiographie, ultrasons, ressuage et magnétoscopie. Inspection de la santé matière sans destruction.</p>
+                        <a href="#" class="card-link">Découvrir <i class="ph-bold ph-arrow-right"></i></a>
+                    </div>
+                </article>
+
+                <!-- 7. COORDINATION SOUDAGE -->
+                <article class="activity-card">
+                    <div class="card-image">
+                        <img src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?q=80&w=2070&auto=format&fit=crop" alt="Soudage">
+                    </div>
+                    <div class="card-content">
+                        <h3>Coordination Soudage</h3>
+                        <p>Accompagnement IWE/IWT, préparation à la certification ISO 3834 et audit de vos procédés spéciaux.</p>
+                        <a href="#" class="card-link">Découvrir <i class="ph-bold ph-arrow-right"></i></a>
+                    </div>
+                </article>
+
+                <!-- 8. PRESSION -->
+                <article class="activity-card">
+                    <div class="card-image">
+                        <img src="https://images.unsplash.com/photo-1581092162384-8987c1d64726?q=80&w=2070&auto=format&fit=crop" alt="Pression">
+                    </div>
+                    <div class="card-content">
+                        <h3>Pression & Fuites</h3>
+                        <p>Tests d'éclatement hydraulique et pneumatique. Recherche de fuite gaz traces (Hélium / Hydrogène).</p>
+                        <a href="#" class="card-link">Découvrir <i class="ph-bold ph-arrow-right"></i></a>
+                    </div>
+                </article>
+
+                <!-- 9. INSPECTION -->
+                <article class="activity-card">
+                    <div class="card-image">
+                        <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop" alt="Inspection">
+                    </div>
+                    <div class="card-content">
+                        <h3>Inspection Tierce Partie</h3>
+                        <p>Suivi de fabrication et surveillance sur site client ou fournisseur, en toute impartialité (ISO 17020).</p>
+                        <a href="#" class="card-link">Découvrir <i class="ph-bold ph-arrow-right"></i></a>
+                    </div>
+                </article>
+
+                <!-- 10. FORMATION -->
+                <article class="activity-card" style="grid-column: 2;"> <!-- Centré sur la dernière ligne (si 3 col) -->
+                    <div class="card-image">
+                        <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=2070&auto=format&fit=crop" alt="Formation">
+                    </div>
+                    <div class="card-content">
+                        <h3>Formation</h3>
+                        <p>Transmission du savoir-faire : contrôle visuel, lecture de plan, procédés de soudage. Centre agréé.</p>
+                        <a href="#" class="card-link">Découvrir <i class="ph-bold ph-arrow-right"></i></a>
+                    </div>
+                </article>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER CTA -->
+    <div class="footer-cta">
+        <div class="container">
+            <h3 style="margin-bottom:10px; font-size:2rem;">Vous ne trouvez pas votre besoin ?</h3>
+            <p style="color:#ccc;">Nos ingénieurs étudient la faisabilité de vos demandes spécifiques.</p>
+            <a href="#contact" class="btn-cta">Contactez le bureau d'études</a>
+        </div>
+    </div>
+
+</body>
+</html>
