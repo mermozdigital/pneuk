@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actualités - Institut Mecasem</title>
+    
+    <!-- POLICE MULISH -->
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet">
+    
+    <!-- ICONES PHOSPHOR -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+<style>
+/* =========================================
+   VARIABLES & RESET
+   ========================================= */
+:root {
+    --primary-red: #D80C16;
+    --primary-black: #111111;
+    --text-body: #444444;
+    --light-bg: #F9F9F9;
+    --white: #ffffff;
+    --border-color: #e5e5e5;
+    --font-main: 'Mulish', sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; border-radius: 0 !important; }
+
+body {
+    font-family: var(--font-main);
+    background-color: var(--light-bg); /* Fond gris clair pour faire ressortir les cartes blanches */
+    color: var(--text-body);
+    line-height: 1.6;
+}
+
+h1, h2, h3, h4 { color: var(--primary-black); font-weight: 800; line-height: 1.2; }
+.container { max-width: 1240px; margin: 0 auto; padding: 0 20px; }
+a { text-decoration: none; transition: 0.3s; }
+
+/* =========================================
+   BREADCRUMB
+   ========================================= */
+.breadcrumb-ribbon {
+    background-color: #EBEBEB;
+    padding: 20px 0;
+    border-bottom: 1px solid #ddd;
+}
+.flex-bread { display: flex; justify-content: space-between; align-items: center; }
+.bread-path { display: flex; align-items: center; gap: 10px; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; }
+.bread-path a { color: #666; }
+.bread-path i { font-size: 0.9rem; color: var(--primary-black); }
+.bread-path .current { color: var(--primary-black); font-weight: 800; }
+
+
+/* =========================================
+   HERO NEWS
+   ========================================= */
+.news-hero {
+    background-color: var(--primary-black);
+    padding: 80px 0;
+    color: white;
+    text-align: center;
+    border-bottom: 4px solid var(--primary-red);
+}
+.news-hero h1 { color: white; font-size: 3.5rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 15px; }
+.news-hero p { font-size: 1.2rem; color: #ccc; max-width: 700px; margin: 0 auto; }
+
+
+/* =========================================
+   SECTION FILTRES
+   ========================================= */
+.filter-bar {
+    padding: 40px 0;
+    text-align: center;
+}
+.filter-list {
+    display: inline-flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.filter-btn {
+    background: white;
+    border: 1px solid #ddd;
+    padding: 10px 20px;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    color: #666;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.filter-btn:hover, .filter-btn.active {
+    background: var(--primary-red);
+    color: white;
+    border-color: var(--primary-red);
+}
+
+
+/* =========================================
+   ARTICLE "À LA UNE" (Featured)
+   ========================================= */
+.featured-section { margin-bottom: 60px; }
+
+.featured-card {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    background: white;
+    border: 1px solid #ddd;
+    /* Pas d'arrondi */
+}
+
+.feat-img {
+    position: relative;
+    height: 450px;
+    overflow: hidden;
+}
+.feat-img img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+.featured-card:hover .feat-img img { transform: scale(1.05); }
+
+.feat-content {
+    padding: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+}
+/* Trait rouge décoratif */
+.feat-content::before {
+    content: ''; position: absolute; left: 0; top: 60px; bottom: 60px;
+    width: 4px; background: var(--primary-red);
+}
+
+.cat-badge {
+    background: var(--primary-black);
+    color: white;
+    padding: 5px 12px;
+    font-size: 0.75rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    display: inline-block;
+    margin-bottom: 15px;
+    width: fit-content;
+}
+/* Variante couleur badge */
+.cat-badge.red { background: var(--primary-red); }
+
+.feat-date { color: #999; font-size: 0.9rem; font-weight: 600; margin-bottom: 10px; display: block; }
+
+.feat-content h2 { font-size: 2.2rem; margin-bottom: 20px; }
+.feat-content p { color: #666; margin-bottom: 30px; font-size: 1.05rem; }
+
+.read-btn {
+    font-weight: 800;
+    text-transform: uppercase;
+    color: var(--primary-black);
+    font-size: 0.9rem;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 5px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    width: fit-content;
+}
+.read-btn:hover { color: var(--primary-red); border-color: var(--primary-red); gap: 15px; }
+
+
+/* =========================================
+   GRILLE ARTICLES
+   ========================================= */
+.news-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin-bottom: 80px;
+}
+
+.news-card {
+    background: white;
+    border: 1px solid #ddd;
+    display: flex;
+    flex-direction: column;
+    transition: 0.3s;
+    position: relative;
+}
+
+.news-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--primary-red);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+
+.card-thumb {
+    height: 240px;
+    position: relative;
+    overflow: hidden;
+}
+.card-thumb img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+.news-card:hover .card-thumb img { transform: scale(1.1); }
+
+.card-badge {
+    position: absolute; top: 20px; left: 20px;
+    background: var(--primary-red); color: white;
+    padding: 5px 10px; font-weight: 800; font-size: 0.7rem; text-transform: uppercase;
+}
+
+.card-body {
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.card-date {
+    font-size: 0.8rem;
+    color: #999;
+    font-weight: 700;
+    margin-bottom: 10px;
+    display: flex; align-items: center; gap: 5px;
+}
+
+.card-body h3 { font-size: 1.3rem; margin-bottom: 15px; line-height: 1.4; }
+.card-body p { font-size: 0.95rem; color: #666; margin-bottom: 25px; line-height: 1.6; }
+
+.card-footer {
+    margin-top: auto; /* Pousse en bas */
+    padding-top: 20px;
+    border-top: 1px solid #f5f5f5;
+}
+
+
+/* =========================================
+   PAGINATION
+   ========================================= */
+.pagination {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 100px;
+}
+.page-num {
+    width: 45px; height: 45px;
+    display: flex; align-items: center; justify-content: center;
+    background: white; border: 1px solid #ddd;
+    color: var(--primary-black);
+    font-weight: 800;
+    transition: 0.3s;
+}
+.page-num:hover, .page-num.active {
+    background: var(--primary-black);
+    color: white;
+    border-color: var(--primary-black);
+}
+
+
+/* FOOTER CTA */
+.footer-cta {
+    background: var(--primary-black);
+    color: white;
+    padding: 60px 0;
+    text-align: center;
+}
+.btn-cta {
+    background: var(--primary-red); color: white;
+    padding: 15px 40px; font-weight: 800; text-transform: uppercase;
+    text-decoration: none; display: inline-block; margin-top: 20px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 992px) {
+    .featured-card { grid-template-columns: 1fr; }
+    .feat-img { height: 300px; }
+    .feat-content { padding: 40px; }
+    .feat-content::before { width: 100%; height: 4px; top: 0; bottom: auto; }
+    .news-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 600px) {
+    .news-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+    <!-- BREADCRUMB -->
+    <nav class="breadcrumb-ribbon">
+        <div class="container flex-bread">
+            <div class="bread-path">
+                <a href="#">ACCUEIL</a> 
+                <i class="ph-bold ph-caret-right"></i> 
+                <span class="current">NEWS & ACTUALITÉS</span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="news-hero">
+        <div class="container">
+            <h1>Actualités & Informations</h1>
+            <p>Les dernières nouvelles, événements et certifications de l'Institut Mecasem.</p>
+        </div>
+    </section>
+
+    <div class="container">
+        
+        <!-- FILTRES -->
+        <div class="filter-bar">
+            <div class="filter-list">
+                <div class="filter-btn active">Tout voir</div>
+                <div class="filter-btn">Événements</div>
+                <div class="filter-btn">Vie du Groupe</div>
+                <div class="filter-btn">Certifications</div>
+                <div class="filter-btn">Presse</div>
+            </div>
+        </div>
+
+        <!-- ARTICLE À LA UNE (FEATURED) -->
+        <div class="featured-section">
+            <article class="featured-card">
+                <div class="feat-img">
+                    <img src="https://www.mecasem.com/wp-content/uploads/2025/11/salon-World-Nuclear-Exhibition.jpg" alt="Salon WNE">
+                </div>
+                <div class="feat-content">
+                    <span class="cat-badge red">Événement Majeur</span>
+                    <span class="feat-date">07 Novembre 2025</span>
+                    <h2>Salon World Nuclear Exhibition</h2>
+                    <p>
+                        Institut Mecasem confirme sa position d'acteur clé dans la filière nucléaire. Retrouvez nos équipes sur le stand pour découvrir nos nouvelles accréditations et nos solutions de contrôle non destructif avancées.
+                    </p>
+                    <a href="#" class="read-btn">Lire l'article complet <i class="ph-bold ph-arrow-right"></i></a>
+                </div>
+            </article>
+        </div>
+
+        <!-- GRILLE DES ARTICLES -->
+        <div class="news-grid">
+            
+            <!-- Article 1 -->
+            <article class="news-card">
+                <div class="card-thumb">
+                    <span class="card-badge">Interne</span>
+                    <img src="https://www.mecasem.com/wp-content/uploads/2025/11/ClubLabo-scaled.jpg" alt="Club Labo">
+                </div>
+                <div class="card-body">
+                    <span class="card-date"><i class="ph-bold ph-calendar-blank"></i> 02 Octobre 2025</span>
+                    <h3>Club Labo : Échanges de Qualité</h3>
+                    <p>Un bel après-midi d’échanges techniques et conviviaux chez Institut Mecasem avec les acteurs locaux.</p>
+                    <div class="card-footer">
+                        <a href="#" class="read-btn">Lire la suite</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Article 2 -->
+            <article class="news-card">
+                <div class="card-thumb">
+                    <span class="card-badge">Certification</span>
+                    <img src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?q=80&w=2070&auto=format&fit=crop" alt="COFREND">
+                </div>
+                <div class="card-body">
+                    <span class="card-date"><i class="ph-bold ph-calendar-blank"></i> 05 Septembre 2025</span>
+                    <h3>Nouvelle Certification COFREND</h3>
+                    <p>Félicitations à notre inspecteur Yannick Labbé pour l’obtention de sa certification, renforçant notre pôle CND.</p>
+                    <div class="card-footer">
+                        <a href="#" class="read-btn">Lire la suite</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Article 3 -->
+            <article class="news-card">
+                <div class="card-thumb">
+                    <span class="card-badge">RH</span>
+                    <img src="https://www.mecasem.com/wp-content/uploads/elementor/thumbs/formation-qxvxb7jdsj2imz0ee1ugcfknzc7fz9nc2o9xv3mv4g.jpg" alt="Alternants">
+                </div>
+                <div class="card-body">
+                    <span class="card-date"><i class="ph-bold ph-calendar-blank"></i> 29 Novembre 2024</span>
+                    <h3>Rentrée 2024 : 8 Nouveaux Talents</h3>
+                    <p>L’Institut Mecasem est fier d’annoncer l’accueil de 8 nouveaux alternants pour former la relève.</p>
+                    <div class="card-footer">
+                        <a href="#" class="read-btn">Lire la suite</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Article 4 -->
+            <article class="news-card">
+                <div class="card-thumb">
+                    <span class="card-badge">Réseau</span>
+                    <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=2032&auto=format&fit=crop" alt="AFQP">
+                </div>
+                <div class="card-body">
+                    <span class="card-date"><i class="ph-bold ph-calendar-blank"></i> 12 Novembre 2024</span>
+                    <h3>Accueil du Club Labos AFQP</h3>
+                    <p>Jeudi 7 novembre, nous étions ravis d’accueillir le Club Labos de l’AFQP / MFQ Alsace.</p>
+                    <div class="card-footer">
+                        <a href="#" class="read-btn">Lire la suite</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Article 5 -->
+            <article class="news-card">
+                <div class="card-thumb">
+                    <span class="card-badge">Qualité</span>
+                    <img src="https://www.mecasem.com/wp-content/uploads/elementor/thumbs/renouvellement-accreditations-cofrac-qxvxcqzuzr6fnyrue7tfxjkv12m3lerhyarl6fcmxc.png" alt="COFRAC">
+                </div>
+                <div class="card-body">
+                    <span class="card-date"><i class="ph-bold ph-calendar-blank"></i> 09 Juillet 2024</span>
+                    <h3>Renouvellement COFRAC</h3>
+                    <p>Nous sommes fiers de vous informer que nos laboratoires ont obtenu le renouvellement de l’ensemble des accréditations.</p>
+                    <div class="card-footer">
+                        <a href="#" class="read-btn">Lire la suite</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Article 6 -->
+            <article class="news-card">
+                <div class="card-thumb">
+                    <span class="card-badge">Digital</span>
+                    <img src="https://www.mecasem.com/wp-content/uploads/elementor/thumbs/web-1045994_1920-qxvxbzqftzrth9e8knfr2zxeovpkex44j62zt71dug.jpg" alt="Site Web">
+                </div>
+                <div class="card-body">
+                    <span class="card-date"><i class="ph-bold ph-calendar-blank"></i> 01 Mars 2024</span>
+                    <h3>Le site fait peau neuve !</h3>
+                    <p>Découvrez notre nouvelle identité numérique, plus claire et adaptée à notre nouvelle structure.</p>
+                    <div class="card-footer">
+                        <a href="#" class="read-btn">Lire la suite</a>
+                    </div>
+                </div>
+            </article>
+
+        </div>
+
+        <!-- PAGINATION -->
+        <div class="pagination">
+            <a href="#" class="page-num active">1</a>
+            <a href="#" class="page-num">2</a>
+            <a href="#" class="page-num"><i class="ph-bold ph-arrow-right"></i></a>
+        </div>
+
+    </div>
+
+    <!-- FOOTER CTA -->
+    <div class="footer-cta">
+        <div class="container">
+            <h3 style="margin-bottom:20px;">Restez informés</h3>
+            <a href="#newsletter" class="btn-cta">S'abonner à la newsletter</a>
+        </div>
+    </div>
+
+</body>
+</html>
