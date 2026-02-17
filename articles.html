@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Club Labo - Institut Mecasem</title>
+    
+    <!-- POLICE MULISH -->
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet">
+    
+    <!-- ICONES PHOSPHOR -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+<style>
+/* =========================================
+   VARIABLES & RESET
+   ========================================= */
+:root {
+    --primary-red: #D80C16;
+    --primary-black: #111111;
+    --text-body: #444444;
+    --light-bg: #F9F9F9;
+    --white: #ffffff;
+    --border-color: #e5e5e5;
+    --font-main: 'Mulish', sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; border-radius: 0 !important; }
+
+body {
+    font-family: var(--font-main);
+    background-color: var(--white);
+    color: var(--text-body);
+    line-height: 1.8; /* Interlignage confort pour la lecture */
+}
+
+h1, h2, h3, h4 { color: var(--primary-black); font-weight: 800; line-height: 1.2; margin-bottom: 15px; }
+.container { max-width: 1240px; margin: 0 auto; padding: 0 20px; }
+a { text-decoration: none; transition: 0.3s; color: inherit; }
+
+/* =========================================
+   BREADCRUMB (Ruban Gris)
+   ========================================= */
+.breadcrumb-ribbon {
+    background-color: #EBEBEB;
+    padding: 20px 0;
+    border-bottom: 1px solid #ddd;
+}
+.flex-bread { display: flex; justify-content: space-between; align-items: center; }
+.bread-path { display: flex; align-items: center; gap: 10px; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; }
+.bread-path a { color: #666; }
+.bread-path i { font-size: 0.9rem; color: var(--primary-black); }
+.bread-path .current { color: var(--primary-black); font-weight: 800; }
+.btn-back { font-weight: 800; text-transform: uppercase; font-size: 0.8rem; display: flex; align-items: center; gap: 5px; }
+.btn-back:hover { color: var(--primary-red); gap: 10px; }
+
+
+/* =========================================
+   LAYOUT ARTICLE (Grid)
+   ========================================= */
+.single-post-section {
+    padding: 80px 0;
+}
+
+.post-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr; /* 2/3 Contenu, 1/3 Sidebar */
+    gap: 60px;
+}
+
+/* --- COLONNE CONTENU --- */
+.post-header { margin-bottom: 40px; }
+.post-meta {
+    display: flex; gap: 20px; align-items: center;
+    font-size: 0.9rem; color: #888; font-weight: 700; text-transform: uppercase;
+    margin-bottom: 20px;
+}
+.post-meta i { color: var(--primary-red); font-size: 1.1rem; }
+.post-title { font-size: 3rem; line-height: 1.1; }
+
+/* Image Principale avec Cadre Rouge */
+.frame-wrapper { position: relative; z-index: 1; margin: 0 0 50px 0; }
+.frame-wrapper img { 
+    width: 100%; height: auto; object-fit: cover; 
+    position: relative; z-index: 2; display: block;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+}
+.frame-wrapper::before {
+    content: ''; position: absolute; width: 100%; height: 100%;
+    border: 5px solid var(--primary-red); z-index: 1;
+}
+.frame-left::before { top: -20px; left: -20px; }
+
+/* Corps du texte */
+.post-content { font-size: 1.1rem; color: #333; }
+.post-content p { margin-bottom: 25px; }
+.post-content strong { color: var(--primary-black); font-weight: 800; }
+
+/* Citation / Exergue */
+.post-content blockquote {
+    border-left: 5px solid var(--primary-red);
+    background: var(--light-bg);
+    padding: 30px;
+    font-size: 1.2rem;
+    font-style: italic;
+    color: var(--primary-black);
+    margin: 40px 0;
+    font-weight: 700;
+}
+
+/* Tags en bas */
+.post-tags {
+    margin-top: 50px;
+    padding-top: 30px;
+    border-top: 1px solid #eee;
+    display: flex; gap: 10px; flex-wrap: wrap;
+}
+.tag-item {
+    background: #f4f4f4; padding: 5px 15px; font-size: 0.8rem; font-weight: 700; color: #666;
+    transition: 0.3s;
+}
+.tag-item:hover { background: var(--primary-black); color: white; }
+
+
+/* --- COLONNE SIDEBAR (Sticky) --- */
+.sidebar {
+    position: sticky;
+    top: 40px; /* Colle au haut de l'écran lors du scroll */
+    height: fit-content;
+}
+
+.widget-box {
+    margin-bottom: 50px;
+}
+
+.widget-title {
+    font-size: 1.2rem; text-transform: uppercase; letter-spacing: 1px;
+    border-bottom: 2px solid var(--primary-black);
+    padding-bottom: 15px; margin-bottom: 30px;
+}
+
+/* Liste Articles Récents */
+.recent-list { display: flex; flex-direction: column; gap: 25px; }
+.recent-item {
+    display: flex; flex-direction: column;
+    padding-left: 20px;
+    border-left: 3px solid #eee;
+    transition: 0.3s;
+}
+.recent-item:hover { border-left-color: var(--primary-red); transform: translateX(5px); }
+
+.ri-date { font-size: 0.75rem; color: #999; text-transform: uppercase; font-weight: 700; margin-bottom: 5px; display: block; }
+.ri-title { font-size: 1rem; font-weight: 700; color: var(--primary-black); line-height: 1.4; }
+.recent-item:hover .ri-title { color: var(--primary-red); }
+
+/* CTA Widget */
+.widget-cta {
+    background: var(--primary-black);
+    color: white; padding: 40px; text-align: center;
+}
+.widget-cta h4 { color: white; margin-bottom: 15px; }
+.btn-sidebar {
+    display: inline-block; background: var(--primary-red); color: white;
+    padding: 12px 25px; font-weight: 800; text-transform: uppercase; margin-top: 15px;
+    font-size: 0.85rem;
+}
+.btn-sidebar:hover { background: white; color: var(--primary-red); }
+
+
+/* FOOTER SIMPLE (Pour la démo) */
+.demo-footer { background: #111; color: white; padding: 60px 0; text-align: center; margin-top: 80px; }
+
+/* RESPONSIVE */
+@media (max-width: 992px) {
+    .post-grid { grid-template-columns: 1fr; }
+    .frame-left::before { top: -10px; left: -10px; }
+}
+</style>
+</head>
+<body>
+
+    <!-- 1. BREADCRUMB -->
+    <nav class="breadcrumb-ribbon">
+        <div class="container flex-bread">
+            <div class="bread-path">
+                <a href="#">ACCUEIL</a> 
+                <i class="ph-bold ph-caret-right"></i> 
+                <a href="#">BLOG</a>
+                <i class="ph-bold ph-caret-right"></i> 
+                <span class="current">VIE DU GROUPE</span>
+            </div>
+            <a href="#" class="btn-back"><i class="ph-bold ph-arrow-left"></i> Retour aux news</a>
+        </div>
+    </nav>
+
+    <!-- 2. CONTENU ARTICLE -->
+    <section class="single-post-section">
+        <div class="container post-grid">
+            
+            <!-- COLONNE GAUCHE : ARTICLE -->
+            <article class="post-col">
+                
+                <header class="post-header">
+                    <div class="post-meta">
+                        <span><i class="ph-bold ph-calendar-blank"></i> 02 Octobre 2025</span>
+                        <span><i class="ph-bold ph-tag"></i> Vie du Groupe</span>
+                    </div>
+                    <h1 class="post-title">Club Labo : Un bel après-midi d’échanges et de qualité.</h1>
+                </header>
+
+                <!-- Image Principale (Red Frame) -->
+                <div class="frame-wrapper frame-left">
+                    <img src="https://www.mecasem.com/wp-content/uploads/2025/11/ClubLabo-scaled.jpg" alt="Club Labo Réunion">
+                </div>
+
+                <!-- Corps de l'article -->
+                <div class="post-content">
+                    <p class="lead" style="font-size:1.3rem; color:var(--primary-black); font-weight:700;">
+                        Jeudi 2 octobre, nous avons eu le plaisir d’accueillir le Club Labos de l’@AFQP / MFQ Grand Est (@France Qualité) pour son rendez-vous bimestriel.
+                    </p>
+                    
+                    <p>
+                        Dans une ambiance conviviale, les membres ont partagé leurs retours d'expérience autour de l'accréditation <strong>@COFRAC</strong> : projet OMEGA, audits, bonnes pratiques... Un moment riche en discussions et en expertise !
+                    </p>
+
+                    <blockquote>
+                        "Ces échanges renforcent notre engagement commun pour l’excellence, la performance et la qualité industrielle."
+                    </blockquote>
+
+                    <p>
+                        Un grand merci à <strong>@Tifany Jouet</strong>, notre responsable QHSE, pour l’organisation de cette rencontre inspirante, ainsi qu’à tous les participants pour leur présence et leurs contributions précieuses : <br>
+                        @Delphine Breysach, @Isaline Doucet, @Marc Fruhauff, @Céline Hausser, @Michel Klinklin, @Sylvie Lhotes, @Nadine Metz, @François Mirisky, @Michèle Schirmer.
+                    </p>
+                </div>
+
+                <!-- Tags -->
+                <div class="post-tags">
+                    <a href="#" class="tag-item">#Qualité</a>
+                    <a href="#" class="tag-item">#Performance</a>
+                    <a href="#" class="tag-item">#FranceQualité</a>
+                    <a href="#" class="tag-item">#Métrologie</a>
+                    <a href="#" class="tag-item">#Essais</a>
+                    <a href="#" class="tag-item">#COFRAC</a>
+                </div>
+
+            </article>
+
+            <!-- COLONNE DROITE : SIDEBAR -->
+            <aside class="sidebar">
+                
+                <!-- Widget : Articles Récents -->
+                <div class="widget-box">
+                    <h3 class="widget-title">Articles Récents</h3>
+                    <div class="recent-list">
+                        
+                        <a href="#" class="recent-item">
+                            <span class="ri-date">07 Nov 2025</span>
+                            <span class="ri-title">Salon World Nuclear Exhibition</span>
+                        </a>
+
+                        <a href="#" class="recent-item">
+                            <span class="ri-date">05 Sept 2025</span>
+                            <span class="ri-title">Nouvelle Certification COFREND</span>
+                        </a>
+
+                        <a href="#" class="recent-item">
+                            <span class="ri-date">29 Nov 2024</span>
+                            <span class="ri-title">Accueil de 8 nouveaux alternants</span>
+                        </a>
+
+                        <a href="#" class="recent-item">
+                            <span class="ri-date">09 Juil 2024</span>
+                            <span class="ri-title">Renouvellement Accréditations COFRAC</span>
+                        </a>
+
+                    </div>
+                </div>
+
+                <!-- Widget : CTA -->
+                <div class="widget-box widget-cta">
+                    <i class="ph-duotone ph-newspaper" style="font-size:3rem; color:var(--primary-red); margin-bottom:15px;"></i>
+                    <h4>Restez Informé</h4>
+                    <p style="font-size:0.9rem; color:#ccc;">Abonnez-vous à notre newsletter pour suivre l'actualité technique.</p>
+                    <a href="#" class="btn-sidebar">Je m'abonne</a>
+                </div>
+
+            </aside>
+
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <div class="demo-footer">
+        <div class="container">
+            <p>&copy; 2026 Institut Mecasem - Tous droits réservés</p>
+        </div>
+    </div>
+
+</body>
+</html>
