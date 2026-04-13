@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KOHEZIA | Cabinet Formation Conseil Coaching professionnel</title>
+    <meta name="description" content="KOHEZIA accompagne les personnes, équipes et organisations à Dunkerque.">
+    
+    <!-- Polices -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=League+Spartan:wght@500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* ================= VARIABLES CHARTE ================= */
+        :root {
+            /* Couleurs KOHEZIA */
+            --c-corail: #DD665D;
+            --c-moutarde: #FBBC57;
+            --c-sauge: #76A696;
+            --c-bleu-gris: #7EACBD;
+            --c-bleu-acier: #6A82B0;
+            --c-mauve: #CBB5D4;
+
+            /* Interface "Pipely Style" */
+            --bg-page: #E2E4E7; /* Le fond gris typique de ce design */
+            --bg-white: #FFFFFF;
+            --dark-bg: #1C2434;
+            --text-main: #1E293B;
+            --text-muted: #64748B;
+
+            --font-title: 'League Spartan', sans-serif;
+            --font-text: 'Inter', sans-serif;
+
+            --radius-box: 24px; /* Bords de la maquette */
+            --radius-btn: 12px; /* Boutons légèrement arrondis, pas des pilules */
+        }
+
+        /* ================= RESET & BASE ================= */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: var(--font-text);
+            color: var(--text-main);
+            background-color: var(--bg-page);
+            padding: 24px; /* L'espace gris tout autour du site */
+            line-height: 1.6;
+        }
+        h1, h2, h3 { font-family: var(--font-title); font-weight: 600; line-height: 1.1; }
+        a { text-decoration: none; color: inherit; transition: 0.3s ease; }
+
+        /* Conteneur pour centrer au max */
+        .max-w { max-width: 1400px; margin: 0 auto; }
+
+        /* ================= HEADER BENTO ================= */
+        header {
+            background-color: var(--bg-white);
+            border-radius: var(--radius-box);
+            padding: 16px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+        }
+        .logo { font-family: var(--font-title); font-size: 28px; font-weight: 700; color: var(--text-main); }
+        .logo span { color: var(--c-corail); }
+        nav ul { display: flex; gap: 40px; list-style: none; font-weight: 500; font-size: 15px; }
+        nav a:hover { color: var(--c-corail); }
+
+        /* BOUTONS (Style Pipely) */
+        .btn {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 16px 32px; border-radius: var(--radius-btn);
+            font-weight: 600; font-size: 16px; cursor: pointer; border: none;
+            transition: all 0.2s ease;
+        }
+        .btn-header { background-color: var(--c-moutarde); color: #fff; padding: 12px 24px; }
+        .btn-header:hover { filter: brightness(0.95); }
+        
+        .btn-primary { background-color: var(--c-moutarde); color: #fff; }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(251, 188, 87, 0.3); }
+        
+        .btn-outline-white { 
+            background-color: transparent; color: #fff; 
+            border: 1px solid rgba(255,255,255,0.4); 
+        }
+        .btn-outline-white:hover { border-color: #fff; background-color: rgba(255,255,255,0.1); }
+
+        /* ================= HERO SECTION (Style Image Pleine) ================= */
+        .hero-box {
+            position: relative;
+            background-color: var(--text-main);
+            border-radius: var(--radius-box);
+            overflow: hidden;
+            min-height: 700px;
+            display: flex;
+            align-items: center;
+            padding: 80px;
+            margin-bottom: 24px;
+        }
+
+        /* Image de fond avec filtre sombre à gauche pour lire le texte */
+        .hero-bg {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1;
+        }
+        .hero-bg img {
+            width: 100%; height: 100%; object-fit: cover; object-position: right center;
+        }
+        .hero-overlay {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 2;
+            background: linear-gradient(90deg, rgba(30, 41, 59, 0.9) 0%, rgba(30, 41, 59, 0.6) 45%, rgba(30, 41, 59, 0) 100%);
+        }
+
+        /* Contenu du Hero */
+        .hero-content {
+            position: relative; z-index: 3;
+            max-width: 650px;
+            color: #fff;
+        }
+        .hero-content h1 {
+            font-size: 64px; letter-spacing: -1px; margin-bottom: 24px; color: #fff;
+        }
+        .hero-content p {
+            font-size: 18px; line-height: 1.7; margin-bottom: 40px; color: rgba(255,255,255,0.85);
+        }
+        .hero-buttons {
+            display: flex; gap: 16px; margin-bottom: 40px;
+        }
+
+        /* Bandeau de réassurance style "Pipely Avatars" */
+        .hero-trust {
+            display: flex; align-items: center; gap: 16px;
+        }
+        .trust-avatars {
+            display: flex;
+        }
+        .trust-avatars img {
+            width: 40px; height: 40px; border-radius: 50%; border: 2px solid #2A3649;
+            margin-left: -12px; object-fit: cover;
+        }
+        .trust-avatars img:first-child { margin-left: 0; }
+        .trust-text {
+            font-size: 14px; color: rgba(255,255,255,0.8); font-weight: 500;
+        }
+
+        /* ================= RESTE DES SECTIONS (Cartes Blanches) ================= */
+        .section-box {
+            background-color: var(--bg-white);
+            border-radius: var(--radius-box);
+            padding: 100px 80px;
+            margin-bottom: 24px;
+        }
+
+        .section-header { text-align: center; margin-bottom: 80px; }
+        .section-header h2 { font-size: 48px; color: var(--text-main); }
+
+        /* Grille des services */
+        .services-grid {
+            display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px;
+        }
+        .service-card {
+            background: #F8FAFC; border: 1px solid #E2E8F0;
+            padding: 40px; border-radius: var(--radius-box);
+            position: relative; transition: 0.3s;
+        }
+        .service-card:hover { border-color: var(--c-bleu-gris); background: #fff; box-shadow: 0 20px 40px rgba(0,0,0,0.05); }
+        .service-num { font-family: var(--font-title); font-size: 32px; color: #CBD5E1; font-weight: 700; position: absolute; top: 30px; right: 40px; }
+        
+        .service-icon {
+            width: 56px; height: 56px; border-radius: 12px; display: flex; align-items: center; justify-content: center;
+            font-size: 24px; color: #fff; margin-bottom: 24px;
+        }
+        .icon-bilan { background-color: var(--c-bleu-gris); }
+        .icon-coach { background-color: var(--c-corail); }
+        .icon-form { background-color: var(--c-moutarde); }
+        .icon-qvct { background-color: var(--c-sauge); }
+
+        .service-card h3 { font-size: 28px; margin-bottom: 16px; }
+        .service-card p { color: var(--text-muted); margin-bottom: 32px; }
+        .service-link { font-weight: 600; display: inline-flex; align-items: center; gap: 8px; color: var(--text-main); }
+        .service-link:hover { gap: 12px; }
+
+        /* Section Sombre (Cibles) dans une boîte */
+        .target-box {
+            background-color: var(--dark-bg);
+            color: #fff; padding: 100px 80px;
+            border-radius: var(--radius-box); margin-bottom: 24px;
+        }
+        .target-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 60px; }
+        .target-header h2 { font-size: 42px; color: #fff; max-width: 650px; }
+        .btn-white { background: #fff; color: var(--text-main); }
+        
+        .target-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+        .target-card {
+            background: rgba(255,255,255,0.05); padding: 40px 32px;
+            border-radius: var(--radius-box); border: 1px solid rgba(255,255,255,0.1);
+        }
+        .target-card h3 { font-size: 24px; margin-bottom: 16px; color: var(--c-moutarde); }
+        .target-card p { color: rgba(255,255,255,0.7); }
+
+        /* Footer Box */
+        .footer-box {
+            background-color: var(--bg-white);
+            border-radius: var(--radius-box);
+            padding: 60px 80px;
+            text-align: center;
+        }
+        .footer-cta h2 { font-size: 36px; margin-bottom: 16px; }
+        .footer-cta p { font-size: 18px; color: var(--text-muted); margin-bottom: 32px; }
+        .footer-info { margin-top: 60px; padding-top: 40px; border-top: 1px solid #E2E8F0; font-size: 14px; color: var(--text-muted); }
+
+        /* RESPONSIVE */
+        @media (max-width: 1024px) {
+            .hero-box { padding: 60px 40px; }
+            .hero-content h1 { font-size: 48px; }
+            .section-box, .target-box { padding: 60px 40px; }
+            .target-header { flex-direction: column; align-items: flex-start; gap: 24px; }
+            .target-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 768px) {
+            body { padding: 12px; }
+            header { padding: 16px 20px; }
+            nav { display: none; }
+            .hero-box { padding: 40px 24px; }
+            .hero-content h1 { font-size: 38px; }
+            .services-grid, .target-grid { grid-template-columns: 1fr; }
+            .section-box, .target-box, .footer-box { padding: 40px 24px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="max-w">
+
+    <!-- HEADER (Dans sa bulle blanche) -->
+    <header>
+        <div class="logo">KOHEZIA<span>.</span></div>
+        <nav>
+            <ul>
+                <li><a href="#accueil">Accueil</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#apropos">À propos</a></li>
+            </ul>
+        </nav>
+        <a href="#contact" class="btn btn-header">Prendre RDV</a>
+    </header>
+
+    <!-- HERO SECTION (Reproduction exacte de Pipely) -->
+    <section class="hero-box" id="accueil">
+        <!-- Image de fond -->
+        <div class="hero-bg">
+            <!-- J'utilise une image d'un consultant en chemise pour l'ambiance pro -->
+            <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32f7?auto=format&fit=crop&w=1600&q=80" alt="Consultant KOHEZIA">
+        </div>
+        <!-- Voile sombre à gauche pour la lisibilité -->
+        <div class="hero-overlay"></div>
+
+        <!-- Contenu texte à gauche -->
+        <div class="hero-content">
+            <h1>Là où l'humain et la performance se rencontrent.</h1>
+            <p>Il y a des périodes dans une carrière, dans une équipe, dans une organisation, où quelque chose coince. Parfois c'est juste une fatigue qui s'installe, une communication qui se tend. Ensemble, nous pouvons regarder ce qui peut bouger.</p>
+            
+            <div class="hero-buttons">
+                <a href="#services" class="btn btn-primary">Découvrir nos services</a>
+                <a href="#contact" class="btn btn-outline-white">Prendre RDV</a>
+            </div>
+
+            <!-- Bandeau de réassurance (L'équivalent des avatars "100+ consultants" de Pipely) -->
+            <div class="hero-trust">
+                <div class="trust-avatars">
+                    <!-- Fausses photos de profil pour l'effet de groupe/confiance -->
+                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=100&q=80" alt="User">
+                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=100&q=80" alt="User">
+                    <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=100&q=80" alt="User">
+                </div>
+                <div class="trust-text">
+                    Formation · Conseil · Coaching <br>
+                    <span style="opacity: 0.7;">Rendez-vous gratuit & confidentiel</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION SERVICES (Dans une bulle blanche) -->
+    <section class="section-box" id="services">
+        <div class="section-header">
+            <h2>Nos expertises</h2>
+        </div>
+        
+        <div class="services-grid">
+            <!-- 01 -->
+            <div class="service-card">
+                <div class="service-num">01</div>
+                <div class="service-icon icon-bilan"><i class="fa-solid fa-compass"></i></div>
+                <h3>Bilan de compétences</h3>
+                <p>Faites le point sur votre parcours, clarifiez vos aspirations et construisez un projet professionnel cohérent. 3 formules disponibles. Éligible CPF.</p>
+                <a href="#" class="service-link">Découvrir les 3 bilans <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+            
+            <!-- 02 -->
+            <div class="service-card">
+                <div class="service-num">02</div>
+                <div class="service-icon icon-coach"><i class="fa-solid fa-bullseye"></i></div>
+                <h3>Coaching professionnel</h3>
+                <p>Leadership, confiance, transitions, équilibre, évolution professionnelle. Pour collaborateurs, managers et dirigeants.</p>
+                <a href="#" class="service-link">En savoir plus <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+
+            <!-- 03 -->
+            <div class="service-card">
+                <div class="service-num">03</div>
+                <div class="service-icon icon-form"><i class="fa-solid fa-users-rays"></i></div>
+                <h3>Ateliers & Formations</h3>
+                <p>Cohésion d'équipe, intelligence émotionnelle, DISC, management, gestion des conflits. Formats concrets et participatifs.</p>
+                <a href="#" class="service-link">Voir les thématiques <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+
+            <!-- 04 -->
+            <div class="service-card">
+                <div class="service-num">04</div>
+                <div class="service-icon icon-qvct"><i class="fa-solid fa-seedling"></i></div>
+                <h3>QVCT & RPS</h3>
+                <p>Accompagnement QVCT, prévention de l'épuisement professionnel, santé mentale, pilotage de démarches RPS.</p>
+                <a href="#" class="service-link">Voir l'offre QVCT <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION CIBLES SOMBRE (Dans une bulle foncée) -->
+    <section class="target-box">
+        <div class="target-header">
+            <h2>Vous dirigez, vous managez, vous accompagnez ou vous traversez ?</h2>
+            <a href="#services" class="btn btn-white">Découvrir nos services</a>
+        </div>
+        
+        <div class="target-grid">
+            <div class="target-card">
+                <h3>Entreprises, RH & Managers</h3>
+                <p>Cohésion, prévention RPS, communication, posture managériale. Quand une équipe se fragmente, on regarde ce qui se passe et on construit.</p>
+            </div>
+            <div class="target-card">
+                <h3>Médico-sociale & ESS</h3>
+                <p>Espace de régulation, épuisement, santé mentale. J'interviens avec une connaissance réelle de ces environnements.</p>
+            </div>
+            <div class="target-card">
+                <h3>Collaborateurs et particuliers</h3>
+                <p>Un licenciement, une lassitude, une envie de changement. Coaching individuel et bilans de compétences.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER / CTA (Dans une bulle blanche) -->
+    <section class="footer-box" id="contact">
+        <div class="footer-cta">
+            <h2>Une question, un projet, une hésitation ?</h2>
+            <p>Un premier échange suffit souvent pour voir si on peut travailler ensemble.<br>Gratuit - Confidentiel - 45 minutes.</p>
+            <a href="/contact" class="btn btn-primary" style="background-color: var(--text-main);">Prendre rendez-vous <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+
+        <div class="footer-info">
+            <strong>Cabinet à Dunkerque · Permanence à Wormhout · À distance sur toute la France</strong><br><br>
+            KOHEZIA · priscilla_augusto@kohezia.fr · 07 81 65 59 25 · www.kohezia.fr
+        </div>
+    </section>
+
+</div>
+
+</body>
+</html>
