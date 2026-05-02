@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Endeavor : Eaux Profondes – Boutique</title>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/regular/style.css">
 <style>
 /* ===================== VARIABLES ===================== */
 :root {
@@ -266,6 +267,7 @@ nav a:hover, nav a.active { color: var(--red); border-bottom-color: var(--red); 
   transition: all .2s;
 }
 .platform-btn:hover { border-color: var(--red); color: var(--red); }
+.platform-btn .ph { font-size: 15px; flex-shrink: 0; }
 
 /* ===================== SIDEBAR BUY ===================== */
 .product-sidebar {
@@ -350,7 +352,11 @@ nav a:hover, nav a.active { color: var(--red); border-bottom-color: var(--red); 
   border: 1px solid var(--border); border-radius: 8px; padding: 14px;
   display: flex; flex-direction: column; gap: 8px;
 }
-.notify-box label { font-size: 13px; font-weight: 600; }
+.notify-box label {
+  font-size: 13px; font-weight: 600;
+  display: flex; align-items: center; gap: 6px;
+}
+.notify-box label .ph { font-size: 15px; flex-shrink: 0; }
 .notify-box p { font-size: 12px; color: var(--gray); }
 .notify-input-row { display: flex; gap: 6px; }
 .notify-input-row input {
@@ -408,7 +414,9 @@ nav a:hover, nav a.active { color: var(--red); border-bottom-color: var(--red); 
 }
 .content-list-box h4 {
   font-family: var(--font-display); font-size: 18px; font-weight: 800; margin-bottom: 14px;
+  display: flex; align-items: center; gap: 8px;
 }
+.content-list-box h4 .ph { font-size: 20px; flex-shrink: 0; color: var(--red); }
 .content-list { display: flex; flex-direction: column; gap: 8px; }
 .content-item {
   display: flex; align-items: center; justify-content: space-between;
@@ -429,13 +437,21 @@ nav a:hover, nav a.active { color: var(--red); border-bottom-color: var(--red); 
 .blog-card-body { padding: 14px; }
 .blog-card-body h5 { font-size: 14px; font-weight: 700; margin-bottom: 6px; }
 .blog-card-body p { font-size: 12px; color: var(--gray); }
-.blog-card-body .blog-link { font-size: 12px; color: var(--red); font-weight: 600; margin-top: 8px; display: block; }
+.blog-card-body .blog-link {
+  font-size: 12px; color: var(--red); font-weight: 600; margin-top: 8px;
+  display: inline-flex; align-items: center; gap: 4px;
+}
+.blog-card-body .blog-link .ph { font-size: 12px; flex-shrink: 0; }
 
 /* ===================== VIDEO PANEL ===================== */
 .video-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
 .video-item { border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); }
 .video-item iframe { width: 100%; height: 200px; display: block; border: none; }
-.video-label { padding: 10px 12px; font-size: 13px; font-weight: 600; background: var(--gray-bg); }
+.video-label {
+  padding: 10px 12px; font-size: 13px; font-weight: 600; background: var(--gray-bg);
+  display: flex; align-items: center; gap: 8px;
+}
+.video-label .ph { font-size: 16px; flex-shrink: 0; color: var(--red); }
 
 /* ===================== RESOURCES PANEL ===================== */
 .resources-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
@@ -527,7 +543,11 @@ nav a:hover, nav a.active { color: var(--red); border-bottom-color: var(--red); 
   background: var(--red); color: white; padding: 12px 20px;
   display: flex; align-items: center; justify-content: space-between;
 }
-.roadmap-header h4 { font-family: var(--font-display); font-size: 18px; font-weight: 800; }
+.roadmap-header h4 {
+  font-family: var(--font-display); font-size: 18px; font-weight: 800;
+  display: flex; align-items: center; gap: 8px; margin: 0;
+}
+.roadmap-header h4 .ph { font-size: 20px; flex-shrink: 0; opacity: 0.95; }
 .roadmap-header .rh-date { font-size: 13px; opacity: .85; }
 .roadmap-steps {
   display: flex; align-items: stretch; overflow-x: auto;
@@ -623,7 +643,11 @@ footer {
 .footer-col ul li { margin-bottom: 7px; }
 .footer-col ul li a { color: #aaa; transition: color .2s; }
 .footer-col ul li a:hover { color: white; }
-.footer-logo { font-family: var(--font-display); font-size: 22px; font-weight: 800; color: var(--red); margin-bottom: 10px; }
+.footer-logo {
+  font-family: var(--font-display); font-size: 22px; font-weight: 800; color: var(--red); margin-bottom: 10px;
+  display: flex; align-items: center; gap: 8px;
+}
+.footer-logo .ph { font-size: 24px; flex-shrink: 0; }
 .footer-tagline { color: #888; line-height: 1.6; margin-bottom: 14px; font-size: 12px; }
 .footer-social { display: flex; gap: 10px; }
 .footer-social a {
@@ -656,6 +680,27 @@ footer {
   border-radius: 20px; padding: 4px 12px; font-size: 12px; font-weight: 600;
 }
 .badge-pill.red { background: var(--red-light); border-color: var(--red); color: var(--red); }
+.badge-pill .ph { font-size: 14px; flex-shrink: 0; }
+
+/* Phosphor — alignement avec le texte */
+.resource-dl { display: inline-flex; align-items: center; gap: 6px; font-weight: 600; color: var(--red); }
+.resource-dl .ph { font-size: 15px; flex-shrink: 0; }
+.btn-sm-cart .ph, .btn-cart .ph { font-size: 15px; flex-shrink: 0; }
+.admin-toggle > span { display: inline-flex; align-items: center; gap: 6px; }
+.admin-toggle > span .ph { font-size: 15px; flex-shrink: 0; }
+.admin-banner-warn { display: flex; align-items: flex-start; gap: 10px; }
+.admin-banner-warn .ph { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+.info-row .value.val-icon { display: inline-flex; align-items: center; gap: 4px; }
+.info-row .value.val-icon .ph { font-size: 14px; flex-shrink: 0; }
+.step-circle .ph { font-size: 15px; line-height: 1; }
+.errata-meta { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+.errata-meta .ph { font-size: 13px; flex-shrink: 0; color: var(--gray-dark); }
+.faq-cta-icon {
+  width: 48px; height: 48px; border-radius: 50%; background: var(--white);
+  display: flex; align-items: center; justify-content: center; color: var(--red); flex-shrink: 0;
+}
+.faq-cta-icon .ph { font-size: 26px; }
+.pack-save-line { display: inline-flex; align-items: center; gap: 6px; }
 
 .scroll-top {
   position: fixed; bottom: 28px; right: 28px;
@@ -760,30 +805,33 @@ footer {
   <!-- GALLERY -->
   <div class="gallery">
     <div class="gallery-main" onclick="openLightbox(this.querySelector('img').src)">
-      <img id="main-img" src="https://via.placeholder.com/520x520/1a3a5c/ffffff?text=Endeavor+Eaux+Profondes" alt="Endeavor : Eaux Profondes">
+      <img id="main-img" src="https://images.unsplash.com/photo-1585504198199-20277593b94f?q=80&amp;w=1017&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.1.0&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Endeavor : Eaux Profondes">
       <div class="gallery-zoom-hint">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:12px;height:12px"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
         Agrandir
       </div>
     </div>
     <div class="gallery-thumbs">
-      <div class="gallery-thumb active" onclick="changeImg(this, 'https://via.placeholder.com/520x520/1a3a5c/ffffff?text=Boite+Avant')">
-        <img src="https://via.placeholder.com/72x72/1a3a5c/ffffff?text=1" alt="">
+      <div class="gallery-thumb active" onclick="changeImg(this, 'https://images.unsplash.com/photo-1585504198199-20277593b94f?q=80&amp;w=1017&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.1.0&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')">
+        <img src="https://images.unsplash.com/photo-1585504198199-20277593b94f?q=80&amp;w=200&amp;h=200&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.1.0&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
       </div>
-      <div class="gallery-thumb" onclick="changeImg(this, 'https://via.placeholder.com/520x520/2c5282/ffffff?text=Boite+Dos')">
-        <img src="https://via.placeholder.com/72x72/2c5282/ffffff?text=2" alt="">
+      <div class="gallery-thumb" onclick="changeImg(this, 'https://images.unsplash.com/photo-1629760946220-5693ee4c46ac?q=80&amp;w=870&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.1.0&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')">
+        <img src="https://images.unsplash.com/photo-1629760946220-5693ee4c46ac?q=80&amp;w=200&amp;h=200&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.1.0&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
       </div>
-      <div class="gallery-thumb" onclick="changeImg(this, 'https://via.placeholder.com/520x520/1e4068/ffffff?text=Vue+Generale')">
-        <img src="https://via.placeholder.com/72x72/1e4068/ffffff?text=3" alt="">
+      <div class="gallery-thumb" onclick="changeImg(this, 'https://plus.unsplash.com/premium_photo-1663100219417-eabaefc03fcb?q=80&amp;w=870&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.1.0&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')">
+        <img src="https://plus.unsplash.com/premium_photo-1663100219417-eabaefc03fcb?q=80&amp;w=200&amp;h=200&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.1.0&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
       </div>
-      <div class="gallery-thumb" onclick="changeImg(this, 'https://via.placeholder.com/520x520/153e5c/ffffff?text=Composants')">
-        <img src="https://via.placeholder.com/72x72/153e5c/ffffff?text=4" alt="">
+      <div class="gallery-thumb" onclick="changeImg(this, 'https://images.unsplash.com/photo-1719494206741-79831f9f4d51?q=80&amp;w=870&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.1.0&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')">
+        <img src="https://images.unsplash.com/photo-1719494206741-79831f9f4d51?q=80&amp;w=200&amp;h=200&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.1.0&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
       </div>
-      <div class="gallery-thumb" onclick="changeImg(this, 'https://via.placeholder.com/520x520/0f2d47/ffffff?text=Plateau')">
-        <img src="https://via.placeholder.com/72x72/0f2d47/ffffff?text=5" alt="">
+      <div class="gallery-thumb" onclick="changeImg(this, 'https://images.unsplash.com/photo-1611996575749-79a3a250f948?q=80&amp;w=870&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.1.0&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')">
+        <img src="https://images.unsplash.com/photo-1611996575749-79a3a250f948?q=80&amp;w=200&amp;h=200&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.1.0&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
       </div>
-      <div class="gallery-thumb" onclick="changeImg(this, 'https://via.placeholder.com/520x520/8b1a2e/ffffff?text=Detail')">
-        <img src="https://via.placeholder.com/72x72/8b1a2e/ffffff?text=6" alt="">
+      <div class="gallery-thumb" onclick="changeImg(this, 'https://images.unsplash.com/photo-1632501641765-e568d28b0015?q=80&amp;w=774&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.1.0&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')">
+        <img src="https://images.unsplash.com/photo-1632501641765-e568d28b0015?q=80&amp;w=200&amp;h=200&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.1.0&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
+      </div>
+      <div class="gallery-thumb" onclick="changeImg(this, 'https://plus.unsplash.com/premium_photo-1719360604085-06a1735d75c1?q=80&amp;w=484&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.1.0&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')">
+        <img src="https://plus.unsplash.com/premium_photo-1719360604085-06a1735d75c1?q=80&amp;w=200&amp;h=200&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.1.0&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
       </div>
     </div>
   </div>
@@ -839,9 +887,9 @@ footer {
     <div>
       <div class="info-label">Auteurs & Illustrateurs</div>
       <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:6px;">
-        <span class="badge-pill">✍️ Carl de Visser</span>
-        <span class="badge-pill">✍️ Jarratt Gray</span>
-        <span class="badge-pill red">🎨 Mihajlo Dimitrievski</span>
+        <span class="badge-pill"><i class="ph ph-pencil-simple" aria-hidden="true"></i> Carl de Visser</span>
+        <span class="badge-pill"><i class="ph ph-pencil-simple" aria-hidden="true"></i> Jarratt Gray</span>
+        <span class="badge-pill red"><i class="ph ph-palette" aria-hidden="true"></i> Mihajlo Dimitrievski</span>
       </div>
     </div>
 
@@ -850,13 +898,13 @@ footer {
       <div>
         <div class="info-label">Série</div>
         <a href="#" style="display:inline-flex;align-items:center;gap:6px;margin-top:6px;padding:7px 14px;border:1px solid var(--red);border-radius:8px;color:var(--red);font-weight:700;font-size:13px;">
-          📚 Série PAGAN
+          <i class="ph ph-books" aria-hidden="true"></i> Série PAGAN
         </a>
       </div>
       <div>
         <div class="info-label">Jeu de base requis</div>
         <a href="#" style="display:inline-flex;align-items:center;gap:6px;margin-top:6px;padding:7px 14px;border:1px solid var(--border);border-radius:8px;font-weight:700;font-size:13px;">
-          🎲 Endeavor : L'Âge de la Voile
+          <i class="ph ph-dice-five" aria-hidden="true"></i> Endeavor : L'Âge de la Voile
         </a>
       </div>
     </div>
@@ -923,9 +971,9 @@ footer {
     <div>
       <div class="info-label">Jouer en ligne</div>
       <div class="platforms" style="margin-top:8px;">
-        <a href="#" class="platform-btn">🎮 Tabletop Simulator</a>
-        <a href="#" class="platform-btn">♟️ Board Game Arena</a>
-        <a href="#" class="platform-btn">🎯 GamePark</a>
+        <a href="#" class="platform-btn"><i class="ph ph-game-controller" aria-hidden="true"></i> Tabletop Simulator</a>
+        <a href="#" class="platform-btn"><i class="ph ph-strategy" aria-hidden="true"></i> Board Game Arena</a>
+        <a href="#" class="platform-btn"><i class="ph ph-target" aria-hidden="true"></i> GamePark</a>
       </div>
     </div>
 
@@ -1012,7 +1060,7 @@ footer {
 
     <!-- Notify when back in stock -->
     <div class="notify-box">
-      <label>🔔 Alerte retour en stock</label>
+      <label><i class="ph ph-bell" aria-hidden="true"></i> Alerte retour en stock</label>
       <p>Soyez prévenu dès que cet article est de nouveau disponible.</p>
       <div class="notify-input-row">
         <input type="email" placeholder="votre@email.com">
@@ -1054,32 +1102,32 @@ footer {
         <div class="blog-grid">
           <a href="#" class="blog-card">
             <div class="blog-card-img">
-              <img src="https://via.placeholder.com/400x160/1a3a5c/ffffff?text=Article+1" alt="">
+              <img src="https://plus.unsplash.com/premium_photo-1719360604085-06a1735d75c1?q=80&amp;w=800&amp;h=400&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.1.0&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
             </div>
             <div class="blog-card-body">
               <h5>Présentation complète d'Endeavor : Eaux Profondes</h5>
               <p>Découvrez en détail toutes les nouveautés apportées par cette extension très attendue.</p>
-              <span class="blog-link">Lire l'article →</span>
+              <span class="blog-link">Lire l'article <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
             </div>
           </a>
           <a href="#" class="blog-card">
             <div class="blog-card-img">
-              <img src="https://via.placeholder.com/400x160/2c5282/ffffff?text=Article+2" alt="">
+              <img src="https://images.unsplash.com/photo-1629760946220-5693ee4c46ac?q=80&amp;w=800&amp;h=400&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.1.0&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
             </div>
             <div class="blog-card-body">
               <h5>Interview des auteurs : Carl de Visser & Jarratt Gray</h5>
               <p>Les créateurs nous dévoilent les coulisses du développement de cette extension.</p>
-              <span class="blog-link">Lire l'article →</span>
+              <span class="blog-link">Lire l'article <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
             </div>
           </a>
           <a href="#" class="blog-card">
             <div class="blog-card-img">
-              <img src="https://via.placeholder.com/400x160/8b1a2e/ffffff?text=Article+3" alt="">
+              <img src="https://plus.unsplash.com/premium_photo-1663100219417-eabaefc03fcb?q=80&amp;w=800&amp;h=400&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.1.0&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
             </div>
             <div class="blog-card-body">
               <h5>Top 5 des stratégies pour l'exploration sous-marine</h5>
               <p>Nos conseils pour dominer les profondeurs et maximiser vos points de victoire.</p>
-              <span class="blog-link">Lire l'article →</span>
+              <span class="blog-link">Lire l'article <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
             </div>
           </a>
         </div>
@@ -1088,7 +1136,7 @@ footer {
       <!-- Contenu de la boite -->
       <div>
         <div class="content-list-box">
-          <h4>📦 Contenu de la boîte</h4>
+          <h4><i class="ph ph-package" aria-hidden="true"></i> Contenu de la boîte</h4>
           <div class="content-list">
             <div class="content-item"><span>Plateau sous-marin</span><span class="qty">×1</span></div>
             <div class="content-item"><span>Tuiles de territoire sous-marin</span><span class="qty">×24</span></div>
@@ -1115,27 +1163,27 @@ footer {
     <div class="video-grid">
       <div class="video-item">
         <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen title="Présentation du jeu"></iframe>
-        <div class="video-label">🎬 Présentation officielle</div>
+        <div class="video-label"><i class="ph ph-film-slate" aria-hidden="true"></i> Présentation officielle</div>
       </div>
       <div class="video-item">
         <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen title="Let's play"></iframe>
-        <div class="video-label">🎮 Let's Play – Partie complète</div>
+        <div class="video-label"><i class="ph ph-game-controller" aria-hidden="true"></i> Let's Play – Partie complète</div>
       </div>
       <div class="video-item">
         <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen title="Tutoriel règles"></iframe>
-        <div class="video-label">📖 Tutoriel – Les règles en 10 min</div>
+        <div class="video-label"><i class="ph ph-book-open-text" aria-hidden="true"></i> Tutoriel – Les règles en 10 min</div>
       </div>
       <div class="video-item">
         <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen title="Unboxing"></iframe>
-        <div class="video-label">📦 Unboxing – Contenu de la boîte</div>
+        <div class="video-label"><i class="ph ph-package" aria-hidden="true"></i> Unboxing – Contenu de la boîte</div>
       </div>
       <div class="video-item">
         <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen title="Stratégie"></iframe>
-        <div class="video-label">🧠 Conseils stratégiques avancés</div>
+        <div class="video-label"><i class="ph ph-brain" aria-hidden="true"></i> Conseils stratégiques avancés</div>
       </div>
       <div class="video-item">
         <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen title="Critique"></iframe>
-        <div class="video-label">⭐ Critique – Vaut-il le coup ?</div>
+        <div class="video-label"><i class="ph ph-star" aria-hidden="true"></i> Critique – Vaut-il le coup ?</div>
       </div>
     </div>
   </div>
@@ -1151,7 +1199,7 @@ footer {
         <div>
           <h5>Règles du jeu (FR)</h5>
           <p>Règles officielles en français – 24 pages</p>
-          <a href="#">⬇ Télécharger PDF</a>
+          <a href="#" class="resource-dl"><i class="ph ph-download-simple" aria-hidden="true"></i> Télécharger PDF</a>
         </div>
       </div>
       <div class="resource-card">
@@ -1161,7 +1209,7 @@ footer {
         <div>
           <h5>Règles du jeu (EN)</h5>
           <p>Official English rulebook – 24 pages</p>
-          <a href="#">⬇ Download PDF</a>
+          <a href="#" class="resource-dl"><i class="ph ph-download-simple" aria-hidden="true"></i> Download PDF</a>
         </div>
       </div>
       <div class="resource-card">
@@ -1171,7 +1219,7 @@ footer {
         <div>
           <h5>Variantes officielles</h5>
           <p>Modes de jeu alternatifs recommandés</p>
-          <a href="#">⬇ Télécharger PDF</a>
+          <a href="#" class="resource-dl"><i class="ph ph-download-simple" aria-hidden="true"></i> Télécharger PDF</a>
         </div>
       </div>
       <div class="resource-card">
@@ -1181,7 +1229,7 @@ footer {
         <div>
           <h5>Aide de jeu – Carte de référence</h5>
           <p>Résumé des actions et règles clés</p>
-          <a href="#">⬇ Télécharger PDF</a>
+          <a href="#" class="resource-dl"><i class="ph ph-download-simple" aria-hidden="true"></i> Télécharger PDF</a>
         </div>
       </div>
       <div class="resource-card">
@@ -1191,7 +1239,7 @@ footer {
         <div>
           <h5>Scénarios communautaires</h5>
           <p>6 scénarios créés par la communauté</p>
-          <a href="#">⬇ Télécharger PDF</a>
+          <a href="#" class="resource-dl"><i class="ph ph-download-simple" aria-hidden="true"></i> Télécharger PDF</a>
         </div>
       </div>
     </div>
@@ -1223,52 +1271,52 @@ footer {
     <div class="ext-grid">
       <div class="product-card">
         <div class="product-card-img">
-          <img src="https://via.placeholder.com/180x180/1a3a5c/ffffff?text=Endeavor" alt="">
+          <img src="https://images.unsplash.com/photo-1585504198199-20277593b94f?q=80&amp;w=360&amp;h=360&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.1.0&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
         </div>
         <div class="product-card-body">
           <h5>Endeavor : L'Âge de la Voile (Jeu de base)</h5>
           <div class="card-price">54,90 €</div>
           <div class="product-card-actions">
-            <button class="btn-sm-cart">🛒 Panier</button>
+            <button class="btn-sm-cart"><i class="ph ph-shopping-cart" aria-hidden="true"></i> Panier</button>
             <button class="btn-sm-wish"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
           </div>
         </div>
       </div>
       <div class="product-card">
         <div class="product-card-img">
-          <img src="https://via.placeholder.com/180x180/2c5282/ffffff?text=Ext+Terres" alt="">
+          <img src="https://images.unsplash.com/photo-1719494206741-79831f9f4d51?q=80&amp;w=360&amp;h=360&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.1.0&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
         </div>
         <div class="product-card-body">
           <h5>Extension : Terres Inconnues</h5>
           <div class="card-price">29,90 €</div>
           <div class="product-card-actions">
-            <button class="btn-sm-cart">🛒 Panier</button>
+            <button class="btn-sm-cart"><i class="ph ph-shopping-cart" aria-hidden="true"></i> Panier</button>
             <button class="btn-sm-wish"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
           </div>
         </div>
       </div>
       <div class="product-card">
         <div class="product-card-img">
-          <img src="https://via.placeholder.com/180x180/8b1a2e/ffffff?text=Promo+Pack" alt="">
+          <img src="https://images.unsplash.com/photo-1611996575749-79a3a250f948?q=80&amp;w=360&amp;h=360&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.1.0&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
         </div>
         <div class="product-card-body">
           <h5>Pack Promo – Cartes Spéciales</h5>
           <div class="card-price">9,90 €</div>
           <div class="product-card-actions">
-            <button class="btn-sm-cart">🛒 Panier</button>
+            <button class="btn-sm-cart"><i class="ph ph-shopping-cart" aria-hidden="true"></i> Panier</button>
             <button class="btn-sm-wish"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
           </div>
         </div>
       </div>
       <div class="product-card">
         <div class="product-card-img">
-          <img src="https://via.placeholder.com/180x180/1e4068/ffffff?text=Inserts" alt="">
+          <img src="https://images.unsplash.com/photo-1632501641765-e568d28b0015?q=80&amp;w=360&amp;h=360&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.1.0&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
         </div>
         <div class="product-card-body">
           <h5>Insert en foam – Boîte de rangement</h5>
           <div class="card-price">24,90 €</div>
           <div class="product-card-actions">
-            <button class="btn-sm-cart">🛒 Panier</button>
+            <button class="btn-sm-cart"><i class="ph ph-shopping-cart" aria-hidden="true"></i> Panier</button>
             <button class="btn-sm-wish"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
           </div>
         </div>
@@ -1282,12 +1330,12 @@ footer {
       <div>
         <h4 style="font-family: var(--font-display); font-size: 20px; font-weight: 800;">Pack Complet Endeavor</h4>
         <p style="font-size:13px; color:var(--gray-dark); margin-top:4px;">Jeu de base + Eaux Profondes + Terres Inconnues</p>
-        <p style="font-size:12px; color:var(--red); font-weight:700; margin-top:4px;">🎉 Économisez 15,70 € sur le pack !</p>
+        <p class="pack-save-line" style="font-size:12px; color:var(--red); font-weight:700; margin-top:4px;"><i class="ph ph-confetti" aria-hidden="true"></i> Économisez 15,70 € sur le pack !</p>
       </div>
       <div style="text-align:right;">
         <div style="font-size:13px; color:var(--gray); text-decoration:line-through;">109,70 €</div>
         <div style="font-family: var(--font-display); font-size:28px; font-weight:800; color:var(--red);">94,00 €</div>
-        <button class="btn-cart" style="margin-top:10px; padding: 10px 22px; font-size:15px;">🛒 Acheter le pack</button>
+        <button class="btn-cart" style="margin-top:10px; padding: 10px 22px; font-size:15px;"><i class="ph ph-shopping-cart" aria-hidden="true"></i> Acheter le pack</button>
       </div>
     </div>
   </div>
@@ -1298,52 +1346,52 @@ footer {
     <div class="ext-grid">
       <div class="product-card">
         <div class="product-card-img">
-          <img src="https://via.placeholder.com/180x180/2d6a4f/ffffff?text=Pagan" alt="">
+          <img src="https://images.unsplash.com/photo-1629760946220-5693ee4c46ac?q=80&amp;w=360&amp;h=360&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.1.0&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
         </div>
         <div class="product-card-body">
           <h5>PAGAN : Expéditions</h5>
           <div class="card-price">44,90 €</div>
           <div class="product-card-actions">
-            <button class="btn-sm-cart">🛒 Panier</button>
+            <button class="btn-sm-cart"><i class="ph ph-shopping-cart" aria-hidden="true"></i> Panier</button>
             <button class="btn-sm-wish"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
           </div>
         </div>
       </div>
       <div class="product-card">
         <div class="product-card-img">
-          <img src="https://via.placeholder.com/180x180/7b3f00/ffffff?text=World+Order" alt="">
+          <img src="https://plus.unsplash.com/premium_photo-1663100219417-eabaefc03fcb?q=80&amp;w=360&amp;h=360&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.1.0&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
         </div>
         <div class="product-card-body">
           <h5>World Order</h5>
           <div class="card-price">52,90 €</div>
           <div class="product-card-actions">
-            <button class="btn-sm-cart">🛒 Panier</button>
+            <button class="btn-sm-cart"><i class="ph ph-shopping-cart" aria-hidden="true"></i> Panier</button>
             <button class="btn-sm-wish"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
           </div>
         </div>
       </div>
       <div class="product-card">
         <div class="product-card-img">
-          <img src="https://via.placeholder.com/180x180/4a0072/ffffff?text=Deckscape" alt="">
+          <img src="https://plus.unsplash.com/premium_photo-1719360604085-06a1735d75c1?q=80&amp;w=360&amp;h=360&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.1.0&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
         </div>
         <div class="product-card-body">
           <h5>Deckscape : La Fuite</h5>
           <div class="card-price">12,90 €</div>
           <div class="product-card-actions">
-            <button class="btn-sm-cart">🛒 Panier</button>
+            <button class="btn-sm-cart"><i class="ph ph-shopping-cart" aria-hidden="true"></i> Panier</button>
             <button class="btn-sm-wish"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
           </div>
         </div>
       </div>
       <div class="product-card">
         <div class="product-card-img">
-          <img src="https://via.placeholder.com/180x180/006064/ffffff?text=KronoLogic" alt="">
+          <img src="https://images.unsplash.com/photo-1585504198199-20277593b94f?q=80&amp;w=360&amp;h=360&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.1.0&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
         </div>
         <div class="product-card-body">
           <h5>KronoLogic</h5>
           <div class="card-price">34,90 €</div>
           <div class="product-card-actions">
-            <button class="btn-sm-cart">🛒 Panier</button>
+            <button class="btn-sm-cart"><i class="ph ph-shopping-cart" aria-hidden="true"></i> Panier</button>
             <button class="btn-sm-wish"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
           </div>
         </div>
@@ -1382,12 +1430,13 @@ footer {
     <!-- Mode admin -->
     <div class="admin-toggle" onclick="toggleAdmin(this)">
       <div class="toggle-switch" id="admin-switch"><div class="toggle-knob"></div></div>
-      <span>🔒 Afficher les données admin (presse, réservation, stocks détaillés)</span>
+      <span><i class="ph ph-lock" aria-hidden="true"></i> Afficher les données admin (presse, réservation, stocks détaillés)</span>
     </div>
 
     <div class="admin-section" id="admin-data">
-      <div style="background: #fff3e0; border: 1px solid #ffe082; border-radius: 8px; padding: 12px 16px; margin-bottom: 18px; font-size: 13px; color: #e65100; font-weight: 600;">
-        ⚠️ Zone Admin – Ces informations ne sont visibles que par l'équipe
+      <div class="admin-banner-warn" style="background: #fff3e0; border: 1px solid #ffe082; border-radius: 8px; padding: 12px 16px; margin-bottom: 18px; font-size: 13px; color: #e65100; font-weight: 600;">
+        <i class="ph ph-warning" aria-hidden="true"></i>
+        <span>Zone Admin – Ces informations ne sont visibles que par l'équipe</span>
       </div>
       <div class="info-grid">
         <div class="info-card">
@@ -1411,18 +1460,18 @@ footer {
         </div>
         <div class="info-card">
           <h5>Transporteurs & Restrictions</h5>
-          <div class="info-row"><span class="label">Colissimo</span><span class="value green">✓ Actif</span></div>
-          <div class="info-row"><span class="label">Mondial Relay</span><span class="value green">✓ Actif</span></div>
-          <div class="info-row"><span class="label">DHL Express</span><span class="value green">✓ Actif</span></div>
-          <div class="info-row"><span class="label">Russie</span><span class="value red">✗ Refusé</span></div>
-          <div class="info-row"><span class="label">Belarus</span><span class="value red">✗ Refusé</span></div>
+          <div class="info-row"><span class="label">Colissimo</span><span class="value green val-icon"><i class="ph ph-check" aria-hidden="true"></i> Actif</span></div>
+          <div class="info-row"><span class="label">Mondial Relay</span><span class="value green val-icon"><i class="ph ph-check" aria-hidden="true"></i> Actif</span></div>
+          <div class="info-row"><span class="label">DHL Express</span><span class="value green val-icon"><i class="ph ph-check" aria-hidden="true"></i> Actif</span></div>
+          <div class="info-row"><span class="label">Russie</span><span class="value red val-icon"><i class="ph ph-x" aria-hidden="true"></i> Refusé</span></div>
+          <div class="info-row"><span class="label">Belarus</span><span class="value red val-icon"><i class="ph ph-x" aria-hidden="true"></i> Refusé</span></div>
         </div>
         <div class="info-card">
           <h5>Prix & Tags actifs</h5>
-          <div class="info-row"><span class="label">En promo</span><span class="value green">✓</span></div>
-          <div class="info-row"><span class="label">Exclusivité web</span><span class="value green">✓</span></div>
-          <div class="info-row"><span class="label">En soldes</span><span class="value red">✗</span></div>
-          <div class="info-row"><span class="label">Dernière quantité</span><span class="value green">✓</span></div>
+          <div class="info-row"><span class="label">En promo</span><span class="value green val-icon"><i class="ph ph-check" aria-hidden="true"></i></span></div>
+          <div class="info-row"><span class="label">Exclusivité web</span><span class="value green val-icon"><i class="ph ph-check" aria-hidden="true"></i></span></div>
+          <div class="info-row"><span class="label">En soldes</span><span class="value red val-icon"><i class="ph ph-x" aria-hidden="true"></i></span></div>
+          <div class="info-row"><span class="label">Dernière quantité</span><span class="value green val-icon"><i class="ph ph-check" aria-hidden="true"></i></span></div>
           <div class="info-row"><span class="label">Bundle actif</span><span class="value green">Pack Complet</span></div>
         </div>
       </div>
@@ -1437,57 +1486,57 @@ footer {
       <!-- Edition originale -->
       <div class="roadmap-card">
         <div class="roadmap-header">
-          <h4>📦 Endeavor : Eaux Profondes – Édition 1</h4>
+          <h4><i class="ph ph-package" aria-hidden="true"></i> Endeavor : Eaux Profondes – Édition 1</h4>
           <span class="rh-date">Sortie : Mai 2024 (France) / Juin 2024 (Canada)</span>
         </div>
         <div class="roadmap-steps">
           <div class="roadmap-step done">
-            <div class="step-circle">✓</div>
+            <div class="step-circle"><i class="ph ph-check" aria-hidden="true"></i></div>
             <div class="step-label">En développement</div>
             <div class="step-date">Jan 2023</div>
           </div>
           <div class="roadmap-step done">
-            <div class="step-circle">✓</div>
+            <div class="step-circle"><i class="ph ph-check" aria-hidden="true"></i></div>
             <div class="step-label">En illustration</div>
             <div class="step-date">Juin 2023</div>
           </div>
           <div class="roadmap-step done">
-            <div class="step-circle">✓</div>
+            <div class="step-circle"><i class="ph ph-check" aria-hidden="true"></i></div>
             <div class="step-label">Rédaction des règles</div>
             <div class="step-date">Sep 2023</div>
           </div>
           <div class="roadmap-step done">
-            <div class="step-circle">✓</div>
+            <div class="step-circle"><i class="ph ph-check" aria-hidden="true"></i></div>
             <div class="step-label">En traduction</div>
             <div class="step-date">Nov 2023</div>
           </div>
           <div class="roadmap-step done">
-            <div class="step-circle">✓</div>
+            <div class="step-circle"><i class="ph ph-check" aria-hidden="true"></i></div>
             <div class="step-label">En fabrication</div>
             <div class="step-date">Jan 2024</div>
           </div>
           <div class="roadmap-step done">
-            <div class="step-circle">✓</div>
+            <div class="step-circle"><i class="ph ph-check" aria-hidden="true"></i></div>
             <div class="step-label">En transport</div>
             <div class="step-date">Avr 2024</div>
           </div>
           <div class="roadmap-step done">
-            <div class="step-circle">✓</div>
+            <div class="step-circle"><i class="ph ph-check" aria-hidden="true"></i></div>
             <div class="step-label">En boutique</div>
             <div class="step-date">Mai 2024</div>
           </div>
           <div class="roadmap-step done">
-            <div class="step-circle">✓</div>
+            <div class="step-circle"><i class="ph ph-check" aria-hidden="true"></i></div>
             <div class="step-label">Sur site SM</div>
             <div class="step-date">Mai 2024</div>
           </div>
           <div class="roadmap-step done">
-            <div class="step-circle">✓</div>
+            <div class="step-circle"><i class="ph ph-check" aria-hidden="true"></i></div>
             <div class="step-label">Disponible</div>
             <div class="step-date">Mai 2024</div>
           </div>
           <div class="roadmap-step current">
-            <div class="step-circle">!</div>
+            <div class="step-circle"><i class="ph ph-warning-circle" aria-hidden="true"></i></div>
             <div class="step-label">Stock limité</div>
             <div class="step-date">Mai 2025</div>
           </div>
@@ -1497,17 +1546,17 @@ footer {
       <!-- Reprint -->
       <div class="roadmap-card">
         <div class="roadmap-header">
-          <h4>🔄 Reprint – Édition 2</h4>
+          <h4><i class="ph ph-arrows-clockwise" aria-hidden="true"></i> Reprint – Édition 2</h4>
           <span class="rh-date">Sortie prévisionnelle : Oct 2025 (France)</span>
         </div>
         <div class="roadmap-steps">
           <div class="roadmap-step done">
-            <div class="step-circle">✓</div>
+            <div class="step-circle"><i class="ph ph-check" aria-hidden="true"></i></div>
             <div class="step-label">En développement</div>
             <div class="step-date">Mar 2025</div>
           </div>
           <div class="roadmap-step current">
-            <div class="step-circle">→</div>
+            <div class="step-circle"><i class="ph ph-arrow-right" aria-hidden="true"></i></div>
             <div class="step-label">En fabrication</div>
             <div class="step-date">Mai 2025</div>
           </div>
@@ -1583,7 +1632,7 @@ footer {
     </div>
 
     <div style="margin-top: 24px; padding: 18px; background: var(--gray-bg); border-radius: var(--radius); display:flex; align-items:center; gap:14px;">
-      <div style="font-size: 32px;">💬</div>
+      <div class="faq-cta-icon"><i class="ph ph-chat-circle" aria-hidden="true"></i></div>
       <div>
         <strong style="font-size:15px;">Vous avez une autre question ?</strong>
         <p style="font-size:13px; color:var(--gray); margin-top:3px;">Rejoignez notre serveur Discord pour poser vos questions à la communauté et à l'équipe.</p>
@@ -1601,17 +1650,17 @@ footer {
       <div class="errata-item">
         <h5>Clarification – Règle de l'exploration sous-marine (page 8)</h5>
         <p>La règle indiquant "un explorateur par tuile" doit être lue comme "un explorateur par tuile révélée par tour". Plusieurs explorateurs peuvent occuper la même tuile si elle a été révélée lors d'un tour précédent.</p>
-        <div class="errata-meta">📅 Publié le 15 juin 2024 | Affecte toutes les éditions</div>
+        <div class="errata-meta"><i class="ph ph-calendar" aria-hidden="true"></i> Publié le 15 juin 2024 | Affecte toutes les éditions</div>
       </div>
       <div class="errata-item">
         <h5>Correction – Carte "Naufrage Profond" (carte n°34)</h5>
         <p>Le texte de la carte indique "perdez 2 points de commerce" mais la version corrigée est "perdez 1 point de commerce ET 1 jeton ressource de votre choix". Cette correction sera intégrée dès l'édition 2.</p>
-        <div class="errata-meta">📅 Publié le 3 août 2024 | Carte n°34 – Édition 1 uniquement</div>
+        <div class="errata-meta"><i class="ph ph-calendar" aria-hidden="true"></i> Publié le 3 août 2024 | Carte n°34 – Édition 1 uniquement</div>
       </div>
       <div class="errata-item">
         <h5>Précision – Interaction avec l'extension "Terres Inconnues"</h5>
         <p>Lors de l'utilisation simultanée des deux extensions, le marqueur "Mystère" obtenu depuis les tuiles sous-marines compte comme un marqueur "Découverte" pour les objectifs de "Terres Inconnues".</p>
-        <div class="errata-meta">📅 Publié le 20 septembre 2024 | Uniquement pour joueurs des 2 extensions</div>
+        <div class="errata-meta"><i class="ph ph-calendar" aria-hidden="true"></i> Publié le 20 septembre 2024 | Uniquement pour joueurs des 2 extensions</div>
       </div>
     </div>
   </div>
@@ -1645,7 +1694,7 @@ footer {
 <!-- ==================== FOOTER ==================== -->
 <footer>
   <div class="footer-col">
-    <div class="footer-logo">🎲 BOUTIQUE</div>
+    <div class="footer-logo"><i class="ph ph-dice-five" aria-hidden="true"></i> BOUTIQUE</div>
     <p class="footer-tagline">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean at porttitor diam. Phasellus porttitor venenatis fermentum. Suspendisse sit amet sapien augue.</p>
     <div class="footer-social">
       <a href="#">
