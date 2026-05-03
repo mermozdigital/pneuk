@@ -1,0 +1,1861 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Endeavor : Eaux Profondes – Export Figma (flux vertical)</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/regular/style.css">
+<style>
+/* ===================== VARIABLES ===================== */
+:root {
+  --red: #C8102E;
+  --red-dark: #a50d25;
+  --red-light: #f9e4e8;
+  --black: #1a1a1a;
+  --gray-dark: #444;
+  --gray: #888;
+  --gray-light: #ccc;
+  --gray-bg: #f5f5f5;
+  --white: #fff;
+  --border: #e4e4e4;
+  --shadow: 0 2px 12px rgba(0,0,0,0.10);
+  --shadow-hover: 0 6px 24px rgba(0,0,0,0.16);
+  --radius: 10px;
+  --font-main: 'Barlow', sans-serif;
+  --font-display: 'Barlow Condensed', sans-serif;
+}
+
+/* ===================== RESET ===================== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--font-main); color: var(--black); background: var(--white); font-size: 15px; }
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; display: block; }
+ul { list-style: none; }
+button { cursor: pointer; border: none; background: none; font-family: inherit; }
+
+/* ===================== TOP BAR ===================== */
+.topbar {
+  background: var(--red);
+  color: var(--white);
+  font-size: 13px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 7px 40px;
+}
+.topbar a { color: var(--white); }
+
+/* ===================== HEADER ===================== */
+header {
+  background: var(--white);
+  border-bottom: 2px solid var(--border);
+  padding: 12px 40px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  position: sticky; top: 0; z-index: 1000;
+}
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--red);
+  letter-spacing: 1px;
+  white-space: nowrap;
+}
+.logo-icon {
+  width: 38px; height: 38px;
+  background: var(--red);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+}
+.logo-icon svg { width: 22px; height: 22px; fill: white; }
+.search-bar {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  background: #f0f0f0;
+  border-radius: 24px;
+  padding: 7px 18px;
+  gap: 10px;
+  max-width: 460px;
+}
+.search-bar input { border: none; background: transparent; flex: 1; font-size: 14px; font-family: inherit; outline: none; }
+.search-bar svg { color: var(--gray); width: 18px; height: 18px; flex-shrink: 0; }
+.header-actions { display: flex; align-items: center; gap: 18px; margin-left: auto; }
+.header-actions a { display: flex; align-items: center; gap: 5px; font-size: 13px; font-weight: 600; color: var(--black); }
+.header-actions a svg { width: 22px; height: 22px; }
+.btn-connexion {
+  background: var(--red);
+  color: var(--white) !important;
+  padding: 7px 16px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* ===================== NAV ===================== */
+nav {
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+  padding: 0 40px;
+  display: flex;
+  gap: 0;
+}
+nav a {
+  font-size: 13px;
+  font-weight: 600;
+  padding: 14px 16px;
+  color: var(--black);
+  display: block;
+  border-bottom: 3px solid transparent;
+  transition: color .2s, border-color .2s;
+}
+nav a:hover, nav a.active { color: var(--red); border-bottom-color: var(--red); }
+
+/* ===================== BREADCRUMB ===================== */
+.breadcrumb {
+  padding: 14px 40px;
+  font-size: 13px;
+  color: var(--gray);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--gray-bg);
+  border-bottom: 1px solid var(--border);
+}
+.breadcrumb a { color: var(--red); font-weight: 500; }
+.breadcrumb span { color: var(--gray); }
+
+/* ===================== PRODUCT MAIN ===================== */
+.product-main {
+  display: grid;
+  grid-template-columns: 520px 1fr 300px;
+  gap: 32px;
+  padding: 32px 40px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* Gallery */
+.gallery { display: flex; flex-direction: column; gap: 12px; }
+.gallery-main {
+  position: relative;
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: #f0f0f0;
+  aspect-ratio: 1;
+  display: flex; align-items: center; justify-content: center;
+  cursor: zoom-in;
+}
+.gallery-main img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s; }
+.gallery-main:hover img { transform: scale(1.04); }
+.gallery-zoom-hint {
+  position: absolute; bottom: 12px; right: 12px;
+  background: rgba(0,0,0,.5); color: white;
+  font-size: 11px; padding: 4px 10px; border-radius: 20px;
+  display: flex; align-items: center; gap: 5px;
+}
+.gallery-thumbs {
+  display: flex; gap: 10px; flex-wrap: wrap;
+}
+.gallery-thumb {
+  width: 72px; height: 72px;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 2px solid var(--border);
+  cursor: pointer;
+  transition: border-color .2s;
+  flex-shrink: 0;
+}
+.gallery-thumb.active, .gallery-thumb:hover { border-color: var(--red); }
+.gallery-thumb img { width: 100%; height: 100%; object-fit: cover; }
+
+/* Product Info */
+.product-info { display: flex; flex-direction: column; gap: 18px; }
+.product-tags-row { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.tag {
+  font-size: 11px; font-weight: 700; padding: 3px 10px;
+  border-radius: 20px; text-transform: uppercase; letter-spacing: .5px;
+}
+.tag-promo { background: var(--red); color: white; }
+.tag-new { background: #2e7d32; color: white; }
+.tag-exclu { background: #1565c0; color: white; }
+.tag-laststock { background: #e65100; color: white; }
+.tag-serie { background: var(--red-light); color: var(--red); border: 1px solid var(--red); }
+
+.product-title {
+  font-family: var(--font-display);
+  font-size: 36px;
+  font-weight: 800;
+  line-height: 1.1;
+}
+.product-subtitle { font-size: 15px; color: var(--gray); margin-top: -10px; }
+
+/* Awards */
+.awards { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.award {
+  display: flex; align-items: center; gap: 6px;
+  background: #fff8e1; border: 1px solid #f9a825;
+  border-radius: 20px; padding: 4px 12px;
+  font-size: 12px; font-weight: 700; color: #b8860b;
+}
+.award svg { width: 16px; height: 16px; color: #f9a825; }
+
+/* Quick info badges */
+.quick-info {
+  display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+}
+.qi-badge {
+  display: flex; align-items: center; gap: 6px;
+  background: var(--gray-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 8px 14px;
+  font-size: 13px;
+  font-weight: 600;
+}
+.qi-badge svg { width: 18px; height: 18px; color: var(--red); }
+.qi-badge small { font-size: 10px; font-weight: 400; color: var(--gray); display: block; }
+
+/* Difficulty */
+.difficulty-row { display: flex; align-items: center; gap: 12px; }
+.diff-label { font-size: 13px; font-weight: 600; color: var(--gray); }
+.diff-dots { display: flex; gap: 4px; }
+.diff-dot {
+  width: 12px; height: 12px; border-radius: 50%;
+  background: var(--gray-light);
+}
+.diff-dot.active { background: var(--red); }
+.diff-text { font-size: 13px; font-weight: 700; }
+
+/* Type tags */
+.meta-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.meta-tag {
+  font-size: 12px; font-weight: 600;
+  padding: 4px 12px; border-radius: 20px;
+  background: var(--gray-bg); border: 1px solid var(--border);
+  color: var(--gray-dark);
+}
+.meta-tag.type-coop { background: #e3f2fd; border-color: #90caf9; color: #1565c0; }
+.meta-tag.type-comp { background: #fce4ec; border-color: #f48fb1; color: #880e4f; }
+
+/* Advantages */
+.advantages-list { display: flex; flex-direction: column; gap: 6px; }
+.advantages-list li {
+  display: flex; align-items: flex-start; gap: 8px;
+  font-size: 14px; color: var(--gray-dark);
+}
+.advantages-list li::before {
+  content: '';
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--red); flex-shrink: 0; margin-top: 5px;
+}
+
+/* Platforms */
+.platforms { display: flex; gap: 10px; flex-wrap: wrap; }
+.platform-btn {
+  display: flex; align-items: center; gap: 6px;
+  padding: 7px 14px; border-radius: 8px;
+  font-size: 12px; font-weight: 700;
+  border: 2px solid var(--border);
+  background: var(--white);
+  transition: all .2s;
+}
+.platform-btn:hover { border-color: var(--red); color: var(--red); }
+.platform-btn .ph { font-size: 15px; flex-shrink: 0; }
+
+/* ===================== SIDEBAR BUY ===================== */
+.product-sidebar {
+  display: flex; flex-direction: column; gap: 16px;
+  position: sticky; top: 80px; align-self: flex-start;
+}
+.buy-box {
+  background: var(--white);
+  border: 2px solid var(--border);
+  border-radius: var(--radius);
+  padding: 22px;
+  box-shadow: var(--shadow);
+}
+.price-row { display: flex; align-items: baseline; gap: 10px; margin-bottom: 6px; }
+.price-main { font-family: var(--font-display); font-size: 36px; font-weight: 800; color: var(--red); }
+.price-old { font-size: 18px; color: var(--gray); text-decoration: line-through; }
+.price-discount {
+  background: var(--red); color: white;
+  font-size: 12px; font-weight: 700; padding: 2px 8px; border-radius: 4px;
+}
+.stock-indicator {
+  display: flex; align-items: center; gap: 6px;
+  font-size: 13px; font-weight: 600; margin-bottom: 14px;
+}
+.stock-dot { width: 9px; height: 9px; border-radius: 50%; background: #4caf50; flex-shrink: 0; }
+.stock-dot.low { background: #ff9800; }
+.stock-dot.out { background: #f44336; }
+
+.qty-row { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+.qty-label { font-size: 13px; font-weight: 600; }
+.qty-ctrl { display: flex; align-items: center; border: 2px solid var(--border); border-radius: 8px; overflow: hidden; }
+.qty-ctrl button { padding: 8px 14px; font-size: 18px; font-weight: 700; color: var(--gray-dark); background: var(--gray-bg); transition: background .2s; }
+.qty-ctrl button:hover { background: var(--red-light); color: var(--red); }
+.qty-ctrl input { width: 46px; text-align: center; border: none; font-size: 15px; font-weight: 700; font-family: inherit; outline: none; }
+
+.btn-cart {
+  width: 100%; padding: 14px;
+  background: var(--red); color: white;
+  font-family: var(--font-display); font-size: 17px; font-weight: 700;
+  border-radius: 8px; display: flex; align-items: center; justify-content: center; gap: 8px;
+  transition: background .2s, transform .15s;
+  letter-spacing: .5px;
+}
+.btn-cart:hover { background: var(--red-dark); transform: translateY(-1px); }
+.btn-wishlist {
+  width: 100%; padding: 11px;
+  border: 2px solid var(--border); border-radius: 8px;
+  font-size: 14px; font-weight: 600; color: var(--gray-dark);
+  display: flex; align-items: center; justify-content: center; gap: 7px;
+  transition: all .2s;
+}
+.btn-wishlist:hover { border-color: var(--red); color: var(--red); }
+.btn-preorder {
+  width: 100%; padding: 14px;
+  background: #1565c0; color: white;
+  font-family: var(--font-display); font-size: 17px; font-weight: 700;
+  border-radius: 8px; display: flex; align-items: center; justify-content: center; gap: 8px;
+}
+
+.delivery-info {
+  background: var(--gray-bg); border-radius: 8px; padding: 12px;
+  font-size: 12px; color: var(--gray-dark); line-height: 1.6;
+}
+.delivery-info strong { color: var(--black); }
+.delivery-row { display: flex; align-items: center; gap: 7px; margin-bottom: 5px; }
+.delivery-row svg { width: 16px; height: 16px; color: var(--red); flex-shrink: 0; }
+
+.ref-box { font-size: 11px; color: var(--gray); padding: 10px; background: var(--gray-bg); border-radius: 6px; }
+.ref-box span { font-weight: 700; color: var(--gray-dark); }
+
+.shortcut-btns { display: flex; gap: 8px; }
+.shortcut-btn {
+  flex: 1; padding: 9px 10px; border-radius: 8px; font-size: 12px; font-weight: 700;
+  display: flex; align-items: center; justify-content: center; gap: 5px; border: 2px solid var(--border);
+  transition: all .2s;
+}
+.shortcut-btn:hover { border-color: var(--red); color: var(--red); }
+.shortcut-btn.discord { background: #5865F2; color: white; border-color: #5865F2; }
+.shortcut-btn.discord:hover { background: #4752c4; }
+
+.notify-box {
+  border: 1px solid var(--border); border-radius: 8px; padding: 14px;
+  display: flex; flex-direction: column; gap: 8px;
+}
+.notify-box label {
+  font-size: 13px; font-weight: 600;
+  display: flex; align-items: center; gap: 6px;
+}
+.notify-box label .ph { font-size: 15px; flex-shrink: 0; }
+.notify-box p { font-size: 12px; color: var(--gray); }
+.notify-input-row { display: flex; gap: 6px; }
+.notify-input-row input {
+  flex: 1; padding: 8px 12px; border: 1px solid var(--border); border-radius: 6px;
+  font-size: 13px; font-family: inherit; outline: none;
+}
+.notify-input-row input:focus { border-color: var(--red); }
+.notify-input-row button {
+  padding: 8px 16px; background: var(--red); color: white;
+  border-radius: 6px; font-size: 13px; font-weight: 600;
+}
+
+/* ===================== SECTION TABS ===================== */
+.tabs-wrapper {
+  max-width: 1400px; margin: 0 auto;
+  padding: 0 40px 40px;
+}
+.tabs-nav {
+  display: flex; gap: 0; border-bottom: 2px solid var(--border);
+  overflow-x: auto; scrollbar-width: none;
+  margin-bottom: 32px;
+}
+.tabs-nav::-webkit-scrollbar { display: none; }
+.tab-btn {
+  font-family: var(--font-display); font-size: 15px; font-weight: 700;
+  padding: 14px 22px; white-space: nowrap; color: var(--gray);
+  border-bottom: 3px solid transparent; margin-bottom: -2px;
+  transition: color .2s, border-color .2s;
+}
+.tab-btn.active, .tab-btn:hover { color: var(--red); border-bottom-color: var(--red); }
+.tab-panel { display: none; animation: fadeIn .3s ease; }
+.tab-panel.active { display: block; }
+
+@keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+
+/* ===================== SECTION HEADINGS ===================== */
+.section-title {
+  font-family: var(--font-display);
+  font-size: 24px; font-weight: 800; margin-bottom: 18px;
+  display: flex; align-items: center; gap: 10px;
+}
+.section-title::after {
+  content: ''; flex: 1; height: 2px; background: var(--red-light);
+}
+.section-title span { color: var(--red); }
+
+/* ===================== DESCRIPTION PANEL ===================== */
+.desc-grid { display: grid; grid-template-columns: 1fr 340px; gap: 32px; }
+.description-text { font-size: 15px; line-height: 1.8; color: var(--gray-dark); }
+.description-text p { margin-bottom: 14px; }
+
+.content-list-box {
+  background: var(--gray-bg); border-radius: var(--radius); padding: 22px;
+  border-left: 4px solid var(--red);
+}
+.content-list-box h4 {
+  font-family: var(--font-display); font-size: 18px; font-weight: 800; margin-bottom: 14px;
+  display: flex; align-items: center; gap: 8px;
+}
+.content-list-box h4 .ph { font-size: 20px; flex-shrink: 0; color: var(--red); }
+.content-list { display: flex; flex-direction: column; gap: 8px; }
+.content-item {
+  display: flex; align-items: center; justify-content: space-between;
+  font-size: 13px; padding: 6px 0; border-bottom: 1px solid var(--border);
+}
+.content-item:last-child { border-bottom: none; }
+.content-item .qty { font-weight: 700; color: var(--red); }
+
+/* Blog articles */
+.blog-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 24px; }
+.blog-card {
+  border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden;
+  transition: box-shadow .2s;
+}
+.blog-card:hover { box-shadow: var(--shadow-hover); }
+.blog-card-img { height: 160px; background: var(--gray-bg); overflow: hidden; }
+.blog-card-img img { width: 100%; height: 100%; object-fit: cover; }
+.blog-card-body { padding: 14px; }
+.blog-card-body h5 { font-size: 14px; font-weight: 700; margin-bottom: 6px; }
+.blog-card-body p { font-size: 12px; color: var(--gray); }
+.blog-card-body .blog-link {
+  font-size: 12px; color: var(--red); font-weight: 600; margin-top: 8px;
+  display: inline-flex; align-items: center; gap: 4px;
+}
+.blog-card-body .blog-link .ph { font-size: 12px; flex-shrink: 0; }
+
+/* ===================== VIDEO PANEL ===================== */
+.video-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.video-item { border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); }
+.video-item iframe { width: 100%; height: 200px; display: block; border: none; }
+.video-label {
+  padding: 10px 12px; font-size: 13px; font-weight: 600; background: var(--gray-bg);
+  display: flex; align-items: center; gap: 8px;
+}
+.video-label .ph { font-size: 16px; flex-shrink: 0; color: var(--red); }
+
+/* ===================== RESOURCES PANEL ===================== */
+.resources-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.resource-card {
+  border: 1px solid var(--border); border-radius: var(--radius); padding: 18px;
+  display: flex; align-items: center; gap: 14px;
+  transition: box-shadow .2s, border-color .2s;
+}
+.resource-card:hover { box-shadow: var(--shadow); border-color: var(--red); }
+.resource-icon {
+  width: 46px; height: 46px; background: var(--red-light); border-radius: 10px;
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.resource-icon svg { width: 22px; height: 22px; color: var(--red); }
+.resource-card h5 { font-size: 14px; font-weight: 700; margin-bottom: 3px; }
+.resource-card p { font-size: 12px; color: var(--gray); }
+.resource-card a { font-size: 12px; color: var(--red); font-weight: 600; margin-top: 4px; display: block; }
+
+.sleeve-table { width: 100%; border-collapse: collapse; margin-top: 20px; font-size: 13px; }
+.sleeve-table th { background: var(--red); color: white; padding: 10px 14px; text-align: left; font-weight: 700; }
+.sleeve-table td { padding: 9px 14px; border-bottom: 1px solid var(--border); }
+.sleeve-table tr:hover td { background: var(--gray-bg); }
+
+/* ===================== EXTENSIONS PANEL ===================== */
+.ext-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+.product-card {
+  border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden;
+  transition: box-shadow .2s, transform .2s; cursor: pointer;
+}
+.product-card:hover { box-shadow: var(--shadow-hover); transform: translateY(-3px); }
+.product-card-img {
+  height: 180px; background: var(--gray-bg);
+  display: flex; align-items: center; justify-content: center; overflow: hidden;
+}
+.product-card-img img { height: 100%; object-fit: contain; padding: 10px; }
+.product-card-body { padding: 12px; }
+.product-card-body h5 { font-size: 13px; font-weight: 700; margin-bottom: 4px; }
+.product-card-body .card-price { font-family: var(--font-display); font-size: 17px; font-weight: 800; color: var(--red); }
+.product-card-actions { display: flex; gap: 6px; margin-top: 8px; }
+.btn-sm-cart {
+  flex: 1; padding: 7px; background: var(--red); color: white;
+  border-radius: 6px; font-size: 12px; font-weight: 700;
+  display: flex; align-items: center; justify-content: center; gap: 4px;
+}
+.btn-sm-wish {
+  width: 34px; height: 34px; border: 1px solid var(--border);
+  border-radius: 6px; display: flex; align-items: center; justify-content: center;
+}
+.btn-sm-wish svg { width: 16px; height: 16px; color: var(--red); }
+
+/* ===================== FAQ PANEL ===================== */
+.faq-list { display: flex; flex-direction: column; gap: 10px; }
+.faq-item {
+  border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden;
+}
+.faq-question {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 16px 20px; font-size: 15px; font-weight: 600; cursor: pointer;
+  transition: background .2s;
+  background: var(--white);
+}
+.faq-question:hover { background: var(--gray-bg); }
+.faq-question svg { width: 18px; height: 18px; color: var(--red); transition: transform .3s; flex-shrink: 0; }
+.faq-item.open .faq-question svg { transform: rotate(180deg); }
+.faq-answer {
+  display: none;
+  padding: 0 20px 16px;
+  font-size: 14px; color: var(--gray-dark); line-height: 1.7;
+  border-top: 1px solid var(--border);
+}
+.faq-item.open .faq-answer { display: block; }
+
+/* ===================== ERRATAS PANEL ===================== */
+.errata-list { display: flex; flex-direction: column; gap: 14px; }
+.errata-item {
+  border-left: 4px solid var(--red); background: var(--gray-bg);
+  border-radius: 0 var(--radius) var(--radius) 0; padding: 16px 20px;
+}
+.errata-item h5 { font-size: 14px; font-weight: 700; margin-bottom: 6px; }
+.errata-item p { font-size: 13px; color: var(--gray-dark); line-height: 1.6; }
+.errata-item .errata-meta { font-size: 11px; color: var(--gray); margin-top: 8px; }
+
+/* ===================== ROADMAP PANEL ===================== */
+.roadmap-container { display: flex; flex-direction: column; gap: 30px; }
+.roadmap-card {
+  border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden;
+}
+.roadmap-header {
+  background: var(--red); color: white; padding: 12px 20px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.roadmap-header h4 {
+  font-family: var(--font-display); font-size: 18px; font-weight: 800;
+  display: flex; align-items: center; gap: 8px; margin: 0;
+}
+.roadmap-header h4 .ph { font-size: 20px; flex-shrink: 0; opacity: 0.95; }
+.roadmap-header .rh-date { font-size: 13px; opacity: .85; }
+.roadmap-steps {
+  display: flex; align-items: stretch; overflow-x: auto;
+  padding: 24px 20px; gap: 0;
+}
+.roadmap-step {
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+  min-width: 120px; position: relative; text-align: center;
+}
+.roadmap-step:not(:last-child)::after {
+  content: '';
+  position: absolute; top: 18px; left: 60%; right: -60%;
+  height: 3px; background: var(--border); z-index: 0;
+}
+.roadmap-step.done:not(:last-child)::after { background: var(--red); }
+.step-circle {
+  width: 36px; height: 36px; border-radius: 50%;
+  border: 3px solid var(--border); background: var(--white);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px; font-weight: 700; z-index: 1; position: relative;
+  color: var(--gray);
+}
+.roadmap-step.done .step-circle { background: var(--red); border-color: var(--red); color: white; }
+.roadmap-step.current .step-circle { background: white; border-color: var(--red); color: var(--red); box-shadow: 0 0 0 4px var(--red-light); }
+.step-label { font-size: 11px; font-weight: 600; color: var(--gray); line-height: 1.3; }
+.roadmap-step.done .step-label { color: var(--gray-dark); }
+.roadmap-step.current .step-label { color: var(--red); font-weight: 700; }
+.step-date { font-size: 10px; color: var(--gray); }
+
+/* ===================== COMMERCIAL INFO (ADMIN) ===================== */
+.admin-toggle {
+  display: flex; align-items: center; gap: 8px; margin-bottom: 20px;
+  font-size: 13px; font-weight: 700; color: var(--gray-dark);
+}
+.toggle-switch {
+  width: 42px; height: 22px; background: var(--gray-light);
+  border-radius: 11px; position: relative; cursor: pointer; transition: background .2s;
+}
+.toggle-switch.on { background: var(--red); }
+.toggle-knob {
+  width: 18px; height: 18px; background: white; border-radius: 50%;
+  position: absolute; top: 2px; left: 2px; transition: transform .2s;
+  box-shadow: 0 1px 4px rgba(0,0,0,.2);
+}
+.toggle-switch.on .toggle-knob { transform: translateX(20px); }
+.admin-section { display: none; }
+.admin-section.visible { display: block; }
+
+.info-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-bottom: 24px; }
+.info-card {
+  background: var(--gray-bg); border-radius: var(--radius); padding: 16px;
+  border: 1px solid var(--border);
+}
+.info-card h5 { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .5px; color: var(--gray); margin-bottom: 10px; }
+.info-row { display: flex; justify-content: space-between; font-size: 13px; padding: 4px 0; border-bottom: 1px solid var(--border); }
+.info-row:last-child { border-bottom: none; }
+.info-row .label { color: var(--gray); }
+.info-row .value { font-weight: 600; }
+.info-row .value.red { color: var(--red); }
+.info-row .value.green { color: #2e7d32; }
+.info-row .value.orange { color: #e65100; }
+
+.stock-bars { margin-top: 10px; }
+.stock-bar-row { margin-bottom: 8px; }
+.stock-bar-label { display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 3px; }
+.stock-bar-track { height: 6px; background: var(--border); border-radius: 3px; overflow: hidden; }
+.stock-bar-fill { height: 100%; background: var(--red); border-radius: 3px; }
+
+.price-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.price-table th { background: var(--gray-bg); padding: 10px 14px; text-align: left; font-weight: 700; border-bottom: 2px solid var(--border); }
+.price-table td { padding: 10px 14px; border-bottom: 1px solid var(--border); }
+.price-table tr:hover td { background: #fafafa; }
+
+/* ===================== FOOTER ===================== */
+.footer-top {
+  background: var(--red); color: white;
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  padding: 28px 40px; gap: 20px;
+  text-align: center;
+}
+.ft-item { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+.ft-item svg { width: 36px; height: 36px; opacity: .9; }
+.ft-item strong { font-size: 14px; font-weight: 700; }
+.ft-item span { font-size: 12px; opacity: .8; }
+
+footer {
+  background: #1a1a1a; color: #ccc;
+  display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1fr;
+  gap: 30px; padding: 40px 40px 24px;
+  font-size: 13px;
+}
+.footer-col h4 { color: white; font-weight: 700; margin-bottom: 14px; font-size: 14px; }
+.footer-col ul li { margin-bottom: 7px; }
+.footer-col ul li a { color: #aaa; transition: color .2s; }
+.footer-col ul li a:hover { color: white; }
+.footer-logo {
+  font-family: var(--font-display); font-size: 22px; font-weight: 800; color: var(--red); margin-bottom: 10px;
+  display: flex; align-items: center; gap: 8px;
+}
+.footer-logo .ph { font-size: 24px; flex-shrink: 0; }
+.footer-tagline { color: #888; line-height: 1.6; margin-bottom: 14px; font-size: 12px; }
+.footer-social { display: flex; gap: 10px; }
+.footer-social a {
+  width: 32px; height: 32px; background: #333; border-radius: 6px;
+  display: flex; align-items: center; justify-content: center; transition: background .2s;
+}
+.footer-social a:hover { background: var(--red); }
+.footer-social svg { width: 16px; height: 16px; fill: white; }
+.footer-bottom { background: #111; color: #666; text-align: center; padding: 14px; font-size: 12px; }
+
+/* ===================== LIGHTBOX ===================== */
+.lightbox {
+  position: fixed; inset: 0; background: rgba(0,0,0,.9);
+  z-index: 9999; display: none; align-items: center; justify-content: center;
+}
+.lightbox.open { display: flex; }
+.lightbox-img { max-width: 90vw; max-height: 90vh; border-radius: 8px; }
+.lightbox-close {
+  position: absolute; top: 20px; right: 30px;
+  color: white; font-size: 36px; cursor: pointer; line-height: 1;
+}
+
+/* ===================== MISC ===================== */
+.separator { height: 1px; background: var(--border); margin: 30px 0; }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.info-label { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .5px; color: var(--gray); margin-bottom: 6px; }
+.badge-pill {
+  display: inline-flex; align-items: center; gap: 5px;
+  background: var(--gray-bg); border: 1px solid var(--border);
+  border-radius: 20px; padding: 4px 12px; font-size: 12px; font-weight: 600;
+}
+.badge-pill.red { background: var(--red-light); border-color: var(--red); color: var(--red); }
+.badge-pill .ph { font-size: 14px; flex-shrink: 0; }
+
+/* Phosphor — alignement avec le texte */
+.resource-dl { display: inline-flex; align-items: center; gap: 6px; font-weight: 600; color: var(--red); }
+.resource-dl .ph { font-size: 15px; flex-shrink: 0; }
+.btn-sm-cart .ph, .btn-cart .ph { font-size: 15px; flex-shrink: 0; }
+.admin-toggle > span { display: inline-flex; align-items: center; gap: 6px; }
+.admin-toggle > span .ph { font-size: 15px; flex-shrink: 0; }
+.admin-banner-warn { display: flex; align-items: flex-start; gap: 10px; }
+.admin-banner-warn .ph { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+.info-row .value.val-icon { display: inline-flex; align-items: center; gap: 4px; }
+.info-row .value.val-icon .ph { font-size: 14px; flex-shrink: 0; }
+.step-circle .ph { font-size: 15px; line-height: 1; }
+.errata-meta { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+.errata-meta .ph { font-size: 13px; flex-shrink: 0; color: var(--gray-dark); }
+.faq-cta-icon {
+  width: 48px; height: 48px; border-radius: 50%; background: var(--white);
+  display: flex; align-items: center; justify-content: center; color: var(--red); flex-shrink: 0;
+}
+.faq-cta-icon .ph { font-size: 26px; }
+.pack-save-line { display: inline-flex; align-items: center; gap: 6px; }
+
+.scroll-top {
+  position: fixed; bottom: 28px; right: 28px;
+  width: 44px; height: 44px; background: var(--red); color: white;
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  box-shadow: var(--shadow); cursor: pointer; z-index: 500;
+  transition: background .2s, transform .2s; opacity: 0; pointer-events: none;
+}
+.scroll-top.visible { opacity: 1; pointer-events: all; }
+.scroll-top:hover { background: var(--red-dark); transform: translateY(-3px); }
+
+/* ===================== EXPORT FIGMA (sections empilées) ===================== */
+.tabs-wrapper--figma-stack .tabs-nav { display: none !important; }
+.tabs-wrapper--figma-stack .tab-panel {
+  display: block !important;
+  animation: none;
+}
+.tabs-wrapper--figma-stack .figma-export-banner {
+  font-size: 13px; line-height: 1.5; color: var(--gray-dark);
+  background: var(--gray-bg);
+  padding: 14px 18px; border-radius: var(--radius); margin-bottom: 32px;
+  border-left: 4px solid var(--red); max-width: 720px;
+}
+.tabs-wrapper--figma-stack .figma-stack-chunk {
+  margin-bottom: 48px; padding-bottom: 44px;
+  border-bottom: 1px solid var(--border);
+}
+.tabs-wrapper--figma-stack .figma-stack-chunk:last-of-type {
+  border-bottom: none; margin-bottom: 0; padding-bottom: 0;
+}
+.tabs-wrapper--figma-stack .figma-stack-heading {
+  font-family: var(--font-display); font-size: 26px; font-weight: 800;
+  color: var(--red); margin: 0 0 24px; letter-spacing: 0.02em;
+}
+/* Toutes les réponses FAQ visibles (capture Figma) */
+.tabs-wrapper--figma-stack .faq-item .faq-answer { display: block !important; }
+.tabs-wrapper--figma-stack .faq-item .faq-question svg { transform: rotate(180deg); }
+
+/* ===================== RESPONSIVE ===================== */
+@media (max-width: 1100px) {
+  .product-main { grid-template-columns: 1fr 1fr; }
+  .product-sidebar { grid-column: 1 / -1; position: static; display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .ext-grid { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 768px) {
+  .topbar { padding: 6px 16px; }
+  header { padding: 10px 16px; flex-wrap: wrap; }
+  nav { padding: 0 16px; overflow-x: auto; }
+  .breadcrumb { padding: 10px 16px; }
+  .product-main { grid-template-columns: 1fr; padding: 16px; }
+  .product-sidebar { grid-template-columns: 1fr; }
+  .tabs-wrapper { padding: 0 16px 30px; }
+  .desc-grid, .two-col, .info-grid, .blog-grid, .video-grid, .resources-grid { grid-template-columns: 1fr; }
+  .ext-grid { grid-template-columns: repeat(2, 1fr); }
+  .footer-top { grid-template-columns: repeat(2, 1fr); padding: 20px 16px; }
+  footer { grid-template-columns: 1fr 1fr; padding: 24px 16px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ==================== LIGHTBOX ==================== -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <span class="lightbox-close">&times;</span>
+  <img class="lightbox-img" id="lightbox-img" src="" alt="">
+</div>
+
+<!-- ==================== TOPBAR ==================== -->
+<div class="topbar">
+  <span>France</span>
+  <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
+  <span>SAV : <a href="tel:0612233445">06 12 23 34 45</a></span>
+</div>
+
+<!-- ==================== HEADER ==================== -->
+<header>
+  <a href="#" class="logo">
+    <div class="logo-icon">
+      <svg viewBox="0 0 24 24"><path d="M17 3H7c-1.1 0-2 .9-2 2v16l7-3 7 3V5c0-1.1-.9-2-2-2z"/></svg>
+    </div>
+    BOUTIQUE
+  </a>
+  <div class="search-bar">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+    <input type="text" placeholder="Rechercher un jeu…">
+  </div>
+  <div class="header-actions">
+    <a href="#">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+    </a>
+    <a href="#">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+    </a>
+    <a href="#" class="btn-connexion">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      Connexion
+    </a>
+  </div>
+</header>
+
+<!-- ==================== NAV ==================== -->
+<nav>
+  <a href="#">Accueil</a>
+  <a href="#">Précommandes</a>
+  <a href="#" class="active">Nos jeux</a>
+  <a href="#">Extensions</a>
+  <a href="#">Goodies</a>
+  <a href="#">Packs</a>
+  <a href="#">Série Deckscape</a>
+  <a href="#">Série Decktective</a>
+  <a href="#">PAGAN</a>
+  <a href="#">World Order</a>
+</nav>
+
+<!-- ==================== BREADCRUMB ==================== -->
+<div class="breadcrumb">
+  <a href="#">Accueil</a>
+  <span>›</span>
+  <a href="#">Nos jeux</a>
+  <span>›</span>
+  <a href="#">Série PAGAN</a>
+  <span>›</span>
+  <span style="color: var(--black); font-weight: 600;">Endeavor : Eaux Profondes</span>
+</div>
+
+<!-- ==================== PRODUCT MAIN ==================== -->
+<div class="product-main">
+
+  <!-- GALLERY -->
+  <div class="gallery">
+    <div class="gallery-main" onclick="openLightbox(this.querySelector('img').src)">
+      <img id="main-img" src="https://images.unsplash.com/photo-1585504198199-20277593b94f?q=80&amp;w=1017&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.1.0&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Endeavor : Eaux Profondes">
+      <div class="gallery-zoom-hint">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:12px;height:12px"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+        Agrandir
+      </div>
+    </div>
+    <div class="gallery-thumbs">
+      <div class="gallery-thumb active" onclick="changeImg(this, 'https://images.unsplash.com/photo-1585504198199-20277593b94f?q=80&amp;w=1017&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.1.0&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')">
+        <img src="https://images.unsplash.com/photo-1585504198199-20277593b94f?q=80&amp;w=200&amp;h=200&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.1.0&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
+      </div>
+      <div class="gallery-thumb" onclick="changeImg(this, 'https://images.unsplash.com/photo-1629760946220-5693ee4c46ac?q=80&amp;w=870&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.1.0&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')">
+        <img src="https://images.unsplash.com/photo-1629760946220-5693ee4c46ac?q=80&amp;w=200&amp;h=200&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.1.0&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
+      </div>
+      <div class="gallery-thumb" onclick="changeImg(this, 'https://plus.unsplash.com/premium_photo-1663100219417-eabaefc03fcb?q=80&amp;w=870&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.1.0&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')">
+        <img src="https://plus.unsplash.com/premium_photo-1663100219417-eabaefc03fcb?q=80&amp;w=200&amp;h=200&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.1.0&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
+      </div>
+      <div class="gallery-thumb" onclick="changeImg(this, 'https://images.unsplash.com/photo-1719494206741-79831f9f4d51?q=80&amp;w=870&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.1.0&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')">
+        <img src="https://images.unsplash.com/photo-1719494206741-79831f9f4d51?q=80&amp;w=200&amp;h=200&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.1.0&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
+      </div>
+      <div class="gallery-thumb" onclick="changeImg(this, 'https://images.unsplash.com/photo-1611996575749-79a3a250f948?q=80&amp;w=870&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.1.0&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')">
+        <img src="https://images.unsplash.com/photo-1611996575749-79a3a250f948?q=80&amp;w=200&amp;h=200&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.1.0&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
+      </div>
+      <div class="gallery-thumb" onclick="changeImg(this, 'https://images.unsplash.com/photo-1632501641765-e568d28b0015?q=80&amp;w=774&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.1.0&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')">
+        <img src="https://images.unsplash.com/photo-1632501641765-e568d28b0015?q=80&amp;w=200&amp;h=200&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.1.0&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
+      </div>
+      <div class="gallery-thumb" onclick="changeImg(this, 'https://plus.unsplash.com/premium_photo-1719360604085-06a1735d75c1?q=80&amp;w=484&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.1.0&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')">
+        <img src="https://plus.unsplash.com/premium_photo-1719360604085-06a1735d75c1?q=80&amp;w=200&amp;h=200&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.1.0&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
+      </div>
+    </div>
+  </div>
+
+  <!-- PRODUCT INFO -->
+  <div class="product-info">
+    <!-- Tags -->
+    <div class="product-tags-row">
+      <span class="tag tag-new">Nouveauté</span>
+      <span class="tag tag-exclu">Exclusivité web</span>
+      <span class="tag tag-serie">Série PAGAN</span>
+    </div>
+
+    <!-- Titre -->
+    <div>
+      <h1 class="product-title">Endeavor :<br>Eaux Profondes</h1>
+      <p class="product-subtitle">Extension pour Endeavor : L'Âge de la Voile</p>
+    </div>
+
+    <!-- Récompenses -->
+    <div class="awards">
+      <div class="award">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        As d'Or 2024
+      </div>
+      <div class="award">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        Prix EGA
+      </div>
+      <div class="award">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        Coup de cœur
+      </div>
+    </div>
+
+    <!-- Quick info -->
+    <div class="quick-info">
+      <div class="qi-badge">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        <div><small>Joueurs</small>2 – 5</div>
+      </div>
+      <div class="qi-badge">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        <div><small>Durée</small>90 – 150 min</div>
+      </div>
+      <div class="qi-badge">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        <div><small>Âge minimum</small>14 ans +</div>
+      </div>
+    </div>
+
+    <!-- Auteurs & Illustrateurs -->
+    <div>
+      <div class="info-label">Auteurs & Illustrateurs</div>
+      <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:6px;">
+        <span class="badge-pill"><i class="ph ph-pencil-simple" aria-hidden="true"></i> Carl de Visser</span>
+        <span class="badge-pill"><i class="ph ph-pencil-simple" aria-hidden="true"></i> Jarratt Gray</span>
+        <span class="badge-pill red"><i class="ph ph-palette" aria-hidden="true"></i> Mihajlo Dimitrievski</span>
+      </div>
+    </div>
+
+    <!-- Série & Jeu de base -->
+    <div class="two-col">
+      <div>
+        <div class="info-label">Série</div>
+        <a href="#" style="display:inline-flex;align-items:center;gap:6px;margin-top:6px;padding:7px 14px;border:1px solid var(--red);border-radius:8px;color:var(--red);font-weight:700;font-size:13px;">
+          <i class="ph ph-books" aria-hidden="true"></i> Série PAGAN
+        </a>
+      </div>
+      <div>
+        <div class="info-label">Jeu de base requis</div>
+        <a href="#" style="display:inline-flex;align-items:center;gap:6px;margin-top:6px;padding:7px 14px;border:1px solid var(--border);border-radius:8px;font-weight:700;font-size:13px;">
+          <i class="ph ph-dice-five" aria-hidden="true"></i> Endeavor : L'Âge de la Voile
+        </a>
+      </div>
+    </div>
+
+    <!-- Difficulté -->
+    <div class="difficulty-row">
+      <span class="diff-label">Difficulté :</span>
+      <div class="diff-dots">
+        <div class="diff-dot active"></div>
+        <div class="diff-dot active"></div>
+        <div class="diff-dot active"></div>
+        <div class="diff-dot"></div>
+        <div class="diff-dot"></div>
+      </div>
+      <span class="diff-text">Expert</span>
+    </div>
+
+    <!-- Gameplay type -->
+    <div>
+      <div class="info-label">Type de gameplay</div>
+      <div class="meta-tags" style="margin-top:6px;">
+        <span class="meta-tag type-coop">Coopératif</span>
+        <span class="meta-tag type-comp">Compétitif</span>
+        <span class="meta-tag">Semi-coopératif</span>
+      </div>
+    </div>
+
+    <!-- Mécanismes -->
+    <div>
+      <div class="info-label">Mécanismes</div>
+      <div class="meta-tags" style="margin-top:6px;">
+        <span class="meta-tag">Placement d'ouvriers</span>
+        <span class="meta-tag">Gestion de ressources</span>
+        <span class="meta-tag">Deck building</span>
+        <span class="meta-tag">Contrôle de territoire</span>
+        <span class="meta-tag">Actions simultanées</span>
+        <span class="meta-tag">Exploration</span>
+      </div>
+    </div>
+
+    <!-- Thématique -->
+    <div>
+      <div class="info-label">Thématique</div>
+      <div class="meta-tags" style="margin-top:6px;">
+        <span class="meta-tag">Exploration maritime</span>
+        <span class="meta-tag">Aventure sous-marine</span>
+        <span class="meta-tag">Commerce & Colonisation</span>
+      </div>
+    </div>
+
+    <!-- Avantages -->
+    <div>
+      <div class="info-label">Les + du jeu</div>
+      <ul class="advantages-list" style="margin-top:8px;">
+        <li>Ajout d'une nouvelle dimension sous-marine inédite</li>
+        <li>Nouvelles cartes événements et tuiles de territoire</li>
+        <li>Compatibilité complète avec toutes les extensions précédentes</li>
+        <li>Matériel de haute qualité avec figurines détaillées</li>
+        <li>Parties toujours différentes grâce à la modularité</li>
+      </ul>
+    </div>
+
+    <!-- Plateformes numériques -->
+    <div>
+      <div class="info-label">Jouer en ligne</div>
+      <div class="platforms" style="margin-top:8px;">
+        <a href="#" class="platform-btn"><i class="ph ph-game-controller" aria-hidden="true"></i> Tabletop Simulator</a>
+        <a href="#" class="platform-btn"><i class="ph ph-strategy" aria-hidden="true"></i> Board Game Arena</a>
+        <a href="#" class="platform-btn"><i class="ph ph-target" aria-hidden="true"></i> GamePark</a>
+      </div>
+    </div>
+
+    <!-- Catégories -->
+    <div>
+      <div class="info-label">Catégories</div>
+      <div class="meta-tags" style="margin-top:6px;">
+        <span class="meta-tag">Jeux de société</span>
+        <span class="meta-tag">Extensions</span>
+        <span class="meta-tag">Stratégie</span>
+        <span class="meta-tag">Aventure</span>
+        <span class="meta-tag">+14 ans</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- SIDEBAR -->
+  <div class="product-sidebar">
+    <div class="buy-box">
+      <div class="price-row">
+        <span class="price-main">39,90 €</span>
+        <span class="price-old">49,90 €</span>
+        <span class="price-discount">–20%</span>
+      </div>
+      <div class="stock-indicator">
+        <div class="stock-dot low"></div>
+        <span>Stock limité – Plus que 7 exemplaires</span>
+      </div>
+      <div class="qty-row">
+        <span class="qty-label">Qté :</span>
+        <div class="qty-ctrl">
+          <button onclick="changeQty(-1)">−</button>
+          <input type="number" id="qty" value="1" min="1" max="10">
+          <button onclick="changeQty(1)">+</button>
+        </div>
+      </div>
+      <button class="btn-cart" style="margin-bottom:8px;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:18px;height:18px"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        Ajouter au panier
+      </button>
+      <button class="btn-wishlist">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        Ajouter à ma liste de souhaits
+      </button>
+    </div>
+
+    <div class="delivery-info">
+      <div class="delivery-row">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+        <span><strong>Livraison offerte</strong> dès 60 € (France)</span>
+      </div>
+      <div class="delivery-row">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        <span><strong>Expédié sous 24/72h</strong> – Point relais disponible</span>
+      </div>
+      <div class="delivery-row">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        <span><strong>Satisfait ou remboursé</strong> 30 jours</span>
+      </div>
+      <div style="margin-top:8px; padding-top:8px; border-top:1px solid var(--border); font-size:11px; color:var(--gray);">
+        <strong>Poids :</strong> 1,2 kg &nbsp;|&nbsp; <strong>Dimensions :</strong> 30 × 30 × 8 cm
+      </div>
+    </div>
+
+    <div class="ref-box">
+      <span>Réf. interne :</span> NEO-END-EP-001 &nbsp;|&nbsp;
+      <span>EAN :</span> 8057369802854
+    </div>
+
+    <div class="shortcut-btns">
+      <button class="shortcut-btn" onclick="alert('Demande de presse envoyée')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        Presse
+      </button>
+      <button class="shortcut-btn" onclick="alert('Demande de SAV')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        SAV
+      </button>
+      <button class="shortcut-btn discord">
+        <svg viewBox="0 0 24 24" fill="currentColor" style="width:14px;height:14px"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/></svg>
+        Discord
+      </button>
+    </div>
+
+    <!-- Notify when back in stock -->
+    <div class="notify-box">
+      <label><i class="ph ph-bell" aria-hidden="true"></i> Alerte retour en stock</label>
+      <p>Soyez prévenu dès que cet article est de nouveau disponible.</p>
+      <div class="notify-input-row">
+        <input type="email" placeholder="votre@email.com">
+        <button>OK</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== CONTENU EMPILÉ (EXPORT FIGMA) ==================== -->
+<div class="tabs-wrapper tabs-wrapper--figma-stack">
+  <p class="figma-export-banner" role="note">Aperçu vertical pour import Figma : chaque bloc correspond à un ancien onglet. Ce flux n’est pas destiné au design final du site.</p>
+
+  <div class="figma-stack-chunk">
+    <h2 class="figma-stack-heading">Description &amp; contenu</h2>
+    <div class="tab-panel active" id="tab-description">
+    <div class="desc-grid">
+      <div>
+        <h2 class="section-title">Description du <span>jeu</span></h2>
+        <div class="description-text">
+          <p>Plongez dans les profondeurs mystérieuses des océans avec <strong>Endeavor : Eaux Profondes</strong>, l'extension qui transforme radicalement votre expérience de jeu. Partez à la découverte de cités englouties, de créatures abyssales et de richesses insoupçonnées cachées sous les flots.</p>
+          <p>Cette extension introduit un tout nouveau plateau sous-marin qui s'intègre parfaitement au plateau principal. Chaque joueur pourra désormais envoyer ses explorateurs dans les profondeurs à la recherche de trésors et d'anciennes technologies, tout en gérant les risques liés aux mystères des abysses.</p>
+          <p>De nouvelles cartes Événement viennent pimenter les parties, avec des tempêtes sous-marines, des rencontres avec des créatures légendaires et des découvertes archéologiques qui bouleversent l'équilibre des puissances. Les mécanismes de placement d'ouvriers et de gestion de ressources héritées du jeu de base s'enrichissent d'une dimension verticale inédite.</p>
+          <p>Compatible avec toutes les autres extensions de la gamme Endeavor, cette boîte offre une rejouabilité exceptionnelle et des parties toujours renouvelées. Que vous jouiez à 2 joueurs en mode coopératif ou à 5 joueurs en compétition acharnée, chaque partie recèle son lot de surprises.</p>
+        </div>
+
+        <div class="separator"></div>
+
+        <h2 class="section-title">Articles & <span>Actualités</span></h2>
+        <div class="blog-grid">
+          <a href="#" class="blog-card">
+            <div class="blog-card-img">
+              <img src="https://plus.unsplash.com/premium_photo-1719360604085-06a1735d75c1?q=80&amp;w=800&amp;h=400&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.1.0&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
+            </div>
+            <div class="blog-card-body">
+              <h5>Présentation complète d'Endeavor : Eaux Profondes</h5>
+              <p>Découvrez en détail toutes les nouveautés apportées par cette extension très attendue.</p>
+              <span class="blog-link">Lire l'article <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
+            </div>
+          </a>
+          <a href="#" class="blog-card">
+            <div class="blog-card-img">
+              <img src="https://images.unsplash.com/photo-1629760946220-5693ee4c46ac?q=80&amp;w=800&amp;h=400&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.1.0&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
+            </div>
+            <div class="blog-card-body">
+              <h5>Interview des auteurs : Carl de Visser & Jarratt Gray</h5>
+              <p>Les créateurs nous dévoilent les coulisses du développement de cette extension.</p>
+              <span class="blog-link">Lire l'article <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
+            </div>
+          </a>
+          <a href="#" class="blog-card">
+            <div class="blog-card-img">
+              <img src="https://plus.unsplash.com/premium_photo-1663100219417-eabaefc03fcb?q=80&amp;w=800&amp;h=400&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.1.0&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
+            </div>
+            <div class="blog-card-body">
+              <h5>Top 5 des stratégies pour l'exploration sous-marine</h5>
+              <p>Nos conseils pour dominer les profondeurs et maximiser vos points de victoire.</p>
+              <span class="blog-link">Lire l'article <i class="ph ph-arrow-right" aria-hidden="true"></i></span>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- Contenu de la boite -->
+      <div>
+        <div class="content-list-box">
+          <h4><i class="ph ph-package" aria-hidden="true"></i> Contenu de la boîte</h4>
+          <div class="content-list">
+            <div class="content-item"><span>Plateau sous-marin</span><span class="qty">×1</span></div>
+            <div class="content-item"><span>Tuiles de territoire sous-marin</span><span class="qty">×24</span></div>
+            <div class="content-item"><span>Cartes Événement abyssal</span><span class="qty">×36</span></div>
+            <div class="content-item"><span>Cartes Exploration</span><span class="qty">×48</span></div>
+            <div class="content-item"><span>Figurines explorateurs</span><span class="qty">×20</span></div>
+            <div class="content-item"><span>Figurines créatures</span><span class="qty">×8</span></div>
+            <div class="content-item"><span>Jetons ressources (bois, métal, mystère)</span><span class="qty">×90</span></div>
+            <div class="content-item"><span>Jetons points de victoire</span><span class="qty">×50</span></div>
+            <div class="content-item"><span>Dés spéciaux (6 faces)</span><span class="qty">×6</span></div>
+            <div class="content-item"><span>Plateaux joueurs extension</span><span class="qty">×5</span></div>
+            <div class="content-item"><span>Règle du jeu (FR/EN)</span><span class="qty">×1</span></div>
+            <div class="content-item"><span>Marqueurs de progression</span><span class="qty">×20</span></div>
+            <div class="content-item"><span>Carte de référence rapide</span><span class="qty">×5</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <div class="figma-stack-chunk">
+    <h2 class="figma-stack-heading">Vidéos</h2>
+    <div class="tab-panel" id="tab-videos">
+    <h2 class="section-title">Galerie <span>Vidéos</span></h2>
+    <div class="video-grid">
+      <div class="video-item">
+        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen title="Présentation du jeu"></iframe>
+        <div class="video-label"><i class="ph ph-film-slate" aria-hidden="true"></i> Présentation officielle</div>
+      </div>
+      <div class="video-item">
+        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen title="Let's play"></iframe>
+        <div class="video-label"><i class="ph ph-game-controller" aria-hidden="true"></i> Let's Play – Partie complète</div>
+      </div>
+      <div class="video-item">
+        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen title="Tutoriel règles"></iframe>
+        <div class="video-label"><i class="ph ph-book-open-text" aria-hidden="true"></i> Tutoriel – Les règles en 10 min</div>
+      </div>
+      <div class="video-item">
+        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen title="Unboxing"></iframe>
+        <div class="video-label"><i class="ph ph-package" aria-hidden="true"></i> Unboxing – Contenu de la boîte</div>
+      </div>
+      <div class="video-item">
+        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen title="Stratégie"></iframe>
+        <div class="video-label"><i class="ph ph-brain" aria-hidden="true"></i> Conseils stratégiques avancés</div>
+      </div>
+      <div class="video-item">
+        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen title="Critique"></iframe>
+        <div class="video-label"><i class="ph ph-star" aria-hidden="true"></i> Critique – Vaut-il le coup ?</div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <div class="figma-stack-chunk">
+    <h2 class="figma-stack-heading">Ressources</h2>
+    <div class="tab-panel" id="tab-ressources">
+    <h2 class="section-title">Ressources <span>téléchargeables</span></h2>
+    <div class="resources-grid">
+      <div class="resource-card">
+        <div class="resource-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        </div>
+        <div>
+          <h5>Règles du jeu (FR)</h5>
+          <p>Règles officielles en français – 24 pages</p>
+          <a href="#" class="resource-dl"><i class="ph ph-download-simple" aria-hidden="true"></i> Télécharger PDF</a>
+        </div>
+      </div>
+      <div class="resource-card">
+        <div class="resource-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        </div>
+        <div>
+          <h5>Règles du jeu (EN)</h5>
+          <p>Official English rulebook – 24 pages</p>
+          <a href="#" class="resource-dl"><i class="ph ph-download-simple" aria-hidden="true"></i> Download PDF</a>
+        </div>
+      </div>
+      <div class="resource-card">
+        <div class="resource-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+        </div>
+        <div>
+          <h5>Variantes officielles</h5>
+          <p>Modes de jeu alternatifs recommandés</p>
+          <a href="#" class="resource-dl"><i class="ph ph-download-simple" aria-hidden="true"></i> Télécharger PDF</a>
+        </div>
+      </div>
+      <div class="resource-card">
+        <div class="resource-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="9" y1="9" x2="15" y2="15"/><line x1="15" y1="9" x2="9" y2="15"/></svg>
+        </div>
+        <div>
+          <h5>Aide de jeu – Carte de référence</h5>
+          <p>Résumé des actions et règles clés</p>
+          <a href="#" class="resource-dl"><i class="ph ph-download-simple" aria-hidden="true"></i> Télécharger PDF</a>
+        </div>
+      </div>
+      <div class="resource-card">
+        <div class="resource-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <div>
+          <h5>Scénarios communautaires</h5>
+          <p>6 scénarios créés par la communauté</p>
+          <a href="#" class="resource-dl"><i class="ph ph-download-simple" aria-hidden="true"></i> Télécharger PDF</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="separator"></div>
+
+    <h2 class="section-title">Guide des <span>Sleeves</span></h2>
+    <table class="sleeve-table">
+      <thead>
+        <tr>
+          <th>Type de carte</th>
+          <th>Format</th>
+          <th>Quantité</th>
+          <th>Marque recommandée</th>
+          <th>Réf. sleeve</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Cartes Événement abyssal</td><td>63 × 88 mm (Poker)</td><td>36</td><td>Mayday / Arcane Tinmen</td><td>MAY3501</td></tr>
+        <tr><td>Cartes Exploration</td><td>63 × 88 mm (Poker)</td><td>48</td><td>Mayday / Arcane Tinmen</td><td>MAY3501</td></tr>
+        <tr><td>Cartes de référence</td><td>80 × 120 mm (Tarot)</td><td>5</td><td>Sleeve Kings</td><td>SK-TAROT</td></tr>
+      </tbody>
+    </table>
+  </div>
+  </div>
+
+  <div class="figma-stack-chunk">
+    <h2 class="figma-stack-heading">Extensions &amp; accessoires</h2>
+    <div class="tab-panel" id="tab-extensions">
+    <h2 class="section-title">Extensions & <span>Accessoires</span></h2>
+    <div class="ext-grid">
+      <div class="product-card">
+        <div class="product-card-img">
+          <img src="https://images.unsplash.com/photo-1585504198199-20277593b94f?q=80&amp;w=360&amp;h=360&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.1.0&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
+        </div>
+        <div class="product-card-body">
+          <h5>Endeavor : L'Âge de la Voile (Jeu de base)</h5>
+          <div class="card-price">54,90 €</div>
+          <div class="product-card-actions">
+            <button class="btn-sm-cart"><i class="ph ph-shopping-cart" aria-hidden="true"></i> Panier</button>
+            <button class="btn-sm-wish"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
+          </div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-card-img">
+          <img src="https://images.unsplash.com/photo-1719494206741-79831f9f4d51?q=80&amp;w=360&amp;h=360&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.1.0&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
+        </div>
+        <div class="product-card-body">
+          <h5>Extension : Terres Inconnues</h5>
+          <div class="card-price">29,90 €</div>
+          <div class="product-card-actions">
+            <button class="btn-sm-cart"><i class="ph ph-shopping-cart" aria-hidden="true"></i> Panier</button>
+            <button class="btn-sm-wish"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
+          </div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-card-img">
+          <img src="https://images.unsplash.com/photo-1611996575749-79a3a250f948?q=80&amp;w=360&amp;h=360&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.1.0&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
+        </div>
+        <div class="product-card-body">
+          <h5>Pack Promo – Cartes Spéciales</h5>
+          <div class="card-price">9,90 €</div>
+          <div class="product-card-actions">
+            <button class="btn-sm-cart"><i class="ph ph-shopping-cart" aria-hidden="true"></i> Panier</button>
+            <button class="btn-sm-wish"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
+          </div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-card-img">
+          <img src="https://images.unsplash.com/photo-1632501641765-e568d28b0015?q=80&amp;w=360&amp;h=360&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.1.0&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
+        </div>
+        <div class="product-card-body">
+          <h5>Insert en foam – Boîte de rangement</h5>
+          <div class="card-price">24,90 €</div>
+          <div class="product-card-actions">
+            <button class="btn-sm-cart"><i class="ph ph-shopping-cart" aria-hidden="true"></i> Panier</button>
+            <button class="btn-sm-wish"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="separator"></div>
+
+    <h2 class="section-title">Bundle <span>disponible</span></h2>
+    <div style="background: var(--red-light); border: 2px solid var(--red); border-radius: var(--radius); padding: 20px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px;">
+      <div>
+        <h4 style="font-family: var(--font-display); font-size: 20px; font-weight: 800;">Pack Complet Endeavor</h4>
+        <p style="font-size:13px; color:var(--gray-dark); margin-top:4px;">Jeu de base + Eaux Profondes + Terres Inconnues</p>
+        <p class="pack-save-line" style="font-size:12px; color:var(--red); font-weight:700; margin-top:4px;"><i class="ph ph-confetti" aria-hidden="true"></i> Économisez 15,70 € sur le pack !</p>
+      </div>
+      <div style="text-align:right;">
+        <div style="font-size:13px; color:var(--gray); text-decoration:line-through;">109,70 €</div>
+        <div style="font-family: var(--font-display); font-size:28px; font-weight:800; color:var(--red);">94,00 €</div>
+        <button class="btn-cart" style="margin-top:10px; padding: 10px 22px; font-size:15px;"><i class="ph ph-shopping-cart" aria-hidden="true"></i> Acheter le pack</button>
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <div class="figma-stack-chunk">
+    <h2 class="figma-stack-heading">Si vous avez aimé…</h2>
+    <div class="tab-panel" id="tab-suggestions">
+    <h2 class="section-title">Si vous avez <span>aimé…</span></h2>
+    <div class="ext-grid">
+      <div class="product-card">
+        <div class="product-card-img">
+          <img src="https://images.unsplash.com/photo-1629760946220-5693ee4c46ac?q=80&amp;w=360&amp;h=360&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.1.0&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
+        </div>
+        <div class="product-card-body">
+          <h5>PAGAN : Expéditions</h5>
+          <div class="card-price">44,90 €</div>
+          <div class="product-card-actions">
+            <button class="btn-sm-cart"><i class="ph ph-shopping-cart" aria-hidden="true"></i> Panier</button>
+            <button class="btn-sm-wish"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
+          </div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-card-img">
+          <img src="https://plus.unsplash.com/premium_photo-1663100219417-eabaefc03fcb?q=80&amp;w=360&amp;h=360&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.1.0&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
+        </div>
+        <div class="product-card-body">
+          <h5>World Order</h5>
+          <div class="card-price">52,90 €</div>
+          <div class="product-card-actions">
+            <button class="btn-sm-cart"><i class="ph ph-shopping-cart" aria-hidden="true"></i> Panier</button>
+            <button class="btn-sm-wish"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
+          </div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-card-img">
+          <img src="https://plus.unsplash.com/premium_photo-1719360604085-06a1735d75c1?q=80&amp;w=360&amp;h=360&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.1.0&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
+        </div>
+        <div class="product-card-body">
+          <h5>Deckscape : La Fuite</h5>
+          <div class="card-price">12,90 €</div>
+          <div class="product-card-actions">
+            <button class="btn-sm-cart"><i class="ph ph-shopping-cart" aria-hidden="true"></i> Panier</button>
+            <button class="btn-sm-wish"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
+          </div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-card-img">
+          <img src="https://images.unsplash.com/photo-1585504198199-20277593b94f?q=80&amp;w=360&amp;h=360&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.1.0&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
+        </div>
+        <div class="product-card-body">
+          <h5>KronoLogic</h5>
+          <div class="card-price">34,90 €</div>
+          <div class="product-card-actions">
+            <button class="btn-sm-cart"><i class="ph ph-shopping-cart" aria-hidden="true"></i> Panier</button>
+            <button class="btn-sm-wish"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <div class="figma-stack-chunk">
+    <h2 class="figma-stack-heading">Infos commerciales</h2>
+    <div class="tab-panel" id="tab-commercial">
+    <h2 class="section-title">Informations <span>commerciales</span></h2>
+
+    <!-- Stocks publics -->
+    <div class="info-grid">
+      <div class="info-card">
+        <h5>Stocks publics</h5>
+        <div class="info-row"><span class="label">Boutique</span><span class="value orange">7 ex.</span></div>
+        <div class="info-row"><span class="label">En ligne</span><span class="value green">Disponible</span></div>
+        <div class="info-row"><span class="label">Production</span><span class="value">En cours</span></div>
+      </div>
+      <div class="info-card">
+        <h5>Tarification active</h5>
+        <div class="info-row"><span class="label">Prix standard</span><span class="value">49,90 €</span></div>
+        <div class="info-row"><span class="label">Prix promo</span><span class="value red">39,90 €</span></div>
+        <div class="info-row"><span class="label">Du</span><span class="value">01/05/2025</span></div>
+        <div class="info-row"><span class="label">Au</span><span class="value">31/05/2025</span></div>
+      </div>
+      <div class="info-card">
+        <h5>Logistique</h5>
+        <div class="info-row"><span class="label">Poids</span><span class="value">1 200 g</span></div>
+        <div class="info-row"><span class="label">Dimensions</span><span class="value">30 × 30 × 8 cm</span></div>
+        <div class="info-row"><span class="label">Port offert dès</span><span class="value">60 €</span></div>
+        <div class="info-row"><span class="label">Délai expédition</span><span class="value">24/72h</span></div>
+      </div>
+    </div>
+
+    <!-- Mode admin -->
+    <div class="admin-toggle" onclick="toggleAdmin(this)">
+      <div class="toggle-switch" id="admin-switch"><div class="toggle-knob"></div></div>
+      <span><i class="ph ph-lock" aria-hidden="true"></i> Afficher les données admin (presse, réservation, stocks détaillés)</span>
+    </div>
+
+    <div class="admin-section" id="admin-data">
+      <div class="admin-banner-warn" style="background: #fff3e0; border: 1px solid #ffe082; border-radius: 8px; padding: 12px 16px; margin-bottom: 18px; font-size: 13px; color: #e65100; font-weight: 600;">
+        <i class="ph ph-warning" aria-hidden="true"></i>
+        <span>Zone Admin – Ces informations ne sont visibles que par l'équipe</span>
+      </div>
+      <div class="info-grid">
+        <div class="info-card">
+          <h5>Stocks détaillés</h5>
+          <div class="info-row"><span class="label">Boutique</span><span class="value">7</span></div>
+          <div class="info-row"><span class="label">Presse</span><span class="value">3</span></div>
+          <div class="info-row"><span class="label">Réservation</span><span class="value">12</span></div>
+          <div class="info-row"><span class="label">Néoludis</span><span class="value">45</span></div>
+          <div class="info-row"><span class="label">Abîmés (SAV/dons)</span><span class="value orange">4</span></div>
+          <div class="info-row"><span class="label">Stock réel total</span><span class="value green">71</span></div>
+          <div class="stock-bars">
+            <div class="stock-bar-row">
+              <div class="stock-bar-label"><span>Boutique</span><span>7/50</span></div>
+              <div class="stock-bar-track"><div class="stock-bar-fill" style="width:14%"></div></div>
+            </div>
+            <div class="stock-bar-row">
+              <div class="stock-bar-label"><span>Néoludis</span><span>45/100</span></div>
+              <div class="stock-bar-track"><div class="stock-bar-fill" style="width:45%"></div></div>
+            </div>
+          </div>
+        </div>
+        <div class="info-card">
+          <h5>Transporteurs & Restrictions</h5>
+          <div class="info-row"><span class="label">Colissimo</span><span class="value green val-icon"><i class="ph ph-check" aria-hidden="true"></i> Actif</span></div>
+          <div class="info-row"><span class="label">Mondial Relay</span><span class="value green val-icon"><i class="ph ph-check" aria-hidden="true"></i> Actif</span></div>
+          <div class="info-row"><span class="label">DHL Express</span><span class="value green val-icon"><i class="ph ph-check" aria-hidden="true"></i> Actif</span></div>
+          <div class="info-row"><span class="label">Russie</span><span class="value red val-icon"><i class="ph ph-x" aria-hidden="true"></i> Refusé</span></div>
+          <div class="info-row"><span class="label">Belarus</span><span class="value red val-icon"><i class="ph ph-x" aria-hidden="true"></i> Refusé</span></div>
+        </div>
+        <div class="info-card">
+          <h5>Prix & Tags actifs</h5>
+          <div class="info-row"><span class="label">En promo</span><span class="value green val-icon"><i class="ph ph-check" aria-hidden="true"></i></span></div>
+          <div class="info-row"><span class="label">Exclusivité web</span><span class="value green val-icon"><i class="ph ph-check" aria-hidden="true"></i></span></div>
+          <div class="info-row"><span class="label">En soldes</span><span class="value red val-icon"><i class="ph ph-x" aria-hidden="true"></i></span></div>
+          <div class="info-row"><span class="label">Dernière quantité</span><span class="value green val-icon"><i class="ph ph-check" aria-hidden="true"></i></span></div>
+          <div class="info-row"><span class="label">Bundle actif</span><span class="value green">Pack Complet</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <div class="figma-stack-chunk">
+    <h2 class="figma-stack-heading">Road map</h2>
+    <div class="tab-panel" id="tab-roadmap">
+    <h2 class="section-title">Road Map & <span>Historique</span></h2>
+
+    <div class="roadmap-container">
+      <!-- Edition originale -->
+      <div class="roadmap-card">
+        <div class="roadmap-header">
+          <h4><i class="ph ph-package" aria-hidden="true"></i> Endeavor : Eaux Profondes – Édition 1</h4>
+          <span class="rh-date">Sortie : Mai 2024 (France) / Juin 2024 (Canada)</span>
+        </div>
+        <div class="roadmap-steps">
+          <div class="roadmap-step done">
+            <div class="step-circle"><i class="ph ph-check" aria-hidden="true"></i></div>
+            <div class="step-label">En développement</div>
+            <div class="step-date">Jan 2023</div>
+          </div>
+          <div class="roadmap-step done">
+            <div class="step-circle"><i class="ph ph-check" aria-hidden="true"></i></div>
+            <div class="step-label">En illustration</div>
+            <div class="step-date">Juin 2023</div>
+          </div>
+          <div class="roadmap-step done">
+            <div class="step-circle"><i class="ph ph-check" aria-hidden="true"></i></div>
+            <div class="step-label">Rédaction des règles</div>
+            <div class="step-date">Sep 2023</div>
+          </div>
+          <div class="roadmap-step done">
+            <div class="step-circle"><i class="ph ph-check" aria-hidden="true"></i></div>
+            <div class="step-label">En traduction</div>
+            <div class="step-date">Nov 2023</div>
+          </div>
+          <div class="roadmap-step done">
+            <div class="step-circle"><i class="ph ph-check" aria-hidden="true"></i></div>
+            <div class="step-label">En fabrication</div>
+            <div class="step-date">Jan 2024</div>
+          </div>
+          <div class="roadmap-step done">
+            <div class="step-circle"><i class="ph ph-check" aria-hidden="true"></i></div>
+            <div class="step-label">En transport</div>
+            <div class="step-date">Avr 2024</div>
+          </div>
+          <div class="roadmap-step done">
+            <div class="step-circle"><i class="ph ph-check" aria-hidden="true"></i></div>
+            <div class="step-label">En boutique</div>
+            <div class="step-date">Mai 2024</div>
+          </div>
+          <div class="roadmap-step done">
+            <div class="step-circle"><i class="ph ph-check" aria-hidden="true"></i></div>
+            <div class="step-label">Sur site SM</div>
+            <div class="step-date">Mai 2024</div>
+          </div>
+          <div class="roadmap-step done">
+            <div class="step-circle"><i class="ph ph-check" aria-hidden="true"></i></div>
+            <div class="step-label">Disponible</div>
+            <div class="step-date">Mai 2024</div>
+          </div>
+          <div class="roadmap-step current">
+            <div class="step-circle"><i class="ph ph-warning-circle" aria-hidden="true"></i></div>
+            <div class="step-label">Stock limité</div>
+            <div class="step-date">Mai 2025</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Reprint -->
+      <div class="roadmap-card">
+        <div class="roadmap-header">
+          <h4><i class="ph ph-arrows-clockwise" aria-hidden="true"></i> Reprint – Édition 2</h4>
+          <span class="rh-date">Sortie prévisionnelle : Oct 2025 (France)</span>
+        </div>
+        <div class="roadmap-steps">
+          <div class="roadmap-step done">
+            <div class="step-circle"><i class="ph ph-check" aria-hidden="true"></i></div>
+            <div class="step-label">En développement</div>
+            <div class="step-date">Mar 2025</div>
+          </div>
+          <div class="roadmap-step current">
+            <div class="step-circle"><i class="ph ph-arrow-right" aria-hidden="true"></i></div>
+            <div class="step-label">En fabrication</div>
+            <div class="step-date">Mai 2025</div>
+          </div>
+          <div class="roadmap-step">
+            <div class="step-circle">3</div>
+            <div class="step-label">En transport</div>
+            <div class="step-date">Août 2025</div>
+          </div>
+          <div class="roadmap-step">
+            <div class="step-circle">4</div>
+            <div class="step-label">En boutique</div>
+            <div class="step-date">Oct 2025</div>
+          </div>
+          <div class="roadmap-step">
+            <div class="step-circle">5</div>
+            <div class="step-label">Disponible</div>
+            <div class="step-date">Oct 2025</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <div class="figma-stack-chunk">
+    <h2 class="figma-stack-heading">FAQ</h2>
+    <div class="tab-panel" id="tab-faq">
+    <h2 class="section-title">Foire aux <span>Questions</span></h2>
+    <div class="faq-list">
+      <div class="faq-item open">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span>Faut-il obligatoirement posséder le jeu de base pour jouer à cette extension ?</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="faq-answer">
+          Oui, <strong>Endeavor : Eaux Profondes</strong> est une extension qui nécessite le jeu de base <em>Endeavor : L'Âge de la Voile</em> pour être jouée. Elle n'est pas autonome et vient enrichir les mécanismes du jeu de base avec de nouvelles règles et composants.
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span>Cette extension est-elle compatible avec les autres extensions Endeavor ?</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="faq-answer">
+          Absolument ! Cette extension a été conçue pour être entièrement compatible avec toutes les autres extensions de la gamme. Vous pouvez combiner les extensions à votre guise pour varier les expériences.
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span>Quelle est la durée d'une partie avec cette extension ?</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="faq-answer">
+          L'ajout de cette extension allonge légèrement les parties. Comptez entre 90 et 150 minutes selon le nombre de joueurs et leur expérience. Pour les premières parties, prévoyez plutôt 2h30.
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span>Les règles sont-elles disponibles en anglais ?</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="faq-answer">
+          Oui, la boîte contient les règles en français et en anglais. Vous pouvez également télécharger les règles en PDF depuis l'onglet Ressources de cette page.
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span>Y a-t-il une version numérique disponible ?</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="faq-answer">
+          Le jeu est disponible sur Tabletop Simulator (Steam Workshop) et Board Game Arena. Retrouvez les liens dans la section "Jouer en ligne" de cette fiche produit.
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top: 24px; padding: 18px; background: var(--gray-bg); border-radius: var(--radius); display:flex; align-items:center; gap:14px;">
+      <div class="faq-cta-icon"><i class="ph ph-chat-circle" aria-hidden="true"></i></div>
+      <div>
+        <strong style="font-size:15px;">Vous avez une autre question ?</strong>
+        <p style="font-size:13px; color:var(--gray); margin-top:3px;">Rejoignez notre serveur Discord pour poser vos questions à la communauté et à l'équipe.</p>
+      </div>
+      <a href="#" class="btn-cart" style="margin-left:auto; padding:10px 20px; font-size:14px; white-space:nowrap; background:#5865F2;">
+        Discord
+      </a>
+    </div>
+  </div>
+  </div>
+
+  <div class="figma-stack-chunk">
+    <h2 class="figma-stack-heading">Erratas</h2>
+    <div class="tab-panel" id="tab-erratas">
+    <h2 class="section-title"><span>Erratas</span> & Corrections</h2>
+    <div class="errata-list">
+      <div class="errata-item">
+        <h5>Clarification – Règle de l'exploration sous-marine (page 8)</h5>
+        <p>La règle indiquant "un explorateur par tuile" doit être lue comme "un explorateur par tuile révélée par tour". Plusieurs explorateurs peuvent occuper la même tuile si elle a été révélée lors d'un tour précédent.</p>
+        <div class="errata-meta"><i class="ph ph-calendar" aria-hidden="true"></i> Publié le 15 juin 2024 | Affecte toutes les éditions</div>
+      </div>
+      <div class="errata-item">
+        <h5>Correction – Carte "Naufrage Profond" (carte n°34)</h5>
+        <p>Le texte de la carte indique "perdez 2 points de commerce" mais la version corrigée est "perdez 1 point de commerce ET 1 jeton ressource de votre choix". Cette correction sera intégrée dès l'édition 2.</p>
+        <div class="errata-meta"><i class="ph ph-calendar" aria-hidden="true"></i> Publié le 3 août 2024 | Carte n°34 – Édition 1 uniquement</div>
+      </div>
+      <div class="errata-item">
+        <h5>Précision – Interaction avec l'extension "Terres Inconnues"</h5>
+        <p>Lors de l'utilisation simultanée des deux extensions, le marqueur "Mystère" obtenu depuis les tuiles sous-marines compte comme un marqueur "Découverte" pour les objectifs de "Terres Inconnues".</p>
+        <div class="errata-meta"><i class="ph ph-calendar" aria-hidden="true"></i> Publié le 20 septembre 2024 | Uniquement pour joueurs des 2 extensions</div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+</div><!-- end tabs-wrapper -->
+
+<!-- ==================== FOOTER TOP ==================== -->
+<div class="footer-top">
+  <div class="ft-item">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+    <strong>Livraison 24/48/72h</strong>
+    <span>Domicile / Point Retrait</span>
+  </div>
+  <div class="ft-item">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><path d="M12 8v4l3 3"/></svg>
+    <strong>Frais de port à partir de 60€</strong>
+    <span>(France Métropolitaine uniquement)</span>
+  </div>
+  <div class="ft-item">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+    <strong>Satisfait ou remboursé</strong>
+    <span>Retour jusqu'à 30 jours</span>
+  </div>
+  <div class="ft-item">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 6 6l.81-.81a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 16.92z"/></svg>
+    <strong>Contactez-nous au</strong>
+    <span>06 12 23 34 45</span>
+  </div>
+</div>
+
+<!-- ==================== FOOTER ==================== -->
+<footer>
+  <div class="footer-col">
+    <div class="footer-logo"><i class="ph ph-dice-five" aria-hidden="true"></i> BOUTIQUE</div>
+    <p class="footer-tagline">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean at porttitor diam. Phasellus porttitor venenatis fermentum. Suspendisse sit amet sapien augue.</p>
+    <div class="footer-social">
+      <a href="#">
+        <svg viewBox="0 0 24 24"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/></svg>
+      </a>
+      <a href="#">
+        <svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.17 8.17 0 004.79 1.53V6.77a4.85 4.85 0 01-1.02-.08z"/></svg>
+      </a>
+      <a href="#">
+        <svg viewBox="0 0 24 24"><path d="M21.543 6.498C22 8.28 22 12 22 12s0 3.72-.457 5.502c-.254.985-.997 1.76-1.938 2.022C17.896 20 12 20 12 20s-5.893 0-7.605-.476c-.945-.266-1.687-1.04-1.938-2.022C2 15.72 2 12 2 12s0-3.72.457-5.502c.254-.985.997-1.76 1.938-2.022C6.107 4 12 4 12 4s5.896 0 7.605.476c.945.266 1.687 1.04 1.938 2.022zM10 15.5l6-3.5-6-3.5v7z"/></svg>
+      </a>
+    </div>
+  </div>
+  <div class="footer-col">
+    <h4>Super Meeple</h4>
+    <ul>
+      <li><a href="#">Qui sommes-nous ?</a></li>
+      <li><a href="#">Contactez-nous</a></li>
+      <li><a href="#">Carte Cadeau</a></li>
+      <li><a href="#">FAQ</a></li>
+    </ul>
+  </div>
+  <div class="footer-col">
+    <h4>Nos Jeux</h4>
+    <ul>
+      <li><a href="#">Précommandes</a></li>
+      <li><a href="#">Extensions</a></li>
+      <li><a href="#">Goodies</a></li>
+      <li><a href="#">Packs</a></li>
+      <li><a href="#">Série Decktective</a></li>
+      <li><a href="#">Série Deckscape</a></li>
+    </ul>
+  </div>
+  <div class="footer-col">
+    <h4>Mon compte</h4>
+    <ul>
+      <li><a href="#">Précommandes</a></li>
+      <li><a href="#">Extensions</a></li>
+      <li><a href="#">Goodies</a></li>
+      <li><a href="#">Packs</a></li>
+      <li><a href="#">Série Decktective</a></li>
+      <li><a href="#">Série Deckscape</a></li>
+    </ul>
+  </div>
+  <div class="footer-col">
+    <h4>Nos Jeux</h4>
+    <ul>
+      <li><a href="#">Précommandes</a></li>
+      <li><a href="#">Extensions</a></li>
+      <li><a href="#">Goodies</a></li>
+      <li><a href="#">Packs</a></li>
+      <li><a href="#">Série Decktective</a></li>
+      <li><a href="#">Série Deckscape</a></li>
+    </ul>
+  </div>
+  <div class="footer-col">
+    <h4>Nos Jeux</h4>
+    <ul>
+      <li><a href="#">Précommandes</a></li>
+      <li><a href="#">Extensions</a></li>
+      <li><a href="#">Goodies</a></li>
+      <li><a href="#">Packs</a></li>
+      <li><a href="#">Série Decktective</a></li>
+      <li><a href="#">Série Deckscape</a></li>
+    </ul>
+  </div>
+</footer>
+<div class="footer-bottom">
+  © 2025 Boutique – Tous droits réservés | CGV | Politique de confidentialité | Mentions légales
+</div>
+
+<!-- ==================== SCROLL TOP ==================== -->
+<button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" style="width:18px;height:18px"><polyline points="18 15 12 9 6 15"/></svg>
+</button>
+
+<!-- ==================== SCRIPTS ==================== -->
+<script>
+// Onglets désactivés dans cette version (contenu empilé pour export Figma).
+
+// Gallery
+function changeImg(thumb, src) {
+  document.getElementById('main-img').src = src;
+  document.querySelectorAll('.gallery-thumb').forEach(t => t.classList.remove('active'));
+  thumb.classList.add('active');
+}
+
+// Lightbox
+function openLightbox(src) {
+  document.getElementById('lightbox-img').src = src;
+  document.getElementById('lightbox').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+
+// Qty
+function changeQty(delta) {
+  const input = document.getElementById('qty');
+  let v = parseInt(input.value) + delta;
+  if (v < 1) v = 1;
+  if (v > 10) v = 10;
+  input.value = v;
+}
+
+// FAQ
+function toggleFaq(el) {
+  el.closest('.faq-item').classList.toggle('open');
+}
+
+// Admin toggle
+function toggleAdmin(wrapper) {
+  const sw = document.getElementById('admin-switch');
+  const data = document.getElementById('admin-data');
+  sw.classList.toggle('on');
+  data.classList.toggle('visible');
+}
+
+// Scroll top
+window.addEventListener('scroll', () => {
+  const btn = document.getElementById('scrollTop');
+  btn.classList.toggle('visible', window.scrollY > 400);
+});
+</script>
+</body>
+</html>
