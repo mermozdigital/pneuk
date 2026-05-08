@@ -1,0 +1,1457 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Demande de Presse – Boutique Super Meeple</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --red: #C8102E; --red-dark: #a00d24; --red-light: #fdeaed;
+  --black: #1a1a1a; --gray-dark: #444; --gray: #777; --gray-light: #ccc;
+  --gray-bg: #f5f5f5; --white: #fff; --border: #e4e4e4;
+  --shadow: 0 2px 14px rgba(0,0,0,.08);
+  --radius: 10px; --font: 'Barlow',sans-serif; --font-display: 'Barlow Condensed',sans-serif;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--font); color: var(--black); background: var(--gray-bg); }
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; display: block; }
+ul { list-style: none; }
+button { cursor: pointer; border: none; background: none; font-family: inherit; }
+
+/* TOPBAR */
+.topbar { background: var(--red); color: white; display: flex; align-items: center; justify-content: space-between; padding: 7px 40px; font-size: 13px; }
+.topbar a { color: white; }
+
+/* HEADER */
+header { background: white; border-bottom: 2px solid var(--border); padding: 12px 40px; display: flex; align-items: center; gap: 20px; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 10px rgba(0,0,0,.06); }
+.logo { display: flex; align-items: center; gap: 9px; font-family: var(--font-display); font-size: 22px; font-weight: 800; color: var(--red); white-space: nowrap; }
+.logo-icon { width: 38px; height: 38px; background: var(--red); border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+.logo-icon svg { width: 22px; height: 22px; fill: white; }
+.search-bar { flex: 1; max-width: 460px; display: flex; align-items: center; background: #f0f0f0; border-radius: 24px; padding: 9px 16px; gap: 8px; border: 2px solid transparent; transition: border-color .2s; }
+.search-bar:focus-within { border-color: var(--red); background: white; }
+.search-bar input { border: none; background: transparent; flex: 1; font-size: 14px; font-family: inherit; outline: none; }
+.search-bar button { background: var(--red); color: white; border-radius: 50%; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.search-bar button svg { width: 14px; height: 14px; }
+.header-actions { display: flex; align-items: center; gap: 16px; margin-left: auto; }
+.header-actions svg { width: 24px; height: 24px; }
+.account-btn { display: flex; align-items: center; gap: 7px; background: var(--red); color: white; padding: 8px 16px; border-radius: 22px; font-size: 13px; font-weight: 700; }
+.account-btn svg { width: 16px; height: 16px; }
+
+/* NAV */
+nav { background: white; border-bottom: 1px solid var(--border); padding: 0 40px; display: flex; overflow-x: auto; scrollbar-width: none; }
+nav::-webkit-scrollbar { display: none; }
+nav a { font-size: 13px; font-weight: 600; padding: 13px 15px; color: var(--black); border-bottom: 3px solid transparent; transition: color .2s, border-color .2s; white-space: nowrap; }
+nav a:hover { color: var(--red); border-bottom-color: var(--red); }
+
+/* BREADCRUMB */
+.breadcrumb { padding: 12px 40px; font-size: 13px; color: var(--gray); display: flex; align-items: center; gap: 6px; background: white; border-bottom: 1px solid var(--border); }
+.breadcrumb a { color: var(--red); font-weight: 500; }
+.breadcrumb .sep { color: var(--gray-light); }
+.breadcrumb .current { color: var(--black); font-weight: 600; }
+
+/* PAGE WRAPPER */
+.page-wrap { max-width: 820px; margin: 36px auto; padding: 0 20px 60px; }
+
+/* FORM CARD */
+.form-card { background: white; border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; }
+
+/* FORM HEADER */
+.form-header { background: var(--red); padding: 28px 36px; }
+.form-header h1 { font-family: var(--font-display); font-size: 38px; font-weight: 900; color: white; text-transform: uppercase; letter-spacing: 1px; display: flex; align-items: center; gap: 12px; }
+.form-header h1 svg { width: 32px; height: 32px; }
+.form-header p { color: rgba(255,255,255,.85); font-size: 14px; margin-top: 6px; }
+
+/* FORM BODY */
+.form-body { padding: 32px 36px; }
+
+/* INFO BOX */
+.info-box { background: #fff8e1; border: 1px solid #ffe082; border-left: 4px solid #f9a825; border-radius: 8px; padding: 12px 16px; margin-bottom: 28px; font-size: 13px; color: #5d4037; line-height: 1.6; display: flex; gap: 10px; }
+.info-box svg { width: 18px; height: 18px; color: #f9a825; flex-shrink: 0; margin-top: 1px; }
+
+.warn-box { background: #fff3e0; border: 1px solid #ffe0b2; border-left: 4px solid var(--red); border-radius: 8px; padding: 12px 16px; margin-bottom: 28px; font-size: 13px; color: var(--gray-dark); line-height: 1.6; display: flex; gap: 10px; }
+.warn-box svg { width: 18px; height: 18px; color: var(--red); flex-shrink: 0; margin-top: 1px; }
+
+/* SECTION TITLE */
+.form-section-title { font-family: var(--font-display); font-size: 22px; font-weight: 800; color: var(--black); text-transform: uppercase; letter-spacing: .5px; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 2px solid var(--red-light); display: flex; align-items: center; gap: 8px; }
+.form-section-title::before { content: ''; width: 4px; height: 22px; background: var(--red); border-radius: 2px; display: block; }
+
+/* FORM GROUPS */
+.form-group { margin-bottom: 18px; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.form-row-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+label { display: block; font-size: 13px; font-weight: 700; color: var(--gray-dark); margin-bottom: 6px; }
+label .required { color: var(--red); margin-left: 2px; }
+label .hint { font-weight: 400; color: var(--gray); font-size: 12px; margin-left: 4px; }
+
+input[type=text], input[type=email], input[type=url], input[type=number], input[type=tel], select, textarea {
+  width: 100%; padding: 11px 14px; border: 1.5px solid var(--border);
+  border-radius: 8px; font-size: 14px; font-family: inherit;
+  outline: none; transition: border-color .2s, box-shadow .2s;
+  color: var(--black); background: white;
+}
+input:focus, select:focus, textarea:focus {
+  border-color: var(--red); box-shadow: 0 0 0 3px rgba(200,16,46,.08);
+}
+input::placeholder, textarea::placeholder { color: var(--gray-light); }
+select {
+  background: white url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23888' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E") no-repeat right 12px center;
+  -webkit-appearance: none; padding-right: 36px; cursor: pointer;
+}
+textarea { resize: vertical; min-height: 100px; line-height: 1.6; }
+
+.input-note { font-size: 12px; color: var(--gray); margin-top: 5px; line-height: 1.4; }
+
+/* Checkboxes */
+.checkbox-group { display: flex; flex-direction: column; gap: 10px; margin-top: 4px; }
+.checkbox-item { display: flex; align-items: flex-start; gap: 10px; cursor: pointer; padding: 10px 14px; border: 1.5px solid var(--border); border-radius: 8px; transition: all .15s; }
+.checkbox-item:hover { border-color: var(--red); background: var(--red-light); }
+.checkbox-item input[type=checkbox] { width: 17px; height: 17px; accent-color: var(--red); flex-shrink: 0; margin-top: 1px; cursor: pointer; }
+.checkbox-item .cb-label { font-size: 14px; font-weight: 600; color: var(--gray-dark); }
+.checkbox-item .cb-sub { font-size: 12px; color: var(--gray); margin-top: 2px; }
+
+/* File upload */
+.file-upload-wrap { position: relative; }
+.file-upload-label {
+  display: flex; align-items: center; gap: 10px;
+  padding: 11px 16px; border: 1.5px dashed var(--border);
+  border-radius: 8px; cursor: pointer; transition: all .2s;
+  font-size: 14px; color: var(--gray);
+}
+.file-upload-label:hover { border-color: var(--red); color: var(--red); background: var(--red-light); }
+.file-upload-label svg { width: 18px; height: 18px; flex-shrink: 0; }
+.file-upload-label span { flex: 1; }
+.file-upload-input { display: none; }
+.file-name { font-size: 12px; color: var(--gray); margin-top: 5px; }
+
+/* Progress / range */
+.range-wrap { padding: 4px 0; }
+.range-slider { width: 100%; accent-color: var(--red); height: 4px; }
+.range-labels { display: flex; justify-content: space-between; font-size: 12px; color: var(--gray); margin-top: 4px; }
+
+/* Divider */
+.section-gap { margin: 32px 0; height: 1px; background: var(--border); }
+
+/* Submit */
+.form-submit-row { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px; margin-top: 28px; }
+.btn-submit {
+  display: flex; align-items: center; gap: 10px;
+  background: var(--red); color: white;
+  padding: 14px 36px; border-radius: 8px;
+  font-family: var(--font-display); font-size: 17px; font-weight: 800;
+  letter-spacing: .5px; text-transform: uppercase;
+  transition: background .2s, transform .15s;
+}
+.btn-submit:hover { background: var(--red-dark); transform: translateY(-1px); }
+.btn-submit svg { width: 18px; height: 18px; }
+.btn-reset {
+  padding: 11px 22px; border: 1.5px solid var(--border); border-radius: 8px;
+  font-size: 14px; font-weight: 600; color: var(--gray-dark); transition: all .2s;
+}
+.btn-reset:hover { border-color: var(--red); color: var(--red); }
+
+/* Success state */
+.success-banner { display: none; background: #e8f5e9; border: 1px solid #a5d6a7; border-radius: 8px; padding: 16px 20px; margin-bottom: 24px; align-items: center; gap: 12px; }
+.success-banner.show { display: flex; }
+.success-banner svg { width: 24px; height: 24px; color: #2e7d32; flex-shrink: 0; }
+.success-banner p { font-size: 14px; font-weight: 600; color: #1b5e20; }
+
+/* FOOTER TOP */
+.footer-top { background: var(--red); color: white; display: grid; grid-template-columns: repeat(4,1fr); padding: 28px 40px; gap: 20px; }
+.ft-item { display: flex; flex-direction: column; align-items: center; gap: 8px; text-align: center; }
+.ft-item svg { width: 34px; height: 34px; }
+.ft-item strong { font-size: 14px; font-weight: 700; }
+.ft-item span { font-size: 12px; opacity: .85; }
+
+/* FOOTER */
+footer { background: #1a1a1a; color: #bbb; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1fr; gap: 30px; padding: 40px 40px 24px; font-size: 13px; }
+.footer-logo { font-family: var(--font-display); font-size: 22px; font-weight: 800; color: var(--red); margin-bottom: 10px; }
+.footer-tagline { color: #888; line-height: 1.6; font-size: 12px; margin-bottom: 14px; }
+.footer-social { display: flex; gap: 10px; }
+.footer-social a { width: 34px; height: 34px; background: #2a2a2a; border-radius: 8px; display: flex; align-items: center; justify-content: center; transition: background .2s; }
+.footer-social a:hover { background: var(--red); }
+.footer-social svg { width: 16px; height: 16px; fill: white; }
+.footer-col h4 { color: white; font-weight: 700; margin-bottom: 14px; font-size: 14px; }
+.footer-col ul li { margin-bottom: 8px; }
+.footer-col ul li a { color: #999; transition: color .2s; }
+.footer-col ul li a:hover { color: white; }
+.footer-bottom { background: #111; color: #555; text-align: center; padding: 14px; font-size: 12px; }
+
+/* SOCIAL SECTION */
+.social-section { padding: 32px 40px; border-bottom: 1px solid var(--border); background: white; }
+.social-section-title { font-family: var(--font-display); font-size: 22px; font-weight: 800; text-align: center; margin-bottom: 18px; }
+.social-links { display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap; }
+.social-link { display: flex; align-items: center; gap: 8px; padding: 10px 20px; border-radius: 10px; font-size: 13px; font-weight: 700; border: 1.5px solid var(--border); transition: all .2s; }
+.social-link:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
+.social-link svg { width: 20px; height: 20px; }
+.sl-fb { color: #1877f2; border-color: #c8ddf9; } .sl-fb:hover { background: #1877f2; color: white; border-color: #1877f2; }
+.sl-ig { color: #c13584; border-color: #f2c0dc; } .sl-ig:hover { background: #c13584; color: white; border-color: #c13584; }
+.sl-x  { color: #000; border-color: #ddd; } .sl-x:hover { background: #000; color: white; }
+.sl-dc { color: #5865f2; border-color: #cdd0fc; } .sl-dc:hover { background: #5865f2; color: white; border-color: #5865f2; }
+.sl-yt { color: #ff0000; border-color: #ffd0d0; } .sl-yt:hover { background: #ff0000; color: white; border-color: #ff0000; }
+.sl-wa { color: #25d366; border-color: #b2f0d0; } .sl-wa:hover { background: #25d366; color: white; border-color: #25d366; }
+
+@media (max-width: 768px) {
+  .topbar, header, nav, .breadcrumb { padding-left: 16px; padding-right: 16px; }
+  .form-body { padding: 20px; }
+  .form-header { padding: 20px; }
+  .form-row, .form-row-3 { grid-template-columns: 1fr; }
+  .footer-top { grid-template-columns: repeat(2,1fr); padding: 20px 16px; }
+  footer { grid-template-columns: 1fr 1fr; padding: 24px 16px; }
+  .social-section { padding: 24px 16px; }
+}
+</style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <span>France 🇫🇷</span>
+  <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
+  <span>SAV : <a href="tel:0612233445">06 12 23 34 45</a></span>
+</div>
+
+<!-- HEADER -->
+<header>
+  <a href="#" class="logo">
+    <div class="logo-icon"><svg viewBox="0 0 24 24"><path d="M17 3H7c-1.1 0-2 .9-2 2v16l7-3 7 3V5c0-1.1-.9-2-2-2z"/></svg></div>
+    BOUTIQUE
+  </a>
+  <div class="search-bar">
+    <input type="text" placeholder="Rechercher un jeu…">
+    <button><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></button>
+  </div>
+  <div class="header-actions">
+    <a href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></a>
+    <a href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></a>
+    <div class="account-btn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      Connexion
+    </div>
+  </div>
+</header>
+
+<!-- NAV -->
+<nav>
+  <a href="#">Accueil</a><a href="#">Précommandes</a><a href="#">Nos jeux</a><a href="#">Extensions</a>
+  <a href="#">Goodies</a><a href="#">Packs</a><a href="#">Série Deckscape</a><a href="#">Série Decktective</a>
+  <a href="#">PAGAN</a><a href="#">World Order</a>
+</nav>
+
+<!-- BREADCRUMB -->
+<div class="breadcrumb">
+  <a href="#">Accueil</a><span class="sep">›</span>
+  <a href="#">Nous contacter</a><span class="sep">›</span>
+  <span class="current">Demande de presse</span>
+</div>
+
+<!-- PAGE -->
+<div class="page-wrap">
+  <div class="form-card">
+
+    <!-- Header -->
+    <div class="form-header">
+      <h1>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        Demande de Presse
+      </h1>
+      <p>Merci de remplir tous les champs pour être traité.</p>
+    </div>
+
+    <div class="form-body">
+
+      <!-- Success -->
+      <div class="success-banner" id="success-banner">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        <p>Votre demande a bien été envoyée ! Nous vous répondrons dans les meilleurs délais.</p>
+      </div>
+
+      <!-- Info rupture -->
+      <div class="info-box">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        <span>Nous sommes en rupture d'exemplaires de presse pour <strong>Wondrous Creatures / Ironwood / Endeavor Eaux Profondes / Black Forest</strong> – Merci.</span>
+      </div>
+
+      <!-- ===== INFORMATIONS PRESSE ===== -->
+      <div class="form-section-title">Informations Presse</div>
+
+      <div class="form-group">
+        <label>Nom du support presse <span class="required">*</span></label>
+        <input type="text" placeholder="Ex : Gaming & Co, Le Monde du Jeu…" required>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>Type de support <span class="required">*</span></label>
+          <select required id="support-type" onchange="updateFollowerLabel()">
+            <option value="">Choisir…</option>
+            <option value="youtube" selected>Youtube</option>
+            <option value="blog">Blog / Site web</option>
+            <option value="podcast">Podcast</option>
+            <option value="instagram">Instagram</option>
+            <option value="tiktok">TikTok</option>
+            <option value="twitch">Twitch</option>
+            <option value="facebook">Facebook</option>
+            <option value="magazine">Magazine / Presse écrite</option>
+          </select>
+          <p class="input-note">Si vous ne trouvez pas votre type de support, c'est que nous n'envoyons pas d'exemplaire presse pour celui-ci.</p>
+        </div>
+        <div class="form-group">
+          <label>URL de votre support <span class="required">*</span></label>
+          <input type="url" placeholder="https://…" required>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label id="follower-label">Nombre de followers (5 000 mini) ou Moyenne de vues sur Youtube <span class="required">*</span></label>
+        <input type="number" id="followers" placeholder="Ex : 12500" min="0" max="100000" required>
+        <p class="input-note">Veuillez entrer un nombre entre <strong>0</strong> et <strong>100 000</strong>.</p>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>Jeu 1 souhaité</label>
+          <input type="text" placeholder="Nom du jeu souhaité…" list="games-list">
+          <datalist id="games-list">
+            <option value="Endeavor : Eaux Profondes">
+            <option value="Endeavor : L'Âge de la Voile">
+            <option value="PAGAN : Expéditions">
+            <option value="KronoLogic">
+            <option value="World Order">
+            <option value="Deckscape : La Fuite">
+            <option value="Decktective : Sang pour sang">
+          </datalist>
+        </div>
+        <div class="form-group">
+          <label>Jeu 2 souhaité</label>
+          <input type="text" placeholder="Nom du jeu souhaité…" list="games-list">
+        </div>
+      </div>
+      <p class="input-note" style="margin-top:-10px; margin-bottom:18px;">Les jeux souhaités sont sous réserve de disponibilité pour la presse.</p>
+
+      <div class="form-group">
+        <label>J'accepte <span class="hint">(cochez ce que vous acceptez)</span></label>
+        <div class="checkbox-group">
+          <label class="checkbox-item">
+            <input type="checkbox">
+            <div>
+              <div class="cb-label">Un jeu déjà ouvert (mais en bon état)</div>
+            </div>
+          </label>
+          <label class="checkbox-item">
+            <input type="checkbox">
+            <div>
+              <div class="cb-label">Un jeu qui a reçu un choc (mais sans conséquence)</div>
+            </div>
+          </label>
+        </div>
+        <p class="input-note" style="margin-top:10px;">Nous envoyons de préférence des jeux neufs, mais parfois il nous reste un petit stock à part.</p>
+      </div>
+
+      <div class="section-gap"></div>
+
+      <!-- ===== COORDONNEES ===== -->
+      <div class="form-section-title">Coordonnées</div>
+
+      <div class="form-group">
+        <label>Email <span class="required">*</span></label>
+        <input type="email" placeholder="votre@email.com" required>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>Prénom <span class="required">*</span></label>
+          <input type="text" placeholder="Votre prénom" required>
+        </div>
+        <div class="form-group">
+          <label>Nom <span class="required">*</span></label>
+          <input type="text" placeholder="Votre nom" required>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Adresse</label>
+        <input type="text" placeholder="Numéro et nom de rue">
+      </div>
+      <div class="form-group">
+        <input type="text" placeholder="Complément d'adresse (bât., étage…)">
+      </div>
+      <div class="form-group">
+        <label>Adresse ligne 1</label>
+        <input type="text" placeholder="Résidence, lieu-dit…">
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>Ville</label>
+          <input type="text" placeholder="Votre ville">
+        </div>
+        <div class="form-group">
+          <label>État / Province / Région</label>
+          <select>
+            <option value="">Sélectionner…</option>
+            <option>Île-de-France</option><option>Auvergne-Rhône-Alpes</option>
+            <option>Nouvelle-Aquitaine</option><option>Occitanie</option>
+            <option>Hauts-de-France</option><option>Grand Est</option>
+            <option>Normandie</option><option>Bretagne</option>
+            <option>Pays de la Loire</option><option>Provence-Alpes-Côte d'Azur</option>
+            <option>Québec</option><option>Ontario</option><option>Autre</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>ZIP / Code postal</label>
+          <input type="text" placeholder="Ex : 75001">
+        </div>
+        <div class="form-group">
+          <label>Pays</label>
+          <select>
+            <option value="">Sélectionner…</option>
+            <option selected>France</option><option>Belgique</option>
+            <option>Suisse</option><option>Canada</option><option>Luxembourg</option>
+            <option>Autre</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Téléphone</label>
+        <input type="tel" placeholder="Ex : +33 6 12 34 56 78">
+      </div>
+
+      <!-- Submit -->
+      <div class="form-submit-row">
+        <button type="button" class="btn-reset" onclick="resetForm()">Réinitialiser</button>
+        <button type="button" class="btn-submit" onclick="submitForm()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+          Envoyer
+        </button>
+      </div>
+
+    </div><!-- /form-body -->
+  </div><!-- /form-card -->
+</div><!-- /page-wrap -->
+
+<!-- SOCIAL -->
+<div class="social-section">
+  <div class="social-section-title">Suivez-nous sur les réseaux sociaux</div>
+  <div class="social-links">
+    <a href="#" class="social-link sl-fb"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/></svg>Facebook</a>
+    <a href="#" class="social-link sl-ig"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>Instragram</a>
+    <a href="#" class="social-link sl-x"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.736-8.844L1.254 2.25h7.002l4.262 5.636zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>X</a>
+    <a href="#" class="social-link sl-dc"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/></svg>Discord</a>
+    <a href="#" class="social-link sl-yt"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.543 6.498C22 8.28 22 12 22 12s0 3.72-.457 5.502c-.254.985-.997 1.76-1.938 2.022C17.896 20 12 20 12 20s-5.893 0-7.605-.476c-.945-.266-1.687-1.04-1.938-2.022C2 15.72 2 12 2 12s0-3.72.457-5.502c.254-.985.997-1.76 1.938-2.022C6.107 4 12 4 12 4s5.896 0 7.605.476c.945.266 1.687 1.04 1.938 2.022zM10 15.5l6-3.5-6-3.5v7z"/></svg>Youtube</a>
+    <a href="#" class="social-link sl-wa"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>Whatsapp</a>
+  </div>
+</div>
+
+<!-- FOOTER TOP -->
+<div class="footer-top">
+  <div class="ft-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg><strong>Livraison 24/48/72h</strong><span>Domicile / Point Retrait</span></div>
+  <div class="ft-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><strong>Frais de port à partir de 60€</strong><span>(France Métropolitaine uniquement)</span></div>
+  <div class="ft-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg><strong>Satisfait ou remboursé</strong><span>Retour jusqu'à X mois</span></div>
+  <div class="ft-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 6 6l.81-.81a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 16.92z"/></svg><strong>Contactez-nous au</strong><span>06 12 23 34 45</span></div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-col">
+    <div class="footer-logo">🎲 BOUTIQUE</div>
+    <p class="footer-tagline">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean at porttitor diam. Phasellus porttitor venenatis fermentum.</p>
+    <div class="footer-social">
+      <a href="#"><svg viewBox="0 0 24 24"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/></svg></a>
+      <a href="#"><svg viewBox="0 0 24 24"><path d="M21.543 6.498C22 8.28 22 12 22 12s0 3.72-.457 5.502c-.254.985-.997 1.76-1.938 2.022C17.896 20 12 20 12 20s-5.893 0-7.605-.476c-.945-.266-1.687-1.04-1.938-2.022C2 15.72 2 12 2 12s0-3.72.457-5.502c.254-.985.997-1.76 1.938-2.022C6.107 4 12 4 12 4s5.896 0 7.605.476c.945.266 1.687 1.04 1.938 2.022zM10 15.5l6-3.5-6-3.5v7z"/></svg></a>
+      <a href="#"><svg viewBox="0 0 24 24"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/></svg></a>
+    </div>
+  </div>
+  <div class="footer-col"><h4>Super Meeple</h4><ul><li><a href="#">Qui sommes-nous ?</a></li><li><a href="#">Contactez-nous</a></li><li><a href="#">Actualités</a></li><li><a href="#">Festivals & Événements</a></li><li><a href="#">Nos partenaires</a></li><li><a href="#">FAQ</a></li></ul></div>
+  <div class="footer-col"><h4>Tous le jeux</h4><ul><li><a href="#">Précommandes</a></li><li><a href="#">Nouveautés</a></li><li><a href="#">Roadmap</a></li><li><a href="#">Demande de SAV</a></li><li><a href="#">Demande de presse</a></li><li><a href="#">Autre demande</a></li></ul></div>
+  <div class="footer-col"><h4>Informations</h4><ul><li><a href="#">Mon compte</a></li><li><a href="#">FAQ</a></li><li><a href="#">Où trouver nos jeux</a></li><li><a href="#">Mentions légales</a></li><li><a href="#">CGV</a></li><li><a href="#">Plan du site</a></li></ul></div>
+  <div class="footer-col"><h4>Lorem Ipsum</h4><ul><li><a href="#">Politique de confidentialité</a></li><li><a href="#">Extensions</a></li><li><a href="#">Goodies</a></li><li><a href="#">Packs</a></li><li><a href="#">Série Decktective</a></li><li><a href="#">Série Deckscape</a></li></ul></div>
+  <div class="footer-col"><h4>Lorem Ipsum</h4><ul><li><a href="#">Précommandes</a></li><li><a href="#">Extensions</a></li><li><a href="#">Goodies</a></li><li><a href="#">Packs</a></li><li><a href="#">Série Decktective</a></li><li><a href="#">Série Deckscape</a></li></ul></div>
+</footer>
+<div class="footer-bottom">© 2025 Boutique Super Meeple – Tous droits réservés</div>
+
+<script>
+function updateFollowerLabel() {
+  const type = document.getElementById('support-type').value;
+  const label = document.getElementById('follower-label');
+  const labels = {
+    youtube: 'Nombre de followers (5 000 mini) ou Moyenne de vues sur Youtube',
+    blog: 'Nombre de visiteurs uniques mensuels (5 000 mini)',
+    podcast: 'Nombre d\'écoutes mensuelles (5 000 mini)',
+    instagram: 'Nombre d\'abonnés Instagram (5 000 mini)',
+    tiktok: 'Nombre d\'abonnés TikTok (5 000 mini)',
+    twitch: 'Nombre de viewers moyens (5 000 mini)',
+    facebook: 'Nombre d\'abonnés Facebook (5 000 mini)',
+    magazine: 'Tirage ou audience estimée',
+  };
+  label.innerHTML = (labels[type] || 'Nombre de followers / audience (5 000 mini)') + ' <span class="required">*</span>';
+}
+
+function submitForm() {
+  document.getElementById('success-banner').classList.add('show');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function resetForm() {
+  document.querySelectorAll('input, select, textarea').forEach(el => el.type !== 'checkbox' ? el.value = '' : el.checked = false);
+  document.getElementById('success-banner').classList.remove('show');
+}
+</script>
+</body>
+</html>
+
+
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Demande de S.A.V – Boutique Super Meeple</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --red: #C8102E; --red-dark: #a00d24; --red-light: #fdeaed;
+  --black: #1a1a1a; --gray-dark: #444; --gray: #777; --gray-light: #ccc;
+  --gray-bg: #f5f5f5; --white: #fff; --border: #e4e4e4;
+  --shadow: 0 2px 14px rgba(0,0,0,.08);
+  --radius: 10px; --font: 'Barlow',sans-serif; --font-display: 'Barlow Condensed',sans-serif;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--font); color: var(--black); background: var(--gray-bg); }
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; display: block; }
+ul { list-style: none; }
+button { cursor: pointer; border: none; background: none; font-family: inherit; }
+
+.topbar { background: var(--red); color: white; display: flex; align-items: center; justify-content: space-between; padding: 7px 40px; font-size: 13px; }
+.topbar a { color: white; }
+header { background: white; border-bottom: 2px solid var(--border); padding: 12px 40px; display: flex; align-items: center; gap: 20px; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 10px rgba(0,0,0,.06); }
+.logo { display: flex; align-items: center; gap: 9px; font-family: var(--font-display); font-size: 22px; font-weight: 800; color: var(--red); white-space: nowrap; }
+.logo-icon { width: 38px; height: 38px; background: var(--red); border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+.logo-icon svg { width: 22px; height: 22px; fill: white; }
+.search-bar { flex: 1; max-width: 460px; display: flex; align-items: center; background: #f0f0f0; border-radius: 24px; padding: 9px 16px; gap: 8px; border: 2px solid transparent; transition: border-color .2s; }
+.search-bar:focus-within { border-color: var(--red); background: white; }
+.search-bar input { border: none; background: transparent; flex: 1; font-size: 14px; font-family: inherit; outline: none; }
+.search-bar button { background: var(--red); color: white; border-radius: 50%; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.search-bar button svg { width: 14px; height: 14px; }
+.header-actions { display: flex; align-items: center; gap: 16px; margin-left: auto; }
+.header-actions svg { width: 24px; height: 24px; }
+.account-btn { display: flex; align-items: center; gap: 7px; background: var(--red); color: white; padding: 8px 16px; border-radius: 22px; font-size: 13px; font-weight: 700; }
+.account-btn svg { width: 16px; height: 16px; }
+nav { background: white; border-bottom: 1px solid var(--border); padding: 0 40px; display: flex; overflow-x: auto; scrollbar-width: none; }
+nav::-webkit-scrollbar { display: none; }
+nav a { font-size: 13px; font-weight: 600; padding: 13px 15px; color: var(--black); border-bottom: 3px solid transparent; transition: color .2s, border-color .2s; white-space: nowrap; }
+nav a:hover { color: var(--red); border-bottom-color: var(--red); }
+.breadcrumb { padding: 12px 40px; font-size: 13px; color: var(--gray); display: flex; align-items: center; gap: 6px; background: white; border-bottom: 1px solid var(--border); }
+.breadcrumb a { color: var(--red); font-weight: 500; }
+.breadcrumb .sep { color: var(--gray-light); }
+.breadcrumb .current { color: var(--black); font-weight: 600; }
+
+.page-wrap { max-width: 820px; margin: 36px auto; padding: 0 20px 60px; }
+.form-card { background: white; border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; }
+.form-header { background: var(--red); padding: 28px 36px; }
+.form-header h1 { font-family: var(--font-display); font-size: 38px; font-weight: 900; color: white; text-transform: uppercase; letter-spacing: 1px; display: flex; align-items: center; gap: 12px; }
+.form-header h1 svg { width: 32px; height: 32px; }
+.form-header p { color: rgba(255,255,255,.85); font-size: 14px; margin-top: 6px; }
+.form-body { padding: 32px 36px; }
+
+.info-box { background: #e3f2fd; border: 1px solid #90caf9; border-left: 4px solid #1565c0; border-radius: 8px; padding: 12px 16px; margin-bottom: 28px; font-size: 13px; color: #0d47a1; line-height: 1.6; display: flex; gap: 10px; }
+.info-box svg { width: 18px; height: 18px; flex-shrink: 0; margin-top: 1px; }
+
+.form-section-title { font-family: var(--font-display); font-size: 22px; font-weight: 800; color: var(--black); text-transform: uppercase; letter-spacing: .5px; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 2px solid var(--red-light); display: flex; align-items: center; gap: 8px; }
+.form-section-title::before { content: ''; width: 4px; height: 22px; background: var(--red); border-radius: 2px; display: block; }
+
+.form-group { margin-bottom: 18px; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+label { display: block; font-size: 13px; font-weight: 700; color: var(--gray-dark); margin-bottom: 6px; }
+label .required { color: var(--red); margin-left: 2px; }
+label .hint { font-weight: 400; color: var(--gray); font-size: 12px; margin-left: 4px; }
+
+input[type=text], input[type=email], input[type=url], input[type=number], input[type=tel], select, textarea {
+  width: 100%; padding: 11px 14px; border: 1.5px solid var(--border);
+  border-radius: 8px; font-size: 14px; font-family: inherit;
+  outline: none; transition: border-color .2s, box-shadow .2s;
+  color: var(--black); background: white;
+}
+input:focus, select:focus, textarea:focus { border-color: var(--red); box-shadow: 0 0 0 3px rgba(200,16,46,.08); }
+input::placeholder, textarea::placeholder { color: var(--gray-light); }
+select { background: white url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23888' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E") no-repeat right 12px center; -webkit-appearance: none; padding-right: 36px; cursor: pointer; }
+textarea { resize: vertical; min-height: 120px; line-height: 1.6; }
+.input-note { font-size: 12px; color: var(--gray); margin-top: 5px; line-height: 1.4; }
+
+/* File upload */
+.file-upload-wrap { }
+.file-upload-trigger { display: flex; align-items: center; gap: 10px; padding: 11px 16px; border: 1.5px dashed var(--border); border-radius: 8px; cursor: pointer; transition: all .2s; font-size: 14px; color: var(--gray); }
+.file-upload-trigger:hover { border-color: var(--red); color: var(--red); background: var(--red-light); }
+.file-upload-trigger svg { width: 20px; height: 20px; flex-shrink: 0; }
+.file-upload-input { display: none; }
+.file-info { display: flex; align-items: center; gap: 8px; margin-top: 8px; }
+.file-info-name { font-size: 13px; color: var(--gray-dark); font-weight: 600; }
+.file-info-clear { font-size: 12px; color: var(--red); cursor: pointer; font-weight: 600; }
+.file-preview { width: 64px; height: 64px; border-radius: 6px; object-fit: cover; border: 1px solid var(--border); display: none; }
+
+/* Problem type selector */
+.problem-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; }
+.problem-option { display: none; }
+.problem-label {
+  display: flex; flex-direction: column; align-items: center; gap: 7px;
+  padding: 14px 10px; border: 2px solid var(--border); border-radius: 10px;
+  cursor: pointer; transition: all .2s; text-align: center; font-size: 12px; font-weight: 700; color: var(--gray-dark);
+}
+.problem-label .prob-icon { font-size: 24px; }
+.problem-option:checked + .problem-label { border-color: var(--red); background: var(--red-light); color: var(--red); }
+.problem-label:hover { border-color: var(--red); color: var(--red); }
+
+.section-gap { margin: 32px 0; height: 1px; background: var(--border); }
+
+.form-submit-row { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px; margin-top: 28px; }
+.btn-submit { display: flex; align-items: center; gap: 10px; background: var(--red); color: white; padding: 14px 36px; border-radius: 8px; font-family: var(--font-display); font-size: 17px; font-weight: 800; letter-spacing: .5px; text-transform: uppercase; transition: background .2s, transform .15s; }
+.btn-submit:hover { background: var(--red-dark); transform: translateY(-1px); }
+.btn-submit svg { width: 18px; height: 18px; }
+.btn-reset { padding: 11px 22px; border: 1.5px solid var(--border); border-radius: 8px; font-size: 14px; font-weight: 600; color: var(--gray-dark); transition: all .2s; }
+.btn-reset:hover { border-color: var(--red); color: var(--red); }
+.success-banner { display: none; background: #e8f5e9; border: 1px solid #a5d6a7; border-radius: 8px; padding: 16px 20px; margin-bottom: 24px; align-items: center; gap: 12px; }
+.success-banner.show { display: flex; }
+.success-banner svg { width: 24px; height: 24px; color: #2e7d32; flex-shrink: 0; }
+.success-banner p { font-size: 14px; font-weight: 600; color: #1b5e20; }
+
+/* Order lookup */
+.order-lookup { display: flex; gap: 8px; }
+.order-lookup input { flex: 1; }
+.order-lookup button { padding: 0 18px; background: var(--gray-bg); border: 1.5px solid var(--border); border-radius: 8px; font-size: 13px; font-weight: 700; color: var(--gray-dark); transition: all .2s; white-space: nowrap; }
+.order-lookup button:hover { border-color: var(--red); color: var(--red); }
+
+.footer-top { background: var(--red); color: white; display: grid; grid-template-columns: repeat(4,1fr); padding: 28px 40px; gap: 20px; }
+.ft-item { display: flex; flex-direction: column; align-items: center; gap: 8px; text-align: center; }
+.ft-item svg { width: 34px; height: 34px; }
+.ft-item strong { font-size: 14px; font-weight: 700; }
+.ft-item span { font-size: 12px; opacity: .85; }
+footer { background: #1a1a1a; color: #bbb; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1fr; gap: 30px; padding: 40px 40px 24px; font-size: 13px; }
+.footer-logo { font-family: var(--font-display); font-size: 22px; font-weight: 800; color: var(--red); margin-bottom: 10px; }
+.footer-tagline { color: #888; line-height: 1.6; font-size: 12px; margin-bottom: 14px; }
+.footer-social { display: flex; gap: 10px; }
+.footer-social a { width: 34px; height: 34px; background: #2a2a2a; border-radius: 8px; display: flex; align-items: center; justify-content: center; transition: background .2s; }
+.footer-social a:hover { background: var(--red); }
+.footer-social svg { width: 16px; height: 16px; fill: white; }
+.footer-col h4 { color: white; font-weight: 700; margin-bottom: 14px; font-size: 14px; }
+.footer-col ul li { margin-bottom: 8px; }
+.footer-col ul li a { color: #999; transition: color .2s; }
+.footer-col ul li a:hover { color: white; }
+.footer-bottom { background: #111; color: #555; text-align: center; padding: 14px; font-size: 12px; }
+
+.social-section { padding: 32px 40px; border-bottom: 1px solid var(--border); background: white; }
+.social-section-title { font-family: var(--font-display); font-size: 22px; font-weight: 800; text-align: center; margin-bottom: 18px; }
+.social-links { display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap; }
+.social-link { display: flex; align-items: center; gap: 8px; padding: 10px 20px; border-radius: 10px; font-size: 13px; font-weight: 700; border: 1.5px solid var(--border); transition: all .2s; }
+.social-link:hover { transform: translateY(-2px); box-shadow: 0 2px 14px rgba(0,0,0,.08); }
+.social-link svg { width: 20px; height: 20px; }
+.sl-fb { color: #1877f2; border-color: #c8ddf9; } .sl-fb:hover { background: #1877f2; color: white; border-color: #1877f2; }
+.sl-ig { color: #c13584; border-color: #f2c0dc; } .sl-ig:hover { background: #c13584; color: white; border-color: #c13584; }
+.sl-x  { color: #000; border-color: #ddd; } .sl-x:hover { background: #000; color: white; }
+.sl-dc { color: #5865f2; border-color: #cdd0fc; } .sl-dc:hover { background: #5865f2; color: white; border-color: #5865f2; }
+.sl-yt { color: #ff0000; border-color: #ffd0d0; } .sl-yt:hover { background: #ff0000; color: white; border-color: #ff0000; }
+.sl-wa { color: #25d366; border-color: #b2f0d0; } .sl-wa:hover { background: #25d366; color: white; border-color: #25d366; }
+
+@media (max-width: 768px) {
+  .topbar, header, nav, .breadcrumb { padding-left: 16px; padding-right: 16px; }
+  .form-body { padding: 20px; }
+  .form-header { padding: 20px; }
+  .form-row { grid-template-columns: 1fr; }
+  .problem-grid { grid-template-columns: repeat(2,1fr); }
+  .footer-top { grid-template-columns: repeat(2,1fr); padding: 20px 16px; }
+  footer { grid-template-columns: 1fr 1fr; padding: 24px 16px; }
+  .social-section { padding: 24px 16px; }
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <span>France 🇫🇷</span>
+  <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
+  <span>SAV : <a href="tel:0612233445">06 12 23 34 45</a></span>
+</div>
+
+<header>
+  <a href="#" class="logo">
+    <div class="logo-icon"><svg viewBox="0 0 24 24"><path d="M17 3H7c-1.1 0-2 .9-2 2v16l7-3 7 3V5c0-1.1-.9-2-2-2z"/></svg></div>
+    BOUTIQUE
+  </a>
+  <div class="search-bar">
+    <input type="text" placeholder="Rechercher un jeu…">
+    <button><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></button>
+  </div>
+  <div class="header-actions">
+    <a href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></a>
+    <a href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></a>
+    <div class="account-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Connexion</div>
+  </div>
+</header>
+
+<nav>
+  <a href="#">Accueil</a><a href="#">Précommandes</a><a href="#">Nos jeux</a><a href="#">Extensions</a>
+  <a href="#">Goodies</a><a href="#">Packs</a><a href="#">Série Deckscape</a><a href="#">Série Decktective</a>
+  <a href="#">PAGAN</a><a href="#">World Order</a>
+</nav>
+
+<div class="breadcrumb">
+  <a href="#">Accueil</a><span class="sep">›</span>
+  <a href="#">Nous contacter</a><span class="sep">›</span>
+  <span class="current">Demande de S.A.V</span>
+</div>
+
+<div class="page-wrap">
+  <div class="form-card">
+
+    <div class="form-header">
+      <h1>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        Demande de S.A.V
+      </h1>
+      <p>Merci de remplir tous les champs pour être traité.</p>
+    </div>
+
+    <div class="form-body">
+
+      <div class="success-banner" id="success-banner">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        <p>Votre demande de SAV a bien été envoyée ! Notre équipe vous contactera dans les plus brefs délais.</p>
+      </div>
+
+      <div class="info-box">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        <span>Pour toute demande de SAV, merci de joindre si possible une photo du problème. Cela nous aide à traiter votre demande plus rapidement.</span>
+      </div>
+
+      <!-- ===== INFORMATIONS SAV ===== -->
+      <div class="form-section-title">Informations SAV</div>
+
+      <div class="form-group">
+        <label>Nom du jeu <span class="required">*</span></label>
+        <input type="text" placeholder="Ex : Endeavor : Eaux Profondes" list="games-list" required>
+        <datalist id="games-list">
+          <option value="Endeavor : Eaux Profondes">
+          <option value="Endeavor : L'Âge de la Voile">
+          <option value="PAGAN : Expéditions">
+          <option value="KronoLogic">
+          <option value="World Order">
+          <option value="Deckscape : La Fuite">
+          <option value="Deckscape : Las Vegas">
+          <option value="Decktective : Sang pour sang">
+          <option value="Decktective : Le Testament">
+        </datalist>
+      </div>
+
+      <div class="form-group">
+        <label>Type de problème <span class="required">*</span></label>
+        <div class="problem-grid">
+          <div>
+            <input type="radio" name="problem" id="p1" class="problem-option" value="manquant" checked>
+            <label for="p1" class="problem-label"><span class="prob-icon">📦</span>Pièce manquante</label>
+          </div>
+          <div>
+            <input type="radio" name="problem" id="p2" class="problem-option" value="abime">
+            <label for="p2" class="problem-label"><span class="prob-icon">🛠</span>Pièce abîmée</label>
+          </div>
+          <div>
+            <input type="radio" name="problem" id="p3" class="problem-option" value="boite">
+            <label for="p3" class="problem-label"><span class="prob-icon">📫</span>Boîte endommagée</label>
+          </div>
+          <div>
+            <input type="radio" name="problem" id="p4" class="problem-option" value="erreur">
+            <label for="p4" class="problem-label"><span class="prob-icon">🔄</span>Erreur de livraison</label>
+          </div>
+          <div>
+            <input type="radio" name="problem" id="p5" class="problem-option" value="regles">
+            <label for="p5" class="problem-label"><span class="prob-icon">📖</span>Question de règles</label>
+          </div>
+          <div>
+            <input type="radio" name="problem" id="p6" class="problem-option" value="autre">
+            <label for="p6" class="problem-label"><span class="prob-icon">❓</span>Autre</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>N° de commande <span class="hint">(si applicable)</span></label>
+        <div class="order-lookup">
+          <input type="text" placeholder="Ex : CMD-2025-001234">
+          <button type="button">🔍 Retrouver ma commande</button>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Lieu de l'achat <span class="required">*</span></label>
+        <textarea placeholder="Indiquez où vous avez acheté le jeu (boutique en ligne Super Meeple, Amazon, boutique physique, festival…)" required></textarea>
+      </div>
+
+      <div class="form-group">
+        <label>Votre demande <span class="required">*</span></label>
+        <textarea style="min-height:140px;" placeholder="Décrivez votre problème en détail : quelle pièce est manquante ou abîmée, quantité concernée, description précise du problème…" required></textarea>
+      </div>
+
+      <div class="form-group">
+        <label>Photo <span class="hint">(max 1 Mo – optionnel mais recommandé)</span></label>
+        <div class="file-upload-wrap">
+          <div class="file-upload-trigger" onclick="document.getElementById('photo-input').click()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            <span id="file-label">Choisir un fichier… (JPG, PNG, max 1 Mo)</span>
+          </div>
+          <input type="file" id="photo-input" class="file-upload-input" accept="image/*" onchange="handleFile(this)">
+          <div class="file-info" id="file-info" style="display:none">
+            <img id="file-preview" class="file-preview" src="" alt="">
+            <span class="file-info-name" id="file-name"></span>
+            <span class="file-info-clear" onclick="clearFile()">✕ Supprimer</span>
+          </div>
+        </div>
+        <p class="input-note">Formats acceptés : JPG, PNG. Taille maximale : 1 Mo.</p>
+      </div>
+
+      <div class="section-gap"></div>
+
+      <!-- ===== COORDONNEES ===== -->
+      <div class="form-section-title">Coordonnées</div>
+
+      <div class="form-group">
+        <label>Email <span class="required">*</span></label>
+        <input type="email" placeholder="votre@email.com" required>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>Prénom <span class="required">*</span></label>
+          <input type="text" placeholder="Votre prénom" required>
+        </div>
+        <div class="form-group">
+          <label>Nom <span class="required">*</span></label>
+          <input type="text" placeholder="Votre nom" required>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Adresse</label>
+        <input type="text" placeholder="Numéro et nom de rue">
+      </div>
+      <div class="form-group">
+        <input type="text" placeholder="Complément d'adresse">
+      </div>
+      <div class="form-group">
+        <label>Adresse ligne 1</label>
+        <input type="text" placeholder="Résidence, lieu-dit…">
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>Ville</label>
+          <input type="text" placeholder="Votre ville">
+        </div>
+        <div class="form-group">
+          <label>État / Province / Région</label>
+          <select>
+            <option value="">Sélectionner…</option>
+            <option>Île-de-France</option><option>Auvergne-Rhône-Alpes</option>
+            <option>Nouvelle-Aquitaine</option><option>Occitanie</option>
+            <option>Hauts-de-France</option><option>Grand Est</option>
+            <option>Normandie</option><option>Bretagne</option>
+            <option>Québec</option><option>Ontario</option><option>Autre</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>ZIP / Code postal</label>
+          <input type="text" placeholder="Ex : 75001">
+        </div>
+        <div class="form-group">
+          <label>Pays</label>
+          <select>
+            <option value="">Sélectionner…</option>
+            <option selected>France</option><option>Belgique</option>
+            <option>Suisse</option><option>Canada</option><option>Luxembourg</option><option>Autre</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Téléphone</label>
+        <input type="tel" placeholder="Ex : +33 6 12 34 56 78">
+      </div>
+
+      <div class="form-submit-row">
+        <button type="button" class="btn-reset" onclick="resetForm()">Réinitialiser</button>
+        <button type="button" class="btn-submit" onclick="submitForm()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+          Envoyer
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- SOCIAL -->
+<div class="social-section">
+  <div class="social-section-title">Suivez-nous sur les réseaux sociaux</div>
+  <div class="social-links">
+    <a href="#" class="social-link sl-fb"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/></svg>Facebook</a>
+    <a href="#" class="social-link sl-ig"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>Instragram</a>
+    <a href="#" class="social-link sl-x"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.736-8.844L1.254 2.25h7.002l4.262 5.636zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>X</a>
+    <a href="#" class="social-link sl-dc"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/></svg>Discord</a>
+    <a href="#" class="social-link sl-yt"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.543 6.498C22 8.28 22 12 22 12s0 3.72-.457 5.502c-.254.985-.997 1.76-1.938 2.022C17.896 20 12 20 12 20s-5.893 0-7.605-.476c-.945-.266-1.687-1.04-1.938-2.022C2 15.72 2 12 2 12s0-3.72.457-5.502c.254-.985.997-1.76 1.938-2.022C6.107 4 12 4 12 4s5.896 0 7.605.476c.945.266 1.687 1.04 1.938 2.022zM10 15.5l6-3.5-6-3.5v7z"/></svg>Youtube</a>
+    <a href="#" class="social-link sl-wa"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>Whatsapp</a>
+  </div>
+</div>
+
+<div class="footer-top">
+  <div class="ft-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg><strong>Livraison 24/48/72h</strong><span>Domicile / Point Retrait</span></div>
+  <div class="ft-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><strong>Frais de port à partir de 60€</strong><span>(France Métropolitaine uniquement)</span></div>
+  <div class="ft-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg><strong>Satisfait ou remboursé</strong><span>Retour jusqu'à X mois</span></div>
+  <div class="ft-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 6 6l.81-.81a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 16.92z"/></svg><strong>Contactez-nous au</strong><span>06 12 23 34 45</span></div>
+</div>
+
+<footer>
+  <div class="footer-col"><div class="footer-logo">🎲 BOUTIQUE</div><p class="footer-tagline">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean at porttitor diam. Phasellus porttitor venenatis fermentum.</p><div class="footer-social"><a href="#"><svg viewBox="0 0 24 24"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/></svg></a><a href="#"><svg viewBox="0 0 24 24"><path d="M21.543 6.498C22 8.28 22 12 22 12s0 3.72-.457 5.502c-.254.985-.997 1.76-1.938 2.022C17.896 20 12 20 12 20s-5.893 0-7.605-.476c-.945-.266-1.687-1.04-1.938-2.022C2 15.72 2 12 2 12s0-3.72.457-5.502c.254-.985.997-1.76 1.938-2.022C6.107 4 12 4 12 4s5.896 0 7.605.476c.945.266 1.687 1.04 1.938 2.022zM10 15.5l6-3.5-6-3.5v7z"/></svg></a></div></div>
+  <div class="footer-col"><h4>Super Meeple</h4><ul><li><a href="#">Qui sommes-nous ?</a></li><li><a href="#">Contactez-nous</a></li><li><a href="#">Actualités</a></li><li><a href="#">Festivals & Événements</a></li><li><a href="#">Nos partenaires</a></li><li><a href="#">FAQ</a></li></ul></div>
+  <div class="footer-col"><h4>Tous le jeux</h4><ul><li><a href="#">Précommandes</a></li><li><a href="#">Nouveautés</a></li><li><a href="#">Roadmap</a></li><li><a href="#">Demande de SAV</a></li><li><a href="#">Demande de presse</a></li><li><a href="#">Autre demande</a></li></ul></div>
+  <div class="footer-col"><h4>Informations</h4><ul><li><a href="#">Mon compte</a></li><li><a href="#">FAQ</a></li><li><a href="#">Où trouver nos jeux</a></li><li><a href="#">Mentions légales</a></li><li><a href="#">CGV</a></li><li><a href="#">Plan du site</a></li></ul></div>
+  <div class="footer-col"><h4>Lorem Ipsum</h4><ul><li><a href="#">Politique de confidentialité</a></li><li><a href="#">Extensions</a></li><li><a href="#">Goodies</a></li><li><a href="#">Packs</a></li></ul></div>
+  <div class="footer-col"><h4>Lorem Ipsum</h4><ul><li><a href="#">Précommandes</a></li><li><a href="#">Extensions</a></li><li><a href="#">Goodies</a></li><li><a href="#">Packs</a></li></ul></div>
+</footer>
+<div class="footer-bottom">© 2025 Boutique Super Meeple – Tous droits réservés</div>
+
+<script>
+function handleFile(input) {
+  const file = input.files[0];
+  if (!file) return;
+  if (file.size > 1024 * 1024) { alert('Le fichier dépasse 1 Mo. Veuillez choisir un fichier plus petit.'); input.value = ''; return; }
+  const reader = new FileReader();
+  reader.onload = e => {
+    document.getElementById('file-preview').src = e.target.result;
+    document.getElementById('file-preview').style.display = 'block';
+    document.getElementById('file-name').textContent = file.name + ' (' + (file.size/1024).toFixed(0) + ' Ko)';
+    document.getElementById('file-info').style.display = 'flex';
+    document.getElementById('file-label').textContent = 'Modifier…';
+  };
+  reader.readAsDataURL(file);
+}
+function clearFile() {
+  document.getElementById('photo-input').value = '';
+  document.getElementById('file-preview').style.display = 'none';
+  document.getElementById('file-info').style.display = 'none';
+  document.getElementById('file-label').textContent = 'Choisir un fichier… (JPG, PNG, max 1 Mo)';
+}
+function submitForm() { document.getElementById('success-banner').classList.add('show'); window.scrollTo({top:0, behavior:'smooth'}); }
+function resetForm() { document.querySelectorAll('input:not([type=radio]):not([type=checkbox]), textarea, select').forEach(el => el.value = ''); document.getElementById('p1').checked = true; clearFile(); document.getElementById('success-banner').classList.remove('show'); }
+</script>
+</body>
+</html>
+
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Autre Demande – Boutique Super Meeple</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --red: #C8102E; --red-dark: #a00d24; --red-light: #fdeaed;
+  --black: #1a1a1a; --gray-dark: #444; --gray: #777; --gray-light: #ccc;
+  --gray-bg: #f5f5f5; --white: #fff; --border: #e4e4e4;
+  --shadow: 0 2px 14px rgba(0,0,0,.08);
+  --radius: 10px; --font: 'Barlow',sans-serif; --font-display: 'Barlow Condensed',sans-serif;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--font); color: var(--black); background: var(--gray-bg); }
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; display: block; }
+ul { list-style: none; }
+button { cursor: pointer; border: none; background: none; font-family: inherit; }
+
+.topbar { background: var(--red); color: white; display: flex; align-items: center; justify-content: space-between; padding: 7px 40px; font-size: 13px; }
+.topbar a { color: white; }
+header { background: white; border-bottom: 2px solid var(--border); padding: 12px 40px; display: flex; align-items: center; gap: 20px; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 10px rgba(0,0,0,.06); }
+.logo { display: flex; align-items: center; gap: 9px; font-family: var(--font-display); font-size: 22px; font-weight: 800; color: var(--red); white-space: nowrap; }
+.logo-icon { width: 38px; height: 38px; background: var(--red); border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+.logo-icon svg { width: 22px; height: 22px; fill: white; }
+.search-bar { flex: 1; max-width: 460px; display: flex; align-items: center; background: #f0f0f0; border-radius: 24px; padding: 9px 16px; gap: 8px; border: 2px solid transparent; transition: border-color .2s; }
+.search-bar:focus-within { border-color: var(--red); background: white; }
+.search-bar input { border: none; background: transparent; flex: 1; font-size: 14px; font-family: inherit; outline: none; }
+.search-bar button { background: var(--red); color: white; border-radius: 50%; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.search-bar button svg { width: 14px; height: 14px; }
+.header-actions { display: flex; align-items: center; gap: 16px; margin-left: auto; }
+.header-actions svg { width: 24px; height: 24px; }
+.account-btn { display: flex; align-items: center; gap: 7px; background: var(--red); color: white; padding: 8px 16px; border-radius: 22px; font-size: 13px; font-weight: 700; }
+.account-btn svg { width: 16px; height: 16px; }
+nav { background: white; border-bottom: 1px solid var(--border); padding: 0 40px; display: flex; overflow-x: auto; scrollbar-width: none; }
+nav::-webkit-scrollbar { display: none; }
+nav a { font-size: 13px; font-weight: 600; padding: 13px 15px; color: var(--black); border-bottom: 3px solid transparent; transition: color .2s, border-color .2s; white-space: nowrap; }
+nav a:hover { color: var(--red); border-bottom-color: var(--red); }
+.breadcrumb { padding: 12px 40px; font-size: 13px; color: var(--gray); display: flex; align-items: center; gap: 6px; background: white; border-bottom: 1px solid var(--border); }
+.breadcrumb a { color: var(--red); font-weight: 500; }
+.breadcrumb .sep { color: var(--gray-light); }
+.breadcrumb .current { color: var(--black); font-weight: 600; }
+
+.page-wrap { max-width: 820px; margin: 36px auto; padding: 0 20px 60px; }
+.form-card { background: white; border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; }
+
+.form-header { background: var(--red); padding: 28px 36px; }
+.form-header h1 { font-family: var(--font-display); font-size: 38px; font-weight: 900; color: white; text-transform: uppercase; letter-spacing: 1px; display: flex; align-items: center; gap: 12px; }
+.form-header h1 svg { width: 32px; height: 32px; }
+.form-header p { color: rgba(255,255,255,.85); font-size: 14px; margin-top: 6px; }
+.form-body { padding: 32px 36px; }
+
+/* Redirect notice boxes */
+.redirect-boxes { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 24px; }
+.redirect-box { display: flex; align-items: center; gap: 12px; padding: 14px 16px; border-radius: 10px; border: 1.5px solid var(--border); transition: all .2s; cursor: pointer; }
+.redirect-box:hover { border-color: var(--red); background: var(--red-light); }
+.redirect-box .rb-icon { font-size: 28px; flex-shrink: 0; }
+.redirect-box h4 { font-size: 14px; font-weight: 800; color: var(--black); margin-bottom: 2px; }
+.redirect-box p { font-size: 12px; color: var(--gray); line-height: 1.4; }
+.redirect-box .rb-arrow { margin-left: auto; color: var(--red); font-size: 18px; }
+
+/* Info paragraphs */
+.info-paras { margin-bottom: 28px; }
+.info-para { background: var(--gray-bg); border-radius: 8px; padding: 12px 16px; margin-bottom: 8px; font-size: 13px; color: var(--gray-dark); line-height: 1.6; border-left: 3px solid var(--border); }
+.info-para strong { color: var(--black); }
+.info-para.red { border-left-color: var(--red); background: var(--red-light); }
+
+.warn-note { background: #fff8e1; border: 1px solid #ffe082; border-left: 4px solid #f9a825; border-radius: 8px; padding: 12px 16px; margin-bottom: 20px; font-size: 13px; color: #5d4037; line-height: 1.6; }
+
+.form-section-title { font-family: var(--font-display); font-size: 22px; font-weight: 800; color: var(--black); text-transform: uppercase; letter-spacing: .5px; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 2px solid var(--red-light); display: flex; align-items: center; gap: 8px; }
+.form-section-title::before { content: ''; width: 4px; height: 22px; background: var(--red); border-radius: 2px; display: block; }
+
+.form-group { margin-bottom: 18px; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+label { display: block; font-size: 13px; font-weight: 700; color: var(--gray-dark); margin-bottom: 6px; }
+label .required { color: var(--red); margin-left: 2px; }
+label .hint { font-weight: 400; color: var(--gray); font-size: 12px; margin-left: 4px; }
+
+input[type=text], input[type=email], input[type=url], input[type=number], input[type=tel], input[type=date], select, textarea {
+  width: 100%; padding: 11px 14px; border: 1.5px solid var(--border);
+  border-radius: 8px; font-size: 14px; font-family: inherit;
+  outline: none; transition: border-color .2s, box-shadow .2s;
+  color: var(--black); background: white;
+}
+input:focus, select:focus, textarea:focus { border-color: var(--red); box-shadow: 0 0 0 3px rgba(200,16,46,.08); }
+input::placeholder, textarea::placeholder { color: var(--gray-light); }
+select { background: white url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23888' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E") no-repeat right 12px center; -webkit-appearance: none; padding-right: 36px; cursor: pointer; }
+textarea { resize: vertical; min-height: 120px; line-height: 1.6; }
+.input-note { font-size: 12px; color: var(--gray); margin-top: 5px; line-height: 1.4; }
+
+/* Dynamic fields */
+.dynamic-fields { display: none; }
+.dynamic-fields.visible { display: block; }
+
+/* Festival specifics */
+.festival-info { background: #e8f5e9; border: 1px solid #a5d6a7; border-left: 4px solid #2e7d32; border-radius: 8px; padding: 12px 16px; margin-bottom: 16px; font-size: 13px; color: #1b5e20; line-height: 1.6; }
+
+.section-gap { margin: 32px 0; height: 1px; background: var(--border); }
+.form-submit-row { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px; margin-top: 28px; }
+.btn-submit { display: flex; align-items: center; gap: 10px; background: var(--red); color: white; padding: 14px 36px; border-radius: 8px; font-family: var(--font-display); font-size: 17px; font-weight: 800; letter-spacing: .5px; text-transform: uppercase; transition: background .2s, transform .15s; }
+.btn-submit:hover { background: var(--red-dark); transform: translateY(-1px); }
+.btn-submit svg { width: 18px; height: 18px; }
+.btn-reset { padding: 11px 22px; border: 1.5px solid var(--border); border-radius: 8px; font-size: 14px; font-weight: 600; color: var(--gray-dark); transition: all .2s; }
+.btn-reset:hover { border-color: var(--red); color: var(--red); }
+.success-banner { display: none; background: #e8f5e9; border: 1px solid #a5d6a7; border-radius: 8px; padding: 16px 20px; margin-bottom: 24px; align-items: center; gap: 12px; }
+.success-banner.show { display: flex; }
+.success-banner svg { width: 24px; height: 24px; color: #2e7d32; flex-shrink: 0; }
+.success-banner p { font-size: 14px; font-weight: 600; color: #1b5e20; }
+
+/* Type selector cards */
+.type-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; }
+.type-radio { display: none; }
+.type-label { display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 14px 10px; border: 2px solid var(--border); border-radius: 10px; cursor: pointer; text-align: center; font-size: 12px; font-weight: 700; color: var(--gray-dark); transition: all .2s; }
+.type-label .type-icon { font-size: 26px; }
+.type-label:hover { border-color: var(--red); color: var(--red); }
+.type-radio:checked + .type-label { border-color: var(--red); background: var(--red-light); color: var(--red); }
+
+.footer-top { background: var(--red); color: white; display: grid; grid-template-columns: repeat(4,1fr); padding: 28px 40px; gap: 20px; }
+.ft-item { display: flex; flex-direction: column; align-items: center; gap: 8px; text-align: center; }
+.ft-item svg { width: 34px; height: 34px; }
+.ft-item strong { font-size: 14px; font-weight: 700; }
+.ft-item span { font-size: 12px; opacity: .85; }
+footer { background: #1a1a1a; color: #bbb; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1fr; gap: 30px; padding: 40px 40px 24px; font-size: 13px; }
+.footer-logo { font-family: var(--font-display); font-size: 22px; font-weight: 800; color: var(--red); margin-bottom: 10px; }
+.footer-tagline { color: #888; line-height: 1.6; font-size: 12px; margin-bottom: 14px; }
+.footer-social { display: flex; gap: 10px; }
+.footer-social a { width: 34px; height: 34px; background: #2a2a2a; border-radius: 8px; display: flex; align-items: center; justify-content: center; transition: background .2s; }
+.footer-social a:hover { background: var(--red); }
+.footer-social svg { width: 16px; height: 16px; fill: white; }
+.footer-col h4 { color: white; font-weight: 700; margin-bottom: 14px; font-size: 14px; }
+.footer-col ul li { margin-bottom: 8px; }
+.footer-col ul li a { color: #999; transition: color .2s; }
+.footer-col ul li a:hover { color: white; }
+.footer-bottom { background: #111; color: #555; text-align: center; padding: 14px; font-size: 12px; }
+.social-section { padding: 32px 40px; border-bottom: 1px solid var(--border); background: white; }
+.social-section-title { font-family: var(--font-display); font-size: 22px; font-weight: 800; text-align: center; margin-bottom: 18px; }
+.social-links { display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap; }
+.social-link { display: flex; align-items: center; gap: 8px; padding: 10px 20px; border-radius: 10px; font-size: 13px; font-weight: 700; border: 1.5px solid var(--border); transition: all .2s; }
+.social-link:hover { transform: translateY(-2px); box-shadow: 0 2px 14px rgba(0,0,0,.08); }
+.social-link svg { width: 20px; height: 20px; }
+.sl-fb { color: #1877f2; border-color: #c8ddf9; } .sl-fb:hover { background: #1877f2; color: white; border-color: #1877f2; }
+.sl-ig { color: #c13584; border-color: #f2c0dc; } .sl-ig:hover { background: #c13584; color: white; border-color: #c13584; }
+.sl-x  { color: #000; border-color: #ddd; } .sl-x:hover { background: #000; color: white; }
+.sl-dc { color: #5865f2; border-color: #cdd0fc; } .sl-dc:hover { background: #5865f2; color: white; border-color: #5865f2; }
+.sl-yt { color: #ff0000; border-color: #ffd0d0; } .sl-yt:hover { background: #ff0000; color: white; border-color: #ff0000; }
+.sl-wa { color: #25d366; border-color: #b2f0d0; } .sl-wa:hover { background: #25d366; color: white; border-color: #25d366; }
+
+@media (max-width: 768px) {
+  .topbar, header, nav, .breadcrumb { padding-left: 16px; padding-right: 16px; }
+  .form-body { padding: 20px; }
+  .form-header { padding: 20px; }
+  .form-row { grid-template-columns: 1fr; }
+  .redirect-boxes { grid-template-columns: 1fr; }
+  .type-grid { grid-template-columns: repeat(2,1fr); }
+  .footer-top { grid-template-columns: repeat(2,1fr); padding: 20px 16px; }
+  footer { grid-template-columns: 1fr 1fr; padding: 24px 16px; }
+  .social-section { padding: 24px 16px; }
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <span>France 🇫🇷</span>
+  <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
+  <span>SAV : <a href="tel:0612233445">06 12 23 34 45</a></span>
+</div>
+
+<header>
+  <a href="#" class="logo">
+    <div class="logo-icon"><svg viewBox="0 0 24 24"><path d="M17 3H7c-1.1 0-2 .9-2 2v16l7-3 7 3V5c0-1.1-.9-2-2-2z"/></svg></div>
+    BOUTIQUE
+  </a>
+  <div class="search-bar">
+    <input type="text" placeholder="Rechercher un jeu…">
+    <button><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></button>
+  </div>
+  <div class="header-actions">
+    <a href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></a>
+    <a href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></a>
+    <div class="account-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Connexion</div>
+  </div>
+</header>
+
+<nav>
+  <a href="#">Accueil</a><a href="#">Précommandes</a><a href="#">Nos jeux</a><a href="#">Extensions</a>
+  <a href="#">Goodies</a><a href="#">Packs</a><a href="#">Série Deckscape</a><a href="#">Série Decktective</a>
+  <a href="#">PAGAN</a><a href="#">World Order</a>
+</nav>
+
+<div class="breadcrumb">
+  <a href="#">Accueil</a><span class="sep">›</span>
+  <a href="#">Nous contacter</a><span class="sep">›</span>
+  <span class="current">Autre demande</span>
+</div>
+
+<div class="page-wrap">
+  <div class="form-card">
+
+    <div class="form-header">
+      <h1>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        Autre Demande
+      </h1>
+      <p>Merci de remplir tous les champs pour être traité.</p>
+    </div>
+
+    <div class="form-body">
+
+      <div class="success-banner" id="success-banner">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        <p>Votre demande a bien été envoyée ! Nous vous répondrons dans les meilleurs délais.</p>
+      </div>
+
+      <!-- Redirects -->
+      <div class="redirect-boxes">
+        <a href="formulaire-presse.html" class="redirect-box">
+          <span class="rb-icon">📋</span>
+          <div><h4>Demande de presse</h4><p>Pour recevoir un exemplaire presse, utilisez le formulaire dédié.</p></div>
+          <span class="rb-arrow">→</span>
+        </a>
+        <a href="formulaire-sav.html" class="redirect-box">
+          <span class="rb-icon">🛠</span>
+          <div><h4>Demande de SAV</h4><p>Pour signaler un problème avec votre jeu, utilisez le formulaire SAV.</p></div>
+          <span class="rb-arrow">→</span>
+        </a>
+      </div>
+
+      <!-- Important notes -->
+      <div class="info-paras">
+        <div class="info-para">Pour une demande d'exemplaire Presse ou une demande de SAV, merci d'utiliser les boutons prévus à cet effet.</div>
+        <div class="info-para"><strong>Pour une demande de festival :</strong> nous ne nous déplaçons pas pour les festivals inférieurs à <strong>5 000 visiteurs</strong> sauf cas exceptionnels. Nous ne faisons pas de goodies non plus.</div>
+        <div class="info-para red">Nous ne prenons pas de stagiaire car nous sommes en Home Office et sans bureau.</div>
+        <div class="info-para">Merci de votre compréhension.</div>
+      </div>
+
+      <!-- ===== INFORMATIONS ===== -->
+      <div class="form-section-title">Informations</div>
+
+      <div class="form-group">
+        <label>Type de demande <span class="required">*</span></label>
+        <div class="type-grid">
+          <div>
+            <input type="radio" name="request-type" id="t-festival" class="type-radio" value="festival" onchange="updateDynamicFields()" checked>
+            <label for="t-festival" class="type-label"><span class="type-icon">🎪</span>Participation Festival</label>
+          </div>
+          <div>
+            <input type="radio" name="request-type" id="t-partenariat" class="type-radio" value="partenariat" onchange="updateDynamicFields()">
+            <label for="t-partenariat" class="type-label"><span class="type-icon">🤝</span>Partenariat</label>
+          </div>
+          <div>
+            <input type="radio" name="request-type" id="t-media" class="type-radio" value="media" onchange="updateDynamicFields()">
+            <label for="t-media" class="type-label"><span class="type-icon">📰</span>Média / Interview</label>
+          </div>
+          <div>
+            <input type="radio" name="request-type" id="t-boutique" class="type-radio" value="boutique" onchange="updateDynamicFields()">
+            <label for="t-boutique" class="type-label"><span class="type-icon">🏪</span>Revendeur / Distribution</label>
+          </div>
+          <div>
+            <input type="radio" name="request-type" id="t-pro" class="type-radio" value="pro" onchange="updateDynamicFields()">
+            <label for="t-pro" class="type-label"><span class="type-icon">💼</span>Demande pro</label>
+          </div>
+          <div>
+            <input type="radio" name="request-type" id="t-autre" class="type-radio" value="autre" onchange="updateDynamicFields()">
+            <label for="t-autre" class="type-label"><span class="type-icon">❓</span>Autre</label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dynamic: Festival fields -->
+      <div class="dynamic-fields visible" id="fields-festival">
+        <div class="festival-info">
+          <strong>📌 Notes importantes :</strong> Pour un festival, merci de préciser le nombre de visiteurs, le prix d'une table TTC (ou d'un emplacement et le nombre de tables). Il s'agit d'un festival essentiellement à destination de joueurs novices. Pas de demande pour des prototypes merci. Écrire plutôt à <a href="mailto:info@supermeeple.com" style="color:#1b5e20;font-weight:700;">info@supermeeple.com</a>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Nom du festival <span class="required">*</span></label>
+            <input type="text" placeholder="Ex : Festival de Cannes 2026">
+          </div>
+          <div class="form-group">
+            <label>Nombre de visiteurs attendus <span class="required">*</span></label>
+            <input type="number" placeholder="Ex : 8000" min="0">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Date de début <span class="required">*</span></label>
+            <input type="date">
+          </div>
+          <div class="form-group">
+            <label>Date de fin <span class="required">*</span></label>
+            <input type="date">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Lieu / Ville <span class="required">*</span></label>
+            <input type="text" placeholder="Ex : Cannes, Palais des Festivals">
+          </div>
+          <div class="form-group">
+            <label>Prix d'une table TTC</label>
+            <input type="text" placeholder="Ex : 150 € pour 2 tables de 180 cm">
+          </div>
+        </div>
+      </div>
+
+      <!-- Dynamic: Partenariat -->
+      <div class="dynamic-fields" id="fields-partenariat">
+        <div class="form-group">
+          <label>Nom de votre structure / entreprise <span class="required">*</span></label>
+          <input type="text" placeholder="Ex : Association Jeux en Folie">
+        </div>
+        <div class="form-group">
+          <label>Site web / Réseaux sociaux</label>
+          <input type="url" placeholder="https://…">
+        </div>
+      </div>
+
+      <!-- Dynamic: Media -->
+      <div class="dynamic-fields" id="fields-media">
+        <div class="form-row">
+          <div class="form-group">
+            <label>Nom du média <span class="required">*</span></label>
+            <input type="text" placeholder="Ex : Jeux & Compagnie">
+          </div>
+          <div class="form-group">
+            <label>Type de média</label>
+            <select>
+              <option>Presse écrite</option><option>Podcast</option><option>YouTube</option>
+              <option>Blog</option><option>Twitch</option><option>Autre</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Sujet de l'interview / article</label>
+          <input type="text" placeholder="Ex : Interview sur la genèse de la série PAGAN">
+        </div>
+      </div>
+
+      <!-- Dynamic: Boutique -->
+      <div class="dynamic-fields" id="fields-boutique">
+        <div class="form-group">
+          <label>Nom et adresse de la boutique <span class="required">*</span></label>
+          <input type="text" placeholder="Ex : L'As du Jeu – 12 rue de la Paix, Paris">
+        </div>
+        <div class="form-group">
+          <label>Jeux d'intérêt</label>
+          <input type="text" placeholder="Ex : Toute la gamme Deckscape, Endeavor…">
+        </div>
+      </div>
+
+      <!-- Common: Demande textarea -->
+      <div class="form-group" style="margin-top:8px;">
+        <label>Votre demande <span class="required">*</span></label>
+        <textarea placeholder="Décrivez votre demande en détail…" required></textarea>
+      </div>
+
+      <div class="section-gap"></div>
+
+      <!-- ===== COORDONNEES ===== -->
+      <div class="form-section-title">Coordonnées</div>
+
+      <div class="form-group">
+        <label>Email <span class="required">*</span></label>
+        <input type="email" placeholder="votre@email.com" required>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>Prénom <span class="required">*</span></label>
+          <input type="text" placeholder="Votre prénom" required>
+        </div>
+        <div class="form-group">
+          <label>Nom <span class="required">*</span></label>
+          <input type="text" placeholder="Votre nom" required>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Adresse</label>
+        <input type="text" placeholder="Numéro et nom de rue">
+      </div>
+      <div class="form-group">
+        <input type="text" placeholder="Complément d'adresse">
+      </div>
+      <div class="form-group">
+        <label>Adresse ligne 1</label>
+        <input type="text" placeholder="Résidence, lieu-dit…">
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>Ville</label>
+          <input type="text" placeholder="Votre ville">
+        </div>
+        <div class="form-group">
+          <label>État / Province / Région</label>
+          <select>
+            <option value="">Sélectionner…</option>
+            <option>Île-de-France</option><option>Auvergne-Rhône-Alpes</option>
+            <option>Nouvelle-Aquitaine</option><option>Occitanie</option>
+            <option>Hauts-de-France</option><option>Grand Est</option>
+            <option>Normand ie</option><option>Bretagne</option>
+            <option>Québec</option><option>Ontario</option><option>Autre</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>ZIP / Code postal</label>
+          <input type="text" placeholder="Ex : 75001">
+        </div>
+        <div class="form-group">
+          <label>Pays</label>
+          <select>
+            <option value="">Sélectionner…</option>
+            <option selected>France</option><option>Belgique</option>
+            <option>Suisse</option><option>Canada</option><option>Luxembourg</option><option>Autre</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Téléphone</label>
+        <input type="tel" placeholder="Ex : +33 6 12 34 56 78">
+      </div>
+
+      <div class="form-submit-row">
+        <button type="button" class="btn-reset" onclick="resetForm()">Réinitialiser</button>
+        <button type="button" class="btn-submit" onclick="submitForm()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+          Envoyer
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- SOCIAL -->
+<div class="social-section">
+  <div class="social-section-title">Suivez-nous sur les réseaux sociaux</div>
+  <div class="social-links">
+    <a href="#" class="social-link sl-fb"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/></svg>Facebook</a>
+    <a href="#" class="social-link sl-ig"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>Instragram</a>
+    <a href="#" class="social-link sl-x"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.736-8.844L1.254 2.25h7.002l4.262 5.636zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>X</a>
+    <a href="#" class="social-link sl-dc"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/></svg>Discord</a>
+    <a href="#" class="social-link sl-yt"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.543 6.498C22 8.28 22 12 22 12s0 3.72-.457 5.502c-.254.985-.997 1.76-1.938 2.022C17.896 20 12 20 12 20s-5.893 0-7.605-.476c-.945-.266-1.687-1.04-1.938-2.022C2 15.72 2 12 2 12s0-3.72.457-5.502c.254-.985.997-1.76 1.938-2.022C6.107 4 12 4 12 4s5.896 0 7.605.476c.945.266 1.687 1.04 1.938 2.022zM10 15.5l6-3.5-6-3.5v7z"/></svg>Youtube</a>
+    <a href="#" class="social-link sl-wa"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>Whatsapp</a>
+  </div>
+</div>
+
+<div class="footer-top">
+  <div class="ft-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg><strong>Livraison 24/48/72h</strong><span>Domicile / Point Retrait</span></div>
+  <div class="ft-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><strong>Frais de port à partir de 60€</strong><span>(France Métropolitaine uniquement)</span></div>
+  <div class="ft-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg><strong>Satisfait ou remboursé</strong><span>Retour jusqu'à X mois</span></div>
+  <div class="ft-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 6 6l.81-.81a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 16.92z"/></svg><strong>Contactez-nous au</strong><span>06 12 23 34 45</span></div>
+</div>
+
+<footer>
+  <div class="footer-col"><div class="footer-logo">🎲 BOUTIQUE</div><p class="footer-tagline">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean at porttitor diam. Phasellus porttitor venenatis fermentum.</p><div class="footer-social"><a href="#"><svg viewBox="0 0 24 24"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/></svg></a><a href="#"><svg viewBox="0 0 24 24"><path d="M21.543 6.498C22 8.28 22 12 22 12s0 3.72-.457 5.502c-.254.985-.997 1.76-1.938 2.022C17.896 20 12 20 12 20s-5.893 0-7.605-.476c-.945-.266-1.687-1.04-1.938-2.022C2 15.72 2 12 2 12s0-3.72.457-5.502c.254-.985.997-1.76 1.938-2.022C6.107 4 12 4 12 4s5.896 0 7.605.476c.945.266 1.687 1.04 1.938 2.022zM10 15.5l6-3.5-6-3.5v7z"/></svg></a></div></div>
+  <div class="footer-col"><h4>Super Meeple</h4><ul><li><a href="#">Qui sommes-nous ?</a></li><li><a href="#">Contactez-nous</a></li><li><a href="#">Actualités</a></li><li><a href="#">Festivals & Événements</a></li><li><a href="#">Nos partenaires</a></li><li><a href="#">FAQ</a></li></ul></div>
+  <div class="footer-col"><h4>Tous le jeux</h4><ul><li><a href="#">Précommandes</a></li><li><a href="#">Nouveautés</a></li><li><a href="#">Roadmap</a></li><li><a href="#">Demande de SAV</a></li><li><a href="#">Demande de presse</a></li><li><a href="#">Autre demande</a></li></ul></div>
+  <div class="footer-col"><h4>Informations</h4><ul><li><a href="#">Mon compte</a></li><li><a href="#">FAQ</a></li><li><a href="#">Où trouver nos jeux</a></li><li><a href="#">Mentions légales</a></li><li><a href="#">CGV</a></li><li><a href="#">Plan du site</a></li></ul></div>
+  <div class="footer-col"><h4>Lorem Ipsum</h4><ul><li><a href="#">Politique de confidentialité</a></li><li><a href="#">Extensions</a></li><li><a href="#">Goodies</a></li><li><a href="#">Packs</a></li></ul></div>
+  <div class="footer-col"><h4>Lorem Ipsum</h4><ul><li><a href="#">Précommandes</a></li><li><a href="#">Extensions</a></li><li><a href="#">Goodies</a></li><li><a href="#">Packs</a></li></ul></div>
+</footer>
+<div class="footer-bottom">© 2025 Boutique Super Meeple – Tous droits réservés</div>
+
+<script>
+const DYNAMIC_MAP = {
+  festival: 'fields-festival',
+  partenariat: 'fields-partenariat',
+  media: 'fields-media',
+  boutique: 'fields-boutique',
+  pro: null,
+  autre: null,
+};
+
+function updateDynamicFields() {
+  const type = document.querySelector('input[name="request-type"]:checked')?.value;
+  document.querySelectorAll('.dynamic-fields').forEach(el => el.classList.remove('visible'));
+  const target = DYNAMIC_MAP[type];
+  if (target) document.getElementById(target)?.classList.add('visible');
+}
+
+function submitForm() { document.getElementById('success-banner').classList.add('show'); window.scrollTo({top:0, behavior:'smooth'}); }
+function resetForm() {
+  document.querySelectorAll('input:not([type=radio]):not([type=checkbox]), textarea, select').forEach(el => el.value = '');
+  document.getElementById('t-festival').checked = true;
+  updateDynamicFields();
+  document.getElementById('success-banner').classList.remove('show');
+}
+</script>
+</body>
+</html>
