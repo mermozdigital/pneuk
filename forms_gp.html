@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Formulaires Super Meeple – Refonte</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Sora:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --red: #d8001f;
+  --red-700: #b00018;
+  --red-900: #97000d;
+  --ink: #0f0f12;
+  --muted: #66636b;
+  --line: #1f1f23;
+  --border: #e8dfe1;
+  --soft: #fff7f8;
+  --soft-red: #ffdfe3;
+  --panel: #ffffff;
+  --footer: #c90018;
+  --footer-dark: #97000d;
+  --shadow: 0 14px 35px rgba(120, 0, 12, .10);
+  --shadow-card: 0 4px 0 var(--red-900), 0 14px 30px rgba(40,0,5,.05);
+  --radius-lg: 18px;
+  --radius-md: 12px;
+  --font-title: 'Sora', sans-serif;
+  --font-text: 'Inter', sans-serif;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: #fff9fa;
+  color: var(--ink);
+  font-family: var(--font-text);
+  font-size: 14px;
+}
+a { color: inherit; text-decoration: none; }
+button, input, textarea, select { font-family: var(--font-text); }
+button { cursor: pointer; }
+img, svg { display: block; max-width: 100%; }
+
+/* TOP */
+.site-topbar {
+  height: 28px;
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  align-items: center;
+  padding: 0 32px;
+  background: linear-gradient(90deg, var(--red-900), var(--red));
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+}
+.site-topbar span:nth-child(2) { text-align: center; }
+.site-topbar span:last-child { text-align: right; }
+.site-header {
+  min-height: 58px;
+  display: grid;
+  grid-template-columns: 240px minmax(240px, 520px) 1fr;
+  align-items: center;
+  gap: 26px;
+  padding: 10px 32px;
+  background: #fff;
+  border-bottom: 1.5px solid var(--line);
+}
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--red-900);
+  font-family: var(--font-title);
+  font-weight: 900;
+  font-size: 27px;
+  letter-spacing: -.03em;
+  text-transform: uppercase;
+}
+.logo-mark {
+  width: 29px;
+  height: 29px;
+  color: var(--red-900);
+}
+.search {
+  height: 35px;
+  display: flex;
+  align-items: center;
+  border: 1.8px solid var(--line);
+  border-radius: 999px;
+  background: #fff;
+  overflow: hidden;
+}
+.search input {
+  min-width: 0;
+  flex: 1;
+  height: 100%;
+  border: 0;
+  outline: 0;
+  padding: 0 18px;
+  font-size: 12px;
+  color: var(--ink);
+}
+.search input::placeholder { color: #333; font-family: var(--font-text); }
+.search button {
+  width: 42px;
+  height: 100%;
+  border: 0;
+  background: transparent;
+  color: var(--red);
+  font-size: 17px;
+}
+.header-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 14px;
+  font-size: 15px;
+  font-weight: 700;
+}
+.header-icon {
+  position: relative;
+  width: 25px;
+  height: 25px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-right: 1px solid #cfcacf;
+  padding-right: 13px;
+  color: var(--red);
+}
+.header-login { display: inline-flex; align-items: center; gap: 6px; }
+.site-nav {
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(18px, 3.2vw, 46px);
+  padding: 0 24px;
+  background: #fff;
+  border-bottom: 1.5px solid var(--line);
+  font-size: 13px;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow-x: auto;
+}
+.site-nav a { transition: color .18s ease; }
+.site-nav a:hover, .site-nav a.active { color: var(--red); }
+
+/* PAGE */
+.main-wrap {
+  width: min(1210px, calc(100% - 56px));
+  margin: 0 auto;
+  padding: 48px 0 72px;
+}
+.breadcrumb {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 22px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 600;
+}
+.breadcrumb a { color: var(--red-900); }
+.page-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(280px, .75fr);
+  gap: 26px;
+  align-items: stretch;
+  margin-bottom: 30px;
+}
+.hero-title-card {
+  position: relative;
+  overflow: hidden;
+  min-height: 230px;
+  padding: 34px 36px;
+  border: 1.8px solid var(--line);
+  border-radius: var(--radius-lg);
+  background:
+    radial-gradient(circle at 92% 22%, rgba(255, 213, 218, .9) 0 13%, transparent 14%),
+    linear-gradient(135deg, #fff, #fff1f3 68%, #ffe0e4);
+  box-shadow: var(--shadow-card);
+}
+.hero-title-card::after {
+  content: '';
+  position: absolute;
+  right: -80px;
+  bottom: -95px;
+  width: 230px;
+  height: 230px;
+  border-radius: 50%;
+  border: 34px solid rgba(216, 0, 31, .10);
+}
+.kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  border: 1px solid rgba(216,0,31,.25);
+  border-radius: 999px;
+  background: #fff;
+  color: var(--red-900);
+  font-size: 11px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+}
+h1 {
+  margin: 17px 0 12px;
+  font-family: var(--font-title);
+  font-size: clamp(34px, 5vw, 62px);
+  line-height: .96;
+  letter-spacing: -.06em;
+}
+.hero-title-card p {
+  max-width: 720px;
+  margin: 0;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.75;
+}
+.hero-side-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 20px;
+  min-height: 230px;
+  padding: 25px;
+  border-radius: var(--radius-lg);
+  border: 1.8px solid var(--line);
+  background: #fff;
+  box-shadow: var(--shadow-card);
+}
+.hero-side-card h2 {
+  margin: 0;
+  font-family: var(--font-title);
+  font-size: 22px;
+  letter-spacing: -.04em;
+}
+.hero-side-card p { margin: 8px 0 0; color: var(--muted); line-height: 1.65; }
+.quick-list { display: grid; gap: 10px; }
+.quick-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 42px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: #fff4f5;
+  border: 1px solid #ffd3d8;
+  font-weight: 800;
+  font-size: 12px;
+}
+.quick-item span:first-child { color: var(--red); font-size: 18px; }
+
+.layout-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 350px;
+  gap: 28px;
+  align-items: start;
+}
+.form-card {
+  border: 1.8px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: #fff;
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+}
+.form-card-header {
+  padding: 22px 28px;
+  border-bottom: 1px solid #ecdfe1;
+  background: linear-gradient(180deg, #fff, #fff7f8);
+}
+.form-card-header h2,
+.side-panel h2,
+.social-title {
+  margin: 0;
+  font-family: var(--font-title);
+  font-size: 24px;
+  line-height: 1.15;
+  letter-spacing: -.05em;
+}
+.form-card-header p {
+  margin: 8px 0 0;
+  color: var(--muted);
+  line-height: 1.6;
+}
+.form-body { padding: 28px; }
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  margin: 0 0 22px;
+  font-family: var(--font-title);
+  font-size: 22px;
+  line-height: 1.1;
+  letter-spacing: -.05em;
+}
+.section-title::before {
+  content: '';
+  width: 35px;
+  height: 5px;
+  border-radius: 999px;
+  background: var(--red);
+}
+.form-section + .form-section { margin-top: 36px; padding-top: 30px; border-top: 1px solid #ecdfe1; }
+.form-row { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+.form-row + .form-row, .form-group + .form-row, .form-row + .form-group, .form-group + .form-group { margin-top: 18px; }
+.form-group { min-width: 0; }
+label, .group-label {
+  display: block;
+  margin-bottom: 8px;
+  color: #4b474d;
+  font-size: 12px;
+  font-family: var(--font-text);
+  font-weight: 800;
+  letter-spacing: .01em;
+}
+.required { color: var(--red); }
+input, select, textarea {
+  width: 100%;
+  border: 1.4px solid #dfd6d8;
+  border-radius: 10px;
+  background: #fff;
+  color: var(--ink);
+  font-size: 13px;
+  font-family: var(--font-text);
+  outline: none;
+  transition: border-color .16s ease, box-shadow .16s ease, background .16s ease;
+}
+input, select { min-height: 45px; padding: 0 14px; }
+textarea { min-height: 135px; padding: 14px; resize: vertical; line-height: 1.6; }
+input::placeholder, textarea::placeholder { color: #aaa2a5; font-family: var(--font-text); }
+input:focus, select:focus, textarea:focus {
+  border-color: var(--red);
+  box-shadow: 0 0 0 4px rgba(216, 0, 31, .08);
+  background: #fffdfd;
+}
+select {
+  appearance: none;
+  background-image: linear-gradient(45deg, transparent 50%, var(--ink) 50%), linear-gradient(135deg, var(--ink) 50%, transparent 50%);
+  background-position: calc(100% - 20px) 19px, calc(100% - 14px) 19px;
+  background-size: 6px 6px, 6px 6px;
+  background-repeat: no-repeat;
+  padding-right: 42px;
+}
+.input-note {
+  margin: 8px 0 0;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.55;
+}
+.notice {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  margin: 0 0 22px;
+  padding: 13px 15px;
+  border: 1px solid #ffd0d6;
+  border-radius: 14px;
+  background: #fff5f6;
+  color: #4a3b3f;
+  font-size: 12px;
+  line-height: 1.65;
+}
+.notice .icon { font-size: 19px; color: var(--red); line-height: 1; }
+.checkbox-group { display: grid; gap: 10px; }
+.checkbox-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 45px;
+  padding: 10px 13px;
+  border: 1.4px solid #dfd6d8;
+  border-radius: 11px;
+  background: #fff;
+  color: #433f44;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.checkbox-item:hover { border-color: var(--red); background: #fff7f8; }
+.checkbox-item input { width: 17px; min-height: 17px; accent-color: var(--red); }
+.file-input {
+  display: grid;
+  gap: 8px;
+}
+.file-input input[type='file'] {
+  padding: 11px;
+  border-style: dashed;
+  cursor: pointer;
+}
+.address-subgrid { display: grid; gap: 12px; }
+.caption { display: block; margin-top: 6px; color: #777179; font-size: 11px; font-weight: 700; }
+.submit-row {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 30px;
+}
+.btn-submit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 48px;
+  padding: 0 26px;
+  border: 0;
+  border-radius: 11px;
+  background: linear-gradient(90deg, var(--red-900), var(--red));
+  color: #fff;
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: .02em;
+  text-transform: uppercase;
+  box-shadow: 0 10px 18px rgba(216,0,31,.18);
+}
+.btn-submit:hover { transform: translateY(-1px); }
+.success-banner {
+  display: none;
+  margin-bottom: 20px;
+  padding: 13px 15px;
+  border-radius: 13px;
+  border: 1px solid #bfe6c5;
+  background: #effaf1;
+  color: #176226;
+  font-weight: 800;
+}
+.success-banner.show { display: block; }
+
+.side-panel {
+  position: sticky;
+  top: 90px;
+  display: grid;
+  gap: 16px;
+}
+.panel-box {
+  border: 1.8px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: #fff;
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+}
+.panel-box .panel-inner { padding: 22px; }
+.panel-box p { color: var(--muted); line-height: 1.65; margin: 10px 0 0; }
+.help-actions { display: grid; gap: 10px; margin-top: 18px; }
+.help-actions a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 44px;
+  padding: 10px 12px;
+  border: 1px solid #ffd0d6;
+  border-radius: 12px;
+  background: #fff7f8;
+  color: var(--ink);
+  font-size: 12px;
+  font-weight: 900;
+}
+.help-actions a span { color: var(--red); }
+.rules-list {
+  display: grid;
+  gap: 10px;
+  margin: 16px 0 0;
+  padding: 0;
+  list-style: none;
+}
+.rules-list li {
+  display: flex;
+  gap: 9px;
+  color: #4d474b;
+  font-size: 12px;
+  line-height: 1.5;
+}
+.rules-list li::before { content: '●'; color: var(--red); font-size: 10px; margin-top: 2px; }
+
+/* SOCIAL + FOOTER */
+.social-section {
+  padding: 52px 24px 45px;
+  text-align: center;
+}
+.social-title { font-size: clamp(24px, 3vw, 32px); margin-bottom: 24px; }
+.social-links {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 18px;
+}
+.social-link {
+  min-width: 138px;
+  min-height: 42px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  border: 1.4px solid var(--red);
+  border-radius: 12px;
+  background: #fff;
+  color: var(--ink);
+  font-weight: 900;
+  font-size: 14px;
+}
+.social-link .sicon { color: var(--red); font-size: 19px; }
+.service-strip {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  padding: 34px 56px;
+  background: var(--soft-red);
+  border-top: 1px solid #ffd0d6;
+}
+.service-item {
+  display: grid;
+  justify-items: center;
+  gap: 10px;
+  text-align: center;
+  color: var(--ink);
+  font-size: 13px;
+  font-weight: 800;
+  line-height: 1.4;
+}
+.service-icon { font-size: 46px; filter: saturate(1.1); }
+.site-footer {
+  display: grid;
+  grid-template-columns: 1.35fr repeat(5, 1fr);
+  gap: 42px;
+  padding: 56px 78px 50px;
+  background: linear-gradient(110deg, var(--footer-dark), var(--footer));
+  color: #fff;
+}
+.footer-brand p {
+  margin: 16px 0 22px;
+  color: rgba(255,255,255,.86);
+  font-size: 13px;
+  line-height: 1.65;
+}
+.footer-social { display: flex; gap: 13px; }
+.footer-social a {
+  width: 36px;
+  height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #fff;
+  color: var(--red);
+  font-weight: 900;
+}
+.footer-col h3 {
+  margin: 0 0 16px;
+  font-family: var(--font-title);
+  font-size: 17px;
+  letter-spacing: -.04em;
+}
+.footer-col ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 12px; }
+.footer-col a { color: rgba(255,255,255,.86); font-size: 13px; }
+.footer-col a:hover { color: #fff; }
+
+@media (max-width: 1000px) {
+  .site-header { grid-template-columns: 1fr; gap: 12px; }
+  .header-actions { justify-content: flex-start; }
+  .page-hero, .layout-grid { grid-template-columns: 1fr; }
+  .side-panel { position: static; }
+  .service-strip, .site-footer { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 680px) {
+  .site-topbar { grid-template-columns: 1fr; height: auto; gap: 5px; padding: 8px 18px; text-align: center; }
+  .site-topbar span:last-child { text-align: center; }
+  .site-header { padding: 14px 18px; }
+  .site-nav { justify-content: flex-start; }
+  .main-wrap { width: min(100% - 28px, 1210px); padding-top: 28px; }
+  .hero-title-card, .hero-side-card, .form-body, .form-card-header { padding: 20px; }
+  .form-row { grid-template-columns: 1fr; }
+  .service-strip, .site-footer { grid-template-columns: 1fr; padding-left: 22px; padding-right: 22px; }
+}
+
+.demo-tabs { display:flex; flex-wrap:wrap; gap:12px; margin:0 0 28px; }
+.demo-tabs a { padding: 12px 16px; border-radius:12px; border:1.4px solid var(--red); background:#fff; color:var(--ink); font-weight:900; }
+.demo-separator { height:56px; }
+</style>
+</head>
+<body>
+
+<div class="site-topbar">
+  <span>France</span>
+  <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
+  <span>SAV : 06 12 23 34 45</span>
+</div>
+<header class="site-header">
+  <a class="logo" href="#"><svg class="logo-mark" viewBox="0 0 64 64" aria-hidden="true"><path fill="currentColor" d="M30 4h5v11l9-6 3 4-9 6 12 3-1 5-12-3 8 10-4 3-7-10v14h12v5H34v8h17v5H13v-5h17v-8H18v-5h12V27l-7 10-4-3 8-10-12 3-1-5 12-3-9-6 3-4 10 6V4Z"/></svg><span>BOUTIQUE</span></a>
+  <form class="search" role="search">
+    <input type="search" placeholder="Rechercher un jeux" aria-label="Rechercher un jeu">
+    <button type="submit" aria-label="Rechercher">🔍</button>
+  </form>
+  <div class="header-actions" aria-label="Actions utilisateur">
+    <a class="header-icon" href="#" aria-label="Panier">🛍️</a>
+    <a class="header-icon" href="#" aria-label="Favoris">❤️</a>
+    <a class="header-login" href="#"><span>♙</span> Connexion</a>
+  </div>
+</header>
+<nav class="site-nav">
+  <a href="#">Accueil</a>
+  <a href="#">Précommandes</a>
+  <a href="#">Nos jeux</a>
+  <a href="#">Extensions</a>
+  <a href="#">Goodies</a>
+  <a href="#">Packs</a>
+  <a href="#">Série Deckscape</a>
+  <a href="#">Série Decktective</a>
+  <a href="#">PAGAN</a>
+  <a href="#">World Order</a>
+</nav>
+
+<main class="main-wrap">
+  <div class="breadcrumb"><a href="#">Accueil</a><span>›</span><span>Formulaires</span></div>
+  <div class="demo-tabs"><a href="#presse">Demande presse</a><a href="#sav">Demande S.A.V</a><a href="#autre">Autre demande</a></div>
+
+  <section id="presse" class="page-hero">
+    <div class="hero-title-card"><span class="kicker">Contact Super Meeple</span><h1>Demande de Presse</h1><p>Merci de remplir tous les champs pour être traité. Cette page est dédiée aux demandes presse et aux supports qui souhaitent présenter nos jeux.</p></div>
+    <aside class="hero-side-card"><div><h2>Presse & créateurs</h2><p>Un formulaire clair, rapide, et aligné sur l’univers visuel de la boutique.</p></div><div class="quick-list"><div class="quick-item"><span>🎥</span><span>Support média</span></div><div class="quick-item"><span>🎲</span><span>Jeux souhaités</span></div><div class="quick-item"><span>📦</span><span>Coordonnées d’envoi</span></div></div></aside>
+  </section>
+  <section class="layout-grid">
+    <form class="form-card" data-form><div class="form-card-header"><h2>Demande presse</h2><p>Renseignez uniquement les informations visibles sur la page originale.</p></div><div class="form-body"><div class="success-banner">Votre demande a bien été prise en compte.</div>
+<section class="form-section">
+  <h2 class="section-title">Informations Presse</h2>
+  <div class="notice"><span class="icon">ⓘ</span><span>Nous sommes en rupture d'exemplaires de presse pour <strong>Wondrous Creatures / Ironwood / Endeavor Eaux Profondes / Black Forest</strong> — Merci.</span></div>
+  <div class="form-group">
+    <label for="support-presse">Nom du support presse <span class="required">*</span></label>
+    <input id="support-presse" name="support_presse" type="text" required placeholder="Nom du média ou de la chaîne">
+  </div>
+  <div class="form-group">
+    <label for="type-support">Type de Support <span class="required">*</span></label>
+    <select id="type-support" name="type_support" required>
+      <option>Youtube</option>
+      <option>Blog / Site web</option>
+      <option>Podcast</option>
+      <option>Instagram</option>
+      <option>TikTok</option>
+      <option>Twitch</option>
+      <option>Facebook</option>
+      <option>Magazine / Presse écrite</option>
+    </select>
+    <p class="input-note">Si vous ne trouvez pas votre type de support, c'est que nous n'envoyons pas d'exemplaire presse pour celui-ci.</p>
+  </div>
+  <div class="form-group">
+    <label for="url-support">Url <span class="required">*</span></label>
+    <input id="url-support" name="url_support" type="url" required placeholder="https://">
+  </div>
+  <div class="form-group">
+    <label for="followers">Nombre de followers (5000 mini) ou Moyenne de vues sur Youtube <span class="required">*</span></label>
+    <input id="followers" name="followers" type="number" min="0" max="100000" required placeholder="Ex : 5000">
+    <p class="input-note">Veuillez entrer un nombre entre <strong>0</strong> et <strong>100000</strong>.</p>
+  </div>
+  <div class="form-row">
+    <div class="form-group">
+      <label for="jeu-1">Jeu 1 souhaité</label>
+      <input id="jeu-1" name="jeu_1" type="text" placeholder="Nom du jeu">
+    </div>
+    <div class="form-group">
+      <label for="jeu-2">Jeu 2 souhaité</label>
+      <input id="jeu-2" name="jeu_2" type="text" placeholder="Nom du jeu">
+    </div>
+  </div>
+  <p class="input-note">Les jeux souhaités sont sous réserve de disponibilité pour la presse.</p>
+  <div class="form-group">
+    <span class="group-label">J'accepte</span>
+    <div class="checkbox-group">
+      <label class="checkbox-item"><input type="checkbox" name="jeu_ouvert">Un jeu déjà ouvert (mais en bon état)</label>
+      <label class="checkbox-item"><input type="checkbox" name="jeu_choc">Un jeu qui a reçu un choc (mais sans conséquence)</label>
+    </div>
+    <p class="input-note">Nous envoyons de préférence des jeux neufs, mais parfois il nous reste un petit stock à part.</p>
+  </div>
+</section>
+
+<section class="form-section">
+  <h2 class="section-title">Coordonnées</h2>
+  <div class="form-group">
+    <label for="email">Email</label>
+    <input id="email" name="email" type="email" autocomplete="email" placeholder="votre@email.com">
+  </div>
+  <div class="form-row">
+    <div class="form-group">
+      <label for="prenom">Prénom</label>
+      <input id="prenom" name="prenom" type="text" autocomplete="given-name" placeholder="Votre prénom">
+    </div>
+    <div class="form-group">
+      <label for="nom">Nom</label>
+      <input id="nom" name="nom" type="text" autocomplete="family-name" placeholder="Votre nom">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="adresse">Adresse</label>
+    <input id="adresse" name="adresse" type="text" autocomplete="address-line1" placeholder="Numéro et nom de rue">
+  </div>
+  <div class="form-group">
+    <label for="adresse-complement">Adresse</label>
+    <input id="adresse-complement" name="adresse_complement" type="text" autocomplete="address-line2" placeholder="Complément d'adresse">
+  </div>
+  <div class="form-row">
+    <div class="form-group">
+      <label for="ville">Ville</label>
+      <input id="ville" name="ville" type="text" autocomplete="address-level2" placeholder="Votre ville">
+    </div>
+    <div class="form-group">
+      <label for="region">État / Province / Région</label>
+      <input id="region" name="region" type="text" autocomplete="address-level1" placeholder="Région">
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group">
+      <label for="code-postal">ZIP / Code postal</label>
+      <input id="code-postal" name="code_postal" type="text" autocomplete="postal-code" placeholder="Code postal">
+    </div>
+    <div class="form-group">
+      <label for="pays">Pays</label>
+      <select id="pays" name="pays">
+        <option value="">Sélectionner un pays</option>
+        <option>France</option>
+        <option>Belgique</option>
+        <option>Suisse</option>
+        <option>Canada</option>
+        <option>Luxembourg</option>
+        <option>Autre</option>
+      </select>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="telephone">Téléphone</label>
+    <input id="telephone" name="telephone" type="tel" autocomplete="tel" placeholder="Votre numéro de téléphone">
+  </div>
+</section>
+<div class="submit-row"><button class="btn-submit" type="submit">Envoyer</button></div></div></form>
+    <aside class="side-panel"><div class="panel-box"><div class="panel-inner"><h2>Besoin d’aide ?</h2><p>Choisissez la page de demande adaptée pour nous aider à vous répondre plus vite.</p><div class="help-actions"><a href="#presse">Demander une presse <span>→</span></a><a href="#sav">Demander un S.A.V <span>→</span></a><a href="#autre">Autre demande <span>→</span></a></div></div></div><div class="panel-box"><div class="panel-inner"><h2>À retenir</h2><ul class="rules-list"><li>Les champs marqués d’un astérisque sont obligatoires.</li><li>Les coordonnées sont utilisées uniquement pour traiter votre demande.</li><li>Merci de fournir une demande claire et complète.</li></ul></div></div></aside>
+  </section>
+
+  <div class="demo-separator"></div>
+  <section id="sav" class="page-hero"><div class="hero-title-card"><span class="kicker">Contact Super Meeple</span><h1>Demande de S.A.V</h1><p>Vous avez une demande liée à un jeu, une pièce ou un problème après achat ? Remplissez ce formulaire avec les informations nécessaires.</p></div><aside class="hero-side-card"><div><h2>Service après-vente</h2><p>Les informations utiles sont regroupées pour faciliter le traitement de votre demande.</p></div><div class="quick-list"><div class="quick-item"><span>🎲</span><span>Nom du jeu</span></div><div class="quick-item"><span>🧾</span><span>Lieu de l’achat</span></div><div class="quick-item"><span>📷</span><span>Photo optionnelle</span></div></div></aside></section>
+  <section class="layout-grid"><form class="form-card" data-form><div class="form-card-header"><h2>Demande de SAV</h2><p>Décrivez votre demande le plus clairement possible.</p></div><div class="form-body"><div class="success-banner">Votre demande a bien été prise en compte.</div>
+<section class="form-section">
+  <h2 class="section-title">Informations SAV</h2>
+  <div class="form-group">
+    <label for="nom-jeu-sav">Nom du jeu <span class="required">*</span></label>
+    <input id="nom-jeu-sav" name="nom_jeu" type="text" required placeholder="Nom du jeu concerné">
+  </div>
+  <div class="form-group">
+    <label for="lieu-achat">Lieu de l'achat <span class="required">*</span></label>
+    <textarea id="lieu-achat" name="lieu_achat" required placeholder="Boutique, site web ou lieu d'achat"></textarea>
+  </div>
+  <div class="form-group">
+    <label for="demande-sav">Votre demande <span class="required">*</span></label>
+    <textarea id="demande-sav" name="demande" required placeholder="Décrivez votre demande"></textarea>
+  </div>
+  <div class="form-group file-input">
+    <label for="photo-sav">Photo <span class="input-note">(max 1Mo)</span></label>
+    <input id="photo-sav" name="photo" type="file" accept="image/*">
+    <p class="input-note" data-file-name="photo-sav">Aucun fichier choisi</p>
+  </div>
+</section>
+
+<section class="form-section">
+  <h2 class="section-title">Coordonnées</h2>
+  <div class="form-group">
+    <label for="email-sav">Email</label>
+    <input id="email-sav" name="email" type="email" autocomplete="email" placeholder="votre@email.com">
+  </div>
+  <div class="form-row">
+    <div class="form-group">
+      <label for="prenom-sav">Prénom</label>
+      <input id="prenom-sav" name="prenom" type="text" autocomplete="given-name" placeholder="Votre prénom">
+    </div>
+    <div class="form-group">
+      <label for="nom-sav">Nom</label>
+      <input id="nom-sav" name="nom" type="text" autocomplete="family-name" placeholder="Votre nom">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="adresse-sav">Adresse</label>
+    <input id="adresse-sav" name="adresse" type="text" autocomplete="address-line1" placeholder="Numéro et nom de rue">
+  </div>
+  <div class="form-group">
+    <label for="adresse-complement-sav">Adresse</label>
+    <input id="adresse-complement-sav" name="adresse_complement" type="text" autocomplete="address-line2" placeholder="Complément d'adresse">
+  </div>
+  <div class="form-row">
+    <div class="form-group">
+      <label for="ville-sav">Ville</label>
+      <input id="ville-sav" name="ville" type="text" autocomplete="address-level2" placeholder="Votre ville">
+    </div>
+    <div class="form-group">
+      <label for="region-sav">État / Province / Région</label>
+      <input id="region-sav" name="region" type="text" autocomplete="address-level1" placeholder="Région">
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group">
+      <label for="code-postal-sav">ZIP / Code postal</label>
+      <input id="code-postal-sav" name="code_postal" type="text" autocomplete="postal-code" placeholder="Code postal">
+    </div>
+    <div class="form-group">
+      <label for="pays-sav">Pays</label>
+      <select id="pays-sav" name="pays">
+        <option value="">Sélectionner un pays</option>
+        <option>France</option>
+        <option>Belgique</option>
+        <option>Suisse</option>
+        <option>Canada</option>
+        <option>Luxembourg</option>
+        <option>Autre</option>
+      </select>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="telephone-sav">Téléphone</label>
+    <input id="telephone-sav" name="telephone" type="tel" autocomplete="tel" placeholder="Votre numéro de téléphone">
+  </div>
+</section>
+<div class="submit-row"><button class="btn-submit" type="submit">Envoyer</button></div></div></form><aside class="side-panel"><div class="panel-box"><div class="panel-inner"><h2>Besoin d’aide ?</h2><p>Choisissez la page de demande adaptée pour nous aider à vous répondre plus vite.</p><div class="help-actions"><a href="#presse">Demander une presse <span>→</span></a><a href="#sav">Demander un S.A.V <span>→</span></a><a href="#autre">Autre demande <span>→</span></a></div></div></div><div class="panel-box"><div class="panel-inner"><h2>À retenir</h2><ul class="rules-list"><li>Les champs marqués d’un astérisque sont obligatoires.</li><li>Les coordonnées sont utilisées uniquement pour traiter votre demande.</li><li>Merci de fournir une demande claire et complète.</li></ul></div></div></aside></section>
+
+  <div class="demo-separator"></div>
+  <section id="autre" class="page-hero"><div class="hero-title-card"><span class="kicker">Contact Super Meeple</span><h1>Autre demande</h1><p>Pour une demande d’exemplaire Presse ou une demande de SAV, merci d’utiliser les boutons prévus à cet effet. Pour les autres demandes, remplissez le formulaire ci-dessous.</p></div><aside class="hero-side-card"><div><h2>Avant d’envoyer</h2><p>Les demandes non adaptées peuvent être redirigées vers le bon formulaire.</p></div><div class="quick-list"><div class="quick-item"><span>🎪</span><span>Festival</span></div><div class="quick-item"><span>💬</span><span>Message clair</span></div><div class="quick-item"><span>✉️</span><span>Réponse par email</span></div></div></aside></section>
+  <section class="layout-grid"><form class="form-card" data-form><div class="form-card-header"><h2>Autre demande</h2><p>Merci de remplir tous les champs pour être traité.</p></div><div class="form-body"><div class="success-banner">Votre demande a bien été prise en compte.</div>
+<section class="form-section">
+  <h2 class="section-title">Informations</h2>
+  <div class="notice"><span class="icon">ⓘ</span><span>Notes importantes : Pour un festival, merci de préciser le nombre de visiteurs, le prix d'une table TTC (ou d'un emplacement et le nombre de tables). S'il s'agit d'un festival essentiellement à destination de joueurs novices. Pas de demande pour des prototypes merci. Écrire plutôt à <strong>info@supermeeple.com</strong>.</span></div>
+  <div class="form-group">
+    <label for="type-demande">Type de demande <span class="required">*</span></label>
+    <select id="type-demande" name="type_demande" required>
+      <option>Participation Festival</option>
+      <option>Partenariat</option>
+      <option>Question générale</option>
+      <option>Autre demande</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="demande-autre">Demande <span class="required">*</span></label>
+    <textarea id="demande-autre" name="demande" required placeholder="Votre message"></textarea>
+  </div>
+</section>
+
+<section class="form-section">
+  <h2 class="section-title">Coordonnées</h2>
+  <div class="form-group">
+    <label for="email-autre">Email</label>
+    <input id="email-autre" name="email" type="email" autocomplete="email" placeholder="votre@email.com">
+  </div>
+  <div class="form-row">
+    <div class="form-group">
+      <label for="prenom-autre">Prénom</label>
+      <input id="prenom-autre" name="prenom" type="text" autocomplete="given-name" placeholder="Votre prénom">
+    </div>
+    <div class="form-group">
+      <label for="nom-autre">Nom</label>
+      <input id="nom-autre" name="nom" type="text" autocomplete="family-name" placeholder="Votre nom">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="adresse-autre">Adresse</label>
+    <input id="adresse-autre" name="adresse" type="text" autocomplete="address-line1" placeholder="Numéro et nom de rue">
+  </div>
+  <div class="form-group">
+    <label for="adresse-complement-autre">Adresse</label>
+    <input id="adresse-complement-autre" name="adresse_complement" type="text" autocomplete="address-line2" placeholder="Complément d'adresse">
+  </div>
+  <div class="form-row">
+    <div class="form-group">
+      <label for="ville-autre">Ville</label>
+      <input id="ville-autre" name="ville" type="text" autocomplete="address-level2" placeholder="Votre ville">
+    </div>
+    <div class="form-group">
+      <label for="region-autre">État / Province / Région</label>
+      <input id="region-autre" name="region" type="text" autocomplete="address-level1" placeholder="Région">
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group">
+      <label for="code-postal-autre">ZIP / Code postal</label>
+      <input id="code-postal-autre" name="code_postal" type="text" autocomplete="postal-code" placeholder="Code postal">
+    </div>
+    <div class="form-group">
+      <label for="pays-autre">Pays</label>
+      <select id="pays-autre" name="pays">
+        <option value="">Sélectionner un pays</option>
+        <option>France</option>
+        <option>Belgique</option>
+        <option>Suisse</option>
+        <option>Canada</option>
+        <option>Luxembourg</option>
+        <option>Autre</option>
+      </select>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="telephone-autre">Téléphone</label>
+    <input id="telephone-autre" name="telephone" type="tel" autocomplete="tel" placeholder="Votre numéro de téléphone">
+  </div>
+</section>
+<div class="submit-row"><button class="btn-submit" type="submit">Envoyer</button></div></div></form><aside class="side-panel"><div class="panel-box"><div class="panel-inner"><h2>Besoin d’aide ?</h2><p>Choisissez la page de demande adaptée pour nous aider à vous répondre plus vite.</p><div class="help-actions"><a href="#presse">Demander une presse <span>→</span></a><a href="#sav">Demander un S.A.V <span>→</span></a><a href="#autre">Autre demande <span>→</span></a></div></div></div><div class="panel-box"><div class="panel-inner"><h2>À retenir</h2><ul class="rules-list"><li>Les champs marqués d’un astérisque sont obligatoires.</li><li>Les coordonnées sont utilisées uniquement pour traiter votre demande.</li><li>Merci de fournir une demande claire et complète.</li></ul></div></div></aside></section>
+</main>
+
+<section class="social-section">
+  <h2 class="social-title">Suivez-nous sur les réseaux sociaux</h2>
+  <div class="social-links">
+    <a class="social-link" href="#"><span class="sicon">●</span> Facebook</a>
+    <a class="social-link" href="#"><span class="sicon">◎</span> Instragram</a>
+    <a class="social-link" href="#"><span class="sicon">𝕏</span> X</a>
+    <a class="social-link" href="#"><span class="sicon">🎮</span> Discord</a>
+    <a class="social-link" href="#"><span class="sicon">▶</span> Youtube</a>
+    <a class="social-link" href="#"><span class="sicon">☎</span> Whatsapp</a>
+  </div>
+</section>
+<section class="service-strip">
+  <div class="service-item"><span class="service-icon">🚚</span><span>Livraison 24/48/72H<br>Domicile / Point Retrait</span></div>
+  <div class="service-item"><span class="service-icon">🎁</span><span>Frais de port à partir de 60€<br>(France Métropolitaine uniquement)</span></div>
+  <div class="service-item"><span class="service-icon">🏅</span><span>Satisfait ou remboursé<br>Retour jusqu'à X mois</span></div>
+  <div class="service-item"><span class="service-icon">✉️</span><span>Contactez-nous au<br>06 12 23 34 45</span></div>
+</section>
+<footer class="site-footer">
+  <div class="footer-brand">
+    <a class="logo" href="#"><svg class="logo-mark" viewBox="0 0 64 64" aria-hidden="true"><path fill="currentColor" d="M30 4h5v11l9-6 3 4-9 6 12 3-1 5-12-3 8 10-4 3-7-10v14h12v5H34v8h17v5H13v-5h17v-8H18v-5h12V27l-7 10-4-3 8-10-12 3-1-5 12-3-9-6 3-4 10 6V4Z"/></svg><span>BOUTIQUE</span></a>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean at porttitor diam. Phasellus porttitor venenatis fermentum. Suspendisse sit amet sapien augue.</p>
+    <div class="footer-social"><a href="#">◎</a><a href="#">▶</a><a href="#">f</a></div>
+  </div>
+  <div class="footer-col"><h3>Super Meeple</h3><ul><li><a href="#">Qui sommes-nous ?</a></li><li><a href="#">Contactez-nous</a></li><li><a href="#">Actualités</a></li><li><a href="#">Festivals & Événements</a></li><li><a href="#">Nos partenaires</a></li><li><a href="#">FAQ</a></li></ul></div>
+  <div class="footer-col"><h3>Tous le jeux</h3><ul><li><a href="#">Précommandes</a></li><li><a href="#">Nouveautés</a></li><li><a href="#">Roadmap</a></li><li><a href="#">Demande de SAV</a></li><li><a href="#">Demande de presse</a></li><li><a href="#">Autre demande</a></li></ul></div>
+  <div class="footer-col"><h3>Informations</h3><ul><li><a href="#">Mon compte</a></li><li><a href="#">FAQ</a></li><li><a href="#">Où trouver nos jeux</a></li><li><a href="#">Mentions légales</a></li><li><a href="#">CGV</a></li><li><a href="#">Plan du site</a></li></ul></div>
+  <div class="footer-col"><h3>Lorem Ipsum</h3><ul><li><a href="#">Politique de confidentialité</a></li><li><a href="#">Goodies</a></li><li><a href="#">Packs</a></li><li><a href="#">Série Decktective</a></li><li><a href="#">Série Deckscape</a></li></ul></div>
+  <div class="footer-col"><h3>Lorem Ipsum</h3><ul><li><a href="#">Précommandes</a></li><li><a href="#">Extensions</a></li><li><a href="#">Goodies</a></li><li><a href="#">Packs</a></li><li><a href="#">Série Decktective</a></li><li><a href="#">Série Deckscape</a></li></ul></div>
+</footer>
+
+
+<script>
+document.querySelectorAll('[data-form]').forEach((form) => {
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const banner = form.querySelector('.success-banner');
+    if (banner) banner.classList.add('show');
+    form.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+
+document.querySelectorAll('input[type="file"]').forEach((input) => {
+  input.addEventListener('change', () => {
+    const target = document.querySelector('[data-file-name="' + input.id + '"]');
+    if (target) target.textContent = input.files.length ? input.files[0].name : 'Aucun fichier choisi';
+  });
+});
+</script>
+
+</body>
+</html>
