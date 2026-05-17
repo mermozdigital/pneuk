@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WuriPay — 3 propositions landing page</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    @font-face {
+      font-family: "Mona Sans";
+      src: url("https://cdn.jsdelivr.net/gh/github/mona-sans@main/fonts/variable/Mona-Sans.woff2") format("woff2");
+      font-weight: 200 900;
+      font-stretch: 75% 125%;
+      font-display: swap;
+    }
+
+    :root {
+      --bg: #f3f5f2;
+      --panel: #ffffff;
+      --panel-soft: #f8faf7;
+      --ink: #101113;
+      --muted: #6d716d;
+      --line: #d1d8d0;
+      --line-strong: #bfc9bf;
+      --green: #006b43;
+      --green-dark: #005336;
+      --green-soft: #d7ebe2;
+      --green-pale: #edf7f2;
+      --warning: #f6efe3;
+      --radius-lg: 28px;
+      --radius-md: 18px;
+      --radius-sm: 12px;
+      --max: 1200px;
+      --mona: "Mona Sans", "Manrope", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      --manrope: "Manrope", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: var(--manrope);
+      color: var(--ink);
+      background: var(--bg);
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; }
+
+    .version-switcher {
+      position: fixed;
+      z-index: 50;
+      right: 18px;
+      bottom: 18px;
+      display: flex;
+      gap: 8px;
+      padding: 8px;
+      border: 1px solid rgba(16, 17, 19, 0.12);
+      border-radius: 999px;
+      background: rgba(255,255,255,.82);
+      backdrop-filter: blur(18px);
+      box-shadow: 0 18px 60px rgba(0,0,0,.1);
+    }
+    .version-switcher button {
+      border: 0;
+      border-radius: 999px;
+      padding: 10px 14px;
+      background: transparent;
+      color: var(--muted);
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 800;
+    }
+    .version-switcher button.active {
+      color: #fff;
+      background: var(--green);
+    }
+
+    .page { display: block; }
+    .page + .page { margin-top: 80px; border-top: 4px solid var(--green); }
+    .version-title {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 34px 24px;
+      border-left: 1px solid var(--line);
+      border-right: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      background: #fff;
+      text-align: center;
+    }
+    .version-title strong {
+      display: block;
+      font-family: var(--mona);
+      font-size: clamp(30px, 4vw, 52px);
+      letter-spacing: -.06em;
+      line-height: 1;
+    }
+    .version-title span {
+      display: block;
+      margin-top: 10px;
+      color: var(--muted);
+      font-weight: 750;
+    }
+
+    .site-shell {
+      max-width: 1280px;
+      margin: 0 auto;
+      border-left: 1px solid var(--line);
+      border-right: 1px solid var(--line);
+      background: var(--bg);
+      min-height: 100vh;
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      height: 64px;
+      border-bottom: 1px solid var(--line);
+      background: rgba(243, 245, 242, 0.84);
+      backdrop-filter: blur(18px);
+    }
+    .nav-inner {
+      max-width: var(--max);
+      height: 100%;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 24px;
+      gap: 24px;
+    }
+    .brand {
+      font-family: var(--mona);
+      font-size: 22px;
+      font-weight: 900;
+      letter-spacing: -.055em;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      font-size: 14px;
+      font-weight: 700;
+      color: #222522;
+    }
+    .nav-actions { display: flex; align-items: center; gap: 12px; }
+    .lang {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 8px 11px;
+      background: rgba(255,255,255,.45);
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 800;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      min-height: 42px;
+      padding: 0 18px;
+      border-radius: 8px;
+      border: 1px solid var(--line-strong);
+      font-weight: 800;
+      font-size: 14px;
+      cursor: pointer;
+      transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
+      white-space: nowrap;
+    }
+    .btn:hover { transform: translateY(-1px); }
+    .btn-primary { background: var(--green); color: #fff; border-color: var(--green); }
+    .btn-primary:hover { background: var(--green-dark); box-shadow: 0 12px 30px rgba(0,107,67,.18); }
+    .btn-secondary { background: rgba(255,255,255,.58); color: var(--ink); }
+    .btn-soft { background: var(--green-soft); color: var(--green-dark); border-color: transparent; }
+
+    .section {
+      border-bottom: 1px solid var(--line);
+      padding: 92px 24px;
+    }
+    .section.tight { padding: 56px 24px; }
+    .section-head {
+      max-width: 760px;
+      margin: 0 auto 44px;
+      text-align: center;
+    }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 18px;
+      color: var(--green);
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+    .eyebrow::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 0 5px var(--green-pale);
+    }
+    h1, h2, h3 {
+      font-family: var(--mona);
+      margin: 0;
+      color: var(--ink);
+      letter-spacing: -.065em;
+      line-height: .94;
+    }
+    h1 { font-size: clamp(48px, 7vw, 92px); max-width: 980px; }
+    h2 { font-size: clamp(34px, 4vw, 58px); }
+    h3 { font-size: 24px; letter-spacing: -.045em; line-height: 1.05; }
+    p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.65;
+      font-size: 16px;
+      font-weight: 560;
+    }
+    .lead { font-size: clamp(17px, 2vw, 22px); line-height: 1.5; }
+
+    .hero {
+      padding: 108px 24px 56px;
+      text-align: center;
+    }
+    .hero .inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .hero p { max-width: 720px; margin-top: 24px; }
+    .hero-actions { display: flex; gap: 14px; margin: 32px 0 54px; flex-wrap: wrap; justify-content: center; }
+
+    .hero-visual {
+      width: min(960px, 100%);
+      min-height: 520px;
+      border-radius: 22px;
+      background: #fff;
+      border: 1px solid rgba(16,17,19,.06);
+      box-shadow: 0 34px 120px rgba(0,0,0,.06);
+      overflow: hidden;
+      position: relative;
+    }
+    .mock-window {
+      position: absolute;
+      inset: 34px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: linear-gradient(180deg,#fff,#f8faf7);
+      overflow: hidden;
+      text-align: left;
+    }
+    .mock-top {
+      height: 56px;
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 18px;
+    }
+    .dots { display: flex; gap: 7px; }
+    .dots span { width: 9px; height: 9px; border-radius: 50%; background: #d8ded7; }
+    .mock-search { width: 250px; height: 28px; border-radius: 999px; background: var(--panel-soft); border: 1px solid var(--line); }
+    .mock-body { display: grid; grid-template-columns: 250px 1fr; min-height: 430px; }
+    .mock-side { border-right: 1px solid var(--line); padding: 18px; }
+    .filter-pill { height: 34px; border-radius: 10px; background: var(--panel-soft); border: 1px solid var(--line); margin-bottom: 12px; }
+    .mock-feed { padding: 18px; display: grid; gap: 12px; }
+    .feed-card {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 16px;
+      background: #fff;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 12px;
+      align-items: center;
+    }
+    .feed-card strong { font-size: 14px; letter-spacing: -.02em; }
+    .feed-card span { color: var(--muted); font-size: 12px; font-weight: 700; }
+    .tag { border-radius: 999px; padding: 6px 10px; background: var(--green-pale); color: var(--green-dark); font-size: 12px; font-weight: 900; }
+
+    .stats-grid, .logo-grid {
+      display: grid;
+      max-width: var(--max);
+      margin: 0 auto;
+      border-top: 1px solid var(--line);
+      border-left: 1px solid var(--line);
+    }
+    .stats-grid { grid-template-columns: repeat(4, 1fr); }
+    .stat, .logo-cell {
+      min-height: 150px;
+      border-right: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background: rgba(243,245,242,.45);
+    }
+    .stat b { font-family: var(--mona); font-size: clamp(36px, 4vw, 50px); letter-spacing: -.06em; }
+    .stat span { color: #2b2d2b; font-size: 16px; font-weight: 700; margin-top: 8px; }
+    .logo-grid { grid-template-columns: repeat(5, 1fr); }
+    .logo-cell { min-height: 130px; font-family: var(--mona); font-size: 29px; font-weight: 900; letter-spacing: -.08em; filter: grayscale(1); }
+
+    .split {
+      max-width: var(--max);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.04fr .96fr;
+      gap: 24px;
+      align-items: stretch;
+    }
+    .copy-card, .visual-card, .feature-card, .step-card, .price-card, .quote-card, .faq-item, .footer-card {
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.66);
+      border-radius: var(--radius-lg);
+    }
+    .copy-card { padding: 46px; }
+    .copy-card h2 { margin-bottom: 24px; }
+    .copy-card p + p { margin-top: 16px; }
+    .pain-list { display: grid; gap: 12px; margin-top: 28px; }
+    .pain-list div {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      padding: 14px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: var(--panel);
+      color: #272a27;
+      font-weight: 760;
+    }
+    .icon-dot {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--green-pale);
+      color: var(--green-dark);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex: 0 0 auto;
+      font-size: 13px;
+      font-weight: 900;
+    }
+    .visual-card {
+      min-height: 420px;
+      padding: 28px;
+      overflow: hidden;
+      position: relative;
+    }
+    .source-stack { display: grid; gap: 12px; position: relative; z-index: 2; }
+    .source {
+      display: grid;
+      grid-template-columns: 42px 1fr auto;
+      gap: 14px;
+      align-items: center;
+      padding: 14px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: rgba(255,255,255,.84);
+    }
+    .source-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      background: var(--green-pale);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--green-dark);
+      font-weight: 900;
+    }
+    .source strong { font-size: 14px; }
+    .source small { color: var(--muted); font-weight: 700; }
+    .source em { font-style: normal; font-size: 12px; color: var(--green); font-weight: 900; }
+
+    .features-grid {
+      max-width: var(--max);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+    .feature-card {
+      padding: 28px;
+      min-height: 310px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform .18s ease, border-color .18s ease, background .18s ease;
+    }
+    .feature-card:hover { transform: translateY(-3px); border-color: var(--line-strong); background: #fff; }
+    .feature-card .num {
+      width: 42px;
+      height: 42px;
+      border-radius: 13px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--green-pale);
+      color: var(--green-dark);
+      font-weight: 900;
+    }
+    .feature-card h3 { margin: 30px 0 14px; }
+
+    .steps-grid {
+      max-width: var(--max);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .step-card { padding: 30px; min-height: 260px; position: relative; overflow: hidden; }
+    .step-card::after {
+      content: attr(data-step);
+      position: absolute;
+      right: 18px;
+      bottom: -18px;
+      font-family: var(--mona);
+      font-size: 118px;
+      font-weight: 900;
+      letter-spacing: -.08em;
+      color: rgba(0,107,67,.07);
+    }
+    .step-card h3 { margin: 28px 0 14px; position: relative; z-index: 1; }
+    .step-card p, .step-card .icon-dot { position: relative; z-index: 1; }
+
+    .coverage {
+      max-width: var(--max);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: .86fr 1.14fr;
+      gap: 24px;
+      align-items: stretch;
+    }
+    .map-card {
+      border: 1px solid var(--line);
+      background: radial-gradient(circle at 52% 45%, rgba(0,107,67,.16), transparent 32%), #fff;
+      border-radius: var(--radius-lg);
+      padding: 38px;
+      min-height: 520px;
+      position: relative;
+      overflow: hidden;
+    }
+    .africa-shape {
+      width: min(380px, 80%);
+      aspect-ratio: 1 / 1.18;
+      margin: 16px auto 0;
+      background: linear-gradient(145deg, #0b6e48, #013f2b);
+      clip-path: polygon(48% 1%, 61% 7%, 72% 18%, 78% 33%, 74% 48%, 84% 60%, 74% 69%, 68% 83%, 54% 98%, 43% 83%, 34% 78%, 26% 60%, 13% 53%, 20% 37%, 26% 19%, 36% 10%);
+      box-shadow: inset 0 0 40px rgba(255,255,255,.08);
+      opacity: .96;
+    }
+    .pin {
+      position: absolute;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #fff;
+      border: 3px solid var(--green);
+      box-shadow: 0 0 0 7px rgba(0,107,67,.1);
+    }
+    .pin.p1 { left: 55%; top: 30%; }
+    .pin.p2 { left: 49%; top: 43%; }
+    .pin.p3 { left: 58%; top: 54%; }
+    .pin.p4 { left: 44%; top: 58%; }
+    .country-list {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin-top: 30px;
+    }
+    .country-list span {
+      padding: 13px 14px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: rgba(255,255,255,.62);
+      font-weight: 800;
+      color: #2e322e;
+    }
+
+    .quotes-grid {
+      max-width: var(--max);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .quote-card { padding: 30px; min-height: 280px; display: flex; flex-direction: column; justify-content: space-between; }
+    .quote-card blockquote { margin: 0; font-size: 18px; line-height: 1.55; font-weight: 720; letter-spacing: -.02em; }
+    .person { display: flex; align-items: center; gap: 12px; margin-top: 28px; }
+    .avatar { width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg, var(--green-soft), #fff); border: 1px solid var(--line); }
+    .person strong { display: block; font-size: 14px; }
+    .person span { display: block; color: var(--muted); font-size: 13px; font-weight: 700; }
+
+    .pricing-grid {
+      max-width: var(--max);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .price-card { padding: 30px; position: relative; background: rgba(255,255,255,.78); }
+    .price-card.popular { border-color: var(--green); box-shadow: 0 24px 70px rgba(0,107,67,.1); background: #fff; }
+    .badge {
+      display: inline-flex;
+      border-radius: 999px;
+      background: var(--green-pale);
+      color: var(--green-dark);
+      padding: 7px 11px;
+      font-size: 12px;
+      font-weight: 900;
+    }
+    .price-card h3 { margin: 24px 0 10px; }
+    .price {
+      font-family: var(--mona);
+      font-size: 48px;
+      letter-spacing: -.07em;
+      font-weight: 900;
+      margin: 24px 0 6px;
+    }
+    .price small { font-family: var(--manrope); font-size: 14px; color: var(--muted); letter-spacing: 0; font-weight: 800; }
+    .features-list { padding: 0; margin: 26px 0; list-style: none; display: grid; gap: 12px; }
+    .features-list li { display: flex; gap: 10px; align-items: flex-start; color: #2c302c; font-weight: 760; font-size: 14px; }
+
+    .faq {
+      max-width: 920px;
+      margin: 0 auto;
+      display: grid;
+      gap: 10px;
+    }
+    .faq-item { overflow: hidden; }
+    .faq-q {
+      width: 100%;
+      border: 0;
+      background: transparent;
+      padding: 22px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      text-align: left;
+      font-weight: 900;
+      font-size: 17px;
+      cursor: pointer;
+    }
+    .faq-q span:last-child { color: var(--green); font-size: 22px; line-height: 1; }
+    .faq-a {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .24s ease;
+    }
+    .faq-a p { padding: 0 24px 24px; }
+    .faq-item.open .faq-a { max-height: 180px; }
+
+    .final-cta {
+      max-width: var(--max);
+      margin: 0 auto;
+      border: 1px solid var(--line);
+      border-radius: 34px;
+      padding: 72px 28px;
+      background: radial-gradient(circle at 50% 0%, rgba(0,107,67,.13), transparent 36%), #fff;
+      text-align: center;
+    }
+    .final-cta h2 { max-width: 720px; margin: 0 auto 20px; }
+    .final-cta p { margin: 0 auto 28px; }
+
+    .footer {
+      padding: 56px 24px 26px;
+    }
+    .footer-card {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 34px;
+      display: grid;
+      grid-template-columns: 1.4fr repeat(3, 1fr);
+      gap: 28px;
+    }
+    .footer h4 { margin: 0 0 16px; font-size: 14px; letter-spacing: -.02em; }
+    .footer ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 11px; color: var(--muted); font-weight: 720; font-size: 14px; }
+    .footer-bottom {
+      max-width: var(--max);
+      margin: 22px auto 0;
+      display: flex;
+      justify-content: space-between;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 760;
+    }
+
+    /* VERSION B */
+    .v2 .hero { text-align: left; }
+    .v2 .hero .inner {
+      display: grid;
+      grid-template-columns: .9fr 1.1fr;
+      gap: 32px;
+      align-items: center;
+    }
+    .v2 .hero-actions { justify-content: flex-start; margin-bottom: 0; }
+    .v2 h1 { font-size: clamp(46px, 6vw, 80px); }
+    .terminal-card {
+      border-radius: 26px;
+      border: 1px solid var(--line);
+      background: #101113;
+      color: #fff;
+      min-height: 560px;
+      padding: 18px;
+      box-shadow: 0 34px 90px rgba(16,17,19,.18);
+      overflow: hidden;
+    }
+    .terminal-top { height: 46px; display: flex; align-items: center; justify-content: space-between; color: rgba(255,255,255,.55); font-size: 12px; font-weight: 800; }
+    .terminal-body { display: grid; gap: 12px; }
+    .alert-row {
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      padding: 16px;
+      background: rgba(255,255,255,.045);
+      display: grid;
+      gap: 10px;
+    }
+    .alert-row strong { letter-spacing: -.02em; }
+    .alert-row span { color: rgba(255,255,255,.6); font-size: 13px; line-height: 1.5; }
+    .alert-meta { display: flex; gap: 8px; flex-wrap: wrap; }
+    .alert-meta em { font-style: normal; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.08); border-radius: 999px; padding: 5px 8px; color: #dbeee5; font-size: 11px; font-weight: 900; }
+    .v2 .features-grid { grid-template-columns: repeat(2, 1fr); }
+    .v2 .feature-card { min-height: 230px; }
+    .v2 .coverage { grid-template-columns: 1fr; }
+    .v2 .country-list { grid-template-columns: repeat(4, 1fr); }
+
+    /* VERSION C */
+    .v3 .site-shell {
+      background:
+        radial-gradient(circle at top left, rgba(0,107,67,.12), transparent 30%);
+      background-color: var(--bg);
+    }
+    .v3 .hero .inner { align-items: stretch; }
+    .v3 .hero-card {
+      border: 1px solid var(--line);
+      border-radius: 36px;
+      background: #fff;
+      padding: 66px 48px 28px;
+      overflow: hidden;
+    }
+    .v3 h1 { margin: 0 auto; }
+    .v3 .hero-visual {
+      width: 100%;
+      min-height: 330px;
+      margin-top: 46px;
+      border-radius: 24px;
+      background: linear-gradient(135deg, #f8faf7, #fff);
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      padding: 18px;
+    }
+    .mini-panel {
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: #fff;
+      padding: 18px;
+      text-align: left;
+    }
+    .mini-panel:nth-child(2) { transform: translateY(-18px); }
+    .mini-panel strong { display: block; margin-bottom: 8px; font-size: 15px; }
+    .mini-panel .bar { height: 10px; border-radius: 999px; background: var(--green-pale); margin-top: 12px; }
+    .mini-panel .bar:nth-child(3) { width: 76%; }
+    .mini-panel .bar:nth-child(4) { width: 52%; }
+    .v3 .split { grid-template-columns: 1fr; }
+    .v3 .features-grid { grid-template-columns: 1fr; gap: 0; border-top: 1px solid var(--line); max-width: 980px; }
+    .v3 .feature-card { border-radius: 0; border-top: 0; min-height: auto; display: grid; grid-template-columns: 72px .7fr 1fr; gap: 24px; align-items: center; }
+    .v3 .feature-card:first-child { border-radius: 24px 24px 0 0; }
+    .v3 .feature-card:last-child { border-radius: 0 0 24px 24px; }
+    .v3 .feature-card h3 { margin: 0; }
+
+    @media (max-width: 920px) {
+      .nav-links, .lang { display: none; }
+      .site-shell { border-left: 0; border-right: 0; background-image: none; }
+      .hero { padding-top: 84px; }
+      .hero-visual { min-height: 420px; }
+      .mock-body { grid-template-columns: 1fr; }
+      .mock-side { display: none; }
+      .stats-grid, .features-grid, .steps-grid, .quotes-grid, .pricing-grid, .footer-card, .split, .coverage, .v2 .hero .inner { grid-template-columns: 1fr; }
+      .logo-grid { grid-template-columns: repeat(2, 1fr); }
+      .v2 .features-grid, .v2 .country-list, .country-list { grid-template-columns: 1fr 1fr; }
+      .v3 .hero-card { padding: 42px 22px 22px; }
+      .v3 .hero-visual { grid-template-columns: 1fr; min-height: auto; }
+      .mini-panel:nth-child(2) { transform: none; }
+      .v3 .feature-card { grid-template-columns: 1fr; }
+      .footer-bottom { flex-direction: column; gap: 10px; }
+    }
+
+    @media (max-width: 560px) {
+      .nav-inner { padding: 0 16px; }
+      .nav-actions .btn-secondary { display: none; }
+      .section { padding: 72px 16px; }
+      .hero { padding-left: 16px; padding-right: 16px; }
+      .hero-actions { width: 100%; }
+      .btn { width: 100%; }
+      .stats-grid { grid-template-columns: 1fr 1fr; }
+      .logo-grid { grid-template-columns: 1fr; }
+      .copy-card { padding: 28px; }
+      .terminal-card { min-height: auto; }
+      .version-switcher { left: 12px; right: 12px; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+  <div class="version-switcher" aria-label="Choisir une version">
+    <button class="active" data-version="v1">Version 1</button>
+    <button data-version="v2">Version 2</button>
+    <button data-version="v3">Version 3</button>
+  </div>
+
+  <!-- VERSION 1: Dashboard premium, très proche de la direction déjà commencée -->
+  <main class="page v1 active" id="v1">
+    <div class="version-title"><strong>Version 1 — Dashboard premium</strong><span>La plus proche de ton design actuel : grille fine, gros hero centré, mockup dashboard blanc.</span></div>
+    <div class="site-shell">
+      <nav class="nav">
+        <div class="nav-inner">
+          <a class="brand" href="#">WuriPay</a>
+          <div class="nav-links">
+            <a href="#v1-pricing">Tarifs</a><a href="#v1-about">À propos</a><a href="#v1-contact">Contact</a><a href="#v1-coverage">Pays couverts</a>
+          </div>
+          <div class="nav-actions"><span class="lang">FR</span><a class="btn btn-soft" href="#">Se connecter</a><a class="btn btn-primary" href="#">Essai gratuit</a></div>
+        </div>
+      </nav>
+
+      <section class="hero">
+        <div class="inner">
+          <h1>Décrochez plus de marchés publics en Afrique.</h1>
+          <p class="lead">Tous les appels d’offres et opportunités d’affaires d’Afrique. Centralisés, filtrés, livrés en temps réel.</p>
+          <div class="hero-actions"><a class="btn btn-primary" href="#v1-pricing">Démarrer maintenant →</a><a class="btn btn-secondary" href="#v1-demo">▷ Voir une démo</a></div>
+          <div class="hero-visual" id="v1-demo">
+            <div class="mock-window">
+              <div class="mock-top"><div class="dots"><span></span><span></span><span></span></div><div class="mock-search"></div><span class="tag">Live</span></div>
+              <div class="mock-body">
+                <aside class="mock-side"><div class="filter-pill"></div><div class="filter-pill"></div><div class="filter-pill"></div><div class="filter-pill"></div><div class="filter-pill"></div></aside>
+                <div class="mock-feed">
+                  <div class="feed-card"><div><strong>Fourniture d’équipements solaires</strong><br><span>Burkina Faso · Énergie · Deadline 14 jours</span></div><span class="tag">Nouveau</span></div>
+                  <div class="feed-card"><div><strong>Maintenance réseau et cybersécurité</strong><br><span>Côte d’Ivoire · IT · Deadline 9 jours</span></div><span class="tag">Priorité</span></div>
+                  <div class="feed-card"><div><strong>Construction centre de formation</strong><br><span>Sénégal · BTP · Deadline 21 jours</span></div><span class="tag">Match 94%</span></div>
+                  <div class="feed-card"><div><strong>Approvisionnement matériel médical</strong><br><span>Bénin · Santé · Deadline 12 jours</span></div><span class="tag">Alerté</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section tight">
+        <div class="section-head"><h2>WuriPay c’est</h2></div>
+        <div class="stats-grid"><div class="stat"><b>+991</b><span>opportunités indexées</span></div><div class="stat"><b>+16</b><span>pays couverts</span></div><div class="stat"><b>24/7</b><span>veille automatisée</span></div><div class="stat"><b>98%</b><span>de temps gagné</span></div></div>
+      </section>
+
+      <section class="section tight">
+        <div class="section-head"><h2>Ils nous font confiance</h2></div>
+        <div class="logo-grid"><div class="logo-cell">_zapier</div><div class="logo-cell">_oracle</div><div class="logo-cell">_stripe</div><div class="logo-cell">_linear</div><div class="logo-cell">_vercel</div></div>
+      </section>
+
+      <section class="section" id="v1-about">
+        <div class="split">
+          <div class="copy-card"><span class="eyebrow">Problème résolu</span><h2>La veille manuelle fait perdre les meilleurs marchés.</h2><p>Les opportunités sont dispersées entre portails publics, sites institutionnels, annonces privées et réseaux informels.</p><p>WuriPay transforme cette recherche fragmentée en un flux clair : chaque opportunité pertinente arrive au bon moment, dans le bon canal.</p><div class="pain-list"><div><span class="icon-dot">✓</span>Moins de temps passé à chercher dans 10+ sources.</div><div><span class="icon-dot">✓</span>Moins d’opportunités ratées à cause d’une deadline courte.</div><div><span class="icon-dot">✓</span>Une seule interface pour suivre et prioriser.</div></div></div>
+          <div class="visual-card"><div class="source-stack"><div class="source"><span class="source-icon">01</span><div><strong>Sources publiques</strong><br><small>Portails nationaux, ministères, institutions</small></div><em>Indexé</em></div><div class="source"><span class="source-icon">02</span><div><strong>Opportunités privées</strong><br><small>Partenariats, consultations, demandes fournisseurs</small></div><em>Filtré</em></div><div class="source"><span class="source-icon">03</span><div><strong>Alertes intelligentes</strong><br><small>Email, WhatsApp, tableau de bord</small></div><em>Livré</em></div></div></div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head"><span class="eyebrow">Fonctionnalités</span><h2>Tout ce qu’il faut pour ne plus rater un appel d’offres.</h2></div>
+        <div class="features-grid"><article class="feature-card"><span class="num">01</span><div><h3>Alertes en temps réel</h3><p>Recevez par email et WhatsApp les opportunités qui correspondent à vos critères.</p></div></article><article class="feature-card"><span class="num">02</span><div><h3>Agrégation panafricaine</h3><p>Toutes les sources d’opportunités d’affaires d’Afrique centralisées au même endroit.</p></div></article><article class="feature-card"><span class="num">03</span><div><h3>Filtres avancés</h3><p>Affinez par secteur, montant, deadline, pays, type d’opportunité et mots-clés.</p></div></article><article class="feature-card"><span class="num">04</span><div><h3>Tableau de bord</h3><p>Suivez, organisez et priorisez toutes vos opportunités depuis une interface unique.</p></div></article></div>
+      </section>
+
+      <section class="section">
+        <div class="section-head"><span class="eyebrow">Comment ça marche</span><h2>De la veille au marché remporté, sans friction.</h2></div>
+        <div class="steps-grid"><article class="step-card" data-step="1"><span class="icon-dot">1</span><h3>Créez vos critères</h3><p>Choisissez vos pays, secteurs, montants, mots-clés et canaux d’alerte.</p></article><article class="step-card" data-step="2"><span class="icon-dot">2</span><h3>Recevez les opportunités</h3><p>WuriPay surveille les sources et vous livre les opportunités pertinentes.</p></article><article class="step-card" data-step="3"><span class="icon-dot">3</span><h3>Priorisez et postulez</h3><p>Suivez les deadlines, organisez vos dossiers et concentrez-vous sur les meilleurs marchés.</p></article></div>
+      </section>
+
+      <section class="section" id="v1-coverage">
+        <div class="coverage"><div class="copy-card"><span class="eyebrow">Couverture</span><h2>Une ambition panafricaine, pays par pays.</h2><p>WuriPay couvre progressivement les marchés publics et opportunités d’affaires du continent, avec une priorité sur les zones les plus actives.</p><div class="country-list"><span>Burkina Faso</span><span>Bénin</span><span>Côte d’Ivoire</span><span>Sénégal</span><span>Togo</span><span>Mali</span><span>Ghana</span><span>Niger</span></div></div><div class="map-card"><div class="africa-shape"></div><span class="pin p1"></span><span class="pin p2"></span><span class="pin p3"></span><span class="pin p4"></span></div></div>
+      </section>
+
+      <section class="section">
+        <div class="section-head"><span class="eyebrow">Témoignages</span><h2>Des entreprises mieux informées, plus rapides, plus compétitives.</h2></div>
+        <div class="quotes-grid"><article class="quote-card"><blockquote>“Nous avons divisé par trois le temps passé à surveiller les opportunités.”</blockquote><div class="person"><span class="avatar"></span><div><strong>Awa K.</strong><span>Directrice commerciale</span></div></div></article><article class="quote-card"><blockquote>“Les alertes nous permettent de réagir avant nos concurrents.”</blockquote><div class="person"><span class="avatar"></span><div><strong>Marc O.</strong><span>PME BTP</span></div></div></article><article class="quote-card"><blockquote>“Enfin une vue claire des marchés à suivre dans plusieurs pays.”</blockquote><div class="person"><span class="avatar"></span><div><strong>Fatou S.</strong><span>Cabinet conseil</span></div></div></article></div>
+      </section>
+
+      <section class="section" id="v1-pricing">
+        <div class="section-head"><span class="eyebrow">Tarifs</span><h2>7 jours d’essai gratuit, puis choisissez votre rythme.</h2><p>Mêmes fonctionnalités sur tous les plans. La différence se fait sur la durée et l’économie réalisée.</p></div>
+        <div class="pricing-grid"><article class="price-card"><span class="badge">Mensuel</span><h3>Flexible</h3><p>Pour tester et démarrer vite.</p><div class="price">19k <small>FCFA/mois</small></div><ul class="features-list"><li>✓ Accès complet</li><li>✓ Alertes email & WhatsApp</li><li>✓ Filtres avancés</li></ul><a class="btn btn-secondary" href="#">Commencer</a></article><article class="price-card popular"><span class="badge">Le plus populaire</span><h3>Trimestriel</h3><p>Pour une veille régulière.</p><div class="price">49k <small>FCFA/trim.</small></div><ul class="features-list"><li>✓ Accès complet</li><li>✓ Alertes email & WhatsApp</li><li>✓ Tableau de bord</li></ul><a class="btn btn-primary" href="#">Essai gratuit</a></article><article class="price-card"><span class="badge">Annuel</span><h3>Meilleure valeur</h3><p>Pour les équipes structurées.</p><div class="price">149k <small>FCFA/an</small></div><ul class="features-list"><li>✓ Accès complet</li><li>✓ Multi-pays</li><li>✓ Support prioritaire</li></ul><a class="btn btn-secondary" href="#">Commencer</a></article></div>
+      </section>
+
+      <section class="section">
+        <div class="section-head"><span class="eyebrow">FAQ</span><h2>Questions fréquentes</h2></div>
+        <div class="faq">
+          <div class="faq-item open"><button class="faq-q"><span>Qu’est-ce que WuriPay exactement ?</span><span>−</span></button><div class="faq-a"><p>Une plateforme B2B qui agrège les marchés publics, appels d’offres et opportunités d’affaires en Afrique.</p></div></div>
+          <div class="faq-item"><button class="faq-q"><span>Quels types d’opportunités sont agrégées ?</span><span>+</span></button><div class="faq-a"><p>Marchés publics, appels d’offres, consultations, partenariats et opportunités d’affaires pertinentes.</p></div></div>
+          <div class="faq-item"><button class="faq-q"><span>Quels pays sont couverts actuellement ?</span><span>+</span></button><div class="faq-a"><p>La couverture évolue progressivement avec une ambition panafricaine et une priorité sur l’Afrique de l’Ouest.</p></div></div>
+          <div class="faq-item"><button class="faq-q"><span>Comment fonctionne l’essai gratuit de 7 jours ?</span><span>+</span></button><div class="faq-a"><p>Vous accédez aux fonctionnalités complètes pendant 7 jours avant de choisir un plan.</p></div></div>
+          <div class="faq-item"><button class="faq-q"><span>Puis-je annuler mon abonnement à tout moment ?</span><span>+</span></button><div class="faq-a"><p>Oui, l’abonnement peut être annulé à tout moment selon les conditions du plan choisi.</p></div></div>
+          <div class="faq-item"><button class="faq-q"><span>Quels moyens de paiement acceptez-vous ?</span><span>+</span></button><div class="faq-a"><p>Les moyens de paiement disponibles seront indiqués au moment de l’inscription.</p></div></div>
+          <div class="faq-item"><button class="faq-q"><span>Les alertes sont-elles vraiment en temps réel ?</span><span>+</span></button><div class="faq-a"><p>Les nouvelles opportunités correspondant à vos critères sont envoyées dès leur détection.</p></div></div>
+        </div>
+      </section>
+
+      <section class="section" id="v1-contact"><div class="final-cta"><h2>Prêt à décrocher votre prochain marché ?</h2><p>Essayez WuriPay gratuitement pendant 7 jours. Sans carte bancaire · Annulez à tout moment.</p><a class="btn btn-primary" href="#">Démarrer l’essai gratuit →</a></div></section>
+      <footer class="footer"><div class="footer-card"><div><a class="brand" href="#">UNDERS TECHNOLOGIES</a><p style="margin-top:14px;max-width:310px">La veille d’opportunités d’affaires pensée pour l’Afrique.</p></div><div><h4>Produit</h4><ul><li>Tarifs</li><li>Fonctionnalités</li><li>FAQ</li></ul></div><div><h4>Légal</h4><ul><li>CGU</li><li>Confidentialité</li><li>Mentions légales</li></ul></div><div><h4>Réseaux</h4><ul><li>LinkedIn</li><li>Facebook</li><li>WhatsApp</li></ul></div></div><div class="footer-bottom"><span>© 2026 UNDERS TECHNOLOGIES. Tous droits réservés.</span><span>Made in Burkina Faso</span></div></footer>
+    </div>
+  </main>
+
+  <!-- VERSION 2: Fintech data, plus institutionnelle -->
+  <main class="page v2" id="v2">
+    <div class="version-title"><strong>Version 2 — Fintech data</strong><span>Plus institutionnelle, plus plateforme business intelligence, avec bloc sombre type data feed.</span></div>
+    <div class="site-shell">
+      <nav class="nav"><div class="nav-inner"><a class="brand" href="#">WuriPay</a><div class="nav-links"><a>Tarifs</a><a>À propos</a><a>Contact</a><a>Pays couverts</a></div><div class="nav-actions"><span class="lang">FR</span><a class="btn btn-soft">Se connecter</a><a class="btn btn-primary">S’inscrire</a></div></div></nav>
+      <section class="hero"><div class="inner"><div><span class="eyebrow">Veille panafricaine</span><h1>Transformez les appels d’offres africains en pipeline commercial.</h1><p class="lead">WuriPay centralise les opportunités, les classe selon vos critères et vous alerte avant que la deadline ne vous échappe.</p><div class="hero-actions"><a class="btn btn-primary">Essai gratuit →</a><a class="btn btn-secondary">Voir une démo</a></div></div><div class="terminal-card"><div class="terminal-top"><div class="dots"><span></span><span></span><span></span></div><span>opportunities.feed/live</span></div><div class="terminal-body"><div class="alert-row"><strong>Appel d’offres détecté · Match 97%</strong><span>Acquisition de matériel informatique pour une administration publique.</span><div class="alert-meta"><em>IT</em><em>Bénin</em><em>Deadline 8j</em></div></div><div class="alert-row"><strong>Consultation privée · Match 91%</strong><span>Recherche prestataire pour audit financier et conformité.</span><div class="alert-meta"><em>Conseil</em><em>Sénégal</em><em>WhatsApp envoyé</em></div></div><div class="alert-row"><strong>Marché public · Match 88%</strong><span>Construction et réhabilitation d’infrastructures scolaires.</span><div class="alert-meta"><em>BTP</em><em>Burkina Faso</em><em>Nouveau</em></div></div></div></div></div></section>
+      <section class="section tight"><div class="stats-grid"><div class="stat"><b>991+</b><span>opportunités</span></div><div class="stat"><b>16</b><span>pays couverts</span></div><div class="stat"><b>7j</b><span>essai gratuit</span></div><div class="stat"><b>24h</b><span>veille active</span></div></div></section>
+      <section class="section tight"><div class="section-head"><h2>Partenaires et clients</h2></div><div class="logo-grid"><div class="logo-cell">_bank</div><div class="logo-cell">_legal</div><div class="logo-cell">_build</div><div class="logo-cell">_audit</div><div class="logo-cell">_tech</div></div></section>
+      <section class="section"><div class="split"><div class="copy-card"><span class="eyebrow">Pourquoi</span><h2>Le problème n’est pas le manque d’opportunités. C’est leur dispersion.</h2><p>Chaque pays, institution et organisation publie différemment. Une entreprise peut perdre des heures à vérifier des sources hétérogènes.</p><p>WuriPay structure cette veille comme un système commercial : sources, scoring, alertes, suivi.</p></div><div class="visual-card"><div class="source-stack"><div class="source"><span class="source-icon">↳</span><div><strong>Collecte</strong><br><small>Sources publiques et privées</small></div><em>Auto</em></div><div class="source"><span class="source-icon">⌁</span><div><strong>Qualification</strong><br><small>Critères, pays, secteur, deadline</small></div><em>Scoring</em></div><div class="source"><span class="source-icon">↗</span><div><strong>Distribution</strong><br><small>Email, WhatsApp, dashboard</small></div><em>Live</em></div></div></div></div></section>
+      <section class="section"><div class="section-head"><span class="eyebrow">Modules</span><h2>Un système de veille complet.</h2></div><div class="features-grid"><article class="feature-card"><span class="num">01</span><div><h3>Alertes temps réel</h3><p>Email et WhatsApp quand une opportunité correspond à vos critères.</p></div></article><article class="feature-card"><span class="num">02</span><div><h3>Agrégation panafricaine</h3><p>Sources publiques et privées centralisées dans un flux unique.</p></div></article><article class="feature-card"><span class="num">03</span><div><h3>Filtres avancés</h3><p>Pays, secteur, montant, échéance, mots-clés et type d’opportunité.</p></div></article><article class="feature-card"><span class="num">04</span><div><h3>Dashboard centralisé</h3><p>Suivi, classement, priorisation et historique des opportunités.</p></div></article></div></section>
+      <section class="section"><div class="section-head"><span class="eyebrow">Méthode</span><h2>Un flux simple en 3 étapes.</h2></div><div class="steps-grid"><article class="step-card" data-step="1"><span class="icon-dot">1</span><h3>Paramétrez</h3><p>Définissez vos critères commerciaux et vos pays prioritaires.</p></article><article class="step-card" data-step="2"><span class="icon-dot">2</span><h3>Recevez</h3><p>Les nouvelles opportunités arrivent dans vos canaux préférés.</p></article><article class="step-card" data-step="3"><span class="icon-dot">3</span><h3>Exécutez</h3><p>Vous suivez les opportunités et préparez vos réponses plus vite.</p></article></div></section>
+      <section class="section"><div class="coverage"><div class="copy-card"><span class="eyebrow">Afrique</span><h2>Une couverture conçue pour grandir avec le continent.</h2><p>Le produit est pensé pour consolider les opportunités d’affaires dans plusieurs marchés africains, sans multiplier les outils de veille.</p><div class="country-list"><span>BF</span><span>BJ</span><span>CI</span><span>SN</span><span>TG</span><span>ML</span><span>GH</span><span>NE</span></div></div><div class="map-card"><div class="africa-shape"></div><span class="pin p1"></span><span class="pin p2"></span><span class="pin p3"></span><span class="pin p4"></span></div></div></section>
+      <section class="section"><div class="section-head"><span class="eyebrow">Preuve</span><h2>La veille devient un avantage compétitif.</h2></div><div class="quotes-grid"><article class="quote-card"><blockquote>“Notre équipe commerciale sait enfin quelles opportunités traiter en priorité.”</blockquote><div class="person"><span class="avatar"></span><div><strong>Client bêta</strong><span>Services B2B</span></div></div></article><article class="quote-card"><blockquote>“Le gain de temps est immédiat, surtout quand on suit plusieurs pays.”</blockquote><div class="person"><span class="avatar"></span><div><strong>Client bêta</strong><span>Conseil</span></div></div></article><article class="quote-card"><blockquote>“Les alertes WhatsApp changent la façon dont notre équipe réagit.”</blockquote><div class="person"><span class="avatar"></span><div><strong>Client bêta</strong><span>Distribution</span></div></div></article></div></section>
+      <section class="section"><div class="section-head"><span class="eyebrow">Plans</span><h2>Un accès complet, trois durées.</h2></div><div class="pricing-grid"><article class="price-card"><span class="badge">Mensuel</span><h3>Départ</h3><div class="price">19k <small>FCFA</small></div><ul class="features-list"><li>✓ Toutes fonctionnalités</li><li>✓ 7 jours gratuits</li><li>✓ Annulation flexible</li></ul><a class="btn btn-secondary">Choisir</a></article><article class="price-card popular"><span class="badge">Le plus populaire</span><h3>Trimestriel</h3><div class="price">49k <small>FCFA</small></div><ul class="features-list"><li>✓ Toutes fonctionnalités</li><li>✓ Meilleur équilibre</li><li>✓ Alertes complètes</li></ul><a class="btn btn-primary">Essai gratuit</a></article><article class="price-card"><span class="badge">Annuel</span><h3>Équipe</h3><div class="price">149k <small>FCFA</small></div><ul class="features-list"><li>✓ Toutes fonctionnalités</li><li>✓ Économie annuelle</li><li>✓ Support prioritaire</li></ul><a class="btn btn-secondary">Choisir</a></article></div></section>
+      <section class="section"><div class="section-head"><span class="eyebrow">FAQ</span><h2>Réponses rapides</h2></div><div class="faq"><div class="faq-item open"><button class="faq-q"><span>Qu’est-ce que WuriPay exactement ?</span><span>−</span></button><div class="faq-a"><p>Une plateforme d’agrégation et de suivi des opportunités d’affaires en Afrique.</p></div></div><div class="faq-item"><button class="faq-q"><span>Quels types d’opportunités sont agrégées ?</span><span>+</span></button><div class="faq-a"><p>Marchés publics, appels d’offres, consultations et opportunités privées.</p></div></div><div class="faq-item"><button class="faq-q"><span>Puis-je annuler à tout moment ?</span><span>+</span></button><div class="faq-a"><p>Oui, selon les conditions du plan choisi.</p></div></div></div></section>
+      <section class="section"><div class="final-cta"><h2>Votre prochaine opportunité est peut-être déjà publiée.</h2><p>Démarrez gratuitement et remplacez la veille manuelle par un flux fiable.</p><a class="btn btn-primary">Démarrer l’essai gratuit</a></div></section>
+      <footer class="footer"><div class="footer-card"><div><a class="brand">UNDERS TECHNOLOGIES</a><p style="margin-top:14px;max-width:310px">Opportunités d’affaires, centralisées pour les entreprises africaines.</p></div><div><h4>Produit</h4><ul><li>Tarifs</li><li>Fonctionnalités</li><li>FAQ</li></ul></div><div><h4>Légal</h4><ul><li>CGU</li><li>Confidentialité</li><li>Mentions légales</li></ul></div><div><h4>Social</h4><ul><li>LinkedIn</li><li>Facebook</li><li>WhatsApp</li></ul></div></div><div class="footer-bottom"><span>© 2026 UNDERS TECHNOLOGIES</span><span>Made in Burkina Faso</span></div></footer>
+    </div>
+  </main>
+
+  <!-- VERSION 3: Landing narrative, plus luxe et éditoriale -->
+  <main class="page v3" id="v3">
+    <div class="version-title"><strong>Version 3 — Luxe éditorial</strong><span>Plus narrative, très épurée, avec sections plus aérées et positionnement premium.</span></div>
+    <div class="site-shell">
+      <nav class="nav"><div class="nav-inner"><a class="brand">WuriPay</a><div class="nav-links"><a>Tarifs</a><a>À propos</a><a>Contact</a><a>Pays couverts</a></div><div class="nav-actions"><span class="lang">FR</span><a class="btn btn-soft">Se connecter</a><a class="btn btn-primary">Essayer gratuitement</a></div></div></nav>
+      <section class="hero"><div class="inner"><div class="hero-card"><span class="eyebrow">Business intelligence pour marchés publics</span><h1>Votre veille d’appels d’offres, enfin claire.</h1><p class="lead" style="margin-inline:auto">WuriPay détecte, filtre et organise les opportunités d’affaires africaines pour vous aider à répondre plus vite.</p><div class="hero-actions"><a class="btn btn-primary">Démarrer gratuitement →</a><a class="btn btn-secondary">Explorer la plateforme</a></div><div class="hero-visual"><div class="mini-panel"><strong>Opportunités détectées</strong><p>991+ marchés suivis</p><div class="bar"></div><div class="bar"></div></div><div class="mini-panel"><strong>Alertes envoyées</strong><p>Email + WhatsApp</p><div class="bar"></div><div class="bar"></div></div><div class="mini-panel"><strong>Pays couverts</strong><p>16 marchés actifs</p><div class="bar"></div><div class="bar"></div></div></div></div></div></section>
+      <section class="section tight"><div class="logo-grid"><div class="logo-cell">_firm</div><div class="logo-cell">_group</div><div class="logo-cell">_capital</div><div class="logo-cell">_works</div><div class="logo-cell">_agency</div></div></section>
+      <section class="section"><div class="split"><div class="copy-card"><span class="eyebrow">Constat</span><h2>Les marchés les plus importants ne sont pas toujours les plus visibles.</h2><p>Entre portails officiels, annonces régionales, consultations privées et deadlines courtes, la veille devient vite une charge opérationnelle.</p><p>WuriPay simplifie cette complexité : une source de vérité, des alertes ciblées, un tableau de bord pour agir.</p></div></div></section>
+      <section class="section"><div class="section-head"><span class="eyebrow">Capacités</span><h2>Quatre piliers pour structurer votre veille.</h2></div><div class="features-grid"><article class="feature-card"><span class="num">01</span><h3>Alertes en temps réel</h3><p>Recevez les opportunités pertinentes sans ouvrir dix sites chaque matin.</p></article><article class="feature-card"><span class="num">02</span><h3>Agrégation panafricaine</h3><p>Un flux consolidé depuis plusieurs sources publiques et privées.</p></article><article class="feature-card"><span class="num">03</span><h3>Filtres avancés</h3><p>Pays, secteur, montant, deadline, mots-clés, type d’opportunité.</p></article><article class="feature-card"><span class="num">04</span><h3>Suivi centralisé</h3><p>Organisez les marchés à traiter et gardez le contrôle des priorités.</p></article></div></section>
+      <section class="section"><div class="section-head"><span class="eyebrow">Parcours</span><h2>Simple à adopter, utile dès le premier jour.</h2></div><div class="steps-grid"><article class="step-card" data-step="1"><span class="icon-dot">1</span><h3>Définir</h3><p>Vos zones, secteurs et critères d’opportunités.</p></article><article class="step-card" data-step="2"><span class="icon-dot">2</span><h3>Surveiller</h3><p>Les sources sont scannées et qualifiées automatiquement.</p></article><article class="step-card" data-step="3"><span class="icon-dot">3</span><h3>Gagner</h3><p>Vous répondez plus vite aux marchés à fort potentiel.</p></article></div></section>
+      <section class="section"><div class="coverage"><div class="map-card"><div class="africa-shape"></div><span class="pin p1"></span><span class="pin p2"></span><span class="pin p3"></span><span class="pin p4"></span></div><div class="copy-card"><span class="eyebrow">Panafricain</span><h2>Un produit pensé pour plusieurs marchés.</h2><p>WuriPay accompagne les entreprises qui veulent détecter les opportunités au-delà de leur marché local.</p><div class="country-list"><span>Burkina Faso</span><span>Bénin</span><span>Côte d’Ivoire</span><span>Sénégal</span><span>Togo</span><span>Mali</span></div></div></div></section>
+      <section class="section"><div class="section-head"><span class="eyebrow">Clients</span><h2>Ils gagnent du temps sur leur veille.</h2></div><div class="quotes-grid"><article class="quote-card"><blockquote>“Nous avons une vue plus nette des opportunités à traiter.”</blockquote><div class="person"><span class="avatar"></span><div><strong>Entreprise cliente</strong><span>Conseil</span></div></div></article><article class="quote-card"><blockquote>“Le suivi par deadline nous évite de passer à côté de dossiers importants.”</blockquote><div class="person"><span class="avatar"></span><div><strong>Entreprise cliente</strong><span>Services</span></div></div></article><article class="quote-card"><blockquote>“Une seule interface pour suivre plusieurs pays, c’est le vrai gain.”</blockquote><div class="person"><span class="avatar"></span><div><strong>Entreprise cliente</strong><span>Industrie</span></div></div></article></div></section>
+      <section class="section"><div class="section-head"><span class="eyebrow">Tarifs</span><h2>Choisissez la durée. Gardez toutes les fonctionnalités.</h2></div><div class="pricing-grid"><article class="price-card"><span class="badge">Mensuel</span><h3>Explorer</h3><div class="price">19k <small>FCFA</small></div><ul class="features-list"><li>✓ Accès complet</li><li>✓ Alertes</li><li>✓ Dashboard</li></ul><a class="btn btn-secondary">Commencer</a></article><article class="price-card popular"><span class="badge">Recommandé</span><h3>Trimestriel</h3><div class="price">49k <small>FCFA</small></div><ul class="features-list"><li>✓ Accès complet</li><li>✓ Multi-pays</li><li>✓ 7 jours gratuits</li></ul><a class="btn btn-primary">Essai gratuit</a></article><article class="price-card"><span class="badge">Annuel</span><h3>Structurer</h3><div class="price">149k <small>FCFA</small></div><ul class="features-list"><li>✓ Accès complet</li><li>✓ Meilleure valeur</li><li>✓ Support prioritaire</li></ul><a class="btn btn-secondary">Commencer</a></article></div></section>
+      <section class="section"><div class="section-head"><span class="eyebrow">FAQ</span><h2>Avant de commencer</h2></div><div class="faq"><div class="faq-item open"><button class="faq-q"><span>Comment fonctionne l’essai gratuit de 7 jours ?</span><span>−</span></button><div class="faq-a"><p>Vous testez l’accès complet avant de choisir un abonnement.</p></div></div><div class="faq-item"><button class="faq-q"><span>Quels moyens de paiement acceptez-vous ?</span><span>+</span></button><div class="faq-a"><p>Les moyens disponibles sont présentés au moment du paiement.</p></div></div><div class="faq-item"><button class="faq-q"><span>Les alertes sont-elles vraiment en temps réel ?</span><span>+</span></button><div class="faq-a"><p>Elles sont envoyées dès qu’une opportunité pertinente est détectée.</p></div></div></div></section>
+      <section class="section"><div class="final-cta"><h2>Arrêtez de chercher partout. Commencez à suivre ce qui compte.</h2><p>Sans carte bancaire · Annulez à tout moment.</p><a class="btn btn-primary">Démarrer l’essai gratuit</a></div></section>
+      <footer class="footer"><div class="footer-card"><div><a class="brand">UNDERS TECHNOLOGIES</a><p style="margin-top:14px;max-width:310px">Business intelligence pour opportunités d’affaires en Afrique.</p></div><div><h4>Produit</h4><ul><li>Tarifs</li><li>Fonctionnalités</li><li>FAQ</li></ul></div><div><h4>Légal</h4><ul><li>CGU</li><li>Confidentialité</li><li>Mentions légales</li></ul></div><div><h4>Réseaux</h4><ul><li>LinkedIn</li><li>Facebook</li><li>WhatsApp</li></ul></div></div><div class="footer-bottom"><span>© 2026 UNDERS TECHNOLOGIES</span><span>Made in Burkina Faso</span></div></footer>
+    </div>
+  </main>
+
+  <script>
+    const buttons = document.querySelectorAll("[data-version]");
+    const pages = document.querySelectorAll(".page");
+
+    buttons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const id = button.dataset.version;
+        buttons.forEach((b) => b.classList.toggle("active", b === button));
+        document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+    });
+
+    document.querySelectorAll(".faq-q").forEach((trigger) => {
+      trigger.addEventListener("click", () => {
+        const item = trigger.closest(".faq-item");
+        const isOpen = item.classList.contains("open");
+        item.parentElement.querySelectorAll(".faq-item").forEach((el) => {
+          el.classList.remove("open");
+          el.querySelector(".faq-q span:last-child").textContent = "+";
+        });
+        if (!isOpen) {
+          item.classList.add("open");
+          trigger.querySelector("span:last-child").textContent = "−";
+        }
+      });
+    });
+  </script>
+</body>
+</html>
